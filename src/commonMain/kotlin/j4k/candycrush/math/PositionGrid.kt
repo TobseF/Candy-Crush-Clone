@@ -20,6 +20,8 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
         return Point(x + (column * distance), y + (row * distance))
     }
 
+    fun getPosition(position: Position): Point = getPosition(position.column, position.row)
+
     /**
      * @param posX horizontal screen pixel coordinates
      * @param posY vertical screen pixel coordinates

@@ -3,6 +3,7 @@ package j4k.candycrush
 import com.soywiz.korge.view.*
 import com.soywiz.korim.bitmap.Bitmap
 import j4k.candycrush.math.PositionGrid
+import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Row
 import j4k.candycrush.model.Tile
@@ -24,6 +25,11 @@ class GameFieldRenderer(private val gameField: GameField,
     private val maxVertical = (heightMax - top - paddings) / gameField.rowSize
     private val tileSize = getMaxTileSize() - sizeFix
     private val centerPadding = calculateCenterPadding()
+
+    private val tiles = Array(gameField.columnsSize) {
+        Array<Image?>(gameField.rowSize) { null }
+    }
+
 
     init {
         positionGrid = PositionGrid(x = centerPadding,
@@ -47,18 +53,31 @@ class GameFieldRenderer(private val gameField: GameField,
         gameField.forEachIndexed(this::addRow)
     }
 
-    private fun addRow(rowIndex: Int, row: Row) {
-        row.forEachIndexed { tileIndex, tile -> addTile(rowIndex, tileIndex, tile) }
+    private fun addRow(columnIndex: Int, row: Row) {
+        row.forEachIndexed { rowIndex, tile -> addTile(columnIndex, rowIndex, tile) }
     }
 
-    private fun addTile(rowIndex: Int, tileIndex: Int, tile: Tile) {
-        val pos = positionGrid.getPosition(column = tileIndex, row = rowIndex)
+    private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile) {
+        val pos = positionGrid.getPosition(column = rowIndex, row = columnIndex)
         pos.x = pos.x + paddingFix
-
-        image(bitmap) {
+        tiles[rowIndex][columnIndex] = image(bitmap) {
             anchor(0, 0)
             size(tileSize, tileSize)
             position(pos.x, pos.y)
         }
+    }
+
+    fun getTile(column: Int, row: Int) = tiles[column][row]
+    fun getTile(position: Position) = tiles[position.column][position.row]
+
+    fun setTile(tile: Image?, position: Position) {
+        tiles[position.column][position.row] = tile
+    }
+
+    fun swapTiles(a: Position, b: Position) {
+        val tileA = getTile(a)
+        val tileB = getTile(b)
+        setTile(tileA, b)
+        setTile(tileB, a)
     }
 }

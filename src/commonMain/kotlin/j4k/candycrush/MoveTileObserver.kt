@@ -12,9 +12,16 @@ import j4k.candycrush.DragListener.DragEvent
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 
-class MoveTileListener(override val view: View, val grid: PositionGrid) : DragListener.DragEventListener,
+class MoveTileObserver(override val view: View, val grid: PositionGrid, val moveTileListener: MoveTileListener) :
+        DragListener.DragEventListener,
         TouchComponent,
         MouseComponent {
+
+    data class MoveTileEvent(val start: Position, val end: Position)
+
+    interface MoveTileListener {
+        fun onMoveTileEvent(moveTileEvent: MoveTileEvent)
+    }
 
     private val dragListener = DragListener(view, grid.distance, this)
 
@@ -33,8 +40,9 @@ class MoveTileListener(override val view: View, val grid: PositionGrid) : DragLi
         val start: Position = grid.getField(dragEvent.start)
         val end: Position = grid.getField(dragEvent.end)
         val distance = start.distanceTo(end)
+
         if (distance == 1.0 && grid.isOnGrid(start) && grid.isOnGrid(end)) {
-            println("posChange$distance: $start-$end")
+            moveTileListener.onMoveTileEvent(MoveTileEvent(start, end))
         }
     }
 
