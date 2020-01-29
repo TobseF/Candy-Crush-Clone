@@ -31,8 +31,7 @@ class GameFieldRenderer(private val gameField: GameField,
     init {
         positionGrid = PositionGrid(x = centerPadding,
                 y = top,
-                margin = 0,
-                coulmns = gameField.columnsSize,
+                columns = gameField.columnsSize,
                 rows = gameField.rowSize,
                 size = tileSize)
     }
