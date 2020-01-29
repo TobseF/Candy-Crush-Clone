@@ -8,8 +8,8 @@ import com.soywiz.korim.format.readBitmap
 import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
-import j4k.candycrush.DragListener
 import j4k.candycrush.GameFieldRenderer
+import j4k.candycrush.MoveTileListener
 import j4k.candycrush.model.GameField
 
 suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2b"]) {
@@ -20,10 +20,9 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
     val gameField = GameField(8, 6)
 
     val testBitmap = resourcesVfs["test_stone.png"].readBitmap()
-    addChild(GameFieldRenderer(gameField, width.toInt(), height.toInt(), testBitmap))
-
-
-    addComponent(DragListener(this))
+    val gameFieldRenderer = GameFieldRenderer(gameField, width.toInt(), height.toInt(), testBitmap)
+    addChild(gameFieldRenderer)
+    addComponent(MoveTileListener(this, gameFieldRenderer.positionGrid))
 
     val image = image(korgeBitmap) {
         rotation = maxDegrees

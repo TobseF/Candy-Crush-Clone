@@ -1,5 +1,6 @@
 package j4k.candycrush.math
 
+import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.minus
 
@@ -8,7 +9,7 @@ import com.soywiz.korma.geom.minus
  */
 class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: Int, val size: Int, margin: Int = 0) {
 
-    private val distance = size + margin
+    val distance = size + margin
 
     /**
      * @param column position of the grid
@@ -29,20 +30,32 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
     }
 
     /**
+     * @param position with screen pixel coordinates
+     * @return Tile [Position] in the grid
+     */
+    fun getField(position: IPoint): Position {
+        val relativePosition = position.minus(Point(x, y))
+        val column = relativePosition.x / distance
+        val row = relativePosition.y / distance
+        return Position(column.toInt(), row.toInt())
+    }
+
+    fun isOnGrid(pos: Position): Boolean {
+        return (pos.row in 0 until rows) && (pos.column in 0 until columns)
+    }
+
+    /**
      * @param posX horizontal screen pixel coordinates
      * @param posY vertical screen pixel coordinates
      * @return Tile [Position] in the grid
      */
     fun getField(posX: Double, posY: Double): Position {
-        val position = Point(posX, posY).minus(Point(x, y))
-        val column = position.x / distance
-        val row = position.y / distance
-        return Position(column.toInt(), row.toInt())
+        return getField(Point(posX, posY))
     }
 
     /**
      * Position in the grid
      */
-    data class Position(val column: Int, val row: Int)
+    data class Position(val column: Int, val row: Int) : IPoint by Point(column, row)
 
 }

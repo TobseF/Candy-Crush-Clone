@@ -3,6 +3,8 @@ import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 /**
  * Test for the [PositionGrid]
@@ -37,4 +39,18 @@ class PositionGridTest {
         assertEquals(Position(0, 1), positionGrid.getField(100, 120))
         assertEquals(Position(0, 1), positionGrid.getField(100, 130))
     }
+
+    @Test
+    fun testIsOnGrid() {
+        val positionGrid = PositionGrid(0, 0, 2, 2, 20)
+        assertTrue(positionGrid.isOnGrid(Position(0, 0)))
+        assertTrue(positionGrid.isOnGrid(Position(1, 0)))
+        assertTrue(positionGrid.isOnGrid(Position(1, 1)))
+
+        assertFalse(positionGrid.isOnGrid(Position(-1, 0)))
+        assertFalse(positionGrid.isOnGrid(Position(0, -1)))
+        assertFalse(positionGrid.isOnGrid(Position(2, 0)))
+        assertFalse(positionGrid.isOnGrid(Position(0, 2)))
+    }
+
 }

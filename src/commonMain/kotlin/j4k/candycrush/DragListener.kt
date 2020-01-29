@@ -6,25 +6,62 @@ import com.soywiz.korge.component.MouseComponent
 import com.soywiz.korge.component.TouchComponent
 import com.soywiz.korge.view.View
 import com.soywiz.korge.view.Views
+import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.distanceTo
 
-class DragListener(override val view: View) : TouchComponent, MouseComponent {
+class DragListener(override val view: View,
+        private val maximumDragDistance: Int,
+        private val dragEventListener: DragEventListener) : TouchComponent, MouseComponent {
+
     private var start = Point.Zero
     private var end = Point.Zero
 
+    private fun dragDistance() = start.distanceTo(end)
+
+    data class DragEvent(val start: IPoint, val end: IPoint) {
+        fun distance() = start.distanceTo(end)
+    }
+
+    fun reset() {
+        start = Point.Zero
+        end = Point.Zero
+    }
+
+    interface DragEventListener {
+        fun onDragEvent(dragEvent: DragEvent)
+    }
+
     override fun onMouseEvent(views: Views, event: MouseEvent) {
         when (event.type) {
-            MouseEvent.Type.DOWN -> start = Point(event.x, event.y)
-            MouseEvent.Type.DRAG -> {
-                end = Point(event.x, event.y)
-                println(start.distanceTo(end))
+            MouseEvent.Type.DOWN -> {
+                start = event.point()
+            }
+            MouseEvent.Type.DRAG, MouseEvent.Type.MOVE -> {
+                if (startedDrag()) {
+                    end = event.point()
+                    if (dragDistance() > maximumDragDistance) {
+                        notifyDragListener()
+                        reset()
+                    }
+                }
             }
             MouseEvent.Type.UP -> {
-                end = Point(event.x, event.y)
-                println(start.distanceTo(end))
+                end = event.point()
+                if (startedDrag()) {
+                    notifyDragListener()
+                    reset()
+                }
             }
         }
+    }
+
+    private fun MouseEvent.point() = Point(x, y)
+
+    private fun startedDrag() = start != Point.Zero
+
+    private fun notifyDragListener() {
+        dragEventListener.onDragEvent(DragEvent(start, end))
     }
 
     override fun onTouchEvent(views: Views, e: TouchEvent) {
