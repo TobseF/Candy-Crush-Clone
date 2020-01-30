@@ -30,15 +30,13 @@ class GameFieldRenderer(private val gameField: GameField,
         Array<Image?>(gameField.rowSize) { null }
     }
 
-
     init {
-        positionGrid = PositionGrid(x = centerPadding,
+        positionGrid = PositionGrid(x = centerPadding + paddingFix,
                 y = top,
                 columns = gameField.columnsSize,
                 rows = gameField.rowSize,
                 size = tileSize)
     }
-
 
     private fun getMaxTileSize(): Int {
         return min(maxHorizontal, maxVertical)
@@ -59,7 +57,7 @@ class GameFieldRenderer(private val gameField: GameField,
 
     private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile) {
         val pos = positionGrid.getPosition(column = rowIndex, row = columnIndex)
-        pos.x = pos.x + paddingFix
+        pos.x = pos.x
         tiles[rowIndex][columnIndex] = image(bitmap) {
             anchor(0, 0)
             size(tileSize, tileSize)
