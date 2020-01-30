@@ -15,7 +15,7 @@ import j4k.candycrush.MoveTileObserver
 import j4k.candycrush.TileMover
 import j4k.candycrush.model.GameField
 
-suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2b"]) {
+suspend fun main() = Korge(width = 1280, height = 1424, bgcolor = Colors["#2b2b2b"]) {
     val minDegrees = (-16).degrees
     val maxDegrees = (+16).degrees
 

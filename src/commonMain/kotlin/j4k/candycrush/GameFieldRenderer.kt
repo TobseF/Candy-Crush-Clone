@@ -14,12 +14,12 @@ class GameFieldRenderer(private val gameField: GameField,
         private val heightMax: Int,
         private val bitmap: Bitmap) : Container() {
 
-    private val sizeFix = 10
-    private val paddingFix = -10
+    private val sizeFix = 0
+    private val paddingFix = 0
 
     val positionGrid: PositionGrid
     private val top = 80
-    private val padding = 20
+    private val padding = 0
     private val paddings = padding * 2
     private val maxHorizontal = (widthMax - paddings) / gameField.columnsSize
     private val maxVertical = (heightMax - top - paddings) / gameField.rowSize
