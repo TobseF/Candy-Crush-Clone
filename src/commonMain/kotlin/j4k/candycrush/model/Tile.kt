@@ -1,15 +1,34 @@
 package j4k.candycrush.model
 
-class Tile(private var name: String) {
+enum class Tile {
 
-    constructor(number: Int) : this(number.toString())
-    constructor(type: TileType) : this(type.name.first().toString())
+    A, B, C, D, E, Wall, Hole, ;
 
-    override fun toString() = name
+    val index = ordinal
 
-    fun isWall() = name.startsWith("W")
+    fun shortName(): String = name.first().toString()
 
-    fun isHole() = name.startsWith("H")
+    fun isWall() = this == Wall
+
+    fun isHole() = this == Hole
 
     fun isTile() = !isWall() && !isHole()
+
+    companion object {
+
+        private val toTile = mutableMapOf<String, Tile>()
+
+        init {
+            values().forEach { toTile.put(it.shortName(), it) }
+        }
+
+        fun getTile(index: Int): Tile {
+            return values()[index.coerceAtMost(4)]
+        }
+
+        fun getTile(shortName: String): Tile {
+            return toTile[shortName] ?: throw IllegalArgumentException("Failed finding tile for'$shortName'")
+        }
+    }
+
 }

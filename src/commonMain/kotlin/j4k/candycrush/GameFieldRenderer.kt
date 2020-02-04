@@ -1,7 +1,7 @@
 package j4k.candycrush
 
 import com.soywiz.korge.view.*
-import com.soywiz.korim.bitmap.Bitmap
+import j4k.candycrush.lib.SpriteBatch
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
@@ -11,8 +11,8 @@ import kotlin.math.min
 
 class GameFieldRenderer(private val gameField: GameField,
         private val widthMax: Int,
-        private val heightMax: Int,
-        private val bitmap: Bitmap) : Container() {
+        heightMax: Int,
+        private val candies: SpriteBatch) : Container() {
 
     private val sizeFix = 10
     private val paddingFix = -10
@@ -25,6 +25,8 @@ class GameFieldRenderer(private val gameField: GameField,
     private val maxVertical = (heightMax - top - paddings) / gameField.rowSize
     private val tileSize = getMaxTileSize() - sizeFix
     private val centerPadding = calculateCenterPadding()
+
+    private val tileMap = mapOf(0 to 0, 1 to 1, 2 to 2, 3 to 6, 4 to 10)
 
     private val tiles = Array(gameField.columnsSize) {
         Array<Image?>(gameField.rowSize) { null }
@@ -57,15 +59,20 @@ class GameFieldRenderer(private val gameField: GameField,
 
     private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile) {
         val pos = positionGrid.getPosition(column = rowIndex, row = columnIndex)
-        pos.x = pos.x
-        tiles[rowIndex][columnIndex] = image(bitmap) {
-            anchor(0, 0)
-            size(tileSize, tileSize)
-            position(pos.x, pos.y)
+        if (tile.isTile()) {
+            val bitmap = getTile(tile.index)
+            tiles[rowIndex][columnIndex] = image(bitmap) {
+                anchor(0, 0)
+                size(tileSize, tileSize)
+                position(pos.x, pos.y)
+            }
         }
     }
 
+    fun getTile(index: Int) = candies[tileMap.getOrElse(index) { 0 }]
+
     fun getTile(column: Int, row: Int) = tiles[column][row]
+
     fun getTile(position: Position) = tiles[position.column][position.row]
 
     fun setTile(tile: Image?, position: Position) {

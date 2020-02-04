@@ -20,6 +20,7 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
         return Point(x + (column * distance), y + (row * distance))
     }
 
+
     fun getPosition(position: Position): Point = getPosition(position.column, position.row)
 
     /**
@@ -58,6 +59,12 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
     /**
      * Position in the grid
      */
-    data class Position(val column: Int, val row: Int) : IPoint by Point(column, row)
+    data class Position(val column: Int, val row: Int) : IPoint by Point(column, row) {
+        fun getIndex(): Int {
+            return column + (row * column)
+        }
+    }
+
+    fun size() = columns * rows
 
 }
