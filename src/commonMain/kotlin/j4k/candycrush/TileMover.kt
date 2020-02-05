@@ -43,8 +43,8 @@ class TileMover(override val view: Stage,
     }
 
     fun swapTiles(start: PositionGrid.Position, end: PositionGrid.Position) {
-        val startPos: IPoint = positionGrid.getPosition(start)
-        val endPos: IPoint = positionGrid.getPosition(end)
+        val startPos: IPoint = positionGrid.getCenterPosition(start)
+        val endPos: IPoint = positionGrid.getCenterPosition(end)
 
         val tileA: Image? = renderer.getTile(start)
         val tileB: Image? = renderer.getTile(end)
@@ -61,10 +61,10 @@ class TileMover(override val view: Stage,
             start: PositionGrid.Position,
             end: PositionGrid.Position) {
         movingTiles = true
+        renderer.swapTiles(start, end)
         view.async {
             tileA.moveAsync(endPos)
             tileB.moveAsync(startPos).invokeOnCompletion {
-                renderer.swapTiles(start, end)
                 movingTiles = false
             }
         }

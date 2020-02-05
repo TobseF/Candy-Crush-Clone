@@ -18,13 +18,25 @@ class GameFieldRenderer(private val gameField: GameField,
     private val paddingFix = -10
 
     val positionGrid: PositionGrid
+    /**
+     * Distance in PX from top
+     */
     private val top = 80
+    /**
+     * Left and Right spacings in PX
+     */
     private val padding = 20
+
     private val paddings = padding * 2
     private val maxHorizontal = (widthMax - paddings) / gameField.columnsSize
     private val maxVertical = (heightMax - top - paddings) / gameField.rowSize
     private val tileSize = getMaxTileSize() - sizeFix
     private val centerPadding = calculateCenterPadding()
+    /**
+     * Percentage up or downsizing of the tiles.
+     * `1` means no scaling. `0.8` means `80%` image sizes, which creates `20%` padding.
+     */
+    private val tileScale = 0.85
 
     private val tileMap = mapOf(0 to 0, 1 to 1, 2 to 2, 3 to 6, 4 to 10)
 
@@ -33,8 +45,7 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     init {
-        positionGrid = PositionGrid(x = centerPadding + paddingFix,
-                y = top,
+        positionGrid = PositionGrid(x = centerPadding + paddingFix, y = top,
                 columns = gameField.columnsSize,
                 rows = gameField.rowSize,
                 size = tileSize)
@@ -58,12 +69,12 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile) {
-        val pos = positionGrid.getPosition(column = rowIndex, row = columnIndex)
+        val pos = positionGrid.getCenterPosition(column = rowIndex, row = columnIndex)
         if (tile.isTile()) {
             val bitmap = getTile(tile.index)
             tiles[rowIndex][columnIndex] = image(bitmap) {
-                anchor(0, 0)
-                size(tileSize, tileSize)
+                anchor(0.5, 0.5)
+                size(tileSize * tileScale, tileSize * tileScale)
                 position(pos.x, pos.y)
             }
         }

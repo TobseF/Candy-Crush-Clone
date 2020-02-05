@@ -23,7 +23,7 @@ class MoveTileObserver(override val view: View, val grid: PositionGrid, val move
         fun onMoveTileEvent(moveTileEvent: MoveTileEvent)
     }
 
-    private val dragListener = DragListener(view, grid.distance, this)
+    private val dragListener = DragListener(view, grid.size, this)
 
     override fun onTouchEvent(views: Views, e: TouchEvent) {
         dragListener.onTouchEvent(views, e)
