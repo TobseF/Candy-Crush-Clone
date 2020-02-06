@@ -19,38 +19,26 @@ class SpriteBatch(x: Int = 0,
         spriteSize: Int = 16,
         columns: Int,
         rows: Int,
-        var image: String = "",
-        private val bitmap: Bitmap? = null) {
+        private val bitmap: Bitmap) {
 
     private val defaultSprite = Bitmaps.transparent
     private var sprites: MutableList<BmpSlice> = mutableListOf(defaultSprite)
 
-    private val grid = PositionGrid(x = x, y = y, columns = columns, rows = rows, size = spriteSize)
+    private val grid = PositionGrid(x = x, y = y, columns = columns, rows = rows, tileSize = spriteSize)
 
     operator fun get(spriteIndex: Int) = sprites[spriteIndex]
 
     init {
-        CoroutineScope(Dispatchers.Default).launch {
             prepareElement()
-        }
     }
 
-    private suspend fun prepareElement() {
-        val resourceBitmap: Bitmap = getBitmap(bitmap)
+    private  fun prepareElement() {
         repeat(grid.rows) { row ->
             repeat(grid.columns) { column ->
                 val pos = grid.getPosition(column, row)
-                addSpriteToList(resourceBitmap.sliceWithSize(pos.x.toInt(), pos.y.toInt(), grid.size, grid.size))
+                addSpriteToList(bitmap.sliceWithSize(pos.x.toInt(), pos.y.toInt(), grid.tileSize, grid.tileSize))
             }
 
-        }
-    }
-
-    private suspend fun getBitmap(bitmap: Bitmap?): Bitmap {
-        return if (bitmap is Bitmap) {
-            bitmap
-        } else {
-            resourcesVfs[image].readBitmap()
         }
     }
 

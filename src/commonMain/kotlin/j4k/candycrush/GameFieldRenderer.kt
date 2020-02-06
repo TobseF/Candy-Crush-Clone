@@ -48,7 +48,7 @@ class GameFieldRenderer(private val gameField: GameField,
         positionGrid = PositionGrid(x = centerPadding + paddingFix, y = top,
                 columns = gameField.columnsSize,
                 rows = gameField.rowSize,
-                size = tileSize)
+                tileSize = tileSize)
     }
 
     private fun getMaxTileSize(): Int {

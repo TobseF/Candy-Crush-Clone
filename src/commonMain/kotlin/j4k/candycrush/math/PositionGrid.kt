@@ -7,7 +7,7 @@ import com.soywiz.korma.geom.minus
 /**
  * Creates a grid and matches screen coordinates with it.
  */
-class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: Int, val size: Int) {
+class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: Int, val tileSize: Int) {
 
     /**
      * @param column position of the grid
@@ -15,7 +15,7 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
      * @return The [Point] wit screen coordinates
      */
     fun getPosition(column: Int, row: Int): Point {
-        return Point(x + (column * size), y + (row * size))
+        return Point(x + (column * tileSize), y + (row * tileSize))
     }
 
     /**
@@ -24,7 +24,7 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
      * @return The [Point] wit screen coordinates of the cell center
      */
     fun getCenterPosition(column: Number, row: Number): Point {
-        return Point(x + (column.toInt() * size) + (size / 2), y + (row.toInt() * size) + (size / 2))
+        return Point(x + (column.toInt() * tileSize) + (tileSize / 2), y + (row.toInt() * tileSize) + (tileSize / 2))
     }
 
     /**
@@ -52,8 +52,8 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
      */
     fun getField(position: IPoint): Position {
         val relativePosition = position.minus(Point(x, y))
-        val column = relativePosition.x / size
-        val row = relativePosition.y / size
+        val column = relativePosition.x / tileSize
+        val row = relativePosition.y / tileSize
         return Position(column.toInt(), row.toInt())
     }
 
