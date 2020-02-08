@@ -1,6 +1,7 @@
 package j4k.candycrush
 
 import com.soywiz.klock.TimeSpan
+import com.soywiz.klock.milliseconds
 import com.soywiz.klock.seconds
 import com.soywiz.klogger.Logger
 import com.soywiz.korge.component.UpdateComponent
@@ -21,7 +22,8 @@ val log = Logger("TileMover")
 class TileMover(override val view: Stage,
         val renderer: GameFieldRenderer,
         val gameField: GameField,
-        val positionGrid: PositionGrid) : MoveTileObserver.MoveTileListener, UpdateComponent {
+        val positionGrid: PositionGrid,
+        val gameMechanics: GameMechanics) : MoveTileObserver.MoveTileListener, UpdateComponent {
 
 
     override fun update(ms: Double) {}
@@ -29,8 +31,9 @@ class TileMover(override val view: Stage,
     var movingTiles = false
 
 
-    private suspend fun Image.moveAsync(point: IPoint, time: TimeSpan = 1.seconds): Deferred<Unit> {
-        val easing = Easing.EASE_IN_OUT_ELASTIC
+    private suspend fun Image.moveAsync(point: IPoint,
+            time: TimeSpan = 1.seconds,
+            easing: Easing = Easing.EASE_IN_OUT_ELASTIC): Deferred<Unit> {
         return this.tweenAsync(this::globalX[point.x], this::globalY[point.y], time = time, easing = easing)
     }
 
@@ -49,23 +52,34 @@ class TileMover(override val view: Stage,
         val tileA: Image? = renderer.getTile(start)
         val tileB: Image? = renderer.getTile(end)
         if (tileA != null && tileB != null) {
-            log.debug { "$startPos - $endPos: $start-$end" }
-            swapTiles(tileA, endPos, tileB, startPos, start, end)
+            log.debug { "Swapping tiles: $start-$end: $startPos - $endPos" }
+            view.async {
+                swapTiles(tileA, endPos, tileB, startPos, start, end)
+            }
         }
     }
 
-    private fun swapTiles(tileA: Image,
+    private suspend fun swapTiles(tileA: Image,
             endPos: IPoint,
             tileB: Image,
             startPos: IPoint,
             start: PositionGrid.Position,
-            end: PositionGrid.Position) {
+            end: PositionGrid.Position,
+            uncheckedMove: Boolean = true) {
         movingTiles = true
         renderer.swapTiles(start, end)
-        view.async {
-            tileA.moveAsync(endPos)
-            tileB.moveAsync(startPos).invokeOnCompletion {
-                movingTiles = false
+        gameMechanics.swapTiles(start, end)
+        val easing = if (uncheckedMove) Easing.EASE_IN_OUT_ELASTIC else Easing.EASE_IN_OUT_BACK
+        val timeSpan = if (uncheckedMove) 1.seconds else 300.milliseconds
+        tileA.moveAsync(endPos, time = timeSpan, easing = easing)
+        val moveTile = tileB.moveAsync(startPos, time = timeSpan, easing = easing)
+        moveTile.invokeOnCompletion {
+            movingTiles = false
+            if (uncheckedMove && !gameMechanics.isSwapAllowed(start, end)) {
+                log.debug { "Moving tiles back, because its an illegal move" }
+                view.async {
+                    swapTiles(tileB, endPos, tileA, startPos, start, end, false)
+                }
             }
         }
     }
