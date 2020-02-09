@@ -7,6 +7,7 @@ import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Row
 import j4k.candycrush.model.Tile
+import j4k.candycrush.model.TileCell
 import kotlin.math.min
 
 class GameFieldRenderer(private val gameField: GameField,
@@ -88,6 +89,19 @@ class GameFieldRenderer(private val gameField: GameField,
 
     fun setTile(tile: Image?, position: Position) {
         tiles[position.column][position.row] = tile
+    }
+
+    fun removeTile(position: Position) {
+        removeChild(getTile(position))
+        setTile(null, position)
+    }
+
+    fun removeTiles(positions: List<Position>) {
+        positions.forEach(this::removeTile)
+    }
+
+    fun removeTilesCells(positions: List<TileCell>) {
+        removeTiles(positions.map { it.position })
     }
 
     fun swapTiles(a: Position, b: Position) {

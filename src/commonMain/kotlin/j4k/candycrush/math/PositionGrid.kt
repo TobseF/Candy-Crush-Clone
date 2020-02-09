@@ -87,11 +87,11 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
         }
 
         fun top(steps: Int = 1): Position {
-            return Position(this.column, this.row + steps)
+            return Position(this.column, this.row - steps)
         }
 
         fun bottom(steps: Int = 1): Position {
-            return Position(this.column, this.row - steps)
+            return Position(this.column, this.row + steps)
         }
     }
 

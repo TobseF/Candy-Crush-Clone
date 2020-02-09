@@ -28,6 +28,9 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         }
     }
 
+    fun getTileCell(position: PositionGrid.Position) = TileCell(get(position), position)
+
+    fun getTileCell(column: Int, row: Int) = TileCell(get(column, row), PositionGrid.Position(column, row))
 
     private val rows = Array(rowSize) { Row(columnsSize) }
 

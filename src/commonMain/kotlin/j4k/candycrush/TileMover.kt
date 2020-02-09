@@ -75,10 +75,16 @@ class TileMover(override val view: Stage,
         val moveTile = tileB.moveAsync(startPos, time = timeSpan, easing = easing)
         moveTile.invokeOnCompletion {
             movingTiles = false
-            if (uncheckedMove && !gameMechanics.isSwapAllowed(start, end)) {
-                log.debug { "Moving tiles back, because its an illegal move" }
-                view.async {
-                    swapTiles(tileB, endPos, tileA, startPos, start, end, false)
+            if (uncheckedMove) {
+                if (gameMechanics.isSwapAllowed(start, end)) {
+                    val connectedTiles = gameMechanics.getConnectedTiles(start, end)
+                    renderer.removeTilesCells(connectedTiles)
+                    gameMechanics.removeTileCells(connectedTiles)
+                } else {
+                    log.debug { "Moving tiles back, because its an illegal move" }
+                    view.async {
+                        swapTiles(tileB, endPos, tileA, startPos, start, end, false)
+                    }
                 }
             }
         }
