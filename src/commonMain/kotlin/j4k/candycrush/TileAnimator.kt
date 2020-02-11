@@ -5,12 +5,11 @@ import com.soywiz.klock.milliseconds
 import com.soywiz.klock.seconds
 import com.soywiz.klogger.Logger
 import com.soywiz.korge.component.UpdateComponent
-import com.soywiz.korge.tween.get
-import com.soywiz.korge.tween.hide
-import com.soywiz.korge.tween.tween
+import com.soywiz.korge.tween.*
 import com.soywiz.korge.view.Image
 import com.soywiz.korge.view.Stage
 import com.soywiz.korma.geom.IPoint
+import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
 import j4k.candycrush.MoveTileObserver.MoveTileEvent
 import j4k.candycrush.math.PositionGrid
@@ -23,10 +22,10 @@ import kotlinx.coroutines.launch
 
 
 class TileAnimator(override val view: Stage,
-        val renderer: GameFieldRenderer,
-        val gameField: GameField,
-        val positionGrid: PositionGrid,
-        val gameMechanics: GameMechanics) : MoveTileObserver.MoveTileListener, UpdateComponent {
+                   val renderer: GameFieldRenderer,
+                   val gameField: GameField,
+                   val positionGrid: PositionGrid,
+                   val gameMechanics: GameMechanics) : MoveTileObserver.MoveTileListener, UpdateComponent {
 
     companion object {
         val log = Logger("TileAnimator")
@@ -59,9 +58,19 @@ class TileAnimator(override val view: Stage,
     }
 
     fun animateRemoveTiles(tile: TileCell) {
-        val endPos: ImagePosition = tile.position.getImagePosition()
+        animateRemoveTiles(tile.position.getImagePosition().image)
+    }
+
+    fun animateRemoveTiles(image: Image) {
         view.launch {
-            endPos.image.hide(hide.time, hide.easing)
+            image.hide(hide.time, hide.easing)
+        }
+        view.launch {
+            val scale = 1.4
+            image.scaleTo(scale, scale, hide.time, hide.easing)
+        }
+        view.launch {
+            image.rotateTo(180.degrees, hide.time, hide.easing)
         }
     }
 
