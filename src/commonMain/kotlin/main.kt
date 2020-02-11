@@ -9,10 +9,7 @@ import com.soywiz.korim.format.readBitmap
 import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
-import j4k.candycrush.GameFieldRenderer
-import j4k.candycrush.GameMechanics
-import j4k.candycrush.MoveTileObserver
-import j4k.candycrush.TileMover
+import j4k.candycrush.*
 import j4k.candycrush.lib.SpriteBatch
 import j4k.candycrush.model.GameField
 
@@ -44,10 +41,12 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
             rows = 4,
             bitmap = resourcesVfs["candy_fruits.png"].readBitmap())
 
-    val gameFieldRenderer = GameFieldRenderer(gameField, width.toInt(), height.toInt(), candies)
-    addChild(gameFieldRenderer)
-    val tileMover = TileMover(this, gameFieldRenderer, gameField, gameFieldRenderer.positionGrid, gameMechanics)
-    addComponent(MoveTileObserver(this, gameFieldRenderer.positionGrid, tileMover))
+    val fieldRenderer = GameFieldRenderer(gameField, width.toInt(), height.toInt(), candies)
+    addChild(fieldRenderer)
+    val animator = TileAnimator(this, fieldRenderer, gameField, fieldRenderer.positionGrid, gameMechanics)
+
+    val gameFlow = GameFlow(gameField, gameMechanics, animator, fieldRenderer)
+    addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
 
     val image = image(korgeBitmap) {
         rotation = maxDegrees

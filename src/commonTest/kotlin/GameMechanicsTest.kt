@@ -51,6 +51,28 @@ class GameMechanicsTest {
     }
 
     @Test
+    fun testIsNotInRowWithThreeIfEmpty() {
+        val field = GameField.fromString("""
+                        |[H, A, H, H]
+                        |[H, A, A, A]
+                        |[H, A, H, H]
+                        """.trimMargin())
+        val mechanics = GameMechanics(field)
+
+        // Horizontal
+        assertTrue { mechanics.isInRowWithThree(Position(1, 0)) }
+        assertTrue { mechanics.isInRowWithThree(Position(1, 1)) }
+        assertTrue { mechanics.isInRowWithThree(Position(1, 2)) }
+
+        // Vertical
+        assertTrue { mechanics.isInRowWithThree(Position(2, 1)) }
+        assertTrue { mechanics.isInRowWithThree(Position(3, 1)) }
+
+        // Dont't match holes!
+        assertFalse { mechanics.isInRowWithThree(Position(0, 1)) }
+    }
+
+    @Test
     fun testGetConnectedTiles() {
         val field = GameField.fromString("""
                         |[H, A, H, H]

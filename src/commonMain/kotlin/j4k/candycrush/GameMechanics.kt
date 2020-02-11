@@ -21,8 +21,14 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun isSwapAllowed(a: Position, b: Position): Boolean {
-        return isInRowWithThree(a) || isInRowWithThree(b)
+        swapTiles(a, b)
+        val isSwapAllowed = isInRowWithThree(a) || isInRowWithThree(b)
+        val bothAreTiles = a.isTile() && b.isTile()
+        swapTiles(a, b)
+        return bothAreTiles && isSwapAllowed
     }
+
+    fun Position.isTile() = field[this].isTile()
 
     fun isInRowWithThree(pos: Position): Boolean {
         return isHorizontalConnected(pos) || isInVerticalConnected(pos)

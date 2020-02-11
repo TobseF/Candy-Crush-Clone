@@ -83,9 +83,13 @@ class GameFieldRenderer(private val gameField: GameField,
 
     fun getTile(index: Int) = candies[tileMap.getOrElse(index) { 0 }]
 
-    fun getTile(column: Int, row: Int) = tiles[column][row]
+    fun getTile(column: Int, row: Int): Image {
+        return tiles[column][row] ?: throw IllegalArgumentException("No tile image for: $column,$row")
+    }
 
-    fun getTile(position: Position) = tiles[position.column][position.row]
+    fun getTile(position: Position): Image {
+        return getTile(position.column, position.row)
+    }
 
     fun setTile(tile: Image?, position: Position) {
         tiles[position.column][position.row] = tile
