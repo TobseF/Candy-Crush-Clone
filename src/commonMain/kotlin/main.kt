@@ -46,9 +46,9 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
 
     val fieldRenderer = GameFieldRenderer(gameField, width.toInt(), height.toInt(), candies)
     addChild(fieldRenderer)
-    val animator = TileAnimator(this, fieldRenderer, gameField, fieldRenderer.positionGrid, gameMechanics)
+    val animator = TileAnimator(this, fieldRenderer, fieldRenderer.positionGrid)
 
-    val gameFlow = GameFlow(gameField, gameMechanics, animator, fieldRenderer)
+    val gameFlow = GameFlow(gameField, gameMechanics, animator)
     addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
 
     val image = image(korgeBitmap) {
@@ -67,6 +67,10 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
         if (it.key == Key.I) {
             println("---------------")
             println(fieldRenderer)
+        }
+        if (it.key == Key.S) {
+            gameField.shuffle()
+            fieldRenderer.updateImagesFromField()
         }
     }
 

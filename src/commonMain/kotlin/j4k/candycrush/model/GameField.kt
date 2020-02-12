@@ -92,6 +92,20 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
     }
 
     override fun iterator(): Iterator<Row> = rows.iterator()
+
+    fun listAllCells(iterator: (TileCell) -> Unit) {
+        (0 until rowSize).forEach { row ->
+            (0 until columnsSize).forEach { column ->
+                iterator.invoke(getTileCell(Position(column, row)))
+            }
+        }
+    }
+
+    fun shuffle() {
+        listAllCells { cell ->
+            set(cell.position, Tile.randomTile())
+        }
+    }
 }
 
 

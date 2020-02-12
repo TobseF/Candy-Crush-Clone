@@ -13,21 +13,17 @@ import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
 import j4k.candycrush.GameMechanics.Move
-import j4k.candycrush.MoveTileObserver.MoveTileEvent
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.GameField
 import j4k.candycrush.model.TileCell
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
-class TileAnimator(override val view: Stage,
-        val renderer: GameFieldRenderer,
-        val gameField: GameField,
-        val positionGrid: PositionGrid,
-        val gameMechanics: GameMechanics) : MoveTileObserver.MoveTileListener, UpdateComponent {
+class TileAnimator(override val view: Stage, val renderer: GameFieldRenderer, val positionGrid: PositionGrid) :
+        UpdateComponent {
 
     companion object {
         val log = Logger("TileAnimator")
@@ -39,8 +35,6 @@ class TileAnimator(override val view: Stage,
 
     override fun update(ms: Double) {}
 
-    var movingTiles = false
-
 
     private suspend fun Image.move(point: IPoint, settings: AnimationSettings) {
         return move(point, settings.time, settings.easing)
@@ -51,24 +45,16 @@ class TileAnimator(override val view: Stage,
         return this.tween(this::globalX[point.x], this::globalY[point.y], time = time, easing = easing)
     }
 
-    override fun onMoveTileEvent(moveTileEvent: MoveTileEvent, runAfterMove: () -> Unit) {
-        if (movingTiles) {
-            log.debug { "Omitted because of moving tiles: $moveTileEvent" }
-        } else {
-            animateSwap(moveTileEvent.start, moveTileEvent.end).invokeOnCompletion {
-                runAfterMove.invoke()
-            }
-        }
+    fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
+
+
+    fun animateRemoveTiles(tile: Position) {
+        val image = tile.getImage()
+        renderer.removeTileFromGrid(tile)
+        animateRemoveTile(image)
     }
 
-    fun animateRemoveTiles(tile: TileCell) {
-        val image = tile.position.getImage()
-        renderer.removeTileFromGrid(tile.position)
-        animateRemoveTile(image, tile.position)
-    }
-
-    fun animateRemoveTile(image: Image, position: Position) {
-        movingTiles = true
+    fun animateRemoveTile(image: Image) {
         view.launch {
             image.hide(hide.time, hide.easing)
         }
@@ -81,25 +67,25 @@ class TileAnimator(override val view: Stage,
         }
     }
 
-    fun animateRemoveTilesCells(positions: List<TileCell>) {
-        movingTiles = true
+    fun animateRemoveTiles(positions: List<TileCell>) {
         positions.forEach { animateRemoveTiles(it) }
-        movingTiles = false
     }
 
-    fun animateMoves(moves: List<Move>) {
-        moves.forEach { animateMove(it) }
+    fun animateMoves(moves: List<Move>): Deferred<Unit> {
+        return view.async {
+            moves.forEach {
+                launch {
+                    animateMove(it)
+                }
+            }
+        }
     }
 
-    fun animateMove(move: Move) {
+    suspend fun animateMove(move: Move) {
         val tile: ImagePosition = move.tile.getImagePosition()
         val target: Point = positionGrid.getCenterPosition(move.target)
         renderer.move(move)
-        movingTiles = true
-        view.launch {
-            tile.image.move(target, time = (300 * move.distance()).milliseconds, easing = Easing.EASE_IN)
-            movingTiles = false
-        }
+        tile.image.move(target, time = (300 * move.distance()).milliseconds, easing = Easing.EASE_IN)
     }
 
     fun animateSwap(start: Position, end: Position): Deferred<Unit> {
@@ -107,30 +93,27 @@ class TileAnimator(override val view: Stage,
         val endPos: ImagePosition = end.getImagePosition()
         log.debug { "Animate tile swap: $start-$end: $startPos - $endPos" }
         renderer.swapTiles(start, end)
-        movingTiles = true
         view.launch {
             startPos.image.move(endPos.point, moveForward)
         }
         return view.async {
             endPos.image.move(startPos.point, moveForward)
-            movingTiles = false
         }
     }
 
-    fun animateIllegalSwap(start: Position, end: Position) {
+    fun animateIllegalSwap(start: Position, end: Position): Job {
         val startPos: ImagePosition = start.getImagePosition()
         val endPos: ImagePosition = end.getImagePosition()
         log.debug { "Animate illegal swap: $start-$end: $startPos - $endPos" }
-        movingTiles = true
-        view.launch {
-            startPos.image.move(endPos.point, moveForward)
-            startPos.image.move(startPos.point, moveBackward)
-        }
-        view.async {
-            endPos.image.move(startPos.point, moveForward)
-            endPos.image.move(endPos.point, moveBackward)
-        }.invokeOnCompletion {
-            movingTiles = false
+        return view.async {
+            launch {
+                startPos.image.move(endPos.point, moveForward)
+                startPos.image.move(startPos.point, moveBackward)
+            }
+            launch {
+                endPos.image.move(startPos.point, moveForward)
+                endPos.image.move(endPos.point, moveBackward)
+            }
         }
     }
 

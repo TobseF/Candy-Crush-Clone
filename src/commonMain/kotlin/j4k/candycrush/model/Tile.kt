@@ -31,6 +31,10 @@ enum class Tile {
         fun getTile(shortName: String): Tile {
             return toTile[shortName] ?: throw IllegalArgumentException("Failed finding tile for'$shortName'")
         }
+
+        fun randomTile() = values().filter { it.isTile() }.random()
+
     }
+
 
 }

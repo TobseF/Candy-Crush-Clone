@@ -5,33 +5,38 @@ import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 
 
-class GameFlow(val field: GameField,
-               private val mechanics: GameMechanics,
-               private val animator: TileAnimator,
-               val renderer: GameFieldRenderer) : DragTileListener {
+class GameFlow(val field: GameField, private val mechanics: GameMechanics, private val animator: TileAnimator) :
+        DragTileListener {
 
     companion object {
         val log = Logger("GameFlow")
     }
 
     val removeTileListener = mutableListOf<RemoveTileListener>()
+    var movingTiles = false
 
     override fun onDragTileEvent(posA: Position, posB: Position) {
-        if (animator.movingTiles) {
+        if (movingTiles) {
             log.debug { "Skipping drag event because of moving tiles ($posA. $posB)" }
         } else if (field[posA].isNotTile() || field[posB].isNotTile()) {
             log.debug { "Skipping drag event because one tile wasn't a tile ($posA. $posB)" }
         } else if (mechanics.isSwapAllowed(posA, posB)) {
+            movingTiles = true
             mechanics.swapTiles(posA, posB)
             val connectedTiles = mechanics.getConnectedTiles(posA, posB)
             mechanics.removeTileCells(connectedTiles)
             val nextMoves = mechanics.getNextMoves()
             animator.animateSwap(posA, posB).invokeOnCompletion {
-                animator.animateRemoveTilesCells(connectedTiles)
-                animator.animateMoves(nextMoves)
+                animator.animateRemoveTiles(connectedTiles)
+                animator.animateMoves(nextMoves).invokeOnCompletion {
+                    movingTiles = false
+                }
             }
         } else {
-            animator.animateIllegalSwap(posA, posB)
+            movingTiles = true
+            animator.animateIllegalSwap(posA, posB).invokeOnCompletion {
+                movingTiles = false
+            }
         }
     }
 

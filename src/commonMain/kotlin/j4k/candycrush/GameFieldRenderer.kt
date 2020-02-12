@@ -65,6 +65,11 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     init {
+        updateImagesFromField()
+    }
+
+    fun updateImagesFromField() {
+        removeChildren()
         gameField.forEachIndexed(this::addRow)
     }
 
