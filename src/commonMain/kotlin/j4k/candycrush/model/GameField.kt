@@ -1,6 +1,6 @@
 package j4k.candycrush.model
 
-import j4k.candycrush.math.PositionGrid
+import j4k.candycrush.math.PositionGrid.Position
 
 data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
@@ -28,13 +28,13 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         }
     }
 
-    fun getTileCell(position: PositionGrid.Position) = TileCell(get(position), position)
+    fun getTileCell(position: Position) = TileCell(get(position), position)
 
-    fun getTileCell(column: Int, row: Int) = TileCell(get(column, row), PositionGrid.Position(column, row))
+    fun getTileCell(column: Int, row: Int) = TileCell(get(column, row), Position(column, row))
 
     private val rows = Array(rowSize) { Row(columnsSize) }
 
-    operator fun get(position: PositionGrid.Position): Tile = get(position.column, position.row)
+    operator fun get(position: Position): Tile = get(position.column, position.row)
 
     operator fun get(column: Int, row: Int): Tile {
         return if (isOnField(column, row)) {
@@ -42,6 +42,17 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         } else {
             Tile.OutOfSpace
         }
+    }
+
+    fun getColumn(column: Int): List<Tile> {
+        if (column >= columnsSize) {
+            throw IllegalArgumentException("Column $column is out of range: $columnsSize")
+        }
+        return (0 until rowSize).map { row -> get(column, row) }
+    }
+
+    fun getColumnCell(column: Int): List<TileCell> {
+        return getColumn(column).mapIndexed { row, tile -> TileCell(tile, Position(column, row)) }
     }
 
     fun isOnField(column: Int, row: Int): Boolean {
@@ -64,7 +75,7 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         rows[row][column] = value
     }
 
-    operator fun set(position: PositionGrid.Position, value: Tile) {
+    operator fun set(position: Position, value: Tile) {
         rows[position.row][position.column] = value
     }
 

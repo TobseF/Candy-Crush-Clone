@@ -3,11 +3,12 @@ import j4k.candycrush.model.Row
 import j4k.candycrush.model.Tile
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class GameFieldTest {
 
     @Test
-    fun testGetColumnField() {
+    fun testGetField() {
         val field = GameField(4, 3)
         assertEquals(field.toString(), """
                         |[H, H, H, H]
@@ -34,7 +35,7 @@ class GameFieldTest {
     }
 
     @Test
-    fun testGetColumnOutOfSpace() {
+    fun testGetFieldOutOfSpace() {
         val field = GameField(2, 2)
         assertEquals(Tile.OutOfSpace, field[-1][0])
         assertEquals(Tile.OutOfSpace, field[0][-1])
@@ -73,14 +74,35 @@ class GameFieldTest {
 
     @Test
     fun testReadGameFieldFromString() {
-        val fieldData = """
+        val field = GameField.fromString("""
                         |[A, H, H, H]
                         |[H, B, H, H]
                         |[H, H, C, W]
-                        """.trimMargin()
-        val field = GameField.fromString(fieldData)
+                        """.trimMargin())
 
-        assertEquals(field.toString(), fieldData)
+        assertEquals(field.toString(), """
+                        |[A, H, H, H]
+                        |[H, B, H, H]
+                        |[H, H, C, W]
+                        """.trimMargin())
+    }
+
+
+    @Test
+    fun testGetColumn() {
+        val field = GameField.fromString("""
+                        |[H, A, H, H]
+                        |[H, B, H, H]
+                        |[H, C, H, H]
+                        """.trimMargin())
+        assertEquals(listOf(Tile.A, Tile.B, Tile.C), field.getColumn(1))
+        assertEquals(listOf(Tile.Hole, Tile.Hole, Tile.Hole), field.getColumn(0))
+    }
+
+    @Test
+    fun testGetColumnOutOfRange() {
+        val field = GameField(1, 1)
+        assertFailsWith(IllegalArgumentException::class) { field.getColumn(1) }
     }
 
 

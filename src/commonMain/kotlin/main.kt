@@ -1,6 +1,9 @@
 import com.soywiz.klock.seconds
 import com.soywiz.klogger.Logger
+import com.soywiz.korev.Key
 import com.soywiz.korge.Korge
+import com.soywiz.korge.input.onClick
+import com.soywiz.korge.input.onKeyDown
 import com.soywiz.korge.tween.get
 import com.soywiz.korge.tween.tween
 import com.soywiz.korge.view.*
@@ -15,7 +18,7 @@ import j4k.candycrush.model.GameField
 
 val log = Logger("main")
 
-suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2b"], debug = true) {
+suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2b"], debug = false) {
     val minDegrees = (-16).degrees
     val maxDegrees = (+16).degrees
 
@@ -53,6 +56,18 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
         anchor(.5, .5)
         scale(.2)
         position(1180, 80)
+    }
+    onClick { }
+
+    onKeyDown {
+        if (it.key == Key.P) {
+            println("---------------")
+            println(gameField)
+        }
+        if (it.key == Key.I) {
+            println("---------------")
+            println(fieldRenderer)
+        }
     }
 
     image.rotation(maxDegrees)

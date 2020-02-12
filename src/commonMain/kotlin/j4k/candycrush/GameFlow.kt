@@ -24,8 +24,10 @@ class GameFlow(val field: GameField,
             mechanics.swapTiles(posA, posB)
             val connectedTiles = mechanics.getConnectedTiles(posA, posB)
             mechanics.removeTileCells(connectedTiles)
+            val nextMoves = mechanics.getNextMoves()
             animator.animateSwap(posA, posB).invokeOnCompletion {
                 animator.animateRemoveTilesCells(connectedTiles)
+                animator.animateMoves(nextMoves)
             }
         } else {
             animator.animateIllegalSwap(posA, posB)

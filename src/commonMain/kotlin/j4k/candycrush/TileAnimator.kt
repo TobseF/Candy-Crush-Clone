@@ -9,8 +9,10 @@ import com.soywiz.korge.tween.*
 import com.soywiz.korge.view.Image
 import com.soywiz.korge.view.Stage
 import com.soywiz.korma.geom.IPoint
+import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
+import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.MoveTileObserver.MoveTileEvent
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
@@ -22,10 +24,10 @@ import kotlinx.coroutines.launch
 
 
 class TileAnimator(override val view: Stage,
-                   val renderer: GameFieldRenderer,
-                   val gameField: GameField,
-                   val positionGrid: PositionGrid,
-                   val gameMechanics: GameMechanics) : MoveTileObserver.MoveTileListener, UpdateComponent {
+        val renderer: GameFieldRenderer,
+        val gameField: GameField,
+        val positionGrid: PositionGrid,
+        val gameMechanics: GameMechanics) : MoveTileObserver.MoveTileListener, UpdateComponent {
 
     companion object {
         val log = Logger("TileAnimator")
@@ -41,10 +43,12 @@ class TileAnimator(override val view: Stage,
 
 
     private suspend fun Image.move(point: IPoint, settings: AnimationSettings) {
-        return this.tween(this::globalX[point.x],
-                this::globalY[point.y],
-                time = settings.time,
-                easing = settings.easing)
+        return move(point, settings.time, settings.easing)
+    }
+
+
+    private suspend fun Image.move(point: IPoint, time: TimeSpan, easing: Easing) {
+        return this.tween(this::globalX[point.x], this::globalY[point.y], time = time, easing = easing)
     }
 
     override fun onMoveTileEvent(moveTileEvent: MoveTileEvent, runAfterMove: () -> Unit) {
@@ -59,6 +63,7 @@ class TileAnimator(override val view: Stage,
 
     fun animateRemoveTiles(tile: TileCell) {
         animateRemoveTiles(tile.position.getImagePosition().image)
+        renderer.removeTile(tile.position)
     }
 
     fun animateRemoveTiles(image: Image) {
@@ -78,6 +83,21 @@ class TileAnimator(override val view: Stage,
         movingTiles = true
         positions.forEach { animateRemoveTiles(it) }
         movingTiles = false
+    }
+
+    fun animateMoves(moves: List<Move>) {
+        moves.forEach { animateMove(it) }
+    }
+
+    fun animateMove(move: Move) {
+        val tile: ImagePosition = move.tile.getImagePosition()
+        val target: Point = positionGrid.getCenterPosition(move.target)
+        renderer.move(move)
+        movingTiles = true
+        view.launch {
+            tile.image.move(target, time = (300 * move.distance()).milliseconds, easing = Easing.EASE_IN)
+            movingTiles = false
+        }
     }
 
     fun animateSwap(start: Position, end: Position): Deferred<Unit> {

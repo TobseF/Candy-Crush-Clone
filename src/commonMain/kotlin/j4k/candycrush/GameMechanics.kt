@@ -1,6 +1,7 @@
 package j4k.candycrush
 
 import com.soywiz.klogger.Logger
+import com.soywiz.korma.geom.distanceTo
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Tile
@@ -121,6 +122,50 @@ class GameMechanics(private val field: GameField) {
 
     override fun toString(): String {
         return field.toString()
+    }
+
+    fun getNextMoves(): List<Move> {
+        return (0 until field.columnsSize).flatMap { column -> moveAll(column) }
+    }
+
+    fun moveAll(column: Int): List<Move> {
+        val moves = mutableListOf<Move>()
+        while (true) {
+            val nextMove = getNextMove(column)
+            if (nextMove != null) {
+                moves.add(nextMove)
+                move(nextMove)
+            } else {
+                return moves
+            }
+        }
+    }
+
+    fun getNextMove(column: Int): Move? {
+        val cells = field.getColumnCell(column).reversed()
+        if (cells.isEmpty()) {
+            return null
+        }
+        var hole: TileCell? = null
+        cells.forEach { nextCell ->
+            if (hole == null) {
+                if (nextCell.tile.isHole()) {
+                    hole = nextCell
+                }
+            } else if (nextCell.tile.isTile()) {
+                return Move(hole!!.position, nextCell.position)
+            }
+        }
+        return null
+    }
+
+    data class Move(val target: Position, val tile: Position) {
+        fun distance() = target.distanceTo(tile)
+    }
+
+    fun move(move: Move) {
+        field[move.target] = field[move.tile]
+        field[move.tile] = Tile.Hole
     }
 
 }

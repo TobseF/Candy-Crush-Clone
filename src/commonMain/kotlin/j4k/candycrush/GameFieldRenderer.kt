@@ -1,6 +1,8 @@
 package j4k.candycrush
 
 import com.soywiz.korge.view.*
+import com.soywiz.korim.bitmap.BmpSlice
+import com.soywiz.korma.geom.Point
 import j4k.candycrush.lib.SpriteBatch
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
@@ -42,11 +44,12 @@ class GameFieldRenderer(private val gameField: GameField,
     private val tileMap = mapOf(0 to 0, 1 to 1, 2 to 2, 3 to 6, 4 to 10)
 
     private val tiles = Array(gameField.columnsSize) {
-        Array<Image?>(gameField.rowSize) { null }
+        Array<CandyImage?>(gameField.rowSize) { null }
     }
 
     init {
-        positionGrid = PositionGrid(x = centerPadding + paddingFix, y = top,
+        positionGrid = PositionGrid(x = centerPadding + paddingFix,
+                y = top,
                 columns = gameField.columnsSize,
                 rows = gameField.rowSize,
                 tileSize = tileSize)
@@ -73,25 +76,36 @@ class GameFieldRenderer(private val gameField: GameField,
         val pos = positionGrid.getCenterPosition(column = rowIndex, row = columnIndex)
         if (tile.isTile()) {
             val bitmap = getTile(tile.index)
-            tiles[rowIndex][columnIndex] = image(bitmap) {
-                anchor(0.5, 0.5)
-                size(tileSize * tileScale, tileSize * tileScale)
-                position(pos.x, pos.y)
-            }
+            val tileSize = tileSize * tileScale
+            val image = CandyImage(tileSize, pos, bitmap, tile)
+            addChild(image)
+            tiles[rowIndex][columnIndex] = image
+        }
+    }
+
+    class CandyImage(tileSize: Number, position: Point, bitmap: BmpSlice, val tile: Tile) : Image(bitmap) {
+        init {
+            anchor(0.5, 0.5)
+            size(tileSize, tileSize)
+            position(position)
+        }
+
+        override fun toString(): String {
+            return tile.toString()
         }
     }
 
     fun getTile(index: Int) = candies[tileMap.getOrElse(index) { 0 }]
 
-    fun getTile(column: Int, row: Int): Image {
+    fun getTile(column: Int, row: Int): CandyImage {
         return tiles[column][row] ?: throw IllegalArgumentException("No tile image for: $column,$row")
     }
 
-    fun getTile(position: Position): Image {
+    fun getTile(position: Position): CandyImage {
         return getTile(position.column, position.row)
     }
 
-    fun setTile(tile: Image?, position: Position) {
+    fun setTile(tile: CandyImage?, position: Position) {
         tiles[position.column][position.row] = tile
     }
 
@@ -114,4 +128,24 @@ class GameFieldRenderer(private val gameField: GameField,
         setTile(tileA, b)
         setTile(tileB, a)
     }
+
+    override fun toString(): String {
+        var grid = ""
+        (0 until gameField.rowSize).forEach { row ->
+            var line = "["
+            (0 until gameField.columnsSize).forEach { coulmn ->
+                val tile = tiles[coulmn][row]?.tile ?: Tile.Hole
+                line += tile.shortName() + ", "
+            }
+            grid += "$line]\n"
+        }
+        return grid
+    }
+
+    fun move(move: GameMechanics.Move) {
+        val tile = getTile(move.tile)
+        setTile(tile, move.target)
+        setTile(null, move.tile)
+    }
+
 }
