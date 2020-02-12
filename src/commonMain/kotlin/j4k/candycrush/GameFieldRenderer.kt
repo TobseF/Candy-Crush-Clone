@@ -110,7 +110,15 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     fun removeTile(position: Position) {
+        removeImage(position)
+        removeTileFromGrid(position)
+    }
+
+    fun removeImage(position: Position) {
         removeChild(getTile(position))
+    }
+
+    fun removeTileFromGrid(position: Position) {
         setTile(null, position)
     }
 

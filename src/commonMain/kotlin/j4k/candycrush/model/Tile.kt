@@ -14,6 +14,8 @@ enum class Tile {
 
     fun isTile() = !isWall() && !isHole()
 
+    fun isNotTile() = !isTile()
+
     companion object {
 
         private val toTile = mutableMapOf<String, Tile>()

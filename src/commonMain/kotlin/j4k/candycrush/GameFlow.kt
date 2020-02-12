@@ -6,9 +6,9 @@ import j4k.candycrush.model.GameField
 
 
 class GameFlow(val field: GameField,
-        private val mechanics: GameMechanics,
-        private val animator: TileAnimator,
-        val renderer: GameFieldRenderer) : DragTileListener {
+               private val mechanics: GameMechanics,
+               private val animator: TileAnimator,
+               val renderer: GameFieldRenderer) : DragTileListener {
 
     companion object {
         val log = Logger("GameFlow")
@@ -16,10 +16,11 @@ class GameFlow(val field: GameField,
 
     val removeTileListener = mutableListOf<RemoveTileListener>()
 
-
     override fun onDragTileEvent(posA: Position, posB: Position) {
         if (animator.movingTiles) {
             log.debug { "Skipping drag event because of moving tiles ($posA. $posB)" }
+        } else if (field[posA].isNotTile() || field[posB].isNotTile()) {
+            log.debug { "Skipping drag event because one tile wasn't a tile ($posA. $posB)" }
         } else if (mechanics.isSwapAllowed(posA, posB)) {
             mechanics.swapTiles(posA, posB)
             val connectedTiles = mechanics.getConnectedTiles(posA, posB)

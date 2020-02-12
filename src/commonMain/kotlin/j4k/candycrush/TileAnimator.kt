@@ -62,11 +62,13 @@ class TileAnimator(override val view: Stage,
     }
 
     fun animateRemoveTiles(tile: TileCell) {
-        animateRemoveTiles(tile.position.getImagePosition().image)
-        renderer.removeTile(tile.position)
+        val image = tile.position.getImage()
+        renderer.removeTileFromGrid(tile.position)
+        animateRemoveTile(image, tile.position)
     }
 
-    fun animateRemoveTiles(image: Image) {
+    fun animateRemoveTile(image: Image, position: Position) {
+        movingTiles = true
         view.launch {
             image.hide(hide.time, hide.easing)
         }
@@ -135,8 +137,10 @@ class TileAnimator(override val view: Stage,
     class AnimationSettings(val time: TimeSpan, val easing: Easing)
 
     private fun Position.getImagePosition(): ImagePosition {
-        return ImagePosition(renderer.getTile(this), positionGrid.getCenterPosition(this))
+        return ImagePosition(getImage(), positionGrid.getCenterPosition(this))
     }
+
+    fun Position.getImage() = renderer.getTile(this)
 
     class ImagePosition(val image: Image, val point: IPoint)
 
