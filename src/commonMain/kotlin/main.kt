@@ -13,7 +13,9 @@ import j4k.candycrush.model.GameField
 val log = Logger("main")
 const val useTestTiles = false
 
-suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2b"], debug = false) {
+val resolution = Resolution(width = 1280, height = 1024)
+
+suspend fun main() = Korge(width = resolution.width, height = resolution.height, bgcolor = Colors["#2b2b2b"], debug = false) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
 
@@ -31,7 +33,7 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
     val gameMechanics = GameMechanics(gameField)
 
 
-    val fieldRenderer = GameFieldRenderer(gameField, width.toInt(), height.toInt(), getTilesSheet())
+    val fieldRenderer = GameFieldRenderer(gameField, resolution.width, resolution.height, getTilesSheet())
     addChild(fieldRenderer)
     val animator = TileAnimator(this, fieldRenderer, fieldRenderer.positionGrid)
 
@@ -60,3 +62,5 @@ suspend fun main() = Korge(width = 1280, height = 1024, bgcolor = Colors["#2b2b2
 }
 
 suspend fun getTilesSheet() = if (useTestTiles) testTiles() else fruits()
+
+class Resolution(val width: Int, val height: Int)
