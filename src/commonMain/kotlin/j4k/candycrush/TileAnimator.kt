@@ -15,7 +15,6 @@ import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
-import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.TileCell
 import kotlinx.coroutines.Job
@@ -24,14 +23,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class TileAnimator(override val view: Stage, private val renderer: GameFieldRenderer, private val positionGrid: PositionGrid) :
-        UpdateComponent {
+class TileAnimator(override val view: Stage, private val renderer: GameFieldRenderer) : UpdateComponent {
 
     companion object {
         val log = Logger("TileAnimator")
     }
 
     private val jobs = mutableListOf<Job>()
+    private val positionGrid = renderer.positionGrid
 
     private val moveForward = AnimationSettings(1.seconds, Easing.EASE_IN_OUT_ELASTIC)
     private val moveBackward = AnimationSettings(550.milliseconds, Easing.EASE_IN_OUT_ELASTIC)
@@ -46,7 +45,7 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
     }
 
     private suspend fun Image.move(point: IPoint, time: TimeSpan, easing: Easing) {
-        return this.tween(this::globalX[point.x], this::globalY[point.y], time = time, easing = easing)
+        return this.tween(this::x[point.x], this::y[point.y], time = time, easing = easing)
     }
 
     private fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
@@ -173,7 +172,9 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         image.position(start)
         addJob(view.launch {
             delay(delay)
-            image.tweenAsync(image::alpha[1.0], time = 150.milliseconds, easing = Easing.EASE_IN)
+            launch {
+                image.tween(image::alpha[1.0], time = 150.milliseconds, easing = Easing.EASE_IN)
+            }
             image.move(target, fallingAnimation(move.target.row))
         })
     }

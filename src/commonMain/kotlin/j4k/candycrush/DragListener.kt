@@ -54,7 +54,11 @@ class DragListener(override val view: View,
         }
     }
 
-    private fun MouseEvent.point() = Point(x, y)
+    fun MouseEvent.point() = project(Point(this.x, y))
+
+    fun project(point: Point): Point {
+        return view.globalToLocalXY(point.x, point.y, point)
+    }
 
     private fun startedDrag() = start != Point.Zero
 

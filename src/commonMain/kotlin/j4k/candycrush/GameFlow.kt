@@ -6,7 +6,6 @@ import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Tile
-import kotlinx.coroutines.Job
 
 
 class GameFlow(val field: GameField, private val mechanics: GameMechanics, private val animator: TileAnimator) :
@@ -19,7 +18,6 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
     val removeTileListener = mutableListOf<RemoveTileListener>()
 
     override fun onDragTileEvent(posA: Position, posB: Position) {
-        val job = Job()
         if (animator.isAnimationRunning()) {
             log.debug { "Skipping drag event because of moving tiles ($posA. $posB)" }
         } else if (field[posA].isNotTile() || field[posB].isNotTile()) {

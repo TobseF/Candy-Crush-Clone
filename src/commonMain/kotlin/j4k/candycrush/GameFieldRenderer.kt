@@ -112,7 +112,7 @@ class GameFieldRenderer(private val gameField: GameField,
         }
 
         override fun toString(): String {
-            return tile.toString()
+            return "\n\n $tile: ($x,$y)"
         }
     }
 
