@@ -1,4 +1,5 @@
 import j4k.candycrush.GameMechanics
+import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
@@ -259,5 +260,33 @@ class GameMechanicsTest {
                         |[A, A, A, A]
                         """.trimMargin(), mechanics.toString())
     }
+
+    @Test
+    fun testListEmptyCells() {
+        val field = GameField.fromString("""
+                        |[A, H, H, H]
+                        |[A, A, H, H]
+                        |[A, A, A, H]
+                        """.trimMargin())
+        val mechanics = GameMechanics(field)
+
+        val nextMoves = mechanics.getNewTileMoves { Tile.B }
+        mechanics.insert(nextMoves)
+
+        assertEquals("""
+                        |[A, B, B, B]
+                        |[A, A, B, B]
+                        |[A, A, A, B]
+                        """.trimMargin(), mechanics.toString())
+    }
+
+    @Test
+    fun testSortInsertMoves() {
+        val moves = listOf(mockInsertMove(1), mockInsertMove(2), mockInsertMove(0))
+        val sorted = moves.sorted()
+        assertEquals(listOf(mockInsertMove(2), mockInsertMove(1), mockInsertMove(0)), sorted)
+    }
+
+    private fun mockInsertMove(row: Int = 0, column: Int = 0, tile: Tile = Tile.A) = InsertMove(Position(column, row), tile)
 
 }

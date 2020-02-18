@@ -59,6 +59,8 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         return isColumnField(column) && isRowField(row)
     }
 
+    fun isNotOnField(column: Int, row: Int) = !isOnField(column, row)
+
     fun isColumnField(column: Int): Boolean {
         return (column in 0 until columnsSize)
     }
@@ -93,18 +95,18 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     override fun iterator(): Iterator<Row> = rows.iterator()
 
-    fun listAllCells(iterator: (TileCell) -> Unit) {
-        (0 until rowSize).forEach { row ->
-            (0 until columnsSize).forEach { column ->
-                iterator.invoke(getTileCell(Position(column, row)))
+    fun listAllCells(): List<TileCell> = listAllPositions().map { getTileCell(it) }
+
+    fun listAllPositions(): List<Position> {
+        return (0 until rowSize).flatMap { row ->
+            (0 until columnsSize).map { column ->
+                Position(column, row)
             }
         }
     }
 
     fun shuffle() {
-        listAllCells { cell ->
-            set(cell.position, Tile.randomTile())
-        }
+        listAllPositions().forEach { position -> set(position, Tile.randomTile()) }
     }
 }
 

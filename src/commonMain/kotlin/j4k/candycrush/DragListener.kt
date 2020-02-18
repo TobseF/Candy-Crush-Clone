@@ -19,11 +19,9 @@ class DragListener(override val view: View,
 
     private fun dragDistance() = start.distanceTo(end)
 
-    data class DragEvent(val start: IPoint, val end: IPoint) {
-        fun distance() = start.distanceTo(end)
-    }
+    data class DragEvent(val start: IPoint, val end: IPoint)
 
-    fun reset() {
+    private fun reset() {
         start = Point.Zero
         end = Point.Zero
     }

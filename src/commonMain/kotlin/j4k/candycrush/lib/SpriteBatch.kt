@@ -4,22 +4,17 @@ import com.soywiz.korim.bitmap.Bitmap
 import com.soywiz.korim.bitmap.Bitmaps
 import com.soywiz.korim.bitmap.BmpSlice
 import com.soywiz.korim.bitmap.sliceWithSize
-import com.soywiz.korim.format.readBitmap
-import com.soywiz.korio.file.std.resourcesVfs
 import j4k.candycrush.math.PositionGrid
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /**
  * A sprite batch slices a big image into several sub-images.
  */
-class SpriteBatch(x: Int = 0,
-        y: Int = 0,
-        spriteSize: Int = 16,
-        columns: Int,
-        rows: Int,
-        private val bitmap: Bitmap) {
+open class SpriteBatch(x: Int = 0,
+                       y: Int = 0,
+                       spriteSize: Int = 16,
+                       columns: Int,
+                       rows: Int,
+                       private val bitmap: Bitmap) {
 
     private val defaultSprite = Bitmaps.transparent
     private var sprites: MutableList<BmpSlice> = mutableListOf(defaultSprite)
@@ -29,7 +24,7 @@ class SpriteBatch(x: Int = 0,
     operator fun get(spriteIndex: Int) = sprites[spriteIndex]
 
     init {
-            prepareElement()
+        prepareElement()
     }
 
     private  fun prepareElement() {

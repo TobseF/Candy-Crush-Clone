@@ -3,7 +3,6 @@ package j4k.candycrush
 import com.soywiz.korge.view.*
 import com.soywiz.korim.bitmap.BmpSlice
 import com.soywiz.korma.geom.Point
-import j4k.candycrush.lib.SpriteBatch
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
@@ -13,9 +12,9 @@ import j4k.candycrush.model.TileCell
 import kotlin.math.min
 
 class GameFieldRenderer(private val gameField: GameField,
-        private val widthMax: Int,
-        heightMax: Int,
-        private val candies: SpriteBatch) : Container() {
+                        private val widthMax: Int,
+                        heightMax: Int,
+                        private val candies: CandySprites) : Container() {
 
     private val sizeFix = 10
     private val paddingFix = -10
@@ -43,8 +42,8 @@ class GameFieldRenderer(private val gameField: GameField,
 
     private val tileMap = mapOf(0 to 0, 1 to 1, 2 to 2, 3 to 6, 4 to 10)
 
-    private val tiles = Array(gameField.columnsSize) {
-        Array<CandyImage?>(gameField.rowSize) { null }
+    private val tiles = Array(gameField.rowSize) {
+        Array<CandyImage?>(gameField.columnsSize) { null }
     }
 
     init {
@@ -70,22 +69,39 @@ class GameFieldRenderer(private val gameField: GameField,
 
     fun updateImagesFromField() {
         removeChildren()
+        resetAllFields()
         gameField.forEachIndexed(this::addRow)
     }
 
-    private fun addRow(columnIndex: Int, row: Row) {
-        row.forEachIndexed { rowIndex, tile -> addTile(columnIndex, rowIndex, tile) }
+    private fun resetAllFields() {
+        gameField.listAllPositions().forEach { tiles[it.row][it.column] = null }
     }
 
-    private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile) {
-        val pos = positionGrid.getCenterPosition(column = rowIndex, row = columnIndex)
-        if (tile.isTile()) {
-            val bitmap = getTile(tile.index)
-            val tileSize = tileSize * tileScale
-            val image = CandyImage(tileSize, pos, bitmap, tile)
-            addChild(image)
-            tiles[rowIndex][columnIndex] = image
+    private fun addRow(rowIndex: Int, row: Row) {
+        row.forEachIndexed { columnIndex, tile ->
+            if (tile.isTile()) {
+                addTile(columnIndex, rowIndex, tile)
+            }
         }
+    }
+
+    fun addTile(position: Position, tile: Tile) = addTile(position.column, position.row, tile)
+
+    private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile): CandyImage {
+        val pos = positionGrid.getCenterPosition(column = columnIndex, row = rowIndex)
+        val bitmap = getTile(tile.index)
+        val tileSize = tileSize * tileScale
+        val image = CandyImage(tileSize, pos, bitmap, tile)
+        if (gameField.isNotOnField(columnIndex, rowIndex)) {
+            throw IllegalArgumentException("Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
+        }
+        val oldTile = tiles[rowIndex][columnIndex]?.tile
+        if (oldTile?.isTile() == true) {
+            throw IllegalArgumentException("Tried to overwrite tile $oldTile with $tile:  $columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
+        }
+        tiles[rowIndex][columnIndex] = image
+        addChild(image)
+        return image
     }
 
     class CandyImage(tileSize: Number, position: Point, bitmap: BmpSlice, val tile: Tile) : Image(bitmap) {
@@ -100,26 +116,26 @@ class GameFieldRenderer(private val gameField: GameField,
         }
     }
 
-    fun getTile(index: Int) = candies[tileMap.getOrElse(index) { 0 }]
+    private fun getTile(index: Int) = candies.getTile(index)
 
-    fun getTile(column: Int, row: Int): CandyImage {
-        return tiles[column][row] ?: throw IllegalArgumentException("No tile image for: $column,$row")
+    private fun getTile(column: Int, row: Int): CandyImage {
+        return tiles[row][column] ?: throw IllegalArgumentException("No tile image for: $column,$row")
     }
 
     fun getTile(position: Position): CandyImage {
         return getTile(position.column, position.row)
     }
 
-    fun setTile(tile: CandyImage?, position: Position) {
-        tiles[position.column][position.row] = tile
+    private fun setTile(tile: CandyImage?, position: Position) {
+        tiles[position.row][position.column] = tile
     }
 
-    fun removeTile(position: Position) {
+    private fun removeTile(position: Position) {
         removeImage(position)
         removeTileFromGrid(position)
     }
 
-    fun removeImage(position: Position) {
+    private fun removeImage(position: Position) {
         removeChild(getTile(position))
     }
 
@@ -127,7 +143,7 @@ class GameFieldRenderer(private val gameField: GameField,
         setTile(null, position)
     }
 
-    fun removeTiles(positions: List<Position>) {
+    private fun removeTiles(positions: List<Position>) {
         positions.forEach(this::removeTile)
     }
 
@@ -143,16 +159,11 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     override fun toString(): String {
-        var grid = ""
-        (0 until gameField.rowSize).forEach { row ->
-            var line = "["
-            (0 until gameField.columnsSize).forEach { coulmn ->
-                val tile = tiles[coulmn][row]?.tile ?: Tile.Hole
-                line += tile.shortName() + ", "
-            }
-            grid += "$line]\n"
+        return (0 until gameField.rowSize).joinToString("\n") { row ->
+            "[" + (0 until gameField.columnsSize).map { column ->
+                tiles[row][column]?.tile ?: Tile.Hole
+            }.joinToString(", ") { tile -> tile.shortName() } + "]"
         }
-        return grid
     }
 
     fun move(move: GameMechanics.Move) {

@@ -8,26 +8,30 @@ import com.soywiz.korge.component.UpdateComponent
 import com.soywiz.korge.tween.*
 import com.soywiz.korge.view.Image
 import com.soywiz.korge.view.Stage
+import com.soywiz.korge.view.position
 import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
+import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.TileCell
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
-class TileAnimator(override val view: Stage, val renderer: GameFieldRenderer, val positionGrid: PositionGrid) :
+class TileAnimator(override val view: Stage, private val renderer: GameFieldRenderer, private val positionGrid: PositionGrid) :
         UpdateComponent {
 
     companion object {
         val log = Logger("TileAnimator")
     }
+
+    private val jobs = mutableListOf<Job>()
 
     private val moveForward = AnimationSettings(1.seconds, Easing.EASE_IN_OUT_ELASTIC)
     private val moveBackward = AnimationSettings(550.milliseconds, Easing.EASE_IN_OUT_ELASTIC)
@@ -35,77 +39,89 @@ class TileAnimator(override val view: Stage, val renderer: GameFieldRenderer, va
 
     override fun update(ms: Double) {}
 
+    private fun fallingAnimation(rows: Int) = AnimationSettings((500 * rows).milliseconds, easing = Easing.EASE_IN)
 
     private suspend fun Image.move(point: IPoint, settings: AnimationSettings) {
         return move(point, settings.time, settings.easing)
     }
 
-
     private suspend fun Image.move(point: IPoint, time: TimeSpan, easing: Easing) {
         return this.tween(this::globalX[point.x], this::globalY[point.y], time = time, easing = easing)
     }
 
-    fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
+    private fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
 
-
-    fun animateRemoveTiles(tile: Position) {
+    private fun animateRemoveTiles(tile: Position) {
         val image = tile.getImage()
         renderer.removeTileFromGrid(tile)
         animateRemoveTile(image)
     }
 
-    fun animateRemoveTile(image: Image) {
-        view.launch {
+    private fun animateRemoveTile(image: Image) {
+
+        addJob(view.launch {
             image.hide(hide.time, hide.easing)
-        }
-        view.launch {
+        })
+        addJob(view.launch {
             val scale = 1.4
             image.scaleTo(scale, scale, hide.time, hide.easing)
-        }
-        view.launch {
+        })
+        addJob(view.launch {
             image.rotateTo(180.degrees, hide.time, hide.easing)
-        }
+        })
     }
 
     fun animateRemoveTiles(positions: List<TileCell>) {
         positions.forEach { animateRemoveTiles(it) }
     }
 
-    fun animateMoves(moves: List<Move>): Deferred<Unit> {
-        return view.async {
-            moves.forEach {
+    fun animateMoves(moves: List<Move>): Job {
+        val imageMoves = moves.map { it.prepare() }
+        imageMoves.forEach { renderer.move(it.move) }
+        return addJob(view.launch {
+            imageMoves.forEach {
                 launch {
                     animateMove(it)
                 }
             }
-        }
+        })
     }
 
-    suspend fun animateMove(move: Move) {
-        val tile: ImagePosition = move.tile.getImagePosition()
-        val target: Point = positionGrid.getCenterPosition(move.target)
-        renderer.move(move)
-        tile.image.move(target, time = (300 * move.distance()).milliseconds, easing = Easing.EASE_IN)
+    fun addJob(job: Job): Job {
+        jobs.add(job)
+        return job
     }
 
-    fun animateSwap(start: Position, end: Position): Deferred<Unit> {
+    private fun Move.prepare(): ImageMove {
+        return ImageMove(this, this.tile.getImagePosition(), positionGrid.getCenterPosition(this.target))
+    }
+
+    suspend fun animateMove(move: ImageMove) {
+        move.tile.image.move(move.target, fallingAnimation(move.distance().toInt()))
+    }
+
+    class ImageMove(val move: Move, val tile: ImagePosition, val target: Point) {
+        fun distance() = move.distance()
+    }
+
+    fun animateSwap(start: Position, end: Position): Job {
         val startPos: ImagePosition = start.getImagePosition()
         val endPos: ImagePosition = end.getImagePosition()
         log.debug { "Animate tile swap: $start-$end: $startPos - $endPos" }
         renderer.swapTiles(start, end)
-        view.launch {
+        addJob(view.launch {
             startPos.image.move(endPos.point, moveForward)
-        }
-        return view.async {
+        })
+        return addJob(view.async {
             endPos.image.move(startPos.point, moveForward)
-        }
+        })
     }
 
     fun animateIllegalSwap(start: Position, end: Position): Job {
         val startPos: ImagePosition = start.getImagePosition()
         val endPos: ImagePosition = end.getImagePosition()
         log.debug { "Animate illegal swap: $start-$end: $startPos - $endPos" }
-        return view.async {
+        return addJob(view.async {
             launch {
                 startPos.image.move(endPos.point, moveForward)
                 startPos.image.move(startPos.point, moveBackward)
@@ -114,17 +130,52 @@ class TileAnimator(override val view: Stage, val renderer: GameFieldRenderer, va
                 endPos.image.move(startPos.point, moveForward)
                 endPos.image.move(endPos.point, moveBackward)
             }
-        }
+        })
     }
 
     class AnimationSettings(val time: TimeSpan, val easing: Easing)
 
-    private fun Position.getImagePosition(): ImagePosition {
-        return ImagePosition(getImage(), positionGrid.getCenterPosition(this))
+    fun Position.getImagePosition(): ImagePosition {
+        return ImagePosition(getImage(), this.getImagePoint())
+    }
+
+    fun Position.getImagePoint(): Point {
+        return positionGrid.getCenterPosition(this)
     }
 
     fun Position.getImage() = renderer.getTile(this)
 
-    class ImagePosition(val image: Image, val point: IPoint)
+    data class ImagePosition(val image: Image, val point: IPoint) {
+        override fun toString() = point.toString()
+    }
+
+    fun animateInsert(moves: List<InsertMove>) {
+        val moveByColumn: Map<Int, List<InsertMove>> = moves.groupBy { it.target.column }
+        moveByColumn.keys.forEach { column ->
+            val columnMoves = moveByColumn[column]?.sorted()
+            columnMoves?.forEachIndexed { row, move -> animateInsert(move, ((1 + row) * 500).toLong()) }
+        }
+    }
+
+    fun isAnimationRunning(): Boolean {
+        val active = jobs.any { !it.isCompleted }
+        if (!active) {
+            jobs.clear()
+        }
+        return active
+    }
+
+    fun animateInsert(move: InsertMove, delay: Long) {
+        val image = renderer.addTile(move.target, move.tile)
+        image.alpha = 0.0
+        val target = move.target.getImagePoint()
+        val start = move.target.moveToStart().getImagePoint()
+        image.position(start)
+        addJob(view.launch {
+            delay(delay)
+            image.tweenAsync(image::alpha[1.0], time = 150.milliseconds, easing = Easing.EASE_IN)
+            image.move(target, fallingAnimation(move.target.row))
+        })
+    }
 
 }

@@ -12,20 +12,29 @@ enum class Tile {
 
     fun isHole() = this == Hole
 
-    fun isTile() = !isWall() && !isHole()
+    fun isTile() = !isWall() && !isHole() && !isOutOfSpace()
 
     fun isNotTile() = !isTile()
+
+    fun isOutOfSpace() = this == OutOfSpace
 
     companion object {
 
         private val toTile = mutableMapOf<String, Tile>()
 
         init {
-            values().forEach { toTile.put(it.shortName(), it) }
+            values().forEach { toTile[it.shortName()] = it }
         }
 
         fun getTile(index: Int): Tile {
-            return values()[index.coerceAtMost(4)]
+            if (index > values().size) {
+                throw IllegalArgumentException("Tile index $index > ${values().size} is not available")
+            }
+            val tile = values()[index]
+            if (tile.isNotTile()) {
+                throw IllegalArgumentException("Tile $tile for index $index is not a tile")
+            }
+            return tile
         }
 
         fun getTile(shortName: String): Tile {

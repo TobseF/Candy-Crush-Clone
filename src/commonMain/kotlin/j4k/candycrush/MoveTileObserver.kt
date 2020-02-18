@@ -12,7 +12,7 @@ import j4k.candycrush.DragListener.DragEvent
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 
-class MoveTileObserver(override val view: View, val grid: PositionGrid, val moveTileListener: DragTileListener) :
+class MoveTileObserver(override val view: View, private val grid: PositionGrid, private val moveTileListener: DragTileListener) :
         DragListener.DragEventListener,
         TouchComponent,
         MouseComponent {

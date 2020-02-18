@@ -29,8 +29,6 @@ class GameMechanics(private val field: GameField) {
         return bothAreTiles && isSwapAllowed
     }
 
-    fun Position.isTile() = field[this].isTile()
-
     fun isInRowWithThree(pos: Position): Boolean {
         return isHorizontalConnected(pos) || isInVerticalConnected(pos)
     }
@@ -163,9 +161,31 @@ class GameMechanics(private val field: GameField) {
         fun distance() = target.distanceTo(tile)
     }
 
+    fun listEmptyCells(): List<Position> {
+        return field.listAllCells().filter { it.tile.isHole() }.map { it.position }
+    }
+
+    fun getNewTileMoves(tileStore: (Int) -> Tile): List<InsertMove> {
+        return listEmptyCells().map { cell -> InsertMove(cell, tileStore.invoke(cell.column)) }
+    }
+
+    data class InsertMove(val target: Position, val tile: Tile) : Comparable<InsertMove> {
+        override fun compareTo(other: InsertMove) = other.target.row - this.target.row
+    }
+
+    fun insert(moves: List<InsertMove>) = moves.forEach { insert(it) }
+
+    fun insert(move: InsertMove) {
+        field[move.target] = move.tile
+    }
+
+    fun move(moves: List<Move>) = moves.forEach { move(it) }
+
     fun move(move: Move) {
         field[move.target] = field[move.tile]
         field[move.tile] = Tile.Hole
     }
+
+    private fun Position.isTile() = field[this].isTile()
 
 }

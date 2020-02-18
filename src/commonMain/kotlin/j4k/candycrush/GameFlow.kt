@@ -1,8 +1,12 @@
 package j4k.candycrush
 
 import com.soywiz.klogger.Logger
+import j4k.candycrush.GameMechanics.InsertMove
+import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
+import j4k.candycrush.model.Tile
+import kotlinx.coroutines.Job
 
 
 class GameFlow(val field: GameField, private val mechanics: GameMechanics, private val animator: TileAnimator) :
@@ -13,29 +17,27 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
     }
 
     val removeTileListener = mutableListOf<RemoveTileListener>()
-    var movingTiles = false
 
     override fun onDragTileEvent(posA: Position, posB: Position) {
-        if (movingTiles) {
+        val job = Job()
+        if (animator.isAnimationRunning()) {
             log.debug { "Skipping drag event because of moving tiles ($posA. $posB)" }
         } else if (field[posA].isNotTile() || field[posB].isNotTile()) {
             log.debug { "Skipping drag event because one tile wasn't a tile ($posA. $posB)" }
         } else if (mechanics.isSwapAllowed(posA, posB)) {
-            movingTiles = true
             mechanics.swapTiles(posA, posB)
             val connectedTiles = mechanics.getConnectedTiles(posA, posB)
             mechanics.removeTileCells(connectedTiles)
-            val nextMoves = mechanics.getNextMoves()
+            val nextMoves: List<Move> = mechanics.getNextMoves()
+            val newTileMoves: List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
             animator.animateSwap(posA, posB).invokeOnCompletion {
                 animator.animateRemoveTiles(connectedTiles)
-                animator.animateMoves(nextMoves).invokeOnCompletion {
-                    movingTiles = false
-                }
+                animator.animateMoves(nextMoves).invokeOnCompletion {}
+                mechanics.insert(newTileMoves)
+                animator.animateInsert(newTileMoves)
             }
         } else {
-            movingTiles = true
             animator.animateIllegalSwap(posA, posB).invokeOnCompletion {
-                movingTiles = false
             }
         }
     }
