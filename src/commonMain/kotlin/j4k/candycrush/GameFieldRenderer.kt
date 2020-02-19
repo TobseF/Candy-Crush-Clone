@@ -123,10 +123,16 @@ class GameFieldRenderer(private val gameField: GameField,
                 ?: throw IllegalArgumentException("No tile image for: $column,$row\n${getLogDebugData()}")
     }
 
+    private fun hasTile(column: Int, row: Int): Boolean = tiles[row][column] != null
+
     private fun getLogDebugData(): String = "images:\n${toString()}\nfields:\n$gameField"
 
     fun getTile(position: Position): CandyImage {
         return getTile(position.column, position.row)
+    }
+
+    fun hasTile(position: Position): Boolean {
+        return hasTile(position.column, position.row)
     }
 
     private fun setTile(tile: CandyImage?, position: Position) {

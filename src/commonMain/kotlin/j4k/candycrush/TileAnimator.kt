@@ -13,6 +13,7 @@ import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
+import j4k.candycrush.GameFieldRenderer.CandyImage
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
@@ -51,9 +52,13 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
     private fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
 
     private fun animateRemoveTiles(tile: Position) {
-        val image = tile.getImage()
-        renderer.removeTileFromGrid(tile)
-        animateRemoveTile(image)
+        if (tile.hasImage()) {
+            val image = tile.getImage()
+            renderer.removeTileFromGrid(tile)
+            animateRemoveTile(image)
+        } else {
+            log.debug { "Skipping remove image, because it was already removed: $tile" }
+        }
     }
 
     private fun animateRemoveTile(image: Image) {
@@ -142,7 +147,8 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         return positionGrid.getCenterPosition(this)
     }
 
-    fun Position.getImage() = renderer.getTile(this)
+    private fun Position.getImage(): CandyImage = renderer.getTile(this)
+    private fun Position.hasImage(): Boolean = renderer.hasTile(this)
 
     data class ImagePosition(val image: Image, val point: IPoint) {
         override fun toString() = point.toString()

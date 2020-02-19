@@ -15,8 +15,6 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
         val log = Logger("GameFlow")
     }
 
-    val removeTileListener = mutableListOf<RemoveTileListener>()
-
     override fun onDragTileEvent(posA: Position, posB: Position) {
         if (animator.isAnimationRunning()) {
             log.debug { "Skipping drag event because of moving tiles ($posA. $posB)" }
