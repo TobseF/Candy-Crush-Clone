@@ -4,6 +4,8 @@ import j4k.candycrush.math.PositionGrid.Position
 
 data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
+    private val rows = Array(rowSize) { Row(columnsSize) }
+
     companion object {
 
         fun fromString(string: String): GameField {
@@ -28,11 +30,18 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         }
     }
 
+    fun clone(): GameField {
+        val clone = this.copy()
+        rows.forEachIndexed { rowIndex, row ->
+            clone.rows[rowIndex] = row.clone()
+        }
+        return clone
+    }
+
     fun getTileCell(position: Position) = TileCell(get(position), position)
 
     fun getTileCell(column: Int, row: Int) = TileCell(get(column, row), Position(column, row))
 
-    private val rows = Array(rowSize) { Row(columnsSize) }
 
     operator fun get(position: Position): Tile = get(position.column, position.row)
 

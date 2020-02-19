@@ -21,20 +21,23 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
         } else if (field[posA].isNotTile() || field[posB].isNotTile()) {
             log.debug { "Skipping drag event because one tile wasn't a tile ($posA. $posB)" }
         } else if (mechanics.isSwapAllowed(posA, posB)) {
-            mechanics.swapTiles(posA, posB)
-            val connectedTiles = mechanics.getConnectedTiles(posA, posB)
-            mechanics.removeTileCells(connectedTiles)
-            val nextMoves: List<Move> = mechanics.getNextMoves()
-            val newTileMoves: List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
-            animator.animateSwap(posA, posB).invokeOnCompletion {
-                animator.animateRemoveTiles(connectedTiles)
-                animator.animateMoves(nextMoves).invokeOnCompletion {}
-                mechanics.insert(newTileMoves)
-                animator.animateInsert(newTileMoves)
-            }
+            swapTiles(posA, posB)
         } else {
-            animator.animateIllegalSwap(posA, posB).invokeOnCompletion {
-            }
+            animator.animateIllegalSwap(posA, posB)
+        }
+    }
+
+    private fun swapTiles(posA: Position, posB: Position) {
+        mechanics.swapTiles(posA, posB)
+        val connectedTiles = mechanics.getConnectedTiles(posA, posB)
+        mechanics.removeTileCells(connectedTiles)
+        val nextMoves: List<Move> = mechanics.getNextMoves()
+        val newTileMoves: List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
+        animator.animateSwap(posA, posB).invokeOnCompletion {
+            animator.animateRemoveTiles(connectedTiles)
+            animator.animateMoves(nextMoves)
+            mechanics.insert(newTileMoves)
+            animator.animateInsert(newTileMoves)
         }
     }
 

@@ -59,5 +59,11 @@ class Row(rowSize: Int) : Iterable<Tile> {
         return tiles.contentHashCode()
     }
 
+    fun clone(): Row {
+        val clone = Row(tiles.size)
+        clone.tiles = tiles.copyOf()
+        return clone
+    }
+
 
 }

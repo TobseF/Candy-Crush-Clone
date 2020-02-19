@@ -73,6 +73,28 @@ class GameFieldTest {
     }
 
     @Test
+    fun testCopyField() {
+        val fieldA = GameField.fromString("""
+                    |[A, H]
+                    |[H, H]
+                    """.trimMargin())
+        val fieldB = fieldA.clone()
+        assertEquals("""
+                    |[A, H]
+                    |[H, H]
+                    """.trimMargin(), fieldB.toString())
+        fieldB[0][1] = "A"
+        assertEquals("""
+                    |[A, A]
+                    |[H, H]
+                    """.trimMargin(), fieldB.toString())
+        assertEquals("""
+                    |[A, H]
+                    |[H, H]
+                    """.trimMargin(), fieldA.toString())
+    }
+
+    @Test
     fun testReadGameFieldFromString() {
         val field = GameField.fromString("""
                         |[A, H, H, H]
