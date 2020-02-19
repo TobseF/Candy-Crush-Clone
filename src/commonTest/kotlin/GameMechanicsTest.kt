@@ -103,7 +103,7 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun testGetVerticalConnected() {
+    fun testGetVerticalConnectedThree() {
         val field = GameField.fromString("""
                         |[H, A, H, H]
                         |[H, A, A, A]
@@ -119,7 +119,7 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun testGetHorizontalConnected() {
+    fun testGetHorizontalConnectedThree() {
         val field = GameField.fromString("""
                         |[H, A, H, H]
                         |[H, A, A, A]
@@ -133,6 +133,56 @@ class GameMechanicsTest {
         assertEquals(horizontal, mechanics.getHorizontalConnected(Position(1, 1)))
         assertEquals(horizontal, mechanics.getHorizontalConnected(Position(3, 1)))
     }
+
+    @Test
+    fun testGetHorizontalConnectedSix() {
+        val field = GameField.fromString("""
+                        |[H, A, A, A, A, A, A, H]
+                        """.trimMargin())
+        val mechanics = GameMechanics(field)
+
+        val horizontal = listOf(field.getTileCell(1, 0),
+                field.getTileCell(2, 0),
+                field.getTileCell(3, 0),
+                field.getTileCell(4, 0),
+                field.getTileCell(5, 0),
+                field.getTileCell(6, 0))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(1, 0)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(2, 0)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(3, 0)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(4, 0)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(5, 0)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(6, 0)))
+    }
+
+    @Test
+    fun testGetVerticalConnectedSix() {
+        val field = GameField.fromString("""
+                        |[H]
+                        |[A]
+                        |[A]
+                        |[A]
+                        |[A]
+                        |[A]
+                        |[A]
+                        |[H]
+                        """.trimMargin())
+        val mechanics = GameMechanics(field)
+
+        val horizontal = listOf(field.getTileCell(0, 1),
+                field.getTileCell(0, 2),
+                field.getTileCell(0, 3),
+                field.getTileCell(0, 4),
+                field.getTileCell(0, 5),
+                field.getTileCell(0, 6))
+        assertEquals(horizontal, mechanics.getVerticalSurroundings(Position(0, 1)))
+        assertEquals(horizontal, mechanics.getVerticalSurroundings(Position(0, 2)))
+        assertEquals(horizontal, mechanics.getVerticalSurroundings(Position(0, 3)))
+        assertEquals(horizontal, mechanics.getVerticalSurroundings(Position(0, 4)))
+        assertEquals(horizontal, mechanics.getVerticalSurroundings(Position(0, 5)))
+        assertEquals(horizontal, mechanics.getVerticalSurroundings(Position(0, 6)))
+    }
+
 
     @Test
     fun testGetDisconnectedHoles() {
@@ -156,21 +206,6 @@ class GameMechanicsTest {
         val hole3 = listOf(field.getTileCell(0, 2))
         assertEquals(hole3, mechanics.getHorizontalConnected(Position(0, 2)))
         assertEquals(hole3, mechanics.getVerticalConnected(Position(0, 2)))
-    }
-
-    @Test
-    fun testHasFollowingEqualTiles() {
-        val mechanics = GameMechanics(GameField(1, 1))
-        assertTrue(mechanics.hasFollowingEqualTiles(tilePositions(Tile.A, Tile.A, Tile.A), 3))
-
-        assertFalse(mechanics.hasFollowingEqualTiles(tilePositions(Tile.A, Tile.B, Tile.A, Tile.A, Tile.B), 3))
-        assertTrue(mechanics.hasFollowingEqualTiles(tilePositions(Tile.A, Tile.B, Tile.A, Tile.A, Tile.B), 2))
-
-        assertTrue(mechanics.hasFollowingEqualTiles(tilePositions(Tile.A, Tile.A, Tile.A, Tile.A, Tile.A), 3))
-
-        assertFalse(mechanics.hasFollowingEqualTiles(tilePositions(Tile.A, Tile.B, Tile.A, Tile.B, Tile.A), 2))
-
-        assertTrue(mechanics.hasFollowingEqualTiles(tilePositions(Tile.A, Tile.B, Tile.B, Tile.B, Tile.A), 3))
     }
 
     private fun tilePositions(vararg tiles: Tile): List<TileCell> {
@@ -287,6 +322,7 @@ class GameMechanicsTest {
         assertEquals(listOf(mockInsertMove(2), mockInsertMove(1), mockInsertMove(0)), sorted)
     }
 
-    private fun mockInsertMove(row: Int = 0, column: Int = 0, tile: Tile = Tile.A) = InsertMove(Position(column, row), tile)
+    private fun mockInsertMove(row: Int = 0, column: Int = 0, tile: Tile = Tile.A) = InsertMove(Position(column, row),
+            tile)
 
 }

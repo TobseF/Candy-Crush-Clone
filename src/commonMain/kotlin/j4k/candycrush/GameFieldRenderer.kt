@@ -12,9 +12,9 @@ import j4k.candycrush.model.TileCell
 import kotlin.math.min
 
 class GameFieldRenderer(private val gameField: GameField,
-                        private val widthMax: Int,
-                        heightMax: Int,
-                        private val candies: CandySprites) : Container() {
+        private val widthMax: Int,
+        heightMax: Int,
+        private val candies: CandySprites) : Container() {
 
     private val sizeFix = 10
     private val paddingFix = -10
@@ -119,8 +119,11 @@ class GameFieldRenderer(private val gameField: GameField,
     private fun getTile(index: Int) = candies.getTile(index)
 
     private fun getTile(column: Int, row: Int): CandyImage {
-        return tiles[row][column] ?: throw IllegalArgumentException("No tile image for: $column,$row")
+        return tiles[row][column]
+                ?: throw IllegalArgumentException("No tile image for: $column,$row\n${getLogDebugData()}")
     }
+
+    private fun getLogDebugData(): String = "images:\n${toString()}\nfields:\n$gameField"
 
     fun getTile(position: Position): CandyImage {
         return getTile(position.column, position.row)

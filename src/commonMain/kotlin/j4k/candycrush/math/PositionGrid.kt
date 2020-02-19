@@ -78,6 +78,14 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
             return column + (row * column)
         }
 
+        fun horizontal(steps: Int): Position {
+            return Position(this.column + steps, this.row)
+        }
+
+        fun vertical(steps: Int): Position {
+            return Position(this.column, this.row + steps)
+        }
+
         fun left(steps: Int = 1): Position {
             return Position(this.column - steps, this.row)
         }

@@ -36,13 +36,17 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     operator fun get(position: Position): Tile = get(position.column, position.row)
 
-    operator fun get(column: Int, row: Int): Tile {
+    fun getTile(position: Position) = getTile(position.column, position.row)
+
+    fun getTile(column: Int, row: Int): Tile {
         return if (isOnField(column, row)) {
             rows[row][column]
         } else {
             Tile.OutOfSpace
         }
     }
+
+    operator fun get(column: Int, row: Int) = getTile(column, row)
 
     fun getColumn(column: Int): List<Tile> {
         if (column >= columnsSize) {

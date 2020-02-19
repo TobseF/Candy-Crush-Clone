@@ -30,7 +30,7 @@ suspend fun main() = Korge(width = resolution.width,
                         |[B,B,C,A,D,D,B,C]
                         |[A,C,B,E,E,B,D,C]
                         |[D,E,E,B,A,E,C,A]
-                        |[E,D,A,E,E,C,D,B]
+                        |[E,D,A,E,C,C,D,B]
                         |[E,A,D,C,B,A,A,E]
                         """.trimMargin()
 

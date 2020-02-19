@@ -30,7 +30,7 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun isInRowWithThree(pos: Position): Boolean {
-        return isHorizontalConnected(pos) || isInVerticalConnected(pos)
+        return isHorizontalConnected(pos) || isVerticalConnected(pos)
     }
 
     fun getConnectedTiles(pos: Position): List<TileCell> {
@@ -63,59 +63,65 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun isHorizontalConnected(pos: Position): Boolean {
-        return hasFollowingEqualTiles(getHorizontalSurroundings(pos), 3)
+        return getHorizontalSurroundings(pos).size >= 3
     }
 
     fun getHorizontalConnected(pos: Position): List<TileCell> {
-        return getFollowingEqualTiles(getHorizontalSurroundings(pos), 3)
+        return getHorizontalSurroundings(pos)
     }
 
     fun getVerticalConnected(pos: Position): List<TileCell> {
-        return getFollowingEqualTiles(getVerticalSurroundings(pos), 3)
+        return getVerticalSurroundings(pos)
     }
 
     fun getHorizontalSurroundings(pos: Position): List<TileCell> {
-        val horizontal = listOf(pos.left(2), pos.left(1), pos, pos.right(1), pos.right(2))
-        return horizontal.map { position -> field.getTileCell(position) }
-    }
-
-    fun hasFollowingEqualTiles(tiles: List<TileCell>, min: Int = 3): Boolean {
-        return getFollowingEqualTiles(tiles, min).size >= min
-    }
-
-    fun getFollowingEqualTiles(tiles: List<TileCell>, min: Int = 3): List<TileCell> {
-        if (tiles.isEmpty()) {
-            throw IllegalArgumentException("Wee need at least 3 tiles to check")
-        }
-        val center = tiles[(tiles.size - 1) / 2]
-        if (tiles.size < min) {
-            return emptyList()
-        }
-        val row = mutableListOf<TileCell>()
-        for (nextTile: TileCell in tiles) {
-            if (nextTile.tile == center.tile && nextTile.tile.isTile()) {
-                row.add(nextTile)
-            } else {
-                if (row.size >= min) {
-                    return row
-                }
-                row.clear()
-            }
-        }
-        if (row.size < min) {
-            row.clear()
-            row.add(center)
-        }
-        return row
-    }
-
-    fun isInVerticalConnected(pos: Position): Boolean {
-        return hasFollowingEqualTiles(getVerticalSurroundings(pos), 3)
+        return getHorizontalSurroundings(field.getTileCell(pos))
     }
 
     fun getVerticalSurroundings(pos: Position): List<TileCell> {
-        val horizontal = listOf(pos.top(2), pos.top(1), pos, pos.bottom(1), pos.bottom(2))
-        return horizontal.map { field.getTileCell(it) }
+        return getVerticalSurroundings(field.getTileCell(pos))
+    }
+
+    fun getHorizontalSurroundings(cell: TileCell): List<TileCell> {
+        if (cell.tile.isNotTile()) {
+            return listOf(cell)
+        }
+        var pos = cell.position.right()
+        val cellsRight = mutableListOf<TileCell>()
+        while (field.getTile(pos) == cell.tile) {
+            cellsRight += field.getTileCell(pos)
+            pos = pos.right()
+        }
+        pos = cell.position.left()
+        val cellsLeft = mutableListOf<TileCell>()
+        while (field.getTile(pos) == cell.tile) {
+            cellsLeft += field.getTileCell(pos)
+            pos = pos.left()
+        }
+        return cellsLeft.reversed() + cell + cellsRight
+    }
+
+    fun getVerticalSurroundings(cell: TileCell): List<TileCell> {
+        if (cell.tile.isNotTile()) {
+            return listOf(cell)
+        }
+        var pos = cell.position.bottom()
+        val cellsBottom = mutableListOf<TileCell>()
+        while (field.getTile(pos) == cell.tile) {
+            cellsBottom += field.getTileCell(pos)
+            pos = pos.bottom()
+        }
+        pos = cell.position.top()
+        val cellsTop = mutableListOf<TileCell>()
+        while (field.getTile(pos) == cell.tile) {
+            cellsTop += field.getTileCell(pos)
+            pos = pos.top()
+        }
+        return cellsTop.reversed() + cell + cellsBottom
+    }
+
+    fun isVerticalConnected(pos: Position): Boolean {
+        return getVerticalSurroundings(pos).size >= 3
     }
 
     override fun toString(): String {
