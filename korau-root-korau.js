@@ -454,26 +454,22 @@
   MiniMp3.prototype.constructor = MiniMp3;
   AbstractRuntime$ExitError.prototype = Object.create(Error_0.prototype);
   AbstractRuntime$ExitError.prototype.constructor = AbstractRuntime$ExitError;
-
   function Korau() {
     Korau_instance = this;
     this.VERSION = KORAU_VERSION;
   }
-
   Korau.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Korau',
     interfaces: []
   };
   var Korau_instance = null;
-
   function Korau_getInstance() {
     if (Korau_instance === null) {
       new Korau();
     }
     return Korau_instance;
   }
-
   function AudioFormat(exts) {
     var destination = ArrayList_init(exts.length);
     var tmp$;
@@ -486,7 +482,6 @@
     }
     this.extensions = toSet(destination);
   }
-
   function AudioFormat$Info(duration, channels) {
     if (duration === void 0) {
       duration = TimeSpan.Companion.fromSeconds_14dthe$(numberToDouble(0));
@@ -497,7 +492,6 @@
     this.channels = channels;
     this.$delegate_q4l724$_0 = new Extra$Mixin();
   }
-
   AudioFormat$Info.prototype.toString = function () {
     return 'Info(duration=' + get_niceStr(this.duration.milliseconds) + 'ms, channels=' + this.channels + ')';
   };
@@ -538,14 +532,12 @@
   AudioFormat.prototype.decodeStream_axnxby$ = function (data, continuation) {
     return null;
   };
-
   function Coroutine$decode_axnxby$($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
     this.local$data = data_0;
   }
-
   Coroutine$decode_axnxby$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -573,7 +565,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.result_0 = null;
               this.state_0 = 4;
               continue;
@@ -584,20 +577,21 @@
             continue;
           case 4:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   AudioFormat.prototype.decode_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$decode_axnxby$(this, data_0, continuation_0);
@@ -606,14 +600,12 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$decode_fqrh44$($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
     this.local$data = data_0;
   }
-
   Coroutine$decode_fqrh44$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -641,7 +633,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.result_0 = null;
               this.state_0 = 4;
               continue;
@@ -652,20 +645,21 @@
             continue;
           case 4:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   AudioFormat.prototype.decode_fqrh44$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$decode_fqrh44$(this, data_0, continuation_0);
@@ -677,7 +671,6 @@
   AudioFormat.prototype.encode_ohj27w$ = function (data, out, filename, continuation) {
     return unsupported();
   };
-
   function Coroutine$encodeToByteArray_szcvz7$($this, data_0, filename_0, format_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -687,7 +680,6 @@
     this.local$filename = filename_0;
     this.local$format = format_0;
   }
-
   Coroutine$encodeToByteArray_szcvz7$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -715,20 +707,21 @@
             throw this.exception_0;
           case 2:
             return this.local$buffer.toByteArray();
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   AudioFormat.prototype.encodeToByteArray_szcvz7$ = function (data_0, filename_0, format_0, continuation_0, suspended) {
     var instance = new Coroutine$encodeToByteArray_szcvz7$(this, data_0, filename_0, format_0, continuation_0);
@@ -745,31 +738,25 @@
     simpleName: 'AudioFormat',
     interfaces: []
   };
-
   function InvalidAudioFormatException(message) {
     RuntimeException_init(message, this);
     this.name = 'InvalidAudioFormatException';
   }
-
   InvalidAudioFormatException.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'InvalidAudioFormatException',
     interfaces: [RuntimeException]
   };
-
   function invalidAudioFormat(message) {
     if (message === void 0)
       message = 'invalid audio format';
     throw new InvalidAudioFormatException(message);
   }
-
   var defaultAudioFormats;
-
   function AudioFormats() {
     AudioFormat.call(this, []);
     this.formats = LinkedHashSet_init();
   }
-
   AudioFormats.prototype.register_rtj1ud$ = function (formats) {
     addAll(this.formats, formats);
     return this;
@@ -778,7 +765,6 @@
     addAll_0(this.formats, formats);
     return this;
   };
-
   function Coroutine$tryReadInfo_axnxby$($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 6;
@@ -787,7 +773,6 @@
     this.local$tmp$_0 = void 0;
     this.local$data = data_0;
   }
-
   Coroutine$tryReadInfo_axnxby$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -822,7 +807,8 @@
               this.exceptionState_0 = 4;
               this.state_0 = 1;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 3;
               continue;
             }
@@ -834,7 +820,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, Throwable)) {
               printStackTrace(e);
-            } else
+            }
+             else
               throw e;
             this.state_0 = 5;
             continue;
@@ -845,20 +832,21 @@
             throw this.exception_0;
           case 7:
             return null;
-          default:
-            this.state_0 = 6;
+          default:this.state_0 = 6;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 6) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   AudioFormats.prototype.tryReadInfo_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$tryReadInfo_axnxby$(this, data_0, continuation_0);
@@ -867,7 +855,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$decodeStream_axnxby$($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 8;
@@ -877,7 +864,6 @@
     this.local$format = void 0;
     this.local$data = data_0;
   }
-
   Coroutine$decodeStream_axnxby$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -911,7 +897,8 @@
               this.exceptionState_0 = 6;
               this.state_0 = 1;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 3;
               continue;
             }
@@ -928,7 +915,8 @@
               this.exceptionState_0 = 6;
               this.state_0 = 1;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 5;
               continue;
             }
@@ -940,7 +928,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, Throwable)) {
               printStackTrace(e);
-            } else
+            }
+             else
               throw e;
             this.state_0 = 7;
             continue;
@@ -951,20 +940,21 @@
             throw this.exception_0;
           case 9:
             return null;
-          default:
-            this.state_0 = 8;
+          default:this.state_0 = 8;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 8) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   AudioFormats.prototype.decodeStream_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$decodeStream_axnxby$(this, data_0, continuation_0);
@@ -990,7 +980,7 @@
       }
       firstOrNull$result = null;
     }
-    while (false);
+     while (false);
     tmp$ = firstOrNull$result;
     if (tmp$ == null) {
       throw UnsupportedOperationException_init("Don't know how to generate file for extension '" + ext + "'");
@@ -1003,7 +993,6 @@
     simpleName: 'AudioFormats',
     interfaces: [AudioFormat]
   };
-
   function Coroutine$readSoundInfo($receiver_0, formats_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 6;
@@ -1014,7 +1003,6 @@
     this.local$$receiver = $receiver_0;
     this.local$formats = formats_0;
   }
-
   Coroutine$readSoundInfo.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1057,7 +1045,8 @@
             if (Kotlin.isType(e_0, Throwable)) {
               this.local$error = e_0;
               this.local$tmp$_1 = null;
-            } else
+            }
+             else
               throw e_0;
             this.state_0 = 4;
             continue;
@@ -1076,22 +1065,22 @@
             return this.result_0;
           case 6:
             throw this.exception_0;
-          default:
-            this.state_0 = 6;
+          default:this.state_0 = 6;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 6) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function readSoundInfo($receiver_0, formats_0, continuation_0, suspended) {
     var instance = new Coroutine$readSoundInfo($receiver_0, formats_0, continuation_0);
     if (suspended)
@@ -1099,46 +1088,38 @@
     else
       return instance.doResume(null);
   }
-
   function registerStandard($receiver) {
     $receiver.register_rtj1ud$([WAV$Companion_getInstance(), OGG$Companion_getInstance(), MP3$Companion_getInstance()]);
     return $receiver;
   }
-
   function MP3() {
     MP3$Companion_getInstance();
     MP3Base.call(this);
   }
-
   function MP3$Companion() {
     MP3$Companion_instance = this;
     MP3.call(this);
   }
-
   MP3$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: [MP3]
   };
   var MP3$Companion_instance = null;
-
   function MP3$Companion_getInstance() {
     if (MP3$Companion_instance === null) {
       new MP3$Companion();
     }
     return MP3$Companion_instance;
   }
-
   MP3.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'MP3',
     interfaces: [MP3Base]
   };
-
   function MP3Base() {
     AudioFormat.call(this, ['mp3']);
   }
-
   function Coroutine$tryReadInfo_axnxby$_0($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 5;
@@ -1146,7 +1127,6 @@
     this.local$parser = void 0;
     this.local$data = data_0;
   }
-
   Coroutine$tryReadInfo_axnxby$_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1175,7 +1155,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, Throwable)) {
               return null;
-            } else {
+            }
+             else {
               throw e;
             }
 
@@ -1186,20 +1167,21 @@
             return;
           case 5:
             throw this.exception_0;
-          default:
-            this.state_0 = 5;
+          default:this.state_0 = 5;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 5) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   MP3Base.prototype.tryReadInfo_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$tryReadInfo_axnxby$_0(this, data_0, continuation_0);
@@ -1208,20 +1190,17 @@
     else
       return instance.doResume(null);
   };
-
   function MP3Base$Parser(data) {
     MP3Base$Parser$Companion_getInstance();
     this.data = data;
     this.info = null;
   }
-
   MP3Base$Parser.prototype.getDurationEstimate = function (continuation) {
     return this._getDuration_0(true, continuation);
   };
   MP3Base$Parser.prototype.getDurationExact = function (continuation) {
     return this._getDuration_0(false, continuation);
   };
-
   function Coroutine$_getDuration_0($this, use_cbr_estimate_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -1233,7 +1212,6 @@
     this.local$block2 = void 0;
     this.local$use_cbr_estimate = use_cbr_estimate_0;
   }
-
   Coroutine$_getDuration_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1278,7 +1256,8 @@
             if (!!this.result_0) {
               this.state_0 = 14;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 6;
               continue;
             }
@@ -1294,7 +1273,8 @@
             if (this.local$block2.size < 10) {
               this.state_0 = 14;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 8;
               continue;
             }
@@ -1306,10 +1286,12 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               if (equals(readString(openSync(this.local$block2.bytes), 3), 'TAG')) {
                 this.local$fd.position = this.local$fd.position.add(Kotlin.Long.fromInt(118));
-              } else {
+              }
+               else {
                 this.local$fd.position = this.local$fd.position.subtract(Kotlin.Long.fromInt(9));
               }
               this.state_0 = 11;
@@ -1321,7 +1303,8 @@
             this.$this.info = this.local$info;
             if (this.local$info.frameSize === 0) {
               return this.local$duration;
-            } else {
+            }
+             else {
               this.state_0 = 10;
               continue;
             }
@@ -1338,7 +1321,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 13;
               continue;
             }
@@ -1350,20 +1334,21 @@
             continue;
           case 14:
             return this.local$duration;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   MP3Base$Parser.prototype._getDuration_0 = function (use_cbr_estimate_0, continuation_0, suspended) {
     var instance = new Coroutine$_getDuration_0(this, use_cbr_estimate_0, continuation_0);
@@ -1372,7 +1357,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$estimateDuration_0($this, bitrate_0, channels_0, offset_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -1382,7 +1366,6 @@
     this.local$channels = channels_0;
     this.local$offset = offset_0;
   }
-
   Coroutine$estimateDuration_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1406,20 +1389,21 @@
           case 2:
             var dataSize = this.result_0.subtract(Kotlin.Long.fromInt(this.local$offset));
             return dataSize.multiply(Kotlin.Long.fromInt(2 / this.local$channels | 0)).multiply(L1000000).div(Kotlin.Long.fromInt(this.local$kbps));
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   MP3Base$Parser.prototype.estimateDuration_0 = function (bitrate_0, channels_0, offset_0, continuation_0, suspended) {
     var instance = new Coroutine$estimateDuration_0(this, bitrate_0, channels_0, offset_0, continuation_0);
@@ -1428,7 +1412,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$skipID3v2Tag_0($this, block_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -1440,7 +1423,6 @@
     this.local$z2 = void 0;
     this.local$block = block_0;
   }
-
   Coroutine$skipID3v2Tag_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1468,7 +1450,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 11;
               continue;
             }
@@ -1526,7 +1509,8 @@
               var tag_size = Kotlin.imul(this.local$z0 & 127, 2097152) + ((this.local$z1 & 127) * 16384 | 0) + ((this.local$z2 & 127) * 128 | 0) + (z3 & 127) | 0;
               var footer_size = this.local$flag_footer_present ? 10 : 0;
               return Kotlin.Long.fromInt(header_size + tag_size + footer_size | 0);
-            } else {
+            }
+             else {
               this.state_0 = 10;
               continue;
             }
@@ -1536,20 +1520,21 @@
             continue;
           case 11:
             return L0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   MP3Base$Parser.prototype.skipID3v2Tag_0 = function (block_0, continuation_0, suspended) {
     var instance = new Coroutine$skipID3v2Tag_0(this, block_0, continuation_0);
@@ -1558,7 +1543,6 @@
     else
       return instance.doResume(null);
   };
-
   function MP3Base$Parser$Companion() {
     MP3Base$Parser$Companion_instance = this;
     this.versions = ['2.5', 'x', '2', '1'];
@@ -1567,7 +1551,6 @@
     this.sampleRates = mapOf([to('1', new Int32Array([44100, 48000, 32000])), to('2', new Int32Array([22050, 24000, 16000])), to('2.5', new Int32Array([11025, 12000, 8000]))]);
     this.samples = mapOf([to(1, mapOf([to(1, 384), to(2, 1152), to(3, 1152)])), to(2, mapOf([to(1, 384), to(2, 1152), to(3, 576)]))]);
   }
-
   function MP3Base$Parser$Companion$ChannelMode(name, ordinal, id, channels) {
     Enum.call(this);
     this.id = id;
@@ -1575,7 +1558,6 @@
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function MP3Base$Parser$Companion$ChannelMode_initFields() {
     MP3Base$Parser$Companion$ChannelMode_initFields = function () {
     };
@@ -1585,35 +1567,26 @@
     MP3Base$Parser$Companion$ChannelMode$SINGLE_CHANNEL_instance = new MP3Base$Parser$Companion$ChannelMode('SINGLE_CHANNEL', 3, 3, 1);
     MP3Base$Parser$Companion$ChannelMode$Companion_getInstance();
   }
-
   var MP3Base$Parser$Companion$ChannelMode$STEREO_instance;
-
   function MP3Base$Parser$Companion$ChannelMode$STEREO_getInstance() {
     MP3Base$Parser$Companion$ChannelMode_initFields();
     return MP3Base$Parser$Companion$ChannelMode$STEREO_instance;
   }
-
   var MP3Base$Parser$Companion$ChannelMode$JOINT_STEREO_instance;
-
   function MP3Base$Parser$Companion$ChannelMode$JOINT_STEREO_getInstance() {
     MP3Base$Parser$Companion$ChannelMode_initFields();
     return MP3Base$Parser$Companion$ChannelMode$JOINT_STEREO_instance;
   }
-
   var MP3Base$Parser$Companion$ChannelMode$DUAL_CHANNEL_instance;
-
   function MP3Base$Parser$Companion$ChannelMode$DUAL_CHANNEL_getInstance() {
     MP3Base$Parser$Companion$ChannelMode_initFields();
     return MP3Base$Parser$Companion$ChannelMode$DUAL_CHANNEL_instance;
   }
-
   var MP3Base$Parser$Companion$ChannelMode$SINGLE_CHANNEL_instance;
-
   function MP3Base$Parser$Companion$ChannelMode$SINGLE_CHANNEL_getInstance() {
     MP3Base$Parser$Companion$ChannelMode_initFields();
     return MP3Base$Parser$Companion$ChannelMode$SINGLE_CHANNEL_instance;
   }
-
   function MP3Base$Parser$Companion$ChannelMode$Companion() {
     MP3Base$Parser$Companion$ChannelMode$Companion_instance = this;
     var $receiver = MP3Base$Parser$Companion$ChannelMode$values();
@@ -1625,14 +1598,12 @@
     }
     this.BY_ID = toMap(destination);
   }
-
   MP3Base$Parser$Companion$ChannelMode$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var MP3Base$Parser$Companion$ChannelMode$Companion_instance = null;
-
   function MP3Base$Parser$Companion$ChannelMode$Companion_getInstance() {
     MP3Base$Parser$Companion$ChannelMode_initFields();
     if (MP3Base$Parser$Companion$ChannelMode$Companion_instance === null) {
@@ -1640,19 +1611,15 @@
     }
     return MP3Base$Parser$Companion$ChannelMode$Companion_instance;
   }
-
   MP3Base$Parser$Companion$ChannelMode.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ChannelMode',
     interfaces: [Enum]
   };
-
   function MP3Base$Parser$Companion$ChannelMode$values() {
     return [MP3Base$Parser$Companion$ChannelMode$STEREO_getInstance(), MP3Base$Parser$Companion$ChannelMode$JOINT_STEREO_getInstance(), MP3Base$Parser$Companion$ChannelMode$DUAL_CHANNEL_getInstance(), MP3Base$Parser$Companion$ChannelMode$SINGLE_CHANNEL_getInstance()];
   }
-
   MP3Base$Parser$Companion$ChannelMode.values = MP3Base$Parser$Companion$ChannelMode$values;
-
   function MP3Base$Parser$Companion$ChannelMode$valueOf(name) {
     switch (name) {
       case 'STEREO':
@@ -1663,13 +1630,10 @@
         return MP3Base$Parser$Companion$ChannelMode$DUAL_CHANNEL_getInstance();
       case 'SINGLE_CHANNEL':
         return MP3Base$Parser$Companion$ChannelMode$SINGLE_CHANNEL_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korau.format.MP3Base.Parser.Companion.ChannelMode.' + name);
+      default:throwISE('No enum constant com.soywiz.korau.format.MP3Base.Parser.Companion.ChannelMode.' + name);
     }
   }
-
   MP3Base$Parser$Companion$ChannelMode.valueOf_61zpoe$ = MP3Base$Parser$Companion$ChannelMode$valueOf;
-
   function MP3Base$Parser$Companion$Mp3Info(version, layer, bitrate, samplingRate, channelMode, frameSize, samples) {
     this.version = version;
     this.layer = layer;
@@ -1679,7 +1643,6 @@
     this.frameSize = frameSize;
     this.samples = samples;
   }
-
   MP3Base$Parser$Companion$Mp3Info.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Mp3Info',
@@ -1755,7 +1718,8 @@
     var tmp$;
     if (layer === 1) {
       tmp$ = ((((12 * bitrate | 0) * 1000 | 0) / sample_rate | 0) + padding_bit | 0) * 4 | 0;
-    } else {
+    }
+     else {
       tmp$ = (((144 * bitrate | 0) * 1000 | 0) / sample_rate | 0) + padding_bit | 0;
     }
     return tmp$;
@@ -1766,14 +1730,12 @@
     interfaces: []
   };
   var MP3Base$Parser$Companion_instance = null;
-
   function MP3Base$Parser$Companion_getInstance() {
     if (MP3Base$Parser$Companion_instance === null) {
       new MP3Base$Parser$Companion();
     }
     return MP3Base$Parser$Companion_instance;
   }
-
   MP3Base$Parser.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Parser',
@@ -1784,48 +1746,40 @@
     simpleName: 'MP3Base',
     interfaces: [AudioFormat]
   };
-
   function OGG() {
     OGG$Companion_getInstance();
     OggBase.call(this);
   }
-
   function OGG$Companion() {
     OGG$Companion_instance = this;
     OGG.call(this);
   }
-
   OGG$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: [OGG]
   };
   var OGG$Companion_instance = null;
-
   function OGG$Companion_getInstance() {
     if (OGG$Companion_instance === null) {
       new OGG$Companion();
     }
     return OGG$Companion_instance;
   }
-
   OGG.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'OGG',
     interfaces: [OggBase]
   };
-
   function OggBase() {
     AudioFormat.call(this, ['ogg']);
   }
-
   function Coroutine$tryReadInfo_axnxby$_1($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 5;
     this.$this = $this;
     this.local$data = data_0;
   }
-
   Coroutine$tryReadInfo_axnxby$_1.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1851,7 +1805,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, Throwable)) {
               return null;
-            } else {
+            }
+             else {
               throw e;
             }
 
@@ -1862,20 +1817,21 @@
             return;
           case 5:
             throw this.exception_0;
-          default:
-            this.state_0 = 5;
+          default:this.state_0 = 5;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 5) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   OggBase.prototype.tryReadInfo_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$tryReadInfo_axnxby$_1(this, data_0, continuation_0);
@@ -1884,7 +1840,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$parse_axnxby$($this, s_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -1904,7 +1859,6 @@
     this.local$packetType = void 0;
     this.local$s = s_0;
   }
-
   Coroutine$parse_axnxby$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -1934,7 +1888,8 @@
             if (!this.result_0) {
               this.state_0 = 30;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 4;
               continue;
             }
@@ -2048,7 +2003,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 28;
               continue;
             }
@@ -2133,7 +2089,8 @@
             if (this.local$eos) {
               var $receiver_0 = Kotlin.Long.fromNumber(this.local$gpos.toNumber() * 1000000.0 / this.local$sampleRate);
               return new AudioFormat$Info(TimeSpan.Companion.fromMicroseconds_14dthe$(numberToDouble($receiver_0)), this.local$channels);
-            } else {
+            }
+             else {
               this.state_0 = 29;
               continue;
             }
@@ -2144,20 +2101,21 @@
           case 30:
             invalidOp('Cannot parse stream');
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   OggBase.prototype.parse_axnxby$ = function (s_0, continuation_0, suspended) {
     var instance = new Coroutine$parse_axnxby$(this, s_0, continuation_0);
@@ -2166,63 +2124,53 @@
     else
       return instance.doResume(null);
   };
-
   function OggBase$PacketTypes() {
     OggBase$PacketTypes_instance = this;
     this.ID_HEADER = 1;
     this.COMMENT_HEADER = 3;
     this.SETUP_HEADER = 5;
   }
-
   OggBase$PacketTypes.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'PacketTypes',
     interfaces: []
   };
   var OggBase$PacketTypes_instance = null;
-
   function OggBase$PacketTypes_getInstance() {
     if (OggBase$PacketTypes_instance === null) {
       new OggBase$PacketTypes();
     }
     return OggBase$PacketTypes_instance;
   }
-
   OggBase.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'OggBase',
     interfaces: [AudioFormat]
   };
-
   function WAV() {
     WAV$Companion_getInstance();
     AudioFormat.call(this, ['wav']);
   }
-
   function WAV$Companion() {
     WAV$Companion_instance = this;
     WAV.call(this);
   }
-
   WAV$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: [WAV]
   };
   var WAV$Companion_instance = null;
-
   function WAV$Companion_getInstance() {
     if (WAV$Companion_instance === null) {
       new WAV$Companion();
     }
     return WAV$Companion_instance;
   }
-
   function WAV$Chunk(type, data) {
     this.type = type;
     this.data = data;
   }
-
   WAV$Chunk.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Chunk',
@@ -2249,13 +2197,11 @@
   WAV$Chunk.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.data, other.data)))));
   };
-
   function WAV$ProcessedChunk(type, data, extra) {
     this.type = type;
     this.data = data;
     this.extra = extra;
   }
-
   WAV$ProcessedChunk.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ProcessedChunk',
@@ -2286,18 +2232,15 @@
   WAV$ProcessedChunk.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.data, other.data) && Kotlin.equals(this.extra, other.extra)))));
   };
-
   function WAV$tryReadInfo$lambda(it) {
     return Unit;
   }
-
   function Coroutine$tryReadInfo_axnxby$_2($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 5;
     this.$this = $this;
     this.local$data = data_0;
   }
-
   Coroutine$tryReadInfo_axnxby$_2.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -2323,7 +2266,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, Throwable)) {
               return null;
-            } else {
+            }
+             else {
               throw e;
             }
 
@@ -2334,20 +2278,21 @@
             return;
           case 5:
             throw this.exception_0;
-          default:
-            this.state_0 = 5;
+          default:this.state_0 = 5;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 5) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   WAV.prototype.tryReadInfo_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$tryReadInfo_axnxby$_2(this, data_0, continuation_0);
@@ -2356,7 +2301,6 @@
     else
       return instance.doResume(null);
   };
-
   function WAV$decodeStream$lambda(closure$fmt, closure$buffer) {
     return function (it) {
       var extra = it.extra;
@@ -2368,7 +2312,6 @@
       return Unit;
     };
   }
-
   function WAV$decodeStream$ObjectLiteral(closure$buffer, closure$bytesPerSample, this$WAV, rate, channels) {
     this.closure$buffer = closure$buffer;
     this.closure$bytesPerSample = closure$bytesPerSample;
@@ -2376,7 +2319,6 @@
     AudioStream.call(this, rate, channels);
     this.finished_qhpm5o$_0 = false;
   }
-
   Object.defineProperty(WAV$decodeStream$ObjectLiteral.prototype, 'finished', {
     get: function () {
       return this.finished_qhpm5o$_0;
@@ -2385,7 +2327,6 @@
       this.finished_qhpm5o$_0 = finished;
     }
   });
-
   function Coroutine$read_trriok$($this, out_0, offset_0, length_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -2395,7 +2336,6 @@
     this.local$offset = offset_0;
     this.local$length = length_0;
   }
-
   Coroutine$read_trriok$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -2462,27 +2402,27 @@
                   }
 
                   break;
-                default:
-                  invalidOp('Unsupported bytesPerSample=' + this.$this.closure$bytesPerSample);
+                default:invalidOp('Unsupported bytesPerSample=' + this.$this.closure$bytesPerSample);
                   break;
               }
             }
 
             return availableSamples;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   WAV$decodeStream$ObjectLiteral.prototype.read_trriok$ = function (out_0, offset_0, length_0, continuation_0, suspended) {
     var instance = new Coroutine$read_trriok$(this, out_0, offset_0, length_0, continuation_0);
@@ -2495,7 +2435,6 @@
     kind: Kind_CLASS,
     interfaces: [AudioStream]
   };
-
   function Coroutine$decodeStream_axnxby$_0($this, data_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -2504,7 +2443,6 @@
     this.local$buffer = void 0;
     this.local$data = data_0;
   }
-
   Coroutine$decodeStream_axnxby$_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -2529,20 +2467,21 @@
           case 2:
             var bytesPerSample = this.local$fmt.v.bitsPerSample / 8 | 0;
             return new WAV$decodeStream$ObjectLiteral(this.local$buffer, bytesPerSample, this.$this, this.local$fmt.v.samplesPerSec, this.local$fmt.v.channels);
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   WAV.prototype.decodeStream_axnxby$ = function (data_0, continuation_0, suspended) {
     var instance = new Coroutine$decodeStream_axnxby$_0(this, data_0, continuation_0);
@@ -2560,7 +2499,6 @@
       index = index + increment | 0;
     }
   };
-
   function Coroutine$encode_ohj27w$($this, data_0, out_0, filename_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -2568,7 +2506,6 @@
     this.local$data = data_0;
     this.local$out = out_0;
   }
-
   Coroutine$encode_ohj27w$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -2668,20 +2605,21 @@
             continue;
           case 15:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   WAV.prototype.encode_ohj27w$ = function (data_0, out_0, filename_0, continuation_0, suspended) {
     var instance = new Coroutine$encode_ohj27w$(this, data_0, out_0, filename_0, continuation_0);
@@ -2690,7 +2628,6 @@
     else
       return instance.doResume(null);
   };
-
   function WAV$Fmt(formatTag, channels, samplesPerSec, avgBytesPerSec, blockAlign, bitsPerSample) {
     if (formatTag === void 0)
       formatTag = -1;
@@ -2711,7 +2648,6 @@
     this.blockAlign = blockAlign;
     this.bitsPerSample = bitsPerSample;
   }
-
   WAV$Fmt.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Fmt',
@@ -2754,7 +2690,6 @@
   WAV$Fmt.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.formatTag, other.formatTag) && Kotlin.equals(this.channels, other.channels) && Kotlin.equals(this.samplesPerSec, other.samplesPerSec) && Kotlin.equals(this.avgBytesPerSec, other.avgBytesPerSec) && Kotlin.equals(this.blockAlign, other.blockAlign) && Kotlin.equals(this.bitsPerSample, other.bitsPerSample)))));
   };
-
   function Coroutine$WAV$parse$lambda(closure$fmt_0, closure$dataSize_0, closure$handle_0, $receiver_0, controller, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.$controller = controller;
@@ -2773,7 +2708,6 @@
     this.local$tmp$_5 = void 0;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$WAV$parse$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -2787,7 +2721,7 @@
         switch (this.state_0) {
           case 0:
             var type = this.local$$receiver.component1()
-                , d2 = this.local$$receiver.component2();
+            , d2 = this.local$$receiver.component2();
             this.local$d = d2.duplicate();
             this.local$cdata = Unit;
             switch (type) {
@@ -2805,8 +2739,7 @@
                 if (this.result_0 === COROUTINE_SUSPENDED)
                   return COROUTINE_SUSPENDED;
                 continue;
-              default:
-                this.state_0 = 9;
+              default:this.state_0 = 9;
                 continue;
             }
 
@@ -2864,22 +2797,22 @@
             continue;
           case 9:
             return this.local$closure$handle(new WAV$ProcessedChunk(this.local$$receiver.type, this.local$$receiver.data, this.local$cdata));
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function WAV$parse$lambda(closure$fmt_0, closure$dataSize_0, closure$handle_0) {
     return function ($receiver_0, continuation_0, suspended) {
       var instance = new Coroutine$WAV$parse$lambda(closure$fmt_0, closure$dataSize_0, closure$handle_0, $receiver_0, this, continuation_0);
@@ -2889,7 +2822,6 @@
         return instance.doResume(null);
     };
   }
-
   function Coroutine$parse_phffkd$($this, data_0, handle_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -2899,7 +2831,6 @@
     this.local$data = data_0;
     this.local$handle = handle_0;
   }
-
   Coroutine$parse_phffkd$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -2926,20 +2857,21 @@
               invalidOp("Couldn't find RIFF 'fmt ' chunk");
             var $receiver = this.local$dataSize.v.multiply(Kotlin.Long.fromInt(1000)).multiply(Kotlin.Long.fromInt(1000)).div(this.local$fmt.avgBytesPerSec);
             return new AudioFormat$Info(TimeSpan.Companion.fromMicroseconds_14dthe$(numberToDouble($receiver)), this.local$fmt.channels);
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   WAV.prototype.parse_phffkd$ = function (data_0, handle_0, continuation_0, suspended) {
     var instance = new Coroutine$parse_phffkd$(this, data_0, handle_0, continuation_0);
@@ -2948,7 +2880,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$riff_9bjwaz$($this, data_0, handler_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -2961,7 +2892,6 @@
     this.local$data = data_0;
     this.local$handler = handler_0;
   }
-
   Coroutine$riff_9bjwaz$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -3021,7 +2951,8 @@
             if (!!this.result_0) {
               this.state_0 = 13;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 8;
               continue;
             }
@@ -3058,20 +2989,21 @@
             continue;
           case 13:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   WAV.prototype.riff_9bjwaz$ = function (data_0, handler_0, continuation_0, suspended) {
     var instance = new Coroutine$riff_9bjwaz$(this, data_0, handler_0, continuation_0);
@@ -3085,13 +3017,11 @@
     simpleName: 'WAV',
     interfaces: [AudioFormat]
   };
-
   function Coroutine$toWav$lambda(this$toWav_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$this$toWav = this$toWav_0;
   }
-
   Coroutine$toWav$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -3113,22 +3043,22 @@
             throw this.exception_0;
           case 2:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function toWav$lambda(this$toWav_0) {
     return function (continuation_0, suspended) {
       var instance = new Coroutine$toWav$lambda(this$toWav_0, continuation_0);
@@ -3138,42 +3068,35 @@
         return instance.doResume(null);
     };
   }
-
   function toWav($receiver) {
     return runBlockingNoSuspensions(toWav$lambda($receiver));
   }
-
   function MP3Decoder() {
     MP3Decoder$Companion_getInstance();
     AudioFormat.call(this, ['mp3']);
   }
-
   function MP3Decoder$Companion() {
     MP3Decoder$Companion_instance = this;
     MP3Decoder.call(this);
   }
-
   MP3Decoder$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: [MP3Decoder]
   };
   var MP3Decoder$Companion_instance = null;
-
   function MP3Decoder$Companion_getInstance() {
     if (MP3Decoder$Companion_instance === null) {
       new MP3Decoder$Companion();
     }
     return MP3Decoder$Companion_instance;
   }
-
   MP3Decoder.prototype.tryReadInfo_axnxby$ = function (data, continuation) {
     return MP3$Companion_getInstance().tryReadInfo_axnxby$(data, continuation);
   };
   MP3Decoder.prototype.decodeStream_axnxby$ = function (data, continuation) {
     return MP3DecodeStream(data, continuation);
   };
-
   function Coroutine$encode_ohj27w$_0($this, data_0, out_0, filename_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -3182,7 +3105,6 @@
     this.local$out = out_0;
     this.local$filename = filename_0;
   }
-
   Coroutine$encode_ohj27w$_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -3204,20 +3126,21 @@
             throw this.exception_0;
           case 2:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   MP3Decoder.prototype.encode_ohj27w$ = function (data_0, out_0, filename_0, continuation_0, suspended) {
     var instance = new Coroutine$encode_ohj27w$_0(this, data_0, out_0, filename_0, continuation_0);
@@ -3235,22 +3158,17 @@
     interfaces: [AudioFormat]
   };
   var temp;
-
   function write($receiver, value) {
     temp[0] = value;
     $receiver.write_kgymra$(temp, 0, 1);
   }
-
   var KORAU_VERSION;
-
   function get_niceStr($receiver) {
     return Math_0.floor($receiver) === $receiver ? numberToInt($receiver).toString() : $receiver.toString();
   }
-
   function SampleConvert() {
     SampleConvert_instance = this;
   }
-
   SampleConvert.prototype.floatToShort_mx4ult$ = function (v) {
     return toShort(clamp(numberToInt(v * kotlin_js_internal_ShortCompanionObject.MAX_VALUE), -32768, 32767));
   };
@@ -3263,14 +3181,12 @@
     interfaces: []
   };
   var SampleConvert_instance = null;
-
   function SampleConvert_getInstance() {
     if (SampleConvert_instance === null) {
       new SampleConvert();
     }
     return SampleConvert_instance;
   }
-
   var arraycopy$lambda = wrapFunction(function () {
     var arrayCopy = Kotlin.kotlin.collections.arrayCopy;
     return function (closure$src, closure$dst, closure$dstPos, closure$srcPos, closure$size) {
@@ -3280,7 +3196,6 @@
       };
     };
   });
-
   function combine($receiver) {
     var tmp$;
     var tmp$_0 = Int16Array;
@@ -3301,7 +3216,6 @@
     }
     return combined;
   }
-
   function Coroutine$copyChunkTo($receiver_0, deque_0, temp_0, maxSize_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -3310,7 +3224,6 @@
     this.local$temp = temp_0;
     this.local$maxSize = maxSize_0;
   }
-
   Coroutine$copyChunkTo.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -3336,22 +3249,22 @@
             var size = this.result_0;
             this.local$deque.write_mj6st8$(this.local$temp, 0, size);
             return size;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function copyChunkTo($receiver_0, deque_0, temp_0, maxSize_0, continuation_0, suspended) {
     var instance = new Coroutine$copyChunkTo($receiver_0, deque_0, temp_0, maxSize_0, continuation_0);
     if (suspended)
@@ -3359,7 +3272,6 @@
     else
       return instance.doResume(null);
   }
-
   function toByteArrayLE($receiver) {
     var out = new Int8Array($receiver.length * 2 | 0);
     for (var n = 0; n < $receiver.length; n++) {
@@ -3368,7 +3280,6 @@
     }
     return out;
   }
-
   function toShortArrayLE($receiver) {
     var out = new Int16Array($receiver.length / 2 | 0);
     for (var n = 0; n < out.length; n++) {
@@ -3378,17 +3289,14 @@
     }
     return out;
   }
-
   function arraycopyStep(step, src, srcPos, dst, dstPos, length) {
     for (var n = 0; n < length; n += step)
       dst[dstPos + n | 0] = src[srcPos + n | 0];
   }
-
   function arraycopyStep_0(step, src, srcPos, dst, dstPos, length) {
     for (var n = 0; n < length; n += step)
       dst[dstPos + n | 0] = src[srcPos + n | 0];
   }
-
   var arraycopy$lambda_0 = wrapFunction(function () {
     var arrayCopy = Kotlin.kotlin.collections.arrayCopy;
     return function (closure$src, closure$dst, closure$dstPos, closure$srcPos, closure$size) {
@@ -3398,49 +3306,41 @@
       };
     };
   });
-
   function AudioData(rate, samples) {
     AudioData$Companion_getInstance();
     this.rate = rate;
     this.samples = samples;
     this.samplesInterleaved_i5r49h$_0 = lazy(AudioData$samplesInterleaved$lambda(this));
   }
-
   Object.defineProperty(AudioData.prototype, 'samplesInterleaved', {
     get: function () {
       return this.samplesInterleaved_i5r49h$_0.value;
     }
   });
-
   function AudioData$Companion() {
     AudioData$Companion_instance = this;
     this.DUMMY_o40jgj$_0 = lazy(AudioData$Companion$DUMMY$lambda);
   }
-
   Object.defineProperty(AudioData$Companion.prototype, 'DUMMY', {
     get: function () {
       return this.DUMMY_o40jgj$_0.value;
     }
   });
-
   function AudioData$Companion$DUMMY$lambda() {
     return new AudioData(44100, new AudioSamples(2, 0));
   }
-
   AudioData$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var AudioData$Companion_instance = null;
-
   function AudioData$Companion_getInstance() {
     if (AudioData$Companion_instance === null) {
       new AudioData$Companion();
     }
     return AudioData$Companion_instance;
   }
-
   Object.defineProperty(AudioData.prototype, 'channels', {
     get: function () {
       return this.samples.channels;
@@ -3472,72 +3372,57 @@
   AudioData.prototype.toString = function () {
     return 'AudioData(rate=' + this.rate + ', channels=' + this.channels + ', samples=' + this.totalSamples + ')';
   };
-
   function AudioData$samplesInterleaved$lambda(this$AudioData) {
     return function () {
       return interleaved(this$AudioData.samples);
     };
   }
-
   AudioData.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AudioData',
     interfaces: []
   };
-
   function AudioConversionQuality(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AudioConversionQuality_initFields() {
     AudioConversionQuality_initFields = function () {
     };
     AudioConversionQuality$FAST_instance = new AudioConversionQuality('FAST', 0);
   }
-
   var AudioConversionQuality$FAST_instance;
-
   function AudioConversionQuality$FAST_getInstance() {
     AudioConversionQuality_initFields();
     return AudioConversionQuality$FAST_instance;
   }
-
   AudioConversionQuality.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AudioConversionQuality',
     interfaces: [Enum]
   };
-
   function AudioConversionQuality$values() {
     return [AudioConversionQuality$FAST_getInstance()];
   }
-
   AudioConversionQuality.values = AudioConversionQuality$values;
-
   function AudioConversionQuality$valueOf(name) {
     switch (name) {
       case 'FAST':
         return AudioConversionQuality$FAST_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korau.sound.AudioConversionQuality.' + name);
+      default:throwISE('No enum constant com.soywiz.korau.sound.AudioConversionQuality.' + name);
     }
   }
-
   AudioConversionQuality.valueOf_61zpoe$ = AudioConversionQuality$valueOf;
-
   function withRate($receiver, rate) {
     return new AudioData(rate, $receiver.samples);
   }
-
   function toStream$ObjectLiteral(this$toStream, rate, channels) {
     this.this$toStream = this$toStream;
     AudioStream.call(this, rate, channels);
     this.cursor = 0;
     this.finished_if0xzf$_0 = false;
   }
-
   Object.defineProperty(toStream$ObjectLiteral.prototype, 'finished', {
     get: function () {
       return this.finished_if0xzf$_0;
@@ -3565,21 +3450,17 @@
     kind: Kind_CLASS,
     interfaces: [AudioStream]
   };
-
   function toStream($receiver) {
     return new toStream$ObjectLiteral($receiver, $receiver.rate, $receiver.channels);
   }
-
   function toNativeSound($receiver, continuation) {
     return get_nativeSoundProvider().createSound_c6p9kv$($receiver, void 0, void 0, continuation);
   }
-
   function Coroutine$playAndWait($receiver_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$playAndWait.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -3601,22 +3482,22 @@
             throw this.exception_0;
           case 2:
             return this.result_0.play();
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function playAndWait($receiver_0, continuation_0, suspended) {
     var instance = new Coroutine$playAndWait($receiver_0, continuation_0);
     if (suspended)
@@ -3624,7 +3505,6 @@
     else
       return instance.doResume(null);
   }
-
   function Coroutine$readAudioData($receiver_0, formats_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 6;
@@ -3635,7 +3515,6 @@
     this.local$$receiver = $receiver_0;
     this.local$formats = formats_0;
   }
-
   Coroutine$readAudioData.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -3679,7 +3558,8 @@
             if (Kotlin.isType(e_0, Throwable)) {
               this.local$error = e_0;
               this.local$tmp$_1 = null;
-            } else
+            }
+             else
               throw e_0;
             this.state_0 = 4;
             continue;
@@ -3698,22 +3578,22 @@
             return this.result_0;
           case 6:
             throw this.exception_0;
-          default:
-            this.state_0 = 6;
+          default:this.state_0 = 6;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 6) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function readAudioData($receiver_0, formats_0, continuation_0, suspended) {
     var instance = new Coroutine$readAudioData($receiver_0, formats_0, continuation_0);
     if (suspended)
@@ -3721,7 +3601,6 @@
     else
       return instance.doResume(null);
   }
-
   var arraycopy$lambda_1 = wrapFunction(function () {
     var arrayCopy = Kotlin.kotlin.collections.arrayCopy;
     return function (closure$src, closure$dst, closure$dstPos, closure$srcPos, closure$size) {
@@ -3731,10 +3610,8 @@
       };
     };
   });
-
   function IAudioSamples() {
   }
-
   Object.defineProperty(IAudioSamples.prototype, 'size', {
     get: function () {
       return this.totalSamples;
@@ -3757,7 +3634,6 @@
     simpleName: 'IAudioSamples',
     interfaces: []
   };
-
   function AudioSamples(channels, totalSamples) {
     this.channels_kqaju8$_0 = channels;
     this.totalSamples_tcevdn$_0 = totalSamples;
@@ -3769,7 +3645,6 @@
     }
     this.data = array;
   }
-
   Object.defineProperty(AudioSamples.prototype, 'channels', {
     get: function () {
       return this.channels_kqaju8$_0;
@@ -3803,13 +3678,11 @@
     simpleName: 'AudioSamples',
     interfaces: [IAudioSamples]
   };
-
   function AudioSamplesInterleaved(channels, totalSamples) {
     this.channels_n99llb$_0 = channels;
     this.totalSamples_s6a5dw$_0 = totalSamples;
     this.data = new Int16Array(Kotlin.imul(this.totalSamples, this.channels));
   }
-
   Object.defineProperty(AudioSamplesInterleaved.prototype, 'channels', {
     get: function () {
       return this.channels_n99llb$_0;
@@ -3837,7 +3710,6 @@
     simpleName: 'AudioSamplesInterleaved',
     interfaces: [IAudioSamples]
   };
-
   function copyOfRange($receiver, start, end) {
     var tmp$;
     var out = new AudioSamples($receiver.channels, end - start | 0);
@@ -3847,7 +3719,6 @@
     }
     return out;
   }
-
   function interleaved($receiver, out) {
     if (out === void 0)
       out = new AudioSamplesInterleaved($receiver.channels, $receiver.totalSamples);
@@ -3862,7 +3733,6 @@
     }
     return out;
   }
-
   function separated($receiver, out) {
     if (out === void 0)
       out = new AudioSamples($receiver.channels, $receiver.totalSamples);
@@ -3875,7 +3745,6 @@
     }
     return out;
   }
-
   function AudioSamplesDeque(channels) {
     this.channels = channels;
     var array = Array_0(this.channels);
@@ -3887,7 +3756,6 @@
     this.buffer = array;
     this.temp_0 = new Int16Array(1);
   }
-
   Object.defineProperty(AudioSamplesDeque.prototype, 'availableRead', {
     get: function () {
       var tmp$, tmp$_0;
@@ -4034,7 +3902,6 @@
     simpleName: 'AudioSamplesDeque',
     interfaces: []
   };
-
   function AudioStream(rate_0, channels_0) {
     AudioStream$Companion_getInstance();
     this.rate = rate_0;
@@ -4042,7 +3909,6 @@
     this.finished_3olf9t$_0 = false;
     this.totalLengthInSamples = null;
   }
-
   Object.defineProperty(AudioStream.prototype, 'finished', {
     get: function () {
       return this.finished_3olf9t$_0;
@@ -4060,11 +3926,9 @@
   };
   AudioStream.prototype.close = function () {
   };
-
   function AudioStream$Companion() {
     AudioStream$Companion_instance = this;
   }
-
   function AudioStream$Companion$generator$ObjectLiteral(closure$generateChunk, closure$channels, rate_0, channels_0) {
     this.closure$generateChunk = closure$generateChunk;
     AudioStream.call(this, rate_0, channels_0);
@@ -4072,7 +3936,6 @@
     this.finished_6civll$_0 = false;
     this.step_0 = 0;
   }
-
   Object.defineProperty(AudioStream$Companion$generator$ObjectLiteral.prototype, 'availableRead', {
     get: function () {
       return this.deque.availableRead;
@@ -4086,7 +3949,6 @@
       this.finished_6civll$_0 = finished;
     }
   });
-
   function Coroutine$read_trriok$_0($this, out_0, offset_0, length_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -4095,7 +3957,6 @@
     this.local$offset = offset_0;
     this.local$length = length_0;
   }
-
   Coroutine$read_trriok$_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4111,7 +3972,8 @@
             var tmp$;
             if (this.$this.finished && this.$this.availableRead <= 0) {
               return -1;
-            } else {
+            }
+             else {
               this.state_0 = 2;
               continue;
             }
@@ -4137,7 +3999,8 @@
               this.$this.finished = true;
               this.state_0 = 6;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 5;
               continue;
             }
@@ -4150,20 +4013,21 @@
             var read = Math_0.min(this.local$length, b);
             this.$this.deque.read_trriok$(this.local$out, this.local$offset, read);
             return read;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   AudioStream$Companion$generator$ObjectLiteral.prototype.read_trriok$ = function (out_0, offset_0, length_0, continuation_0, suspended) {
     var instance = new Coroutine$read_trriok$_0(this, out_0, offset_0, length_0, continuation_0);
@@ -4185,20 +4049,17 @@
     interfaces: []
   };
   var AudioStream$Companion_instance = null;
-
   function AudioStream$Companion_getInstance() {
     if (AudioStream$Companion_instance === null) {
       new AudioStream$Companion();
     }
     return AudioStream$Companion_instance;
   }
-
   AudioStream.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AudioStream',
     interfaces: [Closeable]
   };
-
   function Coroutine$toData($receiver_0, maxSamples_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 9;
@@ -4208,7 +4069,6 @@
     this.local$$receiver = $receiver_0;
     this.local$maxSamples = maxSamples_0;
   }
-
   Coroutine$toData.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4244,7 +4104,8 @@
             if (this.local$read <= 0) {
               this.state_0 = 5;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 3;
               continue;
             }
@@ -4254,7 +4115,8 @@
             if (this.local$out.availableRead >= this.local$maxSamples) {
               this.state_0 = 5;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 4;
               continue;
             }
@@ -4284,22 +4146,22 @@
             continue;
           case 9:
             throw this.exception_0;
-          default:
-            this.state_0 = 9;
+          default:this.state_0 = 9;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 9) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function toData($receiver_0, maxSamples_0, continuation_0, suspended) {
     var instance = new Coroutine$toData($receiver_0, maxSamples_0, continuation_0);
     if (suspended)
@@ -4307,20 +4169,17 @@
     else
       return instance.doResume(null);
   }
-
   function playAndWait_0($receiver, bufferSeconds, continuation) {
     if (bufferSeconds === void 0)
       bufferSeconds = 0.1;
     return get_nativeSoundProvider().playAndWait_hni0ux$($receiver, bufferSeconds, continuation);
   }
-
   function Coroutine$readAudioStream($receiver_0, formats_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$$receiver = $receiver_0;
     this.local$formats = formats_0;
   }
-
   Coroutine$readAudioStream.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4350,22 +4209,22 @@
             continue;
           case 3:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function readAudioStream($receiver_0, formats_0, continuation_0, suspended) {
     var instance = new Coroutine$readAudioStream($receiver_0, formats_0, continuation_0);
     if (suspended)
@@ -4373,7 +4232,6 @@
     else
       return instance.doResume(null);
   }
-
   function Coroutine$writeAudio($receiver_0, data_0, formats_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 6;
@@ -4385,7 +4243,6 @@
     this.local$data = data_0;
     this.local$formats = formats_0;
   }
-
   Coroutine$writeAudio.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4427,7 +4284,8 @@
             if (Kotlin.isType(e_0, Throwable)) {
               this.local$error = e_0;
               this.local$tmp$_1 = null;
-            } else
+            }
+             else
               throw e_0;
             this.state_0 = 4;
             continue;
@@ -4446,22 +4304,22 @@
             return this.result_0;
           case 6:
             throw this.exception_0;
-          default:
-            this.state_0 = 6;
+          default:this.state_0 = 6;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 6) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function writeAudio($receiver_0, data_0, formats_0, continuation_0, suspended) {
     var instance = new Coroutine$writeAudio($receiver_0, data_0, formats_0, continuation_0);
     if (suspended)
@@ -4469,11 +4327,9 @@
     else
       return instance.doResume(null);
   }
-
   function AudioTone() {
     AudioTone_instance = this;
   }
-
   AudioTone.prototype.generate_wivp55$ = function (length, freq, rate) {
     if (rate === void 0)
       rate = 44100;
@@ -4493,19 +4349,16 @@
     interfaces: []
   };
   var AudioTone_instance = null;
-
   function AudioTone_getInstance() {
     if (AudioTone_instance === null) {
       new AudioTone();
     }
     return AudioTone_instance;
   }
-
   function NativeSoundProvider() {
     this.target_bgeedf$_0 = 'unknown';
     this.initialized_768h90$_0 = false;
   }
-
   Object.defineProperty(NativeSoundProvider.prototype, 'target', {
     get: function () {
       return this.target_bgeedf$_0;
@@ -4527,19 +4380,15 @@
   };
   NativeSoundProvider.prototype.init = function () {
   };
-
   function NativeSoundProvider$createSound$ObjectLiteral() {
     NativeSound.call(this);
   }
-
   NativeSoundProvider$createSound$ObjectLiteral.prototype.decode = function (continuation) {
     return AudioData$Companion_getInstance().DUMMY;
   };
-
   function NativeSoundProvider$createSound$ObjectLiteral$play$ObjectLiteral(sound_0) {
     NativeSoundChannel.call(this, sound_0);
   }
-
   NativeSoundProvider$createSound$ObjectLiteral$play$ObjectLiteral.prototype.stop = function () {
   };
   NativeSoundProvider$createSound$ObjectLiteral$play$ObjectLiteral.$metadata$ = {
@@ -4561,7 +4410,6 @@
       streaming = false;
     return callback$default ? callback$default(data, streaming, continuation) : this.createSound_1fhb37$$default(data, streaming, continuation);
   };
-
   function Coroutine$createSound_52yb2k$$default($this, vfs_0, path_0, streaming_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -4570,7 +4418,6 @@
     this.local$path = path_0;
     this.local$streaming = streaming_0;
   }
-
   Coroutine$createSound_52yb2k$$default.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4598,20 +4445,21 @@
             continue;
           case 3:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeSoundProvider.prototype.createSound_52yb2k$$default = function (vfs_0, path_0, streaming_0, continuation_0, suspended) {
     var instance = new Coroutine$createSound_52yb2k$$default(this, vfs_0, path_0, streaming_0, continuation_0);
@@ -4630,7 +4478,6 @@
       streaming = false;
     return this.createSound_52yb2k$(file.vfs, file.path, streaming, continuation);
   };
-
   function Coroutine$createSound_x9gm8m$($this, file_0, streaming_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -4638,7 +4485,6 @@
     this.local$file = file_0;
     this.local$streaming = streaming_0;
   }
-
   Coroutine$createSound_x9gm8m$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4668,20 +4514,21 @@
             continue;
           case 3:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeSoundProvider.prototype.createSound_x9gm8m$ = function (file_0, streaming_0, continuation_0, suspended) {
     var instance = new Coroutine$createSound_x9gm8m$(this, file_0, streaming_0, continuation_0);
@@ -4690,7 +4537,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$createSound_c6p9kv$$default($this, data_0, formats_0, streaming_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -4698,7 +4544,6 @@
     this.local$data = data_0;
     this.local$streaming = streaming_0;
   }
-
   Coroutine$createSound_c6p9kv$$default.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4726,20 +4571,21 @@
             continue;
           case 3:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeSoundProvider.prototype.createSound_c6p9kv$$default = function (data_0, formats_0, streaming_0, continuation_0, suspended) {
     var instance = new Coroutine$createSound_c6p9kv$$default(this, data_0, formats_0, streaming_0, continuation_0);
@@ -4755,7 +4601,6 @@
       streaming = false;
     return callback$default ? callback$default(data, formats, streaming, continuation) : this.createSound_c6p9kv$$default(data, formats, streaming, continuation);
   };
-
   function Coroutine$playAndWait_hni0ux$($this, stream_0, bufferSeconds_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 11;
@@ -4766,7 +4611,6 @@
     this.local$stream = stream_0;
     this.local$bufferSeconds = bufferSeconds_0;
   }
-
   Coroutine$playAndWait_hni0ux$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4816,7 +4660,8 @@
             if (!(this.local$minBuf <= tmp$ && tmp$ <= (this.local$minBuf * 2 | 0))) {
               this.state_0 = 7;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 5;
               continue;
             }
@@ -4842,7 +4687,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, CancellationException)) {
               this.local$nas.stop();
-            } else
+            }
+             else
               throw e;
             this.state_0 = 10;
             continue;
@@ -4850,20 +4696,21 @@
             return;
           case 11:
             throw this.exception_0;
-          default:
-            this.state_0 = 11;
+          default:this.state_0 = 11;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 11) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeSoundProvider.prototype.playAndWait_hni0ux$ = function (stream_0, bufferSeconds_0, continuation_0, suspended) {
     var instance = new Coroutine$playAndWait_hni0ux$(this, stream_0, bufferSeconds_0, continuation_0);
@@ -4877,17 +4724,14 @@
     simpleName: 'NativeSoundProvider',
     interfaces: []
   };
-
   function DummyNativeSoundProvider() {
     NativeSoundProvider.call(this);
   }
-
   DummyNativeSoundProvider.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'DummyNativeSoundProvider',
     interfaces: [NativeSoundProvider]
   };
-
   function DummyNativeSoundChannel(sound, data) {
     if (data === void 0)
       data = null;
@@ -4895,7 +4739,6 @@
     this.data = data;
     this.timeStart_0 = DateTime.Companion.now();
   }
-
   Object.defineProperty(DummyNativeSoundChannel.prototype, 'current', {
     get: function () {
       return DateTime.Companion.now().minus_mw5vjr$(this.timeStart_0);
@@ -4915,7 +4758,6 @@
     simpleName: 'DummyNativeSoundChannel',
     interfaces: [NativeSoundChannel]
   };
-
   function NativeSoundChannel(sound_0) {
     this.sound = sound_0;
     this.startTime_po208j$_0 = DateTime.Companion.now();
@@ -4923,7 +4765,6 @@
     this.pitch_g1jq7w$_0 = 1.0;
     this.panning_pl2mbv$_0 = 0.0;
   }
-
   Object.defineProperty(NativeSoundChannel.prototype, 'volume', {
     get: function () {
       return this.volume_jvnuhq$_0;
@@ -4968,18 +4809,15 @@
     simpleName: 'NativeSoundChannel',
     interfaces: []
   };
-
   function await$lambda($receiver, current, total) {
     return Unit;
   }
-
   function Coroutine$await($receiver_0, progress_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 6;
     this.local$$receiver = $receiver_0;
     this.local$progress = progress_0;
   }
-
   Coroutine$await.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5022,7 +4860,8 @@
             var e = this.exception_0;
             if (Kotlin.isType(e, CancellationException)) {
               this.local$$receiver.stop();
-            } else
+            }
+             else
               throw e;
             this.state_0 = 5;
             continue;
@@ -5030,22 +4869,22 @@
             return;
           case 6:
             throw this.exception_0;
-          default:
-            this.state_0 = 6;
+          default:this.state_0 = 6;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 6) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function await_0($receiver_0, progress_0, continuation_0, suspended) {
     var instance = new Coroutine$await($receiver_0, progress_0, continuation_0);
     if (suspended)
@@ -5053,11 +4892,9 @@
     else
       return instance.doResume(null);
   }
-
   function NativeSound() {
     this.length_mgoqkj$_0 = TimeSpan.Companion.fromSeconds_14dthe$(numberToDouble(0));
   }
-
   Object.defineProperty(NativeSound.prototype, 'length', {
     get: function () {
       return this.length_mgoqkj$_0;
@@ -5068,17 +4905,14 @@
     simpleName: 'NativeSound',
     interfaces: []
   };
-
   function toData_0($receiver, continuation) {
     return $receiver.decode(continuation);
   }
-
   function Coroutine$toStream($receiver_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$toStream.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5100,22 +4934,22 @@
             throw this.exception_0;
           case 2:
             return toStream(this.result_0);
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function toStream_0($receiver_0, continuation_0, suspended) {
     var instance = new Coroutine$toStream($receiver_0, continuation_0);
     if (suspended)
@@ -5123,51 +4957,42 @@
     else
       return instance.doResume(null);
   }
-
   function playAndWait$lambda($receiver, current, total) {
     return Unit;
   }
-
   function playAndWait_1($receiver, progress, continuation) {
     if (progress === void 0)
       progress = playAndWait$lambda;
     return await_0($receiver.play(), progress, continuation);
   }
-
   function readNativeSound($receiver, streaming, continuation) {
     if (streaming === void 0)
       streaming = false;
     return get_nativeSoundProvider().createSound_x9gm8m$($receiver, streaming, continuation);
   }
-
   function readNativeSoundOptimized($receiver, streaming, continuation) {
     if (streaming === void 0)
       streaming = false;
     return get_nativeSoundProvider().createSound_x9gm8m$($receiver, streaming, continuation);
   }
-
   function readNativeSound_0($receiver, streaming, continuation) {
     if (streaming === void 0)
       streaming = false;
     return get_nativeSoundProvider().createSound_1fhb37$($receiver, streaming, continuation);
   }
-
   function PlatformAudioOutput(freq) {
     this.availableSamples_ezqrsf$_0 = 0;
   }
-
   Object.defineProperty(PlatformAudioOutput.prototype, 'availableSamples', {
     get: function () {
       return this.availableSamples_ezqrsf$_0;
     }
   });
-
   function Coroutine$add_trriok$$default($this, samples_0, offset_0, size_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
   }
-
   Coroutine$add_trriok$$default.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5189,20 +5014,21 @@
             throw this.exception_0;
           case 2:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   PlatformAudioOutput.prototype.add_trriok$$default = function (samples_0, offset_0, size_0, continuation_0, suspended) {
     var instance = new Coroutine$add_trriok$$default(this, samples_0, offset_0, size_0, continuation_0);
@@ -5232,11 +5058,9 @@
     simpleName: 'PlatformAudioOutput',
     interfaces: [Disposable]
   };
-
   function SoundUtils() {
     SoundUtils_instance = this;
   }
-
   SoundUtils.prototype.convertS16ToF32_r43jz4$ = function (channels, input, leftVolume, rightVolume) {
     var tmp$, tmp$_0, tmp$_1, tmp$_2;
     var output = new Float32Array((input.length * 2 | 0) / channels | 0);
@@ -5246,7 +5070,8 @@
         if (optimized) {
           for (var n = 0; n < output.length; n++)
             output[n] = input[n] / 32767.0;
-        } else {
+        }
+         else {
           for (var n_0 = 0; n_0 < output.length; n_0 += 2) {
             output[n_0 + 0 | 0] = input[n_0 + 0 | 0] / 32767.0 * leftVolume;
             output[n_0 + 1 | 0] = input[n_0 + 1 | 0] / 32767.0 * rightVolume;
@@ -5262,7 +5087,8 @@
             output[tmp$ = m, m = tmp$ + 1 | 0, tmp$] = v;
             output[tmp$_0 = m, m = tmp$_0 + 1 | 0, tmp$_0] = v;
           }
-        } else {
+        }
+         else {
           var m_0 = 0;
           for (var n_2 = 0; n_2 < input.length; n_2++) {
             var sample = input[n_2] / 32767.0;
@@ -5281,31 +5107,26 @@
     interfaces: []
   };
   var SoundUtils_instance = null;
-
   function SoundUtils_getInstance() {
     if (SoundUtils_instance === null) {
       new SoundUtils();
     }
     return SoundUtils_instance;
   }
-
   function HtmlNativeSoundProvider() {
     NativeSoundProvider.call(this);
   }
-
   HtmlNativeSoundProvider.prototype.initOnce = function () {
   };
   HtmlNativeSoundProvider.prototype.createAudioStream_za3lpa$$default = function (freq) {
     return new JsPlatformAudioOutput(freq);
   };
-
   function Coroutine$createSound_1fhb37$$default($this, data_0, streaming_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
     this.local$data = data_0;
   }
-
   Coroutine$createSound_1fhb37$$default.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5327,20 +5148,21 @@
             throw this.exception_0;
           case 2:
             return new AudioBufferNativeSound(this.result_0);
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   HtmlNativeSoundProvider.prototype.createSound_1fhb37$$default = function (data_0, streaming_0, continuation_0, suspended) {
     var instance = new Coroutine$createSound_1fhb37$$default(this, data_0, streaming_0, continuation_0);
@@ -5349,7 +5171,6 @@
     else
       return instance.doResume(null);
   };
-
   function Coroutine$createSound_52yb2k$$default_0($this, vfs_0, path_0, streaming_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -5357,7 +5178,6 @@
     this.local$vfs = vfs_0;
     this.local$path = path_0;
   }
-
   Coroutine$createSound_52yb2k$$default_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5384,7 +5204,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 2;
               this.result_0 = this.$this.createSound_52yb2k$(this.local$vfs, this.local$path, void 0, this, NativeSoundProvider.prototype.createSound_52yb2k$$default.bind(this.$this));
               if (this.result_0 === COROUTINE_SUSPENDED)
@@ -5400,20 +5221,21 @@
             return new AudioBufferNativeSound(this.result_0);
           case 4:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   HtmlNativeSoundProvider.prototype.createSound_52yb2k$$default = function (vfs_0, path_0, streaming_0, continuation_0, suspended) {
     var instance = new Coroutine$createSound_52yb2k$$default_0(this, vfs_0, path_0, streaming_0, continuation_0);
@@ -5427,7 +5249,6 @@
     simpleName: 'HtmlNativeSoundProvider',
     interfaces: [NativeSoundProvider]
   };
-
   function AudioBufferNativeSound(buffer) {
     NativeSound.call(this);
     this.buffer = buffer;
@@ -5435,7 +5256,6 @@
     var $receiver = (tmp$_0 = (tmp$ = this.buffer) != null ? tmp$.duration : null) != null ? tmp$_0 : 0.0;
     this.length_u3ai7r$_0 = TimeSpan.Companion.fromSeconds_14dthe$(numberToDouble($receiver));
   }
-
   Object.defineProperty(AudioBufferNativeSound.prototype, 'length', {
     get: function () {
       return this.length_u3ai7r$_0;
@@ -5445,7 +5265,8 @@
     var tmp$;
     if (this.buffer == null) {
       return AudioData$Companion_getInstance().DUMMY;
-    } else {
+    }
+     else {
       var nchannels = this.buffer.numberOfChannels;
       var nsamples = this.buffer.length;
       var data = new AudioSamples(nchannels, nsamples);
@@ -5459,14 +5280,12 @@
       return new AudioData(this.buffer.sampleRate, data);
     }
   };
-
   function AudioBufferNativeSound$play$ObjectLiteral(this$AudioBufferNativeSound, sound) {
     NativeSoundChannel.call(this, sound);
     this.channel = this$AudioBufferNativeSound.buffer != null ? HtmlSimpleSound_getInstance().playSound_f3gkkr$(this$AudioBufferNativeSound.buffer) : null;
     var tmp$, tmp$_0, tmp$_1;
     this.total_ri43qs$_0 = (tmp$_1 = (tmp$_0 = (tmp$ = this$AudioBufferNativeSound.buffer) != null ? tmp$.duration : null) != null ? TimeSpan.Companion.fromSeconds_14dthe$(numberToDouble(tmp$_0)) : null) != null ? tmp$_1 : TimeSpan.Companion.fromSeconds_14dthe$(numberToDouble(0));
   }
-
   Object.defineProperty(AudioBufferNativeSound$play$ObjectLiteral.prototype, 'volume', {
     get: function () {
       var tmp$, tmp$_0, tmp$_1, tmp$_2;
@@ -5526,7 +5345,6 @@
     simpleName: 'AudioBufferNativeSound',
     interfaces: [NativeSound]
   };
-
   function Coroutine$soundProgress(totalTime_0, timeProvider_0, progress_0, startTime_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -5536,7 +5354,6 @@
     this.local$progress = progress_0;
     this.local$startTime = startTime_0;
   }
-
   Coroutine$soundProgress.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5561,7 +5378,8 @@
             if (this.local$elapsed >= this.local$totalTime) {
               this.state_0 = 5;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 3;
               continue;
             }
@@ -5579,22 +5397,22 @@
           case 5:
             this.local$progress(this.local$totalTime, this.local$totalTime);
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function soundProgress(totalTime_0, timeProvider_0, progress_0, startTime_0, continuation_0, suspended) {
     var instance = new Coroutine$soundProgress(totalTime_0, timeProvider_0, progress_0, startTime_0, continuation_0);
     if (suspended)
@@ -5602,7 +5420,6 @@
     else
       return instance.doResume(null);
   }
-
   function suspendCoroutine$lambda(closure$block) {
     return function (c) {
       var safe = SafeContinuation_init(intercepted(c));
@@ -5610,18 +5427,15 @@
       return safe.getOrThrow();
     };
   }
-
   function MediaElementAudioSourceNodeWithAudioElement(node, audio) {
     this.node = node;
     this.audio = audio;
   }
-
   MediaElementAudioSourceNodeWithAudioElement.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'MediaElementAudioSourceNodeWithAudioElement',
     interfaces: []
   };
-
   function HtmlSimpleSound() {
     HtmlSimpleSound_instance = this;
     var tmp$, tmp$_0, tmp$_1;
@@ -5634,11 +5448,13 @@
         else
           tmp$ = null;
       }
-    } catch (e) {
+    }
+     catch (e) {
       if (Kotlin.isType(e, Throwable)) {
         console.error(e);
         tmp$ = null;
-      } else
+      }
+       else
         throw e;
     }
     this.ctx = tmp$;
@@ -5653,13 +5469,11 @@
     document.addEventListener('touchend', unlock.v == null ? throwUPAE('unlock') : unlock.v, true);
     document.addEventListener('mousedown', unlock.v == null ? throwUPAE('unlock') : unlock.v, true);
   }
-
   Object.defineProperty(HtmlSimpleSound.prototype, 'available', {
     get: function () {
       return this.ctx != null;
     }
   });
-
   function HtmlSimpleSound$SimpleSoundChannel(buffer, node, gain, panner) {
     this.buffer = buffer;
     this.node = node;
@@ -5670,7 +5484,6 @@
     this.panning_9hjq7g$_0 = 0.0;
     this.running_0 = true;
   }
-
   Object.defineProperty(HtmlSimpleSound$SimpleSoundChannel.prototype, 'currentTime', {
     get: function () {
       var tmp$, tmp$_0;
@@ -5702,11 +5515,9 @@
     simpleName: 'SimpleSoundChannel',
     interfaces: []
   };
-
   function HtmlSimpleSound$panner$lambda($receiver) {
     return Unit;
   }
-
   HtmlSimpleSound.prototype.panner_2onr8o$ = function ($receiver, callback) {
     if (callback === void 0)
       callback = HtmlSimpleSound$panner$lambda;
@@ -5719,10 +5530,12 @@
     var tmp$_1;
     try {
       tmp$_1 = new Result(ctx.createPanner());
-    } catch (e) {
+    }
+     catch (e) {
       if (Kotlin.isType(e, Throwable)) {
         tmp$_1 = new Result(createFailure(e));
-      } else
+      }
+       else
         throw e;
     }
     var $this = tmp$_1;
@@ -5730,7 +5543,8 @@
     var tmp$_2;
     if ($this.isFailure) {
       getOrNull$result = null;
-    } else {
+    }
+     else {
       getOrNull$result = (tmp$_2 = $this.value) == null || Kotlin.isType(tmp$_2, Any) ? tmp$_2 : throwCCE();
     }
     tmp$_0 = getOrNull$result;
@@ -5742,11 +5556,9 @@
     node.connect($receiver);
     return node;
   };
-
   function HtmlSimpleSound$gain$lambda($receiver) {
     return Unit;
   }
-
   HtmlSimpleSound.prototype.gain_cvo8qv$ = function ($receiver, callback) {
     if (callback === void 0)
       callback = HtmlSimpleSound$gain$lambda;
@@ -5761,11 +5573,9 @@
     node.connect($receiver);
     return node;
   };
-
   function HtmlSimpleSound$source$lambda($receiver) {
     return Unit;
   }
-
   HtmlSimpleSound.prototype.source_qe40ti$ = function ($receiver, buffer, callback) {
     if (callback === void 0)
       callback = HtmlSimpleSound$source$lambda;
@@ -5781,12 +5591,10 @@
     node.connect($receiver);
     return node;
   };
-
   function HtmlSimpleSound$playSound$lambda$lambda$lambda$lambda($receiver) {
     $receiver.start(0.0);
     return Unit;
   }
-
   function HtmlSimpleSound$playSound$lambda$lambda$lambda(closure$buffer, this$HtmlSimpleSound, closure$sourceNode) {
     return function ($receiver) {
       $receiver.gain.value = 1.0;
@@ -5794,14 +5602,12 @@
       return Unit;
     };
   }
-
   function HtmlSimpleSound$playSound$lambda$lambda(closure$buffer, this$HtmlSimpleSound, closure$sourceNode, closure$gainNode) {
     return function ($receiver) {
       closure$gainNode.v = this$HtmlSimpleSound.gain_cvo8qv$($receiver, HtmlSimpleSound$playSound$lambda$lambda$lambda(closure$buffer, this$HtmlSimpleSound, closure$sourceNode));
       return Unit;
     };
   }
-
   HtmlSimpleSound.prototype.playSound_f3gkkr$ = function (buffer) {
     if (this.ctx == null)
       return null;
@@ -5815,13 +5621,11 @@
     channel != null ? (channel.disconnect(0), Unit) : null;
     channel != null ? (channel.stop(0.0), Unit) : null;
   };
-
   function Coroutine$waitUnlocked($this, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
   }
-
   Coroutine$waitUnlocked.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5843,20 +5647,21 @@
             throw this.exception_0;
           case 2:
             return this.$this.ctx;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   HtmlSimpleSound.prototype.waitUnlocked = function (continuation_0, suspended) {
     var instance = new Coroutine$waitUnlocked(this, continuation_0);
@@ -5865,7 +5670,6 @@
     else
       return instance.doResume(null);
   };
-
   function HtmlSimpleSound$callOnUnlocked$lambda(closure$cancelled, closure$callback) {
     return function (it) {
       if (!closure$cancelled.v)
@@ -5873,27 +5677,23 @@
       return Unit;
     };
   }
-
   function HtmlSimpleSound$callOnUnlocked$lambda_0(closure$cancelled) {
     return function (it) {
       closure$cancelled.v = true;
       return Unit;
     };
   }
-
   HtmlSimpleSound.prototype.callOnUnlocked_x41j5s$ = function (callback) {
     var cancelled = {v: false};
     this.unlock.invokeOnCompletion_f05bi3$(HtmlSimpleSound$callOnUnlocked$lambda(cancelled, callback));
     return Cancellable.Companion.invoke_4m4org$(HtmlSimpleSound$callOnUnlocked$lambda_0(cancelled));
   };
-
   function HtmlSimpleSound$loadSound$lambda$lambda(closure$c) {
     return function (data) {
       closure$c.resumeWith_tl1gpc$(new Result(data));
       return Unit;
     };
   }
-
   function HtmlSimpleSound$loadSound$lambda$lambda_0(closure$c, closure$url) {
     return function () {
       var $receiver = closure$c;
@@ -5902,14 +5702,12 @@
       return Unit;
     };
   }
-
   function HtmlSimpleSound$loadSound$lambda(this$HtmlSimpleSound, closure$data, closure$url) {
     return function (c) {
       this$HtmlSimpleSound.ctx.decodeAudioData(closure$data, HtmlSimpleSound$loadSound$lambda$lambda(c), HtmlSimpleSound$loadSound$lambda$lambda_0(c, closure$url));
       return Unit;
     };
   }
-
   function Coroutine$loadSound_qucnhy$($this, data_0, url_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -5917,7 +5715,6 @@
     this.local$data = data_0;
     this.local$url = url_0;
   }
-
   Coroutine$loadSound_qucnhy$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -5932,7 +5729,8 @@
           case 0:
             if (this.$this.ctx == null) {
               return null;
-            } else {
+            }
+             else {
               this.state_0 = 2;
               continue;
             }
@@ -5948,20 +5746,21 @@
           case 3:
             this.result_0;
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   HtmlSimpleSound.prototype.loadSound_qucnhy$ = function (data_0, url_0, continuation_0, suspended) {
     var instance = new Coroutine$loadSound_qucnhy$(this, data_0, url_0, continuation_0);
@@ -5998,14 +5797,12 @@
   HtmlSimpleSound.prototype.loadSound_fqrh44$ = function (data, continuation) {
     return this.loadSound_qucnhy$(data.buffer, 'ByteArray', continuation);
   };
-
   function Coroutine$loadSound_61zpoe$($this, url_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
     this.local$url = url_0;
   }
-
   Coroutine$loadSound_61zpoe$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -6033,20 +5830,21 @@
             continue;
           case 3:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   HtmlSimpleSound.prototype.loadSound_61zpoe$ = function (url_0, continuation_0, suspended) {
     var instance = new Coroutine$loadSound_61zpoe$(this, url_0, continuation_0);
@@ -6055,7 +5853,6 @@
     else
       return instance.doResume(null);
   };
-
   function HtmlSimpleSound_init$lambda$lambda(closure$source, closure$unlock, this$HtmlSimpleSound) {
     return function () {
       closure$source.disconnect(0);
@@ -6068,7 +5865,6 @@
       return Unit;
     };
   }
-
   function HtmlSimpleSound_init$lambda(this$HtmlSimpleSound, closure$_scratchBuffer, closure$unlock) {
     return function (it) {
       if (this$HtmlSimpleSound.ctx != null) {
@@ -6083,31 +5879,25 @@
       return Unit;
     };
   }
-
   HtmlSimpleSound.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'HtmlSimpleSound',
     interfaces: []
   };
   var HtmlSimpleSound_instance = null;
-
   function HtmlSimpleSound_getInstance() {
     if (HtmlSimpleSound_instance === null) {
       new HtmlSimpleSound();
     }
     return HtmlSimpleSound_instance;
   }
-
   function nativeSoundProvider$lambda() {
     return new HtmlNativeSoundProvider();
   }
-
   var nativeSoundProvider;
-
   function get_nativeSoundProvider() {
     return nativeSoundProvider.value;
   }
-
   function JsPlatformAudioOutput(freq) {
     JsPlatformAudioOutput$Companion_getInstance();
     PlatformAudioOutput.call(this, freq);
@@ -6129,26 +5919,22 @@
     this.startPromise_0 = null;
     this.totalShorts = 0;
   }
-
   function JsPlatformAudioOutput$Companion() {
     JsPlatformAudioOutput$Companion_instance = this;
     this.lastId = 0;
   }
-
   JsPlatformAudioOutput$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var JsPlatformAudioOutput$Companion_instance = null;
-
   function JsPlatformAudioOutput$Companion_getInstance() {
     if (JsPlatformAudioOutput$Companion_instance === null) {
       new JsPlatformAudioOutput$Companion();
     }
     return JsPlatformAudioOutput$Companion_instance;
   }
-
   JsPlatformAudioOutput.prototype.process_0 = function (e) {
     var tmp$;
     var array = Array_0(e.outputBuffer.numberOfChannels);
@@ -6179,14 +5965,12 @@
   JsPlatformAudioOutput.prototype.ensureInit_0 = function () {
     return this.node;
   };
-
   function JsPlatformAudioOutput$start$lambda$lambda(this$JsPlatformAudioOutput) {
     return function (it) {
       this$JsPlatformAudioOutput.process_0(it);
       return Unit;
     };
   }
-
   function JsPlatformAudioOutput$start$lambda(this$JsPlatformAudioOutput) {
     return function (it) {
       var tmp$, tmp$_0, tmp$_1;
@@ -6197,7 +5981,6 @@
       return Unit;
     };
   }
-
   JsPlatformAudioOutput.prototype.start = function () {
     if (this.nodeRunning)
       return;
@@ -6224,7 +6007,6 @@
       return this.totalShorts;
     }
   });
-
   function Coroutine$add_trriok$$default_0($this, samples_0, offset_0, size_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -6233,7 +6015,6 @@
     this.local$offset = offset_0;
     this.local$size = size_0;
   }
-
   Coroutine$add_trriok$$default_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -6256,7 +6037,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.$this.ensureRunning();
               var schannels = this.local$samples.channels;
               tmp$ = this.$this.nchannels_0;
@@ -6295,20 +6077,21 @@
             continue;
           case 6:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   JsPlatformAudioOutput.prototype.add_trriok$$default = function (samples_0, offset_0, size_0, continuation_0, suspended) {
     var instance = new Coroutine$add_trriok$$default_0(this, samples_0, offset_0, size_0, continuation_0);
@@ -6322,17 +6105,13 @@
     simpleName: 'JsPlatformAudioOutput',
     interfaces: [PlatformAudioOutput]
   };
-
   function programPool$lambda(it) {
     return new MiniMp3(1048576);
   }
-
   var programPool;
-
   function MP3DecodeStream(data, continuation) {
     return (new NativeAudioDecoderProgram(programPool, data)).createAudioStream(continuation);
   }
-
   function NativeAudioDecoderProgram(programPool, data, program) {
     if (program === void 0)
       program = programPool.alloc();
@@ -6341,7 +6120,6 @@
     this.program = program;
     this.mp3d = this.scope.allocBytes_ww73n8$(6667);
   }
-
   NativeAudioDecoderProgram.prototype.init = function () {
     this.program.mp3dec_init_ourytn$(this.mp3d);
   };
@@ -6361,7 +6139,8 @@
       out.frameBytes = $receiver.get_frame_bytes_ox8jhc$(infov);
       out.hz = $receiver.get_hz_ox8jhc$(infov);
       out.nchannels = $receiver.get_channels_ox8jhc$(infov);
-    } finally {
+    }
+    finally {
       $this.STACK_PTR = oldPos;
     }
   };
@@ -6370,12 +6149,10 @@
     simpleName: 'NativeAudioDecoderProgram',
     interfaces: [NativeAudioDecoder]
   };
-
   function Arena(runtime) {
     this.runtime = runtime;
     this.pointers = intArrayListOf(new Int32Array([]));
   }
-
   Arena.prototype.allocBytes_ww73n8$ = function (size) {
     var ptr = this.runtime.malloc_za3lpa$(size).ptr;
     this.pointers.add_za3lpa$(ptr);
@@ -6395,27 +6172,22 @@
     simpleName: 'Arena',
     interfaces: []
   };
-
   function write_0($receiver, ptr, data) {
     for (var n = 0; n < data.length; n++)
       $receiver.sb_6t1wet$(ptr.ptr + n | 0, data[n]);
   }
-
   function read_0($receiver, ptr, data) {
     for (var n = 0; n < data.length; n++)
       data[n] = $receiver.lb_za3lpa$(ptr.ptr + n | 0);
   }
-
   function write_1($receiver, ptr, data) {
     for (var n = 0; n < data.length; n++)
       $receiver.sh_2bqt6h$(ptr.ptr + (n * 2 | 0) | 0, data[n]);
   }
-
   function read_1($receiver, ptr, data) {
     for (var n = 0; n < data.length; n++)
       data[n] = $receiver.lh_za3lpa$(ptr.ptr + (n * 2 | 0) | 0);
   }
-
   function NativeAudioDecoder(runtime, data, maxSamples, maxChannels) {
     if (maxChannels === void 0)
       maxChannels = 2;
@@ -6433,10 +6205,8 @@
     this.samplesBuffers = new AudioSamplesDeque(this.maxChannels);
     this.info_fgfiq2$_0 = new NativeAudioDecoder$DecodeInfo();
   }
-
   NativeAudioDecoder.prototype.init = function () {
   };
-
   function NativeAudioDecoder$DecodeInfo(samplesDecoded, frameBytes, nchannels, hz, totalLengthInSamples) {
     if (samplesDecoded === void 0)
       samplesDecoded = 0;
@@ -6454,7 +6224,6 @@
     this.hz = hz;
     this.totalLengthInSamples = totalLengthInSamples;
   }
-
   NativeAudioDecoder$DecodeInfo.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'DecodeInfo',
@@ -6508,7 +6277,6 @@
       return this.info_fgfiq2$_0.totalLengthInSamples;
     }
   });
-
   function Coroutine$decodeFrame($this, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -6516,7 +6284,6 @@
     this.local$n = void 0;
     this.local$temp = void 0;
   }
-
   Coroutine$decodeFrame.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -6547,7 +6314,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 4;
               continue;
             }
@@ -6568,7 +6336,8 @@
             if (this.local$n >= 16) {
               this.state_0 = 6;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 5;
               continue;
             }
@@ -6578,20 +6347,21 @@
             continue;
           case 6:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeAudioDecoder.prototype.decodeFrame = function (continuation_0, suspended) {
     var instance = new Coroutine$decodeFrame(this, continuation_0);
@@ -6605,12 +6375,10 @@
   NativeAudioDecoder.prototype.close = function () {
     this.scope.clear();
   };
-
   function NativeAudioDecoder$createAudioStream$ObjectLiteral(this$NativeAudioDecoder, rate, channels) {
     this.this$NativeAudioDecoder = this$NativeAudioDecoder;
     AudioStream.call(this, rate, channels);
   }
-
   function Coroutine$read_trriok$_1($this, out_0, offset_0, length_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
@@ -6619,7 +6387,6 @@
     this.local$offset = offset_0;
     this.local$length = length_0;
   }
-
   Coroutine$read_trriok$_1.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -6634,7 +6401,8 @@
           case 0:
             if (this.$this.this$NativeAudioDecoder.closed) {
               return -1;
-            } else {
+            }
+             else {
               this.state_0 = 2;
               continue;
             }
@@ -6648,7 +6416,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.state_0 = 4;
               continue;
             }
@@ -6663,20 +6432,21 @@
             }
 
             return result;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeAudioDecoder$createAudioStream$ObjectLiteral.prototype.read_trriok$ = function (out_0, offset_0, length_0, continuation_0, suspended) {
     var instance = new Coroutine$read_trriok$_1(this, out_0, offset_0, length_0, continuation_0);
@@ -6696,13 +6466,11 @@
     kind: Kind_CLASS,
     interfaces: [AudioStream]
   };
-
   function Coroutine$createAudioStream($this, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
   }
-
   Coroutine$createAudioStream.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -6725,27 +6493,29 @@
           case 2:
             if (this.$this.nchannels === 0) {
               return null;
-            } else {
+            }
+             else {
               this.state_0 = 3;
               continue;
             }
 
           case 3:
             return new NativeAudioDecoder$createAudioStream$ObjectLiteral(this.$this, this.$this.hz, this.$this.nchannels);
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   NativeAudioDecoder.prototype.createAudioStream = function (continuation_0, suspended) {
     var instance = new Coroutine$createAudioStream(this, continuation_0);
@@ -6759,7 +6529,6 @@
     simpleName: 'NativeAudioDecoder',
     interfaces: []
   };
-
   function MiniMp3(HEAP_SIZE) {
     MiniMp3$Companion_getInstance();
     if (HEAP_SIZE === void 0)
@@ -6941,7 +6710,6 @@
     this.set_ddymnu$($receiver, 144, 645.0796);
     this.g_pow43 = $receiver;
   }
-
   function MiniMp3$Companion() {
     MiniMp3$Companion_instance = this;
     this.MINIMP3_IMPLEMENTATION = 1;
@@ -6960,21 +6728,18 @@
     this.MAX_SCF = 41;
     this.HAVE_SIMD = 0;
   }
-
   MiniMp3$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var MiniMp3$Companion_instance = null;
-
   function MiniMp3$Companion_getInstance() {
     if (MiniMp3$Companion_instance === null) {
       new MiniMp3$Companion();
     }
     return MiniMp3$Companion_instance;
   }
-
   MiniMp3.prototype.bs_init_5c7e2v$ = function (bs, data, bytes) {
     this.set_buf_1358p7$(this.get_value_iwav89$(bs), data);
     this.set_pos_xnn3qw$(this.get_value_iwav89$(bs), 0);
@@ -7133,7 +6898,8 @@
       var $this_0 = new UInt(this.get_t9mxw2$(h, 1).data & 255);
       var other_0 = new UInt(6);
       tmp$ = (new UInt($this_0.data & other_0.data)).data === 6 ? 4 : 1;
-    } else
+    }
+     else
       tmp$ = 0;
     return tmp$;
   };
@@ -7152,7 +6918,8 @@
         var $this_0 = new UInt((new UInt(this.get_t9mxw2$(hdr, 3).data & 255)).data >>> 4);
         var other_0 = new UInt(3);
         tmp$_0 = (new UInt((new UInt($this_0.data & other_0.data)).data << 2)).data + 4 | 0;
-      } else
+      }
+       else
         tmp$_0 = 32;
       tmp$ = tmp$_0;
     }
@@ -7163,14 +6930,16 @@
       var g_alloc_L1 = this.__STATIC_L12_subband_alloc_table_g_alloc_L1_0;
       alloc.v = new CPointer(g_alloc_L1.ptr);
       nbands.v = 32;
-    } else {
+    }
+     else {
       var $this_2 = new UInt(this.get_t9mxw2$(hdr, 1).data & 255);
       var other_2 = new UInt(8);
       if (!((new UInt($this_2.data & other_2.data)).data !== 0)) {
         var g_alloc_L2M2 = this.__STATIC_L12_subband_alloc_table_g_alloc_L2M2_0;
         alloc.v = new CPointer(g_alloc_L2M2.ptr);
         nbands.v = 30;
-      } else {
+      }
+       else {
         var g_alloc_L2M1 = this.__STATIC_L12_subband_alloc_table_g_alloc_L2M1_0;
         var $this_3 = new UInt((new UInt(this.get_t9mxw2$(hdr, 2).data & 255)).data >>> 2);
         var other_3 = new UInt(3);
@@ -7187,7 +6956,8 @@
           var g_alloc_L2M1_lowrate = this.__STATIC_L12_subband_alloc_table_g_alloc_L2M1_lowrate_0;
           alloc.v = new CPointer(g_alloc_L2M1_lowrate.ptr);
           nbands.v = sample_rate_idx.v === 2 ? 12 : 8;
-        } else {
+        }
+         else {
           if (kbps.data >= 96 && sample_rate_idx.v !== 1) {
             nbands.v = 30;
           }
@@ -7258,7 +7028,8 @@
         var $this = new UInt(this.get_t9mxw2$(hdr, 1).data & 255);
         var other = new UInt(6);
         tmp$_1 = (new UInt($this.data & other.data)).data === 6 ? 2 : this.get_bits_e5qbnc$(bs, 2).data;
-      } else
+      }
+       else
         tmp$_1 = 6;
       this.set_uc6wbg$(tmp$, tmp$_0, new UByte(toByte(tmp$_1)));
       i.v = i.v + 1 | 0;
@@ -7293,7 +7064,8 @@
               this.swf_24o109$(dst.v.ptr + (k.v * 4 | 0) | 0, this.get_bits_e5qbnc$(bs, ba.v).data - half | 0);
               k.v = k.v + 1 | 0;
             }
-          } else {
+          }
+           else {
             var mod = {v: new UInt((2 << ba.v - 17) + 1 | 0)};
             var code = {v: this.get_bits_e5qbnc$(bs, mod.v.data + 2 - (new UInt(mod.v.data >>> 3)).data | 0)};
             k.v = 0;
@@ -7382,7 +7154,8 @@
       gr_count = gr_count * 2 | 0;
       main_data_begin = this.get_bits_e5qbnc$(bs, 9).data;
       scfsi = this.get_bits_e5qbnc$(bs, 7 + gr_count | 0);
-    } else {
+    }
+     else {
       var $this_5 = this.get_bits_e5qbnc$(bs, 8 + gr_count | 0);
       var bitCount = gr_count;
       main_data_begin = (new UInt($this_5.data >>> bitCount)).data;
@@ -7426,7 +7199,8 @@
             this.set_sfbtab_b7kikc$(this.get_value_culdo2$(gr_0), new CPointer(this.get_purhm1$(g_scf_short, sr_idx).ptr));
             this.set_n_long_sfb_x2bl9$(this.get_value_culdo2$(gr_0), new UByte(toByte(0)));
             this.set_n_short_sfb_x2bl9$(this.get_value_culdo2$(gr_0), new UByte(toByte(39)));
-          } else {
+          }
+           else {
             this.set_sfbtab_b7kikc$(this.get_value_culdo2$(gr_0), new CPointer(this.get_purhm1$(g_scf_mixed, sr_idx).ptr));
             var tmp$_4 = this.get_value_culdo2$(gr_0);
             var $this_9 = new UInt(this.get_t9mxw2$(hdr, 1).data & 255);
@@ -7440,7 +7214,8 @@
         this.set_j0yztx$(this.get_subblock_gain_4gg731$(this.get_value_culdo2$(gr_0)), 0, new UByte(toByte(this.get_bits_e5qbnc$(bs, 3).data)));
         this.set_j0yztx$(this.get_subblock_gain_4gg731$(this.get_value_culdo2$(gr_0)), 1, new UByte(toByte(this.get_bits_e5qbnc$(bs, 3).data)));
         this.set_j0yztx$(this.get_subblock_gain_4gg731$(this.get_value_culdo2$(gr_0)), 2, new UByte(toByte(this.get_bits_e5qbnc$(bs, 3).data)));
-      } else {
+      }
+       else {
         this.set_block_type_x2bl9$(this.get_value_culdo2$(gr_0), new UByte(toByte(0)));
         this.set_mixed_block_flag_x2bl9$(this.get_value_culdo2$(gr_0), new UByte(toByte(0)));
         tables = this.get_bits_e5qbnc$(bs, 15);
@@ -7480,7 +7255,7 @@
       if (!(numberToInt((gr_count = gr_count - 1 | 0, gr_count)) !== 0))
         break;
     }
-    while (true);
+     while (true);
     if ((part_23_sum + this.get_pos_7bwnva$(this.get_value_iwav89$(bs)) | 0) > (this.get_limit_7bwnva$(this.get_value_iwav89$(bs)) + (main_data_begin * 8 | 0) | 0)) {
       return -1;
     }
@@ -7503,12 +7278,14 @@
       var cnt = {v: this.get_t9mxw2$(scf_count, i.v).data & 255};
       if (numberToInt(scfsi_0.v & 8) !== 0) {
         this.memcpy_q1n2f2$(new CPointer(scf_0.v.ptr), new CPointer(ist_pos_0.v.ptr), cnt.v);
-      } else {
+      }
+       else {
         var bits = {v: this.get_t9mxw2$(scf_size, i.v).data & 255};
         if (!(numberToInt(bits.v) !== 0)) {
           this.memset_j2ark3$(new CPointer(scf_0.v.ptr), 0, cnt.v);
           this.memset_j2ark3$(new CPointer(ist_pos_0.v.ptr), 0, cnt.v);
-        } else {
+        }
+         else {
           var max_scf = {v: (scfsi_0.v < 0 ? Kotlin.Long.fromInt((1 << bits.v) - 1 | 0) : L_1).toInt()};
           k.v = 0;
           while (k.v < cnt.v) {
@@ -7543,7 +7320,7 @@
       if (!($receiver > 0))
         break;
     }
-    while (true);
+     while (true);
     return y_0;
   };
   MiniMp3.prototype.L3_decode_scalefactors_dxl6ff$ = function (hdr, ist_pos, bs, gr, scf, ch) {
@@ -7581,7 +7358,8 @@
         var $receiver_2 = new UByte(toByte(part.v & 3));
         this.set_iu8g92$(scf_size.v, 2, $receiver_2);
         this.set_iu8g92$(tmp$_0, 3, $receiver_2);
-      } else {
+      }
+       else {
         var g_mod = this.__STATIC_L3_decode_scalefactors_g_mod_0;
         var k = {v: 0};
         var modprod = {v: 0};
@@ -7646,7 +7424,8 @@
           this.set_sc99eu$(tmp$_14, tmp$_16, new UByte(toByte((new UInt(tmp$_19.data + other_10.data | 0)).data)));
           i.v = i.v + 3 | 0;
         }
-      } else {
+      }
+       else {
         if ((this.get_preflag_4gg731$(this.get_value_culdo2$(gr)).data & 255) !== 0) {
           var g_preamp = this.__STATIC_L3_decode_scalefactors_g_preamp_0;
           i.v = 0;
@@ -7681,7 +7460,8 @@
         this.swf_24o109$(scf.ptr + (tmp$_27 * 4 | 0) | 0, this.L3_ldexp_q2_vjorfl$(tmp$_28, (new UInt($this_3.data << bitCount)).data));
         i.v = i.v + 1 | 0;
       }
-    } finally {
+    }
+    finally {
       this.STACK_PTR = oldPos;
     }
   };
@@ -7795,7 +7575,8 @@
                   bs_sh.v = bs_sh.v - 8 | 0;
                 }
                 this.swf_24o109$(dst_0.v.ptr + (0 * 4 | 0) | 0, one.v * this.L3_pow_43_za3lpa$(lsb) * (bs_cache.v.data < 0 ? L_1 : L1).toNumber());
-              } else {
+              }
+               else {
                 this.swf_24o109$(dst_0.v.ptr + (0 * 4 | 0) | 0, this.get_79os4f$(this.g_pow43, 16 + lsb - (16 * (new UInt(bs_cache.v.data >>> 31)).data | 0) | 0) * one.v);
               }
               var tmp$_3 = bs_cache.v;
@@ -7819,14 +7600,15 @@
             if (!(numberToInt((pairs_to_decode.v = pairs_to_decode.v - 1 | 0, pairs_to_decode.v)) !== 0))
               break;
           }
-          while (true);
+           while (true);
           var $receiver_3 = big_val_cnt.v - np.v | 0;
           big_val_cnt.v = $receiver_3;
           if (!($receiver_3 > 0 && (sfb_cnt = sfb_cnt - 1 | 0, sfb_cnt) >= 0))
             break;
         }
-        while (true);
-      } else {
+         while (true);
+      }
+       else {
         do0: do {
           var $receiver_4 = sfb.v;
           sfb.v = this.plus_t9mxw2$(sfb.v, 1);
@@ -7881,13 +7663,13 @@
             if (!(numberToInt((pairs_to_decode.v = pairs_to_decode.v - 1 | 0, pairs_to_decode.v)) !== 0))
               break;
           }
-          while (true);
+           while (true);
           var $receiver_7 = big_val_cnt.v - np.v | 0;
           big_val_cnt.v = $receiver_7;
           if (!($receiver_7 > 0 && (sfb_cnt = sfb_cnt - 1 | 0, sfb_cnt) >= 0))
             break;
         }
-        while (true);
+         while (true);
       }
     }
     np.v = 1 - big_val_cnt.v | 0;
@@ -7963,7 +7745,8 @@
           bs_cache.v = new UInt(tmp$_9.data | other_8.data);
           bs_sh.v = bs_sh.v - 8 | 0;
         }
-      } finally {
+      }
+      finally {
         this.STACK_PTR = __oldPos0;
       }
       dst_0.v = this.plus_s1x8lt$(dst_0.v, 4);
@@ -8044,7 +7827,8 @@
         if ((new UInt($this_2.data & other_2.data)).data !== 0) {
           kl = this.get_9jzm02$(g_pan.v, 2 * ipos.v.data | 0);
           kr = this.get_9jzm02$(g_pan.v, (2 * ipos.v.data | 0) + 1 | 0);
-        } else {
+        }
+         else {
           kl = 1.0;
           kr = this.L3_ldexp_q2_vjorfl$(1.0, ipos.v.data + 1 >> 1 << mpeg2_sh);
           var $this_3 = ipos.v;
@@ -8055,7 +7839,8 @@
           }
         }
         this.L3_intensity_stereo_band_ow4xym$(left_0.v, this.get_t9mxw2$(sfb, i.v.data).data & 255, kl * s, kr * s);
-      } else {
+      }
+       else {
         var $this_4 = new UInt(this.get_t9mxw2$(hdr, 3).data & 255);
         var other_4 = new UInt(32);
         if ((new UInt($this_4.data & other_4.data)).data !== 0) {
@@ -8103,7 +7888,8 @@
       var $this_0 = new UInt(this.get_scalefac_compress_4gg731$(this.get_x5mmy4$(gr, 1)).data & 65535);
       var other_1 = new UInt(1);
       this.L3_stereo_process_gpdkkz$(left, ist_pos, tmp$_0, hdr, tmp$_1, (new UInt($this_0.data & other_1.data)).data);
-    } finally {
+    }
+    finally {
       this.STACK_PTR = oldPos;
     }
   };
@@ -8245,7 +8031,8 @@
           this.swf_24o109$(grbuf_0.v.ptr + ((17 - i.v | 0) * 4 | 0) | 0, ovl * this.lwf_za3lpa$(window_0.ptr + ((9 + i.v | 0) * 4 | 0) | 0) + sum * this.lwf_za3lpa$(window_0.ptr + ((0 + i.v | 0) * 4 | 0) | 0));
           i.v = i.v + 1 | 0;
         }
-      } finally {
+      }
+      finally {
         this.STACK_PTR = oldPos;
       }
       j.v = j.v + 1 | 0;
@@ -8283,7 +8070,8 @@
         this.swf_24o109$(dst.ptr + ((5 - i.v | 0) * 4 | 0) | 0, ovl * this.get_ifv1nf$(g_twid3.v, 5 - i.v | 0) + sum * this.get_ifv1nf$(g_twid3.v, 2 - i.v | 0));
         i.v = i.v + 1 | 0;
       }
-    } finally {
+    }
+    finally {
       this.STACK_PTR = oldPos;
     }
   };
@@ -8302,7 +8090,8 @@
         this.L3_imdct12_eaco74$(new CPointer(tmp.ptr), this.plus_s1x8lt$(grbuf_0.v, 6), this.plus_s1x8lt$(overlap_0.v, 6));
         this.L3_imdct12_eaco74$(this.plus_8xstsy$(tmp, 1), this.plus_s1x8lt$(grbuf_0.v, 12), this.plus_s1x8lt$(overlap_0.v, 6));
         this.L3_imdct12_eaco74$(this.plus_8xstsy$(tmp, 2), overlap_0.v, this.plus_s1x8lt$(overlap_0.v, 6));
-      } finally {
+      }
+      finally {
         this.STACK_PTR = oldPos;
       }
       nbands_0.v = nbands_0.v - 1 | 0;
@@ -8337,7 +8126,8 @@
     }
     if (block_type.data === 2) {
       this.L3_imdct_short_onxf4y$(grbuf_0, overlap_0, 32 - n_long_bands.data | 0);
-    } else {
+    }
+     else {
       this.L3_imdct36_o7xfxu$(grbuf_0, overlap_0, new CPointer(this.get_s9dk2x$(g_mdct_window, this.toInt_1v8dcc$(block_type.data === 3)).ptr), 32 - n_long_bands.data | 0);
     }
   };
@@ -8375,7 +8165,8 @@
     var other = new UInt(16);
     if ((new UInt($this.data & other.data)).data !== 0) {
       this.L3_intensity_stereo_4r3etv$(new CPointer(this.get_bj3kkc$(this.get_grbuf_oud1nq$(this.get_value_6u2e3v$(s)), 0).ptr), new CPointer(this.get_edkp4p$(this.get_ist_pos_oud1nq$(this.get_value_6u2e3v$(s)), 1).ptr), gr_info_0.v, new CPointer(this.get_header_9bqr5h$(this.get_value_au5m8q$(h)).ptr));
-    } else {
+    }
+     else {
       var $this_0 = new UInt(this.get_o7m6bi$(this.get_header_9bqr5h$(this.get_value_au5m8q$(h)), 3).data & 255);
       var other_0 = new UInt(224);
       if ((new UInt($this_0.data & other_0.data)).data === 96) {
@@ -8497,7 +8288,8 @@
         this.swf_24o109$(y.v.ptr + (18 * 4 | 0) | 0, this.get_qbl78n$(this.get_ptrce6$(t.v, 2), 7) + this.get_qbl78n$(this.get_ptrce6$(t.v, 3), 7));
         this.swf_24o109$(y.v.ptr + (36 * 4 | 0) | 0, this.get_qbl78n$(this.get_ptrce6$(t.v, 1), 7));
         this.swf_24o109$(y.v.ptr + (54 * 4 | 0) | 0, this.get_qbl78n$(this.get_ptrce6$(t.v, 3), 7));
-      } finally {
+      }
+      finally {
         this.STACK_PTR = oldPos;
       }
       k.v = k.v + 1 | 0;
@@ -8702,7 +8494,8 @@
         this.set_yo5o8m$(dstr.v, Kotlin.imul(49 + i.v | 0, nch), this.mp3d_scale_pcm_mx4ult$(this.get_7tsrfn$(b.v, 3)));
         this.set_yo5o8m$(dstl, Kotlin.imul(47 - i.v | 0, nch), this.mp3d_scale_pcm_mx4ult$(this.get_7tsrfn$(a.v, 2)));
         this.set_yo5o8m$(dstl, Kotlin.imul(49 + i.v | 0, nch), this.mp3d_scale_pcm_mx4ult$(this.get_7tsrfn$(b.v, 2)));
-      } finally {
+      }
+      finally {
         this.STACK_PTR = oldPos;
       }
       i.v = i.v - 1 | 0;
@@ -8727,7 +8520,8 @@
         this.swf_24o109$(qmf_state.ptr + (i * 4 | 0) | 0, this.lwf_za3lpa$(lins.ptr + (((nbands * 64 | 0) + i | 0) * 4 | 0) | 0));
         i = i + 2 | 0;
       }
-    } else {
+    }
+     else {
       this.memcpy_q1n2f2$(new CPointer(qmf_state.ptr), new CPointer(this.plus_s1x8lt$(lins, nbands * 64 | 0).ptr), (this.get_SIZE_BYTES_y9phqa$(kotlin_js_internal_FloatCompanionObject) * 15 | 0) * 64 | 0);
     }
   };
@@ -8783,7 +8577,8 @@
                 frame_and_padding = k;
                 frame_bytes = fb;
                 this.set_value_sa8cpw$(free_format_bytes, fb);
-              } finally {
+              }
+              finally {
                 this.STACK_PTR = __oldPos1;
               }
             }
@@ -8806,7 +8601,8 @@
             return i.v;
           }
           this.set_value_sa8cpw$(free_format_bytes, 0);
-        } finally {
+        }
+        finally {
           this.STACK_PTR = __oldPos2;
         }
       }
@@ -8913,7 +8709,8 @@
           }
         }
         this.L3_save_reservoir_wjj0c1$(dec, new CPointer(scratch.v.ptr));
-      } else {
+      }
+       else {
         var oldPos_0 = this.STACK_PTR;
         try {
           var $receiver_1 = new Array1L12_scale_info(this.alloca_zero_za3lpa$(898).ptr);
@@ -8939,12 +8736,14 @@
             }
             igr.v = igr.v + 1 | 0;
           }
-        } finally {
+        }
+        finally {
           this.STACK_PTR = oldPos_0;
         }
       }
       return Kotlin.imul(success.v, this.hdr_frame_samples_iy4dr5$(new CPointer(this.get_header_9bqr5h$(this.get_value_au5m8q$(dec)).ptr)).data);
-    } finally {
+    }
+    finally {
       this.STACK_PTR = oldPos;
     }
   };
@@ -10793,7 +10592,6 @@
   MiniMp3.prototype.minus_vmkwj5$ = function ($receiver, offset) {
     return new CPointer($receiver.addr_za3lpa$(-offset | 0));
   };
-
   function MiniMp3$__STATIC_hdr_bitrate_kbps_halfrate$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -10908,7 +10706,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_hdr_sample_rate_hz_g_hz$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -10920,7 +10717,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L12_subband_alloc_table_g_alloc_L1$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -10930,7 +10726,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L12_subband_alloc_table_g_alloc_L2M2$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -10942,7 +10737,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L12_subband_alloc_table_g_alloc_L2M1$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -10955,7 +10749,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L12_subband_alloc_table_g_alloc_L2M1_lowrate$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -10966,7 +10759,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L12_read_scalefactors_g_deq_L12$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -11029,7 +10821,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L12_read_scale_info_g_bitalloc_code_tab$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -11130,7 +10921,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_read_side_info_g_scf_long$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -11339,7 +11129,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_read_side_info_g_scf_short$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -11684,7 +11473,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_read_side_info_g_scf_mixed$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -12014,7 +11802,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_ldexp_q2_g_expfrac$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -12027,7 +11814,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_decode_scalefactors_g_scf_partitions$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -12126,7 +11912,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_decode_scalefactors_g_scfc_decode$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -12151,7 +11936,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_decode_scalefactors_g_mod$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -12184,7 +11968,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_decode_scalefactors_g_preamp$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -12203,7 +11986,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_huffman_tabs$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14376,7 +14158,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_huffman_tab32$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14413,7 +14194,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_huffman_tab33$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14438,7 +14218,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_huffman_tabindex$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14479,7 +14258,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_huffman_g_linbits$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14520,7 +14298,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_stereo_process_g_pan$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14543,7 +14320,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_antialias_g_aa$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14572,7 +14348,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_imdct36_g_twid9$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14599,7 +14374,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_imdct12_g_twid3$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14614,7 +14388,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_L3_imdct_gr_g_mdct_window$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14663,7 +14436,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_mp3d_DCT_II_g_sec$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14696,7 +14468,6 @@
       return $receiver;
     };
   }
-
   function MiniMp3$__STATIC_mp3d_synth_g_win$lambda(this$MiniMp3) {
     return function () {
       var $this = this$MiniMp3;
@@ -14945,18 +14716,15 @@
       return $receiver;
     };
   }
-
   MiniMp3.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'MiniMp3',
     interfaces: [Runtime]
   };
-
   function mp3dec_frame_info_t(ptr) {
     mp3dec_frame_info_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function mp3dec_frame_info_t$Companion() {
     mp3dec_frame_info_t$Companion_instance = this;
     this.SIZE_BYTES = 20;
@@ -14967,7 +14735,6 @@
     this.OFFSET_layer = 12;
     this.OFFSET_bitrate_kbps = 16;
   }
-
   Object.defineProperty(mp3dec_frame_info_t$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_pnova0$_0;
@@ -14979,14 +14746,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var mp3dec_frame_info_t$Companion_instance = null;
-
   function mp3dec_frame_info_t$Companion_getInstance() {
     if (mp3dec_frame_info_t$Companion_instance === null) {
       new mp3dec_frame_info_t$Companion();
     }
     return mp3dec_frame_info_t$Companion_instance;
   }
-
   mp3dec_frame_info_t.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'mp3dec_frame_info_t',
@@ -15006,12 +14771,10 @@
   mp3dec_frame_info_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function mp3dec_t(ptr) {
     mp3dec_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function mp3dec_t$Companion() {
     mp3dec_t$Companion_instance = this;
     this.SIZE_BYTES = 6667;
@@ -15023,7 +14786,6 @@
     this.OFFSET_header = 6152;
     this.OFFSET_reserv_buf = 6156;
   }
-
   Object.defineProperty(mp3dec_t$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_t269b1$_0;
@@ -15035,14 +14797,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var mp3dec_t$Companion_instance = null;
-
   function mp3dec_t$Companion_getInstance() {
     if (mp3dec_t$Companion_instance === null) {
       new mp3dec_t$Companion();
     }
     return mp3dec_t$Companion_instance;
   }
-
   mp3dec_t.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'mp3dec_t',
@@ -15062,12 +14822,10 @@
   mp3dec_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function bs_t(ptr) {
     bs_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function bs_t$Companion() {
     bs_t$Companion_instance = this;
     this.SIZE_BYTES = 12;
@@ -15076,7 +14834,6 @@
     this.OFFSET_pos = 4;
     this.OFFSET_limit = 8;
   }
-
   Object.defineProperty(bs_t$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_875vha$_0;
@@ -15088,14 +14845,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var bs_t$Companion_instance = null;
-
   function bs_t$Companion_getInstance() {
     if (bs_t$Companion_instance === null) {
       new bs_t$Companion();
     }
     return bs_t$Companion_instance;
   }
-
   bs_t.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'bs_t',
@@ -15115,12 +14870,10 @@
   bs_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function L12_scale_info(ptr) {
     L12_scale_info$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function L12_scale_info$Companion() {
     L12_scale_info$Companion_instance = this;
     this.SIZE_BYTES = 898;
@@ -15131,7 +14884,6 @@
     this.OFFSET_bitalloc = 770;
     this.OFFSET_scfcod = 834;
   }
-
   Object.defineProperty(L12_scale_info$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_y6g8xd$_0;
@@ -15143,14 +14895,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var L12_scale_info$Companion_instance = null;
-
   function L12_scale_info$Companion_getInstance() {
     if (L12_scale_info$Companion_instance === null) {
       new L12_scale_info$Companion();
     }
     return L12_scale_info$Companion_instance;
   }
-
   L12_scale_info.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'L12_scale_info',
@@ -15170,12 +14920,10 @@
   L12_scale_info.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function L12_subband_alloc_t(ptr) {
     L12_subband_alloc_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function L12_subband_alloc_t$Companion() {
     L12_subband_alloc_t$Companion_instance = this;
     this.SIZE_BYTES = 3;
@@ -15184,7 +14932,6 @@
     this.OFFSET_code_tab_width = 1;
     this.OFFSET_band_count = 2;
   }
-
   Object.defineProperty(L12_subband_alloc_t$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_8a6tt0$_0;
@@ -15196,14 +14943,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var L12_subband_alloc_t$Companion_instance = null;
-
   function L12_subband_alloc_t$Companion_getInstance() {
     if (L12_subband_alloc_t$Companion_instance === null) {
       new L12_subband_alloc_t$Companion();
     }
     return L12_subband_alloc_t$Companion_instance;
   }
-
   L12_subband_alloc_t.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'L12_subband_alloc_t',
@@ -15223,12 +14968,10 @@
   L12_subband_alloc_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function L3_gr_info_t(ptr) {
     L3_gr_info_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function L3_gr_info_t$Companion() {
     L3_gr_info_t$Companion_instance = this;
     this.SIZE_BYTES = 28;
@@ -15250,7 +14993,6 @@
     this.OFFSET_count1_table = 26;
     this.OFFSET_scfsi = 27;
   }
-
   Object.defineProperty(L3_gr_info_t$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_woc0at$_0;
@@ -15262,14 +15004,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var L3_gr_info_t$Companion_instance = null;
-
   function L3_gr_info_t$Companion_getInstance() {
     if (L3_gr_info_t$Companion_instance === null) {
       new L3_gr_info_t$Companion();
     }
     return L3_gr_info_t$Companion_instance;
   }
-
   L3_gr_info_t.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'L3_gr_info_t',
@@ -15289,12 +15029,10 @@
   L3_gr_info_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function mp3dec_scratch_t(ptr) {
     mp3dec_scratch_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function mp3dec_scratch_t$Companion() {
     mp3dec_scratch_t$Companion_instance = this;
     this.SIZE_BYTES = 16233;
@@ -15307,7 +15045,6 @@
     this.OFFSET_syn = 7707;
     this.OFFSET_ist_pos = 16155;
   }
-
   Object.defineProperty(mp3dec_scratch_t$Companion.prototype, 'SIZE', {
     get: function () {
       return this.SIZE_nhhhsu$_0;
@@ -15319,14 +15056,12 @@
     interfaces: [AbstractRuntime$IStructCompanion]
   };
   var mp3dec_scratch_t$Companion_instance = null;
-
   function mp3dec_scratch_t$Companion_getInstance() {
     if (mp3dec_scratch_t$Companion_instance === null) {
       new mp3dec_scratch_t$Companion();
     }
     return mp3dec_scratch_t$Companion_instance;
   }
-
   mp3dec_scratch_t.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'mp3dec_scratch_t',
@@ -15346,33 +15081,28 @@
   mp3dec_scratch_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2Array288Float(ptr) {
     Array2Array288Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2Array288Float$Companion() {
     Array2Array288Float$Companion_instance = this;
     this.NUM_ELEMENTS = 2;
     this.ELEMENT_SIZE_BYTES = 1152;
     this.TOTAL_SIZE_BYTES = 2304;
   }
-
   Array2Array288Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2Array288Float$Companion_instance = null;
-
   function Array2Array288Float$Companion_getInstance() {
     if (Array2Array288Float$Companion_instance === null) {
       new Array2Array288Float$Companion();
     }
     return Array2Array288Float$Companion_instance;
   }
-
   Array2Array288Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1152 | 0) | 0;
   };
@@ -15395,33 +15125,28 @@
   Array2Array288Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array288Float(ptr) {
     Array288Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array288Float$Companion() {
     Array288Float$Companion_instance = this;
     this.NUM_ELEMENTS = 288;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 1152;
   }
-
   Array288Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array288Float$Companion_instance = null;
-
   function Array288Float$Companion_getInstance() {
     if (Array288Float$Companion_instance === null) {
       new Array288Float$Companion();
     }
     return Array288Float$Companion_instance;
   }
-
   Array288Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -15444,33 +15169,28 @@
   Array288Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array960Float(ptr) {
     Array960Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array960Float$Companion() {
     Array960Float$Companion_instance = this;
     this.NUM_ELEMENTS = 960;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 3840;
   }
-
   Array960Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array960Float$Companion_instance = null;
-
   function Array960Float$Companion_getInstance() {
     if (Array960Float$Companion_instance === null) {
       new Array960Float$Companion();
     }
     return Array960Float$Companion_instance;
   }
-
   Array960Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -15493,33 +15213,28 @@
   Array960Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array4UByte(ptr) {
     Array4UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array4UByte$Companion() {
     Array4UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 4;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 4;
   }
-
   Array4UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array4UByte$Companion_instance = null;
-
   function Array4UByte$Companion_getInstance() {
     if (Array4UByte$Companion_instance === null) {
       new Array4UByte$Companion();
     }
     return Array4UByte$Companion_instance;
   }
-
   Array4UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -15542,33 +15257,28 @@
   Array4UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array511UByte(ptr) {
     Array511UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array511UByte$Companion() {
     Array511UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 511;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 511;
   }
-
   Array511UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array511UByte$Companion_instance = null;
-
   function Array511UByte$Companion_getInstance() {
     if (Array511UByte$Companion_instance === null) {
       new Array511UByte$Companion();
     }
     return Array511UByte$Companion_instance;
   }
-
   Array511UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -15591,33 +15301,28 @@
   Array511UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array192Float(ptr) {
     Array192Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array192Float$Companion() {
     Array192Float$Companion_instance = this;
     this.NUM_ELEMENTS = 192;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 768;
   }
-
   Array192Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array192Float$Companion_instance = null;
-
   function Array192Float$Companion_getInstance() {
     if (Array192Float$Companion_instance === null) {
       new Array192Float$Companion();
     }
     return Array192Float$Companion_instance;
   }
-
   Array192Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -15640,33 +15345,28 @@
   Array192Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array64UByte(ptr) {
     Array64UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array64UByte$Companion() {
     Array64UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 64;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 64;
   }
-
   Array64UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array64UByte$Companion_instance = null;
-
   function Array64UByte$Companion_getInstance() {
     if (Array64UByte$Companion_instance === null) {
       new Array64UByte$Companion();
     }
     return Array64UByte$Companion_instance;
   }
-
   Array64UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -15689,33 +15389,28 @@
   Array64UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array3UByte(ptr) {
     Array3UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array3UByte$Companion() {
     Array3UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 3;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 3;
   }
-
   Array3UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array3UByte$Companion_instance = null;
-
   function Array3UByte$Companion_getInstance() {
     if (Array3UByte$Companion_instance === null) {
       new Array3UByte$Companion();
     }
     return Array3UByte$Companion_instance;
   }
-
   Array3UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -15738,33 +15433,28 @@
   Array3UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2815UByte(ptr) {
     Array2815UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2815UByte$Companion() {
     Array2815UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 2815;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 2815;
   }
-
   Array2815UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2815UByte$Companion_instance = null;
-
   function Array2815UByte$Companion_getInstance() {
     if (Array2815UByte$Companion_instance === null) {
       new Array2815UByte$Companion();
     }
     return Array2815UByte$Companion_instance;
   }
-
   Array2815UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -15787,33 +15477,28 @@
   Array2815UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array4L3_gr_info_t(ptr) {
     Array4L3_gr_info_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array4L3_gr_info_t$Companion() {
     Array4L3_gr_info_t$Companion_instance = this;
     this.NUM_ELEMENTS = 4;
     this.ELEMENT_SIZE_BYTES = 28;
     this.TOTAL_SIZE_BYTES = 112;
   }
-
   Array4L3_gr_info_t$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array4L3_gr_info_t$Companion_instance = null;
-
   function Array4L3_gr_info_t$Companion_getInstance() {
     if (Array4L3_gr_info_t$Companion_instance === null) {
       new Array4L3_gr_info_t$Companion();
     }
     return Array4L3_gr_info_t$Companion_instance;
   }
-
   Array4L3_gr_info_t.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 28 | 0) | 0;
   };
@@ -15836,33 +15521,28 @@
   Array4L3_gr_info_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2Array576Float(ptr) {
     Array2Array576Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2Array576Float$Companion() {
     Array2Array576Float$Companion_instance = this;
     this.NUM_ELEMENTS = 2;
     this.ELEMENT_SIZE_BYTES = 2304;
     this.TOTAL_SIZE_BYTES = 4608;
   }
-
   Array2Array576Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2Array576Float$Companion_instance = null;
-
   function Array2Array576Float$Companion_getInstance() {
     if (Array2Array576Float$Companion_instance === null) {
       new Array2Array576Float$Companion();
     }
     return Array2Array576Float$Companion_instance;
   }
-
   Array2Array576Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 2304 | 0) | 0;
   };
@@ -15885,33 +15565,28 @@
   Array2Array576Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array576Float(ptr) {
     Array576Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array576Float$Companion() {
     Array576Float$Companion_instance = this;
     this.NUM_ELEMENTS = 576;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 2304;
   }
-
   Array576Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array576Float$Companion_instance = null;
-
   function Array576Float$Companion_getInstance() {
     if (Array576Float$Companion_instance === null) {
       new Array576Float$Companion();
     }
     return Array576Float$Companion_instance;
   }
-
   Array576Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -15934,33 +15609,28 @@
   Array576Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array40Float(ptr) {
     Array40Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array40Float$Companion() {
     Array40Float$Companion_instance = this;
     this.NUM_ELEMENTS = 40;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 160;
   }
-
   Array40Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array40Float$Companion_instance = null;
-
   function Array40Float$Companion_getInstance() {
     if (Array40Float$Companion_instance === null) {
       new Array40Float$Companion();
     }
     return Array40Float$Companion_instance;
   }
-
   Array40Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -15983,33 +15653,28 @@
   Array40Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array33Array64Float(ptr) {
     Array33Array64Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array33Array64Float$Companion() {
     Array33Array64Float$Companion_instance = this;
     this.NUM_ELEMENTS = 33;
     this.ELEMENT_SIZE_BYTES = 256;
     this.TOTAL_SIZE_BYTES = 8448;
   }
-
   Array33Array64Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array33Array64Float$Companion_instance = null;
-
   function Array33Array64Float$Companion_getInstance() {
     if (Array33Array64Float$Companion_instance === null) {
       new Array33Array64Float$Companion();
     }
     return Array33Array64Float$Companion_instance;
   }
-
   Array33Array64Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 256 | 0) | 0;
   };
@@ -16032,33 +15697,28 @@
   Array33Array64Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array64Float(ptr) {
     Array64Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array64Float$Companion() {
     Array64Float$Companion_instance = this;
     this.NUM_ELEMENTS = 64;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 256;
   }
-
   Array64Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array64Float$Companion_instance = null;
-
   function Array64Float$Companion_getInstance() {
     if (Array64Float$Companion_instance === null) {
       new Array64Float$Companion();
     }
     return Array64Float$Companion_instance;
   }
-
   Array64Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -16081,33 +15741,28 @@
   Array64Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2Array39UByte(ptr) {
     Array2Array39UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2Array39UByte$Companion() {
     Array2Array39UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 2;
     this.ELEMENT_SIZE_BYTES = 39;
     this.TOTAL_SIZE_BYTES = 78;
   }
-
   Array2Array39UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2Array39UByte$Companion_instance = null;
-
   function Array2Array39UByte$Companion_getInstance() {
     if (Array2Array39UByte$Companion_instance === null) {
       new Array2Array39UByte$Companion();
     }
     return Array2Array39UByte$Companion_instance;
   }
-
   Array2Array39UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 39 | 0) | 0;
   };
@@ -16130,33 +15785,28 @@
   Array2Array39UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array39UByte(ptr) {
     Array39UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array39UByte$Companion() {
     Array39UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 39;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 39;
   }
-
   Array39UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array39UByte$Companion_instance = null;
-
   function Array39UByte$Companion_getInstance() {
     if (Array39UByte$Companion_instance === null) {
       new Array39UByte$Companion();
     }
     return Array39UByte$Companion_instance;
   }
-
   Array39UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16179,33 +15829,28 @@
   Array39UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2Array3Array15UByte(ptr) {
     Array2Array3Array15UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2Array3Array15UByte$Companion() {
     Array2Array3Array15UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 2;
     this.ELEMENT_SIZE_BYTES = 45;
     this.TOTAL_SIZE_BYTES = 90;
   }
-
   Array2Array3Array15UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2Array3Array15UByte$Companion_instance = null;
-
   function Array2Array3Array15UByte$Companion_getInstance() {
     if (Array2Array3Array15UByte$Companion_instance === null) {
       new Array2Array3Array15UByte$Companion();
     }
     return Array2Array3Array15UByte$Companion_instance;
   }
-
   Array2Array3Array15UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 45 | 0) | 0;
   };
@@ -16228,33 +15873,28 @@
   Array2Array3Array15UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array3Array15UByte(ptr) {
     Array3Array15UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array3Array15UByte$Companion() {
     Array3Array15UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 3;
     this.ELEMENT_SIZE_BYTES = 15;
     this.TOTAL_SIZE_BYTES = 45;
   }
-
   Array3Array15UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array3Array15UByte$Companion_instance = null;
-
   function Array3Array15UByte$Companion_getInstance() {
     if (Array3Array15UByte$Companion_instance === null) {
       new Array3Array15UByte$Companion();
     }
     return Array3Array15UByte$Companion_instance;
   }
-
   Array3Array15UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 15 | 0) | 0;
   };
@@ -16277,33 +15917,28 @@
   Array3Array15UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array15UByte(ptr) {
     Array15UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array15UByte$Companion() {
     Array15UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 15;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 15;
   }
-
   Array15UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array15UByte$Companion_instance = null;
-
   function Array15UByte$Companion_getInstance() {
     if (Array15UByte$Companion_instance === null) {
       new Array15UByte$Companion();
     }
     return Array15UByte$Companion_instance;
   }
-
   Array15UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16326,33 +15961,28 @@
   Array15UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array3UInt(ptr) {
     Array3UInt$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array3UInt$Companion() {
     Array3UInt$Companion_instance = this;
     this.NUM_ELEMENTS = 3;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 12;
   }
-
   Array3UInt$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array3UInt$Companion_instance = null;
-
   function Array3UInt$Companion_getInstance() {
     if (Array3UInt$Companion_instance === null) {
       new Array3UInt$Companion();
     }
     return Array3UInt$Companion_instance;
   }
-
   Array3UInt.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -16375,33 +16005,28 @@
   Array3UInt.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array54Float(ptr) {
     Array54Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array54Float$Companion() {
     Array54Float$Companion_instance = this;
     this.NUM_ELEMENTS = 54;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 216;
   }
-
   Array54Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array54Float$Companion_instance = null;
-
   function Array54Float$Companion_getInstance() {
     if (Array54Float$Companion_instance === null) {
       new Array54Float$Companion();
     }
     return Array54Float$Companion_instance;
   }
-
   Array54Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -16424,33 +16049,28 @@
   Array54Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array8Array23UByte(ptr) {
     Array8Array23UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array8Array23UByte$Companion() {
     Array8Array23UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 8;
     this.ELEMENT_SIZE_BYTES = 23;
     this.TOTAL_SIZE_BYTES = 184;
   }
-
   Array8Array23UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array8Array23UByte$Companion_instance = null;
-
   function Array8Array23UByte$Companion_getInstance() {
     if (Array8Array23UByte$Companion_instance === null) {
       new Array8Array23UByte$Companion();
     }
     return Array8Array23UByte$Companion_instance;
   }
-
   Array8Array23UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 23 | 0) | 0;
   };
@@ -16473,33 +16093,28 @@
   Array8Array23UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array23UByte(ptr) {
     Array23UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array23UByte$Companion() {
     Array23UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 23;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 23;
   }
-
   Array23UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array23UByte$Companion_instance = null;
-
   function Array23UByte$Companion_getInstance() {
     if (Array23UByte$Companion_instance === null) {
       new Array23UByte$Companion();
     }
     return Array23UByte$Companion_instance;
   }
-
   Array23UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16522,33 +16137,28 @@
   Array23UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array8Array40UByte(ptr) {
     Array8Array40UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array8Array40UByte$Companion() {
     Array8Array40UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 8;
     this.ELEMENT_SIZE_BYTES = 40;
     this.TOTAL_SIZE_BYTES = 320;
   }
-
   Array8Array40UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array8Array40UByte$Companion_instance = null;
-
   function Array8Array40UByte$Companion_getInstance() {
     if (Array8Array40UByte$Companion_instance === null) {
       new Array8Array40UByte$Companion();
     }
     return Array8Array40UByte$Companion_instance;
   }
-
   Array8Array40UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 40 | 0) | 0;
   };
@@ -16571,33 +16181,28 @@
   Array8Array40UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array40UByte(ptr) {
     Array40UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array40UByte$Companion() {
     Array40UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 40;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 40;
   }
-
   Array40UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array40UByte$Companion_instance = null;
-
   function Array40UByte$Companion_getInstance() {
     if (Array40UByte$Companion_instance === null) {
       new Array40UByte$Companion();
     }
     return Array40UByte$Companion_instance;
   }
-
   Array40UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16620,33 +16225,28 @@
   Array40UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array4Float(ptr) {
     Array4Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array4Float$Companion() {
     Array4Float$Companion_instance = this;
     this.NUM_ELEMENTS = 4;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 16;
   }
-
   Array4Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array4Float$Companion_instance = null;
-
   function Array4Float$Companion_getInstance() {
     if (Array4Float$Companion_instance === null) {
       new Array4Float$Companion();
     }
     return Array4Float$Companion_instance;
   }
-
   Array4Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -16669,33 +16269,28 @@
   Array4Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array3Array28UByte(ptr) {
     Array3Array28UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array3Array28UByte$Companion() {
     Array3Array28UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 3;
     this.ELEMENT_SIZE_BYTES = 28;
     this.TOTAL_SIZE_BYTES = 84;
   }
-
   Array3Array28UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array3Array28UByte$Companion_instance = null;
-
   function Array3Array28UByte$Companion_getInstance() {
     if (Array3Array28UByte$Companion_instance === null) {
       new Array3Array28UByte$Companion();
     }
     return Array3Array28UByte$Companion_instance;
   }
-
   Array3Array28UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 28 | 0) | 0;
   };
@@ -16718,33 +16313,28 @@
   Array3Array28UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array28UByte(ptr) {
     Array28UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array28UByte$Companion() {
     Array28UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 28;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 28;
   }
-
   Array28UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array28UByte$Companion_instance = null;
-
   function Array28UByte$Companion_getInstance() {
     if (Array28UByte$Companion_instance === null) {
       new Array28UByte$Companion();
     }
     return Array28UByte$Companion_instance;
   }
-
   Array28UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16767,33 +16357,28 @@
   Array28UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array16UByte(ptr) {
     Array16UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array16UByte$Companion() {
     Array16UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 16;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 16;
   }
-
   Array16UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array16UByte$Companion_instance = null;
-
   function Array16UByte$Companion_getInstance() {
     if (Array16UByte$Companion_instance === null) {
       new Array16UByte$Companion();
     }
     return Array16UByte$Companion_instance;
   }
-
   Array16UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16816,33 +16401,28 @@
   Array16UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array24UByte(ptr) {
     Array24UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array24UByte$Companion() {
     Array24UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 24;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 24;
   }
-
   Array24UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array24UByte$Companion_instance = null;
-
   function Array24UByte$Companion_getInstance() {
     if (Array24UByte$Companion_instance === null) {
       new Array24UByte$Companion();
     }
     return Array24UByte$Companion_instance;
   }
-
   Array24UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16865,33 +16445,28 @@
   Array24UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array10UByte(ptr) {
     Array10UByte$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array10UByte$Companion() {
     Array10UByte$Companion_instance = this;
     this.NUM_ELEMENTS = 10;
     this.ELEMENT_SIZE_BYTES = 1;
     this.TOTAL_SIZE_BYTES = 10;
   }
-
   Array10UByte$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array10UByte$Companion_instance = null;
-
   function Array10UByte$Companion_getInstance() {
     if (Array10UByte$Companion_instance === null) {
       new Array10UByte$Companion();
     }
     return Array10UByte$Companion_instance;
   }
-
   Array10UByte.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 1 | 0) | 0;
   };
@@ -16914,33 +16489,28 @@
   Array10UByte.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array145Float(ptr) {
     Array145Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array145Float$Companion() {
     Array145Float$Companion_instance = this;
     this.NUM_ELEMENTS = 145;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 580;
   }
-
   Array145Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array145Float$Companion_instance = null;
-
   function Array145Float$Companion_getInstance() {
     if (Array145Float$Companion_instance === null) {
       new Array145Float$Companion();
     }
     return Array145Float$Companion_instance;
   }
-
   Array145Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -16963,33 +16533,28 @@
   Array145Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array32Short(ptr) {
     Array32Short$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array32Short$Companion() {
     Array32Short$Companion_instance = this;
     this.NUM_ELEMENTS = 32;
     this.ELEMENT_SIZE_BYTES = 2;
     this.TOTAL_SIZE_BYTES = 64;
   }
-
   Array32Short$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array32Short$Companion_instance = null;
-
   function Array32Short$Companion_getInstance() {
     if (Array32Short$Companion_instance === null) {
       new Array32Short$Companion();
     }
     return Array32Short$Companion_instance;
   }
-
   Array32Short.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 2 | 0) | 0;
   };
@@ -17012,33 +16577,28 @@
   Array32Short.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array3Int(ptr) {
     Array3Int$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array3Int$Companion() {
     Array3Int$Companion_instance = this;
     this.NUM_ELEMENTS = 3;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 12;
   }
-
   Array3Int$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array3Int$Companion_instance = null;
-
   function Array3Int$Companion_getInstance() {
     if (Array3Int$Companion_instance === null) {
       new Array3Int$Companion();
     }
     return Array3Int$Companion_instance;
   }
-
   Array3Int.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17061,33 +16621,28 @@
   Array3Int.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array14Float(ptr) {
     Array14Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array14Float$Companion() {
     Array14Float$Companion_instance = this;
     this.NUM_ELEMENTS = 14;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 56;
   }
-
   Array14Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array14Float$Companion_instance = null;
-
   function Array14Float$Companion_getInstance() {
     if (Array14Float$Companion_instance === null) {
       new Array14Float$Companion();
     }
     return Array14Float$Companion_instance;
   }
-
   Array14Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17110,33 +16665,28 @@
   Array14Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2Array8Float(ptr) {
     Array2Array8Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2Array8Float$Companion() {
     Array2Array8Float$Companion_instance = this;
     this.NUM_ELEMENTS = 2;
     this.ELEMENT_SIZE_BYTES = 32;
     this.TOTAL_SIZE_BYTES = 64;
   }
-
   Array2Array8Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2Array8Float$Companion_instance = null;
-
   function Array2Array8Float$Companion_getInstance() {
     if (Array2Array8Float$Companion_instance === null) {
       new Array2Array8Float$Companion();
     }
     return Array2Array8Float$Companion_instance;
   }
-
   Array2Array8Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 32 | 0) | 0;
   };
@@ -17159,33 +16709,28 @@
   Array2Array8Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array8Float(ptr) {
     Array8Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array8Float$Companion() {
     Array8Float$Companion_instance = this;
     this.NUM_ELEMENTS = 8;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 32;
   }
-
   Array8Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array8Float$Companion_instance = null;
-
   function Array8Float$Companion_getInstance() {
     if (Array8Float$Companion_instance === null) {
       new Array8Float$Companion();
     }
     return Array8Float$Companion_instance;
   }
-
   Array8Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17208,33 +16753,28 @@
   Array8Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array18Float(ptr) {
     Array18Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array18Float$Companion() {
     Array18Float$Companion_instance = this;
     this.NUM_ELEMENTS = 18;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 72;
   }
-
   Array18Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array18Float$Companion_instance = null;
-
   function Array18Float$Companion_getInstance() {
     if (Array18Float$Companion_instance === null) {
       new Array18Float$Companion();
     }
     return Array18Float$Companion_instance;
   }
-
   Array18Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17257,33 +16797,28 @@
   Array18Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array9Float(ptr) {
     Array9Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array9Float$Companion() {
     Array9Float$Companion_instance = this;
     this.NUM_ELEMENTS = 9;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 36;
   }
-
   Array9Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array9Float$Companion_instance = null;
-
   function Array9Float$Companion_getInstance() {
     if (Array9Float$Companion_instance === null) {
       new Array9Float$Companion();
     }
     return Array9Float$Companion_instance;
   }
-
   Array9Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17306,33 +16841,28 @@
   Array9Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array6Float(ptr) {
     Array6Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array6Float$Companion() {
     Array6Float$Companion_instance = this;
     this.NUM_ELEMENTS = 6;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 24;
   }
-
   Array6Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array6Float$Companion_instance = null;
-
   function Array6Float$Companion_getInstance() {
     if (Array6Float$Companion_instance === null) {
       new Array6Float$Companion();
     }
     return Array6Float$Companion_instance;
   }
-
   Array6Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17355,33 +16885,28 @@
   Array6Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array3Float(ptr) {
     Array3Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array3Float$Companion() {
     Array3Float$Companion_instance = this;
     this.NUM_ELEMENTS = 3;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 12;
   }
-
   Array3Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array3Float$Companion_instance = null;
-
   function Array3Float$Companion_getInstance() {
     if (Array3Float$Companion_instance === null) {
       new Array3Float$Companion();
     }
     return Array3Float$Companion_instance;
   }
-
   Array3Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17404,33 +16929,28 @@
   Array3Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array2Array18Float(ptr) {
     Array2Array18Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array2Array18Float$Companion() {
     Array2Array18Float$Companion_instance = this;
     this.NUM_ELEMENTS = 2;
     this.ELEMENT_SIZE_BYTES = 72;
     this.TOTAL_SIZE_BYTES = 144;
   }
-
   Array2Array18Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array2Array18Float$Companion_instance = null;
-
   function Array2Array18Float$Companion_getInstance() {
     if (Array2Array18Float$Companion_instance === null) {
       new Array2Array18Float$Companion();
     }
     return Array2Array18Float$Companion_instance;
   }
-
   Array2Array18Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 72 | 0) | 0;
   };
@@ -17453,33 +16973,28 @@
   Array2Array18Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array24Float(ptr) {
     Array24Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array24Float$Companion() {
     Array24Float$Companion_instance = this;
     this.NUM_ELEMENTS = 24;
     this.ELEMENT_SIZE_BYTES = 4;
     this.TOTAL_SIZE_BYTES = 96;
   }
-
   Array24Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array24Float$Companion_instance = null;
-
   function Array24Float$Companion_getInstance() {
     if (Array24Float$Companion_instance === null) {
       new Array24Float$Companion();
     }
     return Array24Float$Companion_instance;
   }
-
   Array24Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 4 | 0) | 0;
   };
@@ -17502,33 +17017,28 @@
   Array24Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array4Array8Float(ptr) {
     Array4Array8Float$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array4Array8Float$Companion() {
     Array4Array8Float$Companion_instance = this;
     this.NUM_ELEMENTS = 4;
     this.ELEMENT_SIZE_BYTES = 32;
     this.TOTAL_SIZE_BYTES = 128;
   }
-
   Array4Array8Float$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array4Array8Float$Companion_instance = null;
-
   function Array4Array8Float$Companion_getInstance() {
     if (Array4Array8Float$Companion_instance === null) {
       new Array4Array8Float$Companion();
     }
     return Array4Array8Float$Companion_instance;
   }
-
   Array4Array8Float.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 32 | 0) | 0;
   };
@@ -17551,33 +17061,28 @@
   Array4Array8Float.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array1bs_t(ptr) {
     Array1bs_t$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array1bs_t$Companion() {
     Array1bs_t$Companion_instance = this;
     this.NUM_ELEMENTS = 1;
     this.ELEMENT_SIZE_BYTES = 12;
     this.TOTAL_SIZE_BYTES = 12;
   }
-
   Array1bs_t$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array1bs_t$Companion_instance = null;
-
   function Array1bs_t$Companion_getInstance() {
     if (Array1bs_t$Companion_instance === null) {
       new Array1bs_t$Companion();
     }
     return Array1bs_t$Companion_instance;
   }
-
   Array1bs_t.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 12 | 0) | 0;
   };
@@ -17600,33 +17105,28 @@
   Array1bs_t.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Array1L12_scale_info(ptr) {
     Array1L12_scale_info$Companion_getInstance();
     this.ptr = ptr;
   }
-
   function Array1L12_scale_info$Companion() {
     Array1L12_scale_info$Companion_instance = this;
     this.NUM_ELEMENTS = 1;
     this.ELEMENT_SIZE_BYTES = 898;
     this.TOTAL_SIZE_BYTES = 898;
   }
-
   Array1L12_scale_info$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Array1L12_scale_info$Companion_instance = null;
-
   function Array1L12_scale_info$Companion_getInstance() {
     if (Array1L12_scale_info$Companion_instance === null) {
       new Array1L12_scale_info$Companion();
     }
     return Array1L12_scale_info$Companion_instance;
   }
-
   Array1L12_scale_info.prototype.addr_za3lpa$ = function (index) {
     return this.ptr + (index * 898 | 0) | 0;
   };
@@ -17649,11 +17149,9 @@
   Array1L12_scale_info.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CPointer(ptr) {
     this.ptr = ptr;
   }
-
   CPointer.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CPointer',
@@ -17673,11 +17171,9 @@
   CPointer.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction0(ptr) {
     this.ptr = ptr;
   }
-
   CFunction0.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction0',
@@ -17697,11 +17193,9 @@
   CFunction0.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction1(ptr) {
     this.ptr = ptr;
   }
-
   CFunction1.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction1',
@@ -17721,11 +17215,9 @@
   CFunction1.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction2(ptr) {
     this.ptr = ptr;
   }
-
   CFunction2.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction2',
@@ -17745,11 +17237,9 @@
   CFunction2.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction3(ptr) {
     this.ptr = ptr;
   }
-
   CFunction3.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction3',
@@ -17769,11 +17259,9 @@
   CFunction3.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction4(ptr) {
     this.ptr = ptr;
   }
-
   CFunction4.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction4',
@@ -17793,11 +17281,9 @@
   CFunction4.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction5(ptr) {
     this.ptr = ptr;
   }
-
   CFunction5.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction5',
@@ -17817,11 +17303,9 @@
   CFunction5.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction6(ptr) {
     this.ptr = ptr;
   }
-
   CFunction6.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction6',
@@ -17841,11 +17325,9 @@
   CFunction6.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function CFunction7(ptr) {
     this.ptr = ptr;
   }
-
   CFunction7.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CFunction7',
@@ -17865,7 +17347,6 @@
   CFunction7.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.ptr, other.ptr))));
   };
-
   function Runtime(REQUESTED_HEAP_SIZE, REQUESTED_STACK_PTR, __syscalls) {
     if (REQUESTED_HEAP_SIZE === void 0)
       REQUESTED_HEAP_SIZE = 0;
@@ -17876,7 +17357,6 @@
     AbstractRuntime.call(this, REQUESTED_HEAP_SIZE, REQUESTED_STACK_PTR, __syscalls);
     this.HEAP_1tks1n$_0 = new Int8Array(this.HEAP_SIZE);
   }
-
   Runtime.prototype.lb_za3lpa$ = function (ptr) {
     return this.HEAP_1tks1n$_0[ptr];
   };
@@ -17923,10 +17403,8 @@
     simpleName: 'Runtime',
     interfaces: [AbstractRuntime]
   };
-
   function RuntimeSyscalls() {
   }
-
   RuntimeSyscalls.prototype.fopen_xn3l7s$ = function ($receiver, file, mode) {
     throw new NotImplementedError_init();
   };
@@ -17959,25 +17437,21 @@
     simpleName: 'RuntimeSyscalls',
     interfaces: []
   };
-
   function DummyRuntimeSyscalls() {
     DummyRuntimeSyscalls_instance = this;
   }
-
   DummyRuntimeSyscalls.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'DummyRuntimeSyscalls',
     interfaces: [RuntimeSyscalls]
   };
   var DummyRuntimeSyscalls_instance = null;
-
   function DummyRuntimeSyscalls_getInstance() {
     if (DummyRuntimeSyscalls_instance === null) {
       new DummyRuntimeSyscalls();
     }
     return DummyRuntimeSyscalls_instance;
   }
-
   function AbstractRuntime(REQUESTED_HEAP_SIZE, REQUESTED_STACK_PTR, __syscalls) {
     if (REQUESTED_HEAP_SIZE === void 0)
       REQUESTED_HEAP_SIZE = 0;
@@ -17999,7 +17473,6 @@
     this.start_h5c70d$_0 = time.MonoClock.markNow();
     this.FUNCTION_ADDRS = LinkedHashMap_init();
   }
-
   AbstractRuntime.prototype.get_SIZE_BYTES_y9phqa$ = function ($receiver) {
     return 4;
   };
@@ -18012,19 +17485,15 @@
   AbstractRuntime.prototype.shl_aogav3$ = function ($receiver, other) {
     return new UInt((new UInt($receiver.data & 255)).data << other);
   };
-
   function AbstractRuntime$IStruct() {
   }
-
   AbstractRuntime$IStruct.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IStruct',
     interfaces: []
   };
-
   function AbstractRuntime$IStructCompanion() {
   }
-
   AbstractRuntime$IStructCompanion.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IStructCompanion',
@@ -18127,7 +17596,8 @@
     var oldPos = this.STACK_PTR;
     try {
       tmp$ = callback();
-    } finally {
+    }
+    finally {
       this.STACK_PTR = oldPos;
     }
     return tmp$;
@@ -18142,12 +17612,10 @@
     this.memset_j2ark3$($receiver, 0, size);
     return $receiver;
   };
-
   function AbstractRuntime$Chunk(head, size) {
     this.head = head;
     this.size = size;
   }
-
   AbstractRuntime$Chunk.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Chunk',
@@ -18189,7 +17657,7 @@
       }
       firstOrNull$result = null;
     }
-    while (false);
+     while (false);
     var chunk = firstOrNull$result;
     if (chunk != null) {
       this.freeChunks.remove_11rb$(chunk);
@@ -18197,7 +17665,8 @@
       var key = chunk.head;
       $receiver_0.put_xwzc9p$(key, chunk);
       return new CPointer(chunk.head);
-    } else {
+    }
+     else {
       var head = this.HEAP_PTR;
       this.HEAP_PTR = this.HEAP_PTR + size | 0;
       var $receiver_1 = this.chunks;
@@ -18216,13 +17685,11 @@
     print(toBoxedChar(toChar(c)));
     return c;
   };
-
   function AbstractRuntime$ExitError(code) {
     Error_init(this);
     this.code = code;
     this.name = 'AbstractRuntime$ExitError';
   }
-
   AbstractRuntime$ExitError.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ExitError',
@@ -18333,8 +17800,7 @@
           case 46:
             commaIndex = n;
             break;
-          default:
-            if ((new CharRange(48, 57)).contains_mef7kx$(c))
+          default:if ((new CharRange(48, 57)).contains_mef7kx$(c))
               data.append_s8itvh$(c);
             else
               switch (c) {
@@ -18346,7 +17812,8 @@
 
             break;
         }
-      } else if (state === 1) {
+      }
+       else if (state === 1) {
         switch (c) {
           case 45:
             esign = -1;
@@ -18354,8 +17821,7 @@
           case 43:
             esign = 1;
             break;
-          default:
-            if ((new CharRange(48, 57)).contains_mef7kx$(c)) {
+          default:if ((new CharRange(48, 57)).contains_mef7kx$(c)) {
               evalue = evalue * 10 | 0;
               evalue = evalue + (c - 48) | 0;
             }
@@ -18369,7 +17835,8 @@
     var commaOffset = rCommaIndex + exp | 0;
     if (commaOffset < 0) {
       tmp$_0 = '0.' + repeat('0', (-commaOffset | 0) + decimalPlaces | 0) + toString(data);
-    } else {
+    }
+     else {
       var tmp$_2 = data.toString();
       var b = commaOffset - data.length + 1 + decimalPlaces | 0;
       var res_0 = tmp$_2 + repeat('0', Math_0.max(1, b));
@@ -18379,7 +17846,8 @@
     var parts = split(out, ['.']);
     if (decimalPlaces <= 0) {
       tmp$_1 = parts.get_za3lpa$(0);
-    } else {
+    }
+     else {
       var res_1 = this.substr_ium62l$_0(parts.get_za3lpa$(1), 0, decimalPlaces);
       tmp$_1 = parts.get_za3lpa$(0) + '.' + res_1;
     }
@@ -18410,15 +17878,12 @@
   AbstractRuntime.prototype._formatA_dwni7i$_0 = function (value) {
     return value.toString();
   };
-
   function AbstractRuntime$_format$toCase($receiver, upper) {
     return upper ? $receiver.toUpperCase() : $receiver.toLowerCase();
   }
-
   function AbstractRuntime$_format$isUpperCase($receiver) {
     return (new CharRange(65, 90)).contains_mef7kx$($receiver);
   }
-
   function AbstractRuntime$_format$readParam(closure$params, closure$paramPos) {
     return function () {
       var tmp$, tmp$_0;
@@ -18426,7 +17891,6 @@
       return getOrNull(closure$params, tmp$_0);
     };
   }
-
   function AbstractRuntime$_format$readParamI(closure$readParam) {
     return function () {
       var tmp$, tmp$_0;
@@ -18437,11 +17901,14 @@
         tmp$_0 = unboxChar(v) | 0;
       else if (Kotlin.isType(v, UByte)) {
         tmp$_0 = v.data & 255;
-      } else if (Kotlin.isType(v, UShort_init)) {
+      }
+       else if (Kotlin.isType(v, UShort_init)) {
         tmp$_0 = v.data & 65535;
-      } else if (Kotlin.isType(v, UInt)) {
+      }
+       else if (Kotlin.isType(v, UInt)) {
         tmp$_0 = v.data;
-      } else if (Kotlin.isNumber(v))
+      }
+       else if (Kotlin.isNumber(v))
         tmp$_0 = numberToInt(v);
       else if (Kotlin.isType(v, CPointer))
         tmp$_0 = v.ptr;
@@ -18452,7 +17919,6 @@
       return tmp$_0;
     };
   }
-
   function AbstractRuntime$_format$readParamS(closure$readParam, this$AbstractRuntime) {
     return function () {
       var tmp$, tmp$_0;
@@ -18472,7 +17938,6 @@
       return tmp$_0;
     };
   }
-
   AbstractRuntime.prototype._format_3p2iqn$ = function (fmt, params, appendable) {
     if (appendable === void 0)
       appendable = StringBuilder_init();
@@ -18494,12 +17959,13 @@
           c2 = fmt.charCodeAt((tmp$_0 = n, n = tmp$_0 + 1 | 0, tmp$_0));
           if (c2 === 48) {
             pad = c2;
-          } else if ((new CharRange(48, 57)).contains_mef7kx$(c2)) {
+          }
+           else if ((new CharRange(48, 57)).contains_mef7kx$(c2)) {
             len = len * 10 | 0;
             len = len + (c2 - 48) | 0;
           }
         }
-        while ((new CharRange(48, 57)).contains_mef7kx$(c2));
+         while ((new CharRange(48, 57)).contains_mef7kx$(c2));
         if (c2 === 37) {
           appendable.append_s8itvh$(37);
           continue loop;
@@ -18548,12 +18014,12 @@
           case 115:
             appendable.append_gw00v9$(readParamS());
             break;
-          default:
-            appendable.append_s8itvh$(c);
+          default:appendable.append_s8itvh$(c);
             appendable.append_s8itvh$(c2);
             break;
         }
-      } else {
+      }
+       else {
         appendable.append_s8itvh$(c);
       }
     }
@@ -18573,7 +18039,8 @@
         var n = num - 1 - m | 0;
         this.sb_6t1wet$(dest.ptr + n | 0, this.lb_za3lpa$(src.ptr + n | 0));
       }
-    } else {
+    }
+     else {
       for (var n_0 = 0; n_0 < num; n_0++)
         this.sb_6t1wet$(dest.ptr + n_0 | 0, this.lb_za3lpa$(src.ptr + n_0 | 0));
     }
@@ -18585,7 +18052,6 @@
       this.sb_6t1wet$(dest.ptr + n | 0, this.lb_za3lpa$(src.ptr + n | 0));
     return Kotlin.isType(tmp$ = dest, CPointer) ? tmp$ : throwCCE();
   };
-
   function AbstractRuntime$ByteArrayBuilder(initialCapacity) {
     if (initialCapacity === void 0)
       initialCapacity = 64;
@@ -18593,7 +18059,6 @@
     this.data_0 = new Int8Array(this.initialCapacity);
     this.pos_0 = 0;
   }
-
   AbstractRuntime$ByteArrayBuilder.prototype.append_s8j3t7$ = function (byte) {
     var tmp$;
     if (this.pos_0 >= (this.data_0.length - 1 | 0)) {
@@ -18674,7 +18139,8 @@
       var answer = ptr;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return tmp$;
@@ -18993,7 +18459,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction0(tmp$);
@@ -19011,7 +18478,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction1(tmp$);
@@ -19029,7 +18497,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction2(tmp$);
@@ -19047,7 +18516,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction3(tmp$);
@@ -19065,7 +18535,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction4(tmp$);
@@ -19083,7 +18554,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction5(tmp$);
@@ -19101,7 +18573,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction6(tmp$);
@@ -19119,7 +18592,8 @@
       var answer = this.FUNCTIONS.size - 1 | 0;
       $receiver_0.put_xwzc9p$($receiver, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return new CFunction7(tmp$);

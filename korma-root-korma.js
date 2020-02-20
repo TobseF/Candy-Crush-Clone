@@ -119,26 +119,22 @@
   VectorPath$LineCap.prototype.constructor = VectorPath$LineCap;
   VectorPath$LineJoin.prototype = Object.create(Enum.prototype);
   VectorPath$LineJoin.prototype.constructor = VectorPath$LineJoin;
-
   function Korma() {
     Korma_instance = this;
     this.VERSION = KORMA_VERSION;
   }
-
   Korma.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Korma',
     interfaces: []
   };
   var Korma_instance = null;
-
   function Korma_getInstance() {
     if (Korma_instance === null) {
       new Korma();
     }
     return Korma_instance;
   }
-
   function AStar(width, height, isBlocking) {
     AStar$Companion_getInstance();
     this.width = width;
@@ -175,27 +171,22 @@
     this.prev_0 = array_2;
     this.queue_0 = IntPriorityQueue.Companion.invoke_ynrz7b$(void 0, AStar$queue$lambda(this));
   }
-
   function AStar$Companion() {
     AStar$Companion_instance = this;
   }
-
   function AStar$Companion$invoke$lambda(closure$board) {
     return function (x, y) {
       return closure$board.get_vux9f0$(x, y);
     };
   }
-
   AStar$Companion.prototype.invoke_9zsmt2$ = function (board) {
     return new AStar(board.width, board.height, AStar$Companion$invoke$lambda(board));
   };
-
   function AStar$Companion$find$lambda(closure$board) {
     return function (x, y) {
       return closure$board.get_vux9f0$(x, y);
     };
   }
-
   AStar$Companion.prototype.find_43y20a$ = function (board, x0, y0, x1, y1, findClosest, diagonals) {
     if (findClosest === void 0)
       findClosest = false;
@@ -209,21 +200,18 @@
     interfaces: []
   };
   var AStar$Companion_instance = null;
-
   function AStar$Companion_getInstance() {
     if (AStar$Companion_instance === null) {
       new AStar$Companion();
     }
     return AStar$Companion_instance;
   }
-
   function AStar$find$lambda(closure$out) {
     return function (x, y) {
       closure$out.add_vux9f0$(x, y);
       return Unit;
     };
   }
-
   AStar.prototype.find_eibivg$ = function (x0, y0, x1, y1, findClosest, diagonals) {
     if (findClosest === void 0)
       findClosest = false;
@@ -303,7 +291,8 @@
     if (0 <= x && x < tmp$) {
       tmp$_0 = this.height;
       tmp$_1 = (0 <= y && y < tmp$_0);
-    } else
+    }
+     else
       tmp$_1 = false;
     return tmp$_1;
   };
@@ -346,23 +335,19 @@
       }
     }
   };
-
   function AStar$queue$lambda(this$AStar) {
     return function (a, b) {
       return this$AStar.get_weight_0(new AStarNode(a)) - this$AStar.get_weight_0(new AStarNode(b)) | 0;
     };
   }
-
   AStar.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AStar',
     interfaces: []
   };
-
   function AStarNode(index) {
     this.index = index;
   }
-
   AStarNode.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AStarNode',
@@ -382,13 +367,11 @@
   AStarNode.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.index, other.index))));
   };
-
   function Anchor(sx, sy) {
     Anchor$Companion_getInstance();
     this.sx = sx;
     this.sy = sy;
   }
-
   function Anchor$Companion() {
     Anchor$Companion_instance = this;
     this.TOP_LEFT = new Anchor(numberToDouble(0), numberToDouble(0));
@@ -401,7 +384,6 @@
     this.BOTTOM_CENTER = new Anchor(numberToDouble(0.5), numberToDouble(1));
     this.BOTTOM_RIGHT = new Anchor(numberToDouble(1), numberToDouble(1));
   }
-
   Anchor$Companion.prototype.invoke_z8e4lc$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Anchor.Companion.invoke_z8e4lc$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Anchor_init = _.com.soywiz.korma.geom.Anchor;
@@ -415,14 +397,12 @@
     interfaces: []
   };
   var Anchor$Companion_instance = null;
-
   function Anchor$Companion_getInstance() {
     if (Anchor$Companion_instance === null) {
       new Anchor$Companion();
     }
     return Anchor$Companion_instance;
   }
-
   Anchor.prototype.interpolateWith_41hqm1$ = function (ratio, other) {
     return new Anchor(interpolate_1(ratio, this.sx, other.sx), interpolate_1(ratio, this.sy, other.sy));
   };
@@ -452,16 +432,13 @@
   Anchor.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.sx, other.sx) && Kotlin.equals(this.sy, other.sy)))));
   };
-
   function Angle(radians) {
     Angle$Companion_getInstance();
     this.radians = radians;
   }
-
   Angle.prototype.toString = function () {
     return get_degrees(this).toString() + '.degrees';
   };
-
   function Angle$Companion() {
     Angle$Companion_instance = this;
     this.ZERO = new Angle(0.0);
@@ -473,7 +450,6 @@
     this.HALF_DEGREES_8be2vx$ = this.MAX_DEGREES_8be2vx$ / 2.0;
     this.HALF_RADIANS_8be2vx$ = this.MAX_RADIANS_8be2vx$ / 2.0;
   }
-
   Angle$Companion.prototype.fromRadians_3p81yu$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Angle.Companion.fromRadians_3p81yu$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Angle_init = _.com.soywiz.korma.geom.Angle;
@@ -519,7 +495,8 @@
       tmp$ = this.ZERO;
     else if (short.compareTo_11rb$(this.ZERO) < 0) {
       tmp$ = new Angle((new Angle(Angle.Companion.degreesToRadians_14dthe$(numberToDouble(360)))).radians + short.radians);
-    } else {
+    }
+     else {
       tmp$ = new Angle((new Angle(Angle.Companion.degreesToRadians_14dthe$(numberToDouble(-360)))).radians + short.radians);
     }
     return tmp$;
@@ -545,14 +522,12 @@
     interfaces: []
   };
   var Angle$Companion_instance = null;
-
   function Angle$Companion_getInstance() {
     if (Angle$Companion_instance === null) {
       new Angle$Companion();
     }
     return Angle$Companion_instance;
   }
-
   Angle.prototype.compareTo_11rb$ = function (other) {
     return Kotlin.compareTo(this.radians, other.radians);
   };
@@ -593,40 +568,32 @@
       return Math_0.tan(x);
     };
   }));
-
   function get_cosine($receiver) {
     var x = $receiver.radians;
     return Math_0.cos(x);
   }
-
   function get_sine($receiver) {
     var x = $receiver.radians;
     return Math_0.sin(x);
   }
-
   function get_tangent($receiver) {
     var x = $receiver.radians;
     return Math_0.tan(x);
   }
-
   function get_degrees($receiver) {
     return Angle$Companion_getInstance().radiansToDegrees_14dthe$($receiver.radians);
   }
-
   function get_absoluteValue($receiver) {
     Angle$Companion_getInstance();
     var $receiver_0 = $receiver.radians;
     return new Angle(numberToDouble(Math_0.abs($receiver_0)));
   }
-
   function shortDistanceTo($receiver, other) {
     return Angle$Companion_getInstance().shortDistanceTo_1h8ip2$($receiver, other);
   }
-
   function longDistanceTo($receiver, other) {
     return Angle$Companion_getInstance().longDistanceTo_1h8ip2$($receiver, other);
   }
-
   var times = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.times_lav7ze$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Angle_init = _.com.soywiz.korma.geom.Angle;
@@ -683,11 +650,9 @@
       return inBetween(angle, $receiver.start, $receiver.endExclusive, false);
     };
   }));
-
   function until_0($receiver, other) {
     return new OpenRange($receiver, other);
   }
-
   var inBetweenInclusive = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.inBetweenInclusive_o5albm$', wrapFunction(function () {
     var inBetween = _.com.soywiz.korma.geom.inBetween_luynt3$;
     return function ($receiver, min, max) {
@@ -712,7 +677,6 @@
       return inBetween($receiver, range.start, range.endExclusive, false);
     };
   }));
-
   function inBetween_1($receiver, min, max, inclusive) {
     var tmp$;
     var nthis = get_normalized($receiver);
@@ -724,7 +688,6 @@
       tmp$ = (nthis.compareTo_11rb$(nmin) >= 0 && (inclusive ? nthis.compareTo_11rb$(nmax) <= 0 : nthis.compareTo_11rb$(nmax) < 0));
     return tmp$;
   }
-
   var get_degrees_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.get_degrees_rcaex3$', wrapFunction(function () {
     var Angle = _.com.soywiz.korma.geom.Angle;
     var numberToDouble = Kotlin.numberToDouble;
@@ -739,15 +702,12 @@
       return new Angle(numberToDouble($receiver));
     };
   }));
-
   function get_normalized($receiver) {
     return new Angle(umod($receiver.radians, Angle$Companion_getInstance().MAX_RADIANS_8be2vx$));
   }
-
   function interpolate($receiver, l, r) {
     return new Angle(numberToDouble(interpolate_1($receiver, l.radians, r.radians)));
   }
-
   function BoundsBuilder() {
     BoundsBuilder$Companion_getInstance();
     this.tempRect = new Rectangle(0.0, 0.0, 0.0, 0.0);
@@ -757,27 +717,23 @@
     this.ymin_0 = BoundsBuilder$Companion_getInstance().MAX_0;
     this.ymax_0 = BoundsBuilder$Companion_getInstance().MIN_0;
   }
-
   function BoundsBuilder$Companion() {
     BoundsBuilder$Companion_instance = this;
     this.MIN_0 = kotlin_js_internal_DoubleCompanionObject.NEGATIVE_INFINITY;
     this.MAX_0 = kotlin_js_internal_DoubleCompanionObject.POSITIVE_INFINITY;
   }
-
   BoundsBuilder$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var BoundsBuilder$Companion_instance = null;
-
   function BoundsBuilder$Companion_getInstance() {
     if (BoundsBuilder$Companion_instance === null) {
       new BoundsBuilder$Companion();
     }
     return BoundsBuilder$Companion_instance;
   }
-
   BoundsBuilder.prototype.reset = function () {
     this.xmin_0 = BoundsBuilder$Companion_getInstance().MAX_0;
     this.xmax_0 = BoundsBuilder$Companion_getInstance().MIN_0;
@@ -823,11 +779,9 @@
       return $receiver.add_lu1900$(numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function add_0($receiver, p) {
     return $receiver.add_lu1900$(p.x, p.y);
   }
-
   function add_1($receiver, ps) {
     var tmp$;
     tmp$ = ps.iterator();
@@ -837,14 +791,12 @@
     }
     return $receiver;
   }
-
   function add_2($receiver, ps) {
     var tmp$;
     tmp$ = ps.size;
     for (var n = 0; n < tmp$; n++)
       $receiver.add_lu1900$(ps.getX_za3lpa$(n), ps.getY_za3lpa$(n));
   }
-
   function add_3($receiver, rect) {
     if (rect.isNotEmpty) {
       $receiver.add_lu1900$(rect.left, rect.top);
@@ -852,15 +804,12 @@
     }
     return $receiver;
   }
-
   function IMatrix() {
     IMatrix$Companion_getInstance();
   }
-
   function IMatrix$Companion() {
     IMatrix$Companion_instance = this;
   }
-
   IMatrix$Companion.prototype.invoke_9wz194$ = function (a, b, c, d, tx, ty) {
     if (a === void 0)
       a = 1;
@@ -882,20 +831,17 @@
     interfaces: []
   };
   var IMatrix$Companion_instance = null;
-
   function IMatrix$Companion_getInstance() {
     if (IMatrix$Companion_instance === null) {
       new IMatrix$Companion();
     }
     return IMatrix$Companion_instance;
   }
-
   IMatrix.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IMatrix',
     interfaces: []
   };
-
   function Matrix(a, b, c, d, tx, ty) {
     Matrix$Companion_getInstance();
     if (a === void 0)
@@ -917,7 +863,6 @@
     this.tx_yixc0p$_0 = tx;
     this.ty_yixc1k$_0 = ty;
   }
-
   Object.defineProperty(Matrix.prototype, 'a', {
     get: function () {
       return this.a_143dti$_0;
@@ -966,11 +911,9 @@
       this.ty_yixc1k$_0 = ty;
     }
   });
-
   function Matrix$Companion() {
     Matrix$Companion_instance = this;
   }
-
   Matrix$Companion.prototype.invoke_9wz194$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Matrix.Companion.invoke_9wz194$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Matrix_init = _.com.soywiz.korma.geom.Matrix;
@@ -999,14 +942,12 @@
     interfaces: []
   };
   var Matrix$Companion_instance = null;
-
   function Matrix$Companion_getInstance() {
     if (Matrix$Companion_instance === null) {
       new Matrix$Companion();
     }
     return Matrix$Companion_instance;
   }
-
   function Matrix$Type(name, ordinal, id, hasRotation, hasScale, hasTranslation) {
     Enum.call(this);
     this.id = id;
@@ -1016,7 +957,6 @@
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function Matrix$Type_initFields() {
     Matrix$Type_initFields = function () {
     };
@@ -1026,54 +966,40 @@
     Matrix$Type$SCALE_TRANSLATE_instance = new Matrix$Type('SCALE_TRANSLATE', 3, 4, false, true, true);
     Matrix$Type$COMPLEX_instance = new Matrix$Type('COMPLEX', 4, 5, true, true, true);
   }
-
   var Matrix$Type$IDENTITY_instance;
-
   function Matrix$Type$IDENTITY_getInstance() {
     Matrix$Type_initFields();
     return Matrix$Type$IDENTITY_instance;
   }
-
   var Matrix$Type$TRANSLATE_instance;
-
   function Matrix$Type$TRANSLATE_getInstance() {
     Matrix$Type_initFields();
     return Matrix$Type$TRANSLATE_instance;
   }
-
   var Matrix$Type$SCALE_instance;
-
   function Matrix$Type$SCALE_getInstance() {
     Matrix$Type_initFields();
     return Matrix$Type$SCALE_instance;
   }
-
   var Matrix$Type$SCALE_TRANSLATE_instance;
-
   function Matrix$Type$SCALE_TRANSLATE_getInstance() {
     Matrix$Type_initFields();
     return Matrix$Type$SCALE_TRANSLATE_instance;
   }
-
   var Matrix$Type$COMPLEX_instance;
-
   function Matrix$Type$COMPLEX_getInstance() {
     Matrix$Type_initFields();
     return Matrix$Type$COMPLEX_instance;
   }
-
   Matrix$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function Matrix$Type$values() {
     return [Matrix$Type$IDENTITY_getInstance(), Matrix$Type$TRANSLATE_getInstance(), Matrix$Type$SCALE_getInstance(), Matrix$Type$SCALE_TRANSLATE_getInstance(), Matrix$Type$COMPLEX_getInstance()];
   }
-
   Matrix$Type.values = Matrix$Type$values;
-
   function Matrix$Type$valueOf(name) {
     switch (name) {
       case 'IDENTITY':
@@ -1086,11 +1012,9 @@
         return Matrix$Type$SCALE_TRANSLATE_getInstance();
       case 'COMPLEX':
         return Matrix$Type$COMPLEX_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korma.geom.Matrix.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korma.geom.Matrix.Type.' + name);
     }
   }
-
   Matrix$Type.valueOf_61zpoe$ = Matrix$Type$valueOf;
   Matrix.prototype.getType = function () {
     var tmp$;
@@ -1201,7 +1125,8 @@
     var norm = src.a * src.d - src.b * src.c;
     if (norm === 0.0) {
       dst.setTo_15yvbs$(0.0, 0.0, 0.0, 0.0, -src.tx, -src.ty);
-    } else {
+    }
+     else {
       var inorm = 1.0 / norm;
       var d = src.a * inorm;
       var a = src.d * inorm;
@@ -1220,14 +1145,16 @@
     if (skewX === 0.0 && skewY === 0.0) {
       if (rotation != null ? rotation.equals(new Angle(numberToDouble(0))) : null) {
         this.setTo_15yvbs$(scaleX, 0.0, 0.0, scaleY, x, y);
-      } else {
+      }
+       else {
         var x_0 = rotation.radians;
         var cos = Math_0.cos(x_0);
         var x_1 = rotation.radians;
         var sin = Math_0.sin(x_1);
         this.setTo_15yvbs$(cos * scaleX, sin * scaleY, -sin * scaleX, cos * scaleY, x, y);
       }
-    } else {
+    }
+     else {
       this.identity();
       this.scale_lu1900$(scaleX, scaleY);
       this.skew_lu1900$(skewX, skewY);
@@ -1239,7 +1166,6 @@
   Matrix.prototype.clone = function () {
     return new Matrix(this.a, this.b, this.c, this.d, this.tx, this.ty);
   };
-
   function Matrix$Transform(x, y, scaleX, scaleY, skewX, skewY, rotation) {
     Matrix$Transform$Companion_getInstance();
     if (x === void 0)
@@ -1265,11 +1191,9 @@
     this.skewY = skewY;
     this.rotation = rotation;
   }
-
   function Matrix$Transform$Companion() {
     Matrix$Transform$Companion_instance = this;
   }
-
   Matrix$Transform$Companion.prototype.invoke_o29yf5$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Matrix.Transform.Companion.invoke_o29yf5$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Matrix$Matrix$Transform_init = _.com.soywiz.korma.geom.Matrix.Transform;
@@ -1299,14 +1223,12 @@
     interfaces: []
   };
   var Matrix$Transform$Companion_instance = null;
-
   function Matrix$Transform$Companion_getInstance() {
     if (Matrix$Transform$Companion_instance === null) {
       new Matrix$Transform$Companion();
     }
     return Matrix$Transform$Companion_instance;
   }
-
   Matrix$Transform.prototype.interpolateWith_41hqm1$ = function (ratio, other) {
     return (new Matrix$Transform()).setToInterpolated_bs4suk$(ratio, this, other);
   };
@@ -1339,7 +1261,8 @@
       var tmp$_0 = matrix.d;
       var x_1 = this.skewX;
       tmp$ = tmp$_0 / Math_0.cos(x_1);
-    } else {
+    }
+     else {
       var tmp$_1 = -matrix.c;
       var x_2 = this.skewX;
       tmp$ = tmp$_1 / Math_0.sin(x_2);
@@ -1350,7 +1273,8 @@
       var tmp$_3 = matrix.a;
       var x_3 = this.skewY;
       tmp$_2 = tmp$_3 / Math_0.cos(x_3);
-    } else {
+    }
+     else {
       var tmp$_4 = matrix.b;
       var x_4 = this.skewY;
       tmp$_2 = tmp$_4 / Math_0.sin(x_4);
@@ -1361,7 +1285,8 @@
       this.rotation = new Angle(numberToDouble(this.skewX));
       this.skewX = 0.0;
       this.skewY = 0.0;
-    } else {
+    }
+     else {
       this.rotation = new Angle(numberToDouble(0));
     }
     return this;
@@ -1439,49 +1364,41 @@
   Matrix$Transform.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.scaleX, other.scaleX) && Kotlin.equals(this.scaleY, other.scaleY) && Kotlin.equals(this.skewX, other.skewX) && Kotlin.equals(this.skewY, other.skewY) && Kotlin.equals(this.rotation, other.rotation)))));
   };
-
   function Matrix$Computed(matrix, transform) {
     Matrix$Computed$Companion_getInstance();
     this.matrix = matrix;
     this.transform = transform;
   }
-
   function Matrix$Computed$Companion() {
     Matrix$Computed$Companion_instance = this;
   }
-
   Matrix$Computed$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Matrix$Computed$Companion_instance = null;
-
   function Matrix$Computed$Companion_getInstance() {
     if (Matrix$Computed$Companion_instance === null) {
       new Matrix$Computed$Companion();
     }
     return Matrix$Computed$Companion_instance;
   }
-
   Matrix$Computed.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Computed',
     interfaces: []
   };
-
   function Matrix$Matrix$Computed_init(matrix, $this) {
     $this = $this || Object.create(Matrix$Computed.prototype);
     Matrix$Computed.call($this, matrix, (new Matrix$Transform()).setMatrix_onv4sa$(matrix));
     return $this;
   }
-
   function Matrix$Matrix$Computed_init_0(transform, $this) {
     $this = $this || Object.create(Matrix$Computed.prototype);
     Matrix$Computed.call($this, transform.toMatrix_1ktkmn$(), transform);
     return $this;
   }
-
   Matrix.prototype.setToInterpolated_bs4suk$ = function (ratio, l, r) {
     return this.setTo_15yvbs$(interpolate_1(ratio, l.a, r.a), interpolate_1(ratio, l.b, r.b), interpolate_1(ratio, l.c, r.c), interpolate_1(ratio, l.d, r.d), interpolate_1(ratio, l.tx, r.tx), interpolate_1(ratio, l.ty, r.ty));
   };
@@ -1497,7 +1414,8 @@
     var ty = this.ty;
     try {
       return callback(this);
-    } finally {
+    }
+    finally {
       this.a = a;
       this.b = b;
       this.c = c;
@@ -1548,25 +1466,20 @@
   Matrix.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.a, other.a) && Kotlin.equals(this.b, other.b) && Kotlin.equals(this.c, other.c) && Kotlin.equals(this.d, other.d) && Kotlin.equals(this.tx, other.tx) && Kotlin.equals(this.ty, other.ty)))));
   };
-
   function times_0($receiver, that) {
     return (new Matrix()).multiply_ek4ri0$($receiver, that);
   }
-
   function transformX($receiver, px, py) {
     return $receiver.a * px + $receiver.c * py + $receiver.tx;
   }
-
   function transformY($receiver, px, py) {
     return $receiver.d * py + $receiver.b * px + $receiver.ty;
   }
-
   function transform($receiver, px, py, out) {
     if (out === void 0)
       out = Point$Companion_getInstance().invoke();
     return out.setTo_lu1900$(transformX($receiver, px, py), transformY($receiver, px, py));
   }
-
   var transform_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.transform_ew9zwh$', wrapFunction(function () {
     var Point = _.com.soywiz.korma.geom.Point;
     var numberToDouble = Kotlin.numberToDouble;
@@ -1712,64 +1625,50 @@
       return $receiver.setTransform_5mv93l$(numberToDouble(x), numberToDouble(y), numberToDouble(scaleX), numberToDouble(scaleY), rotation, numberToDouble(skewX), numberToDouble(skewY));
     };
   }));
-
   function MajorOrder(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function MajorOrder_initFields() {
     MajorOrder_initFields = function () {
     };
     MajorOrder$ROW_instance = new MajorOrder('ROW', 0);
     MajorOrder$COLUMN_instance = new MajorOrder('COLUMN', 1);
   }
-
   var MajorOrder$ROW_instance;
-
   function MajorOrder$ROW_getInstance() {
     MajorOrder_initFields();
     return MajorOrder$ROW_instance;
   }
-
   var MajorOrder$COLUMN_instance;
-
   function MajorOrder$COLUMN_getInstance() {
     MajorOrder_initFields();
     return MajorOrder$COLUMN_instance;
   }
-
   MajorOrder.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'MajorOrder',
     interfaces: [Enum]
   };
-
   function MajorOrder$values() {
     return [MajorOrder$ROW_getInstance(), MajorOrder$COLUMN_getInstance()];
   }
-
   MajorOrder.values = MajorOrder$values;
-
   function MajorOrder$valueOf(name) {
     switch (name) {
       case 'ROW':
         return MajorOrder$ROW_getInstance();
       case 'COLUMN':
         return MajorOrder$COLUMN_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korma.geom.MajorOrder.' + name);
+      default:throwISE('No enum constant com.soywiz.korma.geom.MajorOrder.' + name);
     }
   }
-
   MajorOrder.valueOf_61zpoe$ = MajorOrder$valueOf;
-
   function Matrix3D() {
     Matrix3D$Companion_getInstance();
     this.data = new Float32Array([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
   }
-
   function Matrix3D$Companion() {
     Matrix3D$Companion_instance = this;
     this.M00 = 0;
@@ -1789,7 +1688,6 @@
     this.M23 = 14;
     this.M33 = 15;
   }
-
   Matrix3D$Companion.prototype.invoke_p62hku$ = function (m) {
     return (new Matrix3D()).copyFrom_p62hku$(m);
   };
@@ -1822,14 +1720,12 @@
     interfaces: []
   };
   var Matrix3D$Companion_instance = null;
-
   function Matrix3D$Companion_getInstance() {
     if (Matrix3D$Companion_instance === null) {
       new Matrix3D$Companion();
     }
     return Matrix3D$Companion_instance;
   }
-
   Matrix3D.prototype.get_vux9f0$ = function (row, column) {
     return this.data[Matrix3D$Companion_getInstance().columnMajorIndex_vux9f0$(row, column)];
   };
@@ -2352,11 +2248,9 @@
     simpleName: 'Matrix3D',
     interfaces: []
   };
-
   function copyToFloatWxH($receiver, out, rows, columns, order) {
     copyToFloatWxH_0($receiver, out, rows, columns, order, 0);
   }
-
   function copyToFloatWxH_0($receiver, out, rows, columns, order, offset) {
     var tmp$, tmp$_0;
     var n = offset;
@@ -2366,7 +2260,8 @@
           out[tmp$ = n, n = tmp$ + 1 | 0, tmp$] = $receiver.data[Matrix3D$Companion_getInstance().rowMajorIndex_vux9f0$(row, column)];
         }
       }
-    } else {
+    }
+     else {
       for (var column_0 = 0; column_0 < columns; column_0++) {
         for (var row_0 = 0; row_0 < rows; row_0++) {
           out[tmp$_0 = n, n = tmp$_0 + 1 | 0, tmp$_0] = $receiver.data[Matrix3D$Companion_getInstance().columnMajorIndex_vux9f0$(row_0, column_0)];
@@ -2374,31 +2269,24 @@
       }
     }
   }
-
   function copyToFloat2x2($receiver, out, order) {
     copyToFloatWxH_0($receiver, out, 2, 2, order, 0);
   }
-
   function copyToFloat3x3($receiver, out, order) {
     copyToFloatWxH_0($receiver, out, 3, 3, order, 0);
   }
-
   function copyToFloat4x4($receiver, out, order) {
     copyToFloatWxH_0($receiver, out, 4, 4, order, 0);
   }
-
   function copyToFloat2x2_0($receiver, out, order, offset) {
     copyToFloatWxH_0($receiver, out, 2, 2, order, offset);
   }
-
   function copyToFloat3x3_0($receiver, out, order, offset) {
     copyToFloatWxH_0($receiver, out, 3, 3, order, offset);
   }
-
   function copyToFloat4x4_0($receiver, out, order, offset) {
     copyToFloatWxH_0($receiver, out, 4, 4, order, offset);
   }
-
   var setRows = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setRows_6zrupt$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     return function ($receiver, a00, a01, a02, a03, a10, a11, a12, a13, a20, a21, a22, a23, a30, a31, a32, a33) {
@@ -2784,23 +2672,18 @@
       return $receiver;
     };
   }));
-
   function sub($receiver, l, r) {
     return $receiver.setTo_7b5o5w$(l.x - r.x, l.y - r.y, l.z - r.z, l.w - r.w);
   }
-
   function add_4($receiver, l, r) {
     return $receiver.setTo_7b5o5w$(l.x + r.x, l.y + r.y, l.z + r.z, l.w + r.w);
   }
-
   function cross($receiver, a, b) {
     return $receiver.setTo_7b5o5w$(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x, 1.0);
   }
-
   var tempVec1;
   var tempVec2;
   var tempVec3;
-
   function setToLookAt($receiver, eye, target, up) {
     var z = sub(tempVec1, eye, target);
     if (z.length3Squared === 0.0)
@@ -2820,7 +2703,6 @@
     var y = cross(tempVec3, z, x);
     return $receiver.setRows_8odxlg$(x.x, y.x, z.x, 0.0, x.y, y.y, z.y, 0.0, x.z, y.z, z.z, 0.0, 0.0, 0.0, 0.0, 1.0);
   }
-
   var translate_1 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.translate_mozq5f$', wrapFunction(function () {
     var geom = _.com.soywiz.korma.geom;
     var Unit = Kotlin.kotlin.Unit;
@@ -2916,7 +2798,6 @@
       return $receiver;
     };
   }));
-
   function setTRS($receiver, translation, rotation, scale) {
     var rx = rotation.x;
     var ry = rotation.y;
@@ -2948,9 +2829,7 @@
     var a23 = translation.z;
     return $receiver.setRows_8odxlg$(numberToDouble(a00), numberToDouble(a01), numberToDouble(a02), numberToDouble(a03), numberToDouble(a10), numberToDouble(a11), numberToDouble(a12), numberToDouble(a13), numberToDouble(a20), numberToDouble(a21), numberToDouble(a22), numberToDouble(a23), numberToDouble(0), numberToDouble(0), numberToDouble(0), numberToDouble(1));
   }
-
   var tempMat1;
-
   function getTRS($receiver, position, rotation, scale) {
     var det = $receiver.determinant;
     var tmp$ = $receiver.data[12];
@@ -2996,7 +2875,6 @@
     setFromRotationMatrix(rotation, tmp$_12.setRows_8odxlg$(numberToDouble(tmp$_13), numberToDouble(tmp$_14), numberToDouble(tmp$_15), numberToDouble(tmp$_16), numberToDouble(tmp$_17), numberToDouble(tmp$_18), numberToDouble(tmp$_19), numberToDouble(tmp$_20), numberToDouble(tmp$_21), numberToDouble(tmp$_22), numberToDouble(tmp$_23), numberToDouble(tmp$_24), numberToDouble(tmp$_25), numberToDouble(tmp$_26), numberToDouble(tmp$_27), numberToDouble(a33)));
     return $receiver;
   }
-
   function invert($receiver, m) {
     if (m === void 0)
       m = $receiver;
@@ -3013,19 +2891,15 @@
     var detInv = 1 / det;
     return target.setRows_8odxlg$(t11 * detInv, t12 * detInv, t13 * detInv, t14 * detInv, (m.data[13] * m.data[10] * m.data[3] - m.data[9] * m.data[14] * m.data[3] - m.data[13] * m.data[2] * m.data[11] + m.data[1] * m.data[14] * m.data[11] + m.data[9] * m.data[2] * m.data[15] - m.data[1] * m.data[10] * m.data[15]) * detInv, (m.data[8] * m.data[14] * m.data[3] - m.data[12] * m.data[10] * m.data[3] + m.data[12] * m.data[2] * m.data[11] - m.data[0] * m.data[14] * m.data[11] - m.data[8] * m.data[2] * m.data[15] + m.data[0] * m.data[10] * m.data[15]) * detInv, (m.data[12] * m.data[9] * m.data[3] - m.data[8] * m.data[13] * m.data[3] - m.data[12] * m.data[1] * m.data[11] + m.data[0] * m.data[13] * m.data[11] + m.data[8] * m.data[1] * m.data[15] - m.data[0] * m.data[9] * m.data[15]) * detInv, (m.data[8] * m.data[13] * m.data[2] - m.data[12] * m.data[9] * m.data[2] + m.data[12] * m.data[1] * m.data[10] - m.data[0] * m.data[13] * m.data[10] - m.data[8] * m.data[1] * m.data[14] + m.data[0] * m.data[9] * m.data[14]) * detInv, (m.data[5] * m.data[14] * m.data[3] - m.data[13] * m.data[6] * m.data[3] + m.data[13] * m.data[2] * m.data[7] - m.data[1] * m.data[14] * m.data[7] - m.data[5] * m.data[2] * m.data[15] + m.data[1] * m.data[6] * m.data[15]) * detInv, (m.data[12] * m.data[6] * m.data[3] - m.data[4] * m.data[14] * m.data[3] - m.data[12] * m.data[2] * m.data[7] + m.data[0] * m.data[14] * m.data[7] + m.data[4] * m.data[2] * m.data[15] - m.data[0] * m.data[6] * m.data[15]) * detInv, (m.data[4] * m.data[13] * m.data[3] - m.data[12] * m.data[5] * m.data[3] + m.data[12] * m.data[1] * m.data[7] - m.data[0] * m.data[13] * m.data[7] - m.data[4] * m.data[1] * m.data[15] + m.data[0] * m.data[5] * m.data[15]) * detInv, (m.data[12] * m.data[5] * m.data[2] - m.data[4] * m.data[13] * m.data[2] - m.data[12] * m.data[1] * m.data[6] + m.data[0] * m.data[13] * m.data[6] + m.data[4] * m.data[1] * m.data[14] - m.data[0] * m.data[5] * m.data[14]) * detInv, (m.data[9] * m.data[6] * m.data[3] - m.data[5] * m.data[10] * m.data[3] - m.data[9] * m.data[2] * m.data[7] + m.data[1] * m.data[10] * m.data[7] + m.data[5] * m.data[2] * m.data[11] - m.data[1] * m.data[6] * m.data[11]) * detInv, (m.data[4] * m.data[10] * m.data[3] - m.data[8] * m.data[6] * m.data[3] + m.data[8] * m.data[2] * m.data[7] - m.data[0] * m.data[10] * m.data[7] - m.data[4] * m.data[2] * m.data[11] + m.data[0] * m.data[6] * m.data[11]) * detInv, (m.data[8] * m.data[5] * m.data[3] - m.data[4] * m.data[9] * m.data[3] - m.data[8] * m.data[1] * m.data[7] + m.data[0] * m.data[9] * m.data[7] + m.data[4] * m.data[1] * m.data[11] - m.data[0] * m.data[5] * m.data[11]) * detInv, (m.data[4] * m.data[9] * m.data[2] - m.data[8] * m.data[5] * m.data[2] + m.data[8] * m.data[1] * m.data[6] - m.data[0] * m.data[9] * m.data[6] - m.data[4] * m.data[1] * m.data[10] + m.data[0] * m.data[5] * m.data[10]) * detInv);
   }
-
   var setToMap = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setToMap_h5thxz$', function ($receiver, filter) {
     return $receiver.setRows_8odxlg$(filter($receiver.data[0]), filter($receiver.data[4]), filter($receiver.data[8]), filter($receiver.data[12]), filter($receiver.data[1]), filter($receiver.data[5]), filter($receiver.data[9]), filter($receiver.data[13]), filter($receiver.data[2]), filter($receiver.data[6]), filter($receiver.data[10]), filter($receiver.data[14]), filter($receiver.data[3]), filter($receiver.data[7]), filter($receiver.data[11]), filter($receiver.data[15]));
   });
-
   function setToInterpolated($receiver, a, b, ratio) {
     return $receiver.setColumns_8odxlg$(interpolate_0(ratio, a.data[0], b.data[0]), interpolate_0(ratio, a.data[1], b.data[1]), interpolate_0(ratio, a.data[2], b.data[2]), interpolate_0(ratio, a.data[3], b.data[3]), interpolate_0(ratio, a.data[4], b.data[4]), interpolate_0(ratio, a.data[5], b.data[5]), interpolate_0(ratio, a.data[6], b.data[6]), interpolate_0(ratio, a.data[7], b.data[7]), interpolate_0(ratio, a.data[8], b.data[8]), interpolate_0(ratio, a.data[9], b.data[9]), interpolate_0(ratio, a.data[10], b.data[10]), interpolate_0(ratio, a.data[11], b.data[11]), interpolate_0(ratio, a.data[12], b.data[12]), interpolate_0(ratio, a.data[13], b.data[13]), interpolate_0(ratio, a.data[14], b.data[14]), interpolate_0(ratio, a.data[15], b.data[15]));
   }
-
   function copyFrom($receiver, that) {
     return toMatrix3D(that, $receiver);
   }
-
   function toMatrix3D($receiver, out) {
     if (out === void 0)
       out = new Matrix3D();
@@ -3037,14 +2911,12 @@
     var a13 = $receiver.ty;
     return out.setRows_8odxlg$(numberToDouble(a00), numberToDouble(a01), numberToDouble(0), numberToDouble(a03), numberToDouble(a10), numberToDouble(a11), numberToDouble(0), numberToDouble(a13), numberToDouble(0), numberToDouble(0), numberToDouble(1), numberToDouble(0), numberToDouble(0), numberToDouble(0), numberToDouble(0), numberToDouble(1));
   }
-
   function Orientation(name, ordinal, value) {
     Enum.call(this);
     this.value = value;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function Orientation_initFields() {
     Orientation_initFields = function () {
     };
@@ -3053,33 +2925,25 @@
     Orientation$COLLINEAR_instance = new Orientation('COLLINEAR', 2, 0);
     Orientation$Companion_getInstance();
   }
-
   var Orientation$CLOCK_WISE_instance;
-
   function Orientation$CLOCK_WISE_getInstance() {
     Orientation_initFields();
     return Orientation$CLOCK_WISE_instance;
   }
-
   var Orientation$COUNTER_CLOCK_WISE_instance;
-
   function Orientation$COUNTER_CLOCK_WISE_getInstance() {
     Orientation_initFields();
     return Orientation$COUNTER_CLOCK_WISE_instance;
   }
-
   var Orientation$COLLINEAR_instance;
-
   function Orientation$COLLINEAR_getInstance() {
     Orientation_initFields();
     return Orientation$COLLINEAR_instance;
   }
-
   function Orientation$Companion() {
     Orientation$Companion_instance = this;
     this.EPSILON_0 = 1.0E-12;
   }
-
   Orientation$Companion.prototype.orient2d_36hh2h$ = function (pa, pb, pc) {
     return this.orient2d_15yvbs$(pa.x, pa.y, pb.x, pb.y, pc.x, pc.y);
   };
@@ -3099,7 +2963,6 @@
     interfaces: []
   };
   var Orientation$Companion_instance = null;
-
   function Orientation$Companion_getInstance() {
     Orientation_initFields();
     if (Orientation$Companion_instance === null) {
@@ -3107,19 +2970,15 @@
     }
     return Orientation$Companion_instance;
   }
-
   Orientation.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Orientation',
     interfaces: [Enum]
   };
-
   function Orientation$values() {
     return [Orientation$CLOCK_WISE_getInstance(), Orientation$COUNTER_CLOCK_WISE_getInstance(), Orientation$COLLINEAR_getInstance()];
   }
-
   Orientation.values = Orientation$values;
-
   function Orientation$valueOf(name) {
     switch (name) {
       case 'CLOCK_WISE':
@@ -3128,21 +2987,16 @@
         return Orientation$COUNTER_CLOCK_WISE_getInstance();
       case 'COLLINEAR':
         return Orientation$COLLINEAR_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korma.geom.Orientation.' + name);
+      default:throwISE('No enum constant com.soywiz.korma.geom.Orientation.' + name);
     }
   }
-
   Orientation.valueOf_61zpoe$ = Orientation$valueOf;
-
   function IPoint() {
     IPoint$Companion_getInstance();
   }
-
   function IPoint$Companion() {
     IPoint$Companion_instance = this;
   }
-
   IPoint$Companion.prototype.invoke = function () {
     return new Point(0.0, 0.0);
   };
@@ -3159,26 +3013,22 @@
     interfaces: []
   };
   var IPoint$Companion_instance = null;
-
   function IPoint$Companion_getInstance() {
     if (IPoint$Companion_instance === null) {
       new IPoint$Companion();
     }
     return IPoint$Companion_instance;
   }
-
   IPoint.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IPoint',
     interfaces: []
   };
-
   function Point(x, y) {
     Point$Companion_getInstance();
     this.x_mlms9c$_0 = x;
     this.y_mlms8h$_0 = y;
   }
-
   Object.defineProperty(Point.prototype, 'x', {
     get: function () {
       return this.x_mlms9c$_0;
@@ -3198,7 +3048,6 @@
   Point.prototype.compareTo_11rb$ = function (other) {
     return Point$Companion_getInstance().compare_6y0v78$(this.x, this.y, other.x, other.y);
   };
-
   function Point$Companion() {
     Point$Companion_instance = this;
     this.Zero = new Point(0.0, 0.0);
@@ -3208,7 +3057,6 @@
     this.Left = new Point(-1.0, 0.0);
     this.Right = new Point(+1.0, 0.0);
   }
-
   Point$Companion.prototype.invoke = function () {
     return new Point(0.0, 0.0);
   };
@@ -3281,14 +3129,12 @@
     interfaces: []
   };
   var Point$Companion_instance = null;
-
   function Point$Companion_getInstance() {
     if (Point$Companion_instance === null) {
       new Point$Companion();
     }
     return Point$Companion_instance;
   }
-
   Point.prototype.setTo_lu1900$ = function (x, y) {
     this.x = x;
     this.y = y;
@@ -3393,45 +3239,38 @@
       return $receiver.mul_14dthe$(numberToDouble(s));
     };
   }));
-
   function get_unit($receiver) {
     var scale = get_length($receiver);
     var x = $receiver.x / numberToDouble(scale);
     var y = $receiver.y / numberToDouble(scale);
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   var setTo_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setTo_j4d39r$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     return function ($receiver, x, y) {
       return $receiver.setTo_lu1900$(numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function plus_0($receiver, that) {
     var x = $receiver.x + that.x;
     var y = $receiver.y + that.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function minus_0($receiver, that) {
     var x = $receiver.x - that.x;
     var y = $receiver.y - that.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function times_3($receiver, that) {
     var x = $receiver.x * that.x;
     var y = $receiver.y * that.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function div_2($receiver, that) {
     var x = $receiver.x / that.x;
     var y = $receiver.y / that.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   var times_4 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.times_mc4xcy$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Point_init = _.com.soywiz.korma.geom.Point;
@@ -3450,11 +3289,9 @@
       return new Point_init(numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function dot($receiver, that) {
     return $receiver.x * that.x + $receiver.y * that.y;
   }
-
   var distanceTo = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.distanceTo_1hi0wo$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Math_0 = Math;
@@ -3464,7 +3301,6 @@
       return Math_0.hypot(x_0, y_0);
     };
   }));
-
   function distanceTo_0($receiver, that) {
     var x = that.x;
     var y = that.y;
@@ -3472,78 +3308,64 @@
     var y_0 = numberToDouble(y) - $receiver.y;
     return Math_0.hypot(x_0, y_0);
   }
-
   function angleTo($receiver, other) {
     return Angle$Companion_getInstance().between_6y0v78$($receiver.x, $receiver.y, other.x, other.y);
   }
-
   function transformed($receiver, mat, out) {
     if (out === void 0)
       out = Point$Companion_getInstance().invoke();
     return out.setToTransform_whua1j$(mat, $receiver);
   }
-
   function get_0($receiver, index) {
     switch (index) {
       case 0:
         return $receiver.x;
       case 1:
         return $receiver.y;
-      default:
-        throw new IndexOutOfBoundsException("IPoint doesn't have " + index + ' component');
+      default:throw new IndexOutOfBoundsException("IPoint doesn't have " + index + ' component');
     }
   }
-
   function get_unit_0($receiver) {
     var scale = get_length($receiver);
     var x = $receiver.x / numberToDouble(scale);
     var y = $receiver.y / numberToDouble(scale);
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function get_length($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
     return Math_0.hypot(x, y);
   }
-
   function get_magnitude($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
     return Math_0.hypot(x, y);
   }
-
   function get_normalized_0($receiver) {
     var imag = 1.0 / get_magnitude($receiver);
     var x = $receiver.x * imag;
     var y = $receiver.y * imag;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function get_mutable($receiver) {
     return new Point($receiver.x, $receiver.y);
   }
-
   function get_immutable($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function copy($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function IPointInt() {
     IPointInt$Companion_getInstance();
   }
-
   function IPointInt$Companion() {
     IPointInt$Companion_instance = this;
   }
-
   IPointInt$Companion.prototype.invoke_vux9f0$ = function (x, y) {
     return PointInt$Companion_getInstance().invoke_vux9f0$(x, y);
   };
@@ -3553,33 +3375,27 @@
     interfaces: []
   };
   var IPointInt$Companion_instance = null;
-
   function IPointInt$Companion_getInstance() {
     if (IPointInt$Companion_instance === null) {
       new IPointInt$Companion();
     }
     return IPointInt$Companion_instance;
   }
-
   IPointInt.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IPointInt',
     interfaces: []
   };
-
   function PointInt(p) {
     PointInt$Companion_getInstance();
     this.p = p;
   }
-
   PointInt.prototype.compareTo_11rb$ = function (other) {
     return PointInt$Companion_getInstance().compare_tjonv8$(this.x, this.y, other.x, other.y);
   };
-
   function PointInt$Companion() {
     PointInt$Companion_instance = this;
   }
-
   PointInt$Companion.prototype.invoke = function () {
     return PointInt$Companion_getInstance().invoke_vux9f0$(0, 0);
   };
@@ -3596,14 +3412,12 @@
     interfaces: []
   };
   var PointInt$Companion_instance = null;
-
   function PointInt$Companion_getInstance() {
     if (PointInt$Companion_instance === null) {
       new PointInt$Companion();
     }
     return PointInt$Companion_instance;
   }
-
   Object.defineProperty(PointInt.prototype, 'x', {
     get: function () {
       return numberToInt(this.p.x);
@@ -3647,45 +3461,35 @@
   PointInt.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.p, other.p))));
   };
-
   function plus_1($receiver, that) {
     return PointInt$Companion_getInstance().invoke_vux9f0$($receiver.x + that.x | 0, $receiver.y + that.y | 0);
   }
-
   function minus_1($receiver, that) {
     return PointInt$Companion_getInstance().invoke_vux9f0$($receiver.x - that.x | 0, $receiver.y - that.y | 0);
   }
-
   function times_5($receiver, that) {
     return PointInt$Companion_getInstance().invoke_vux9f0$(Kotlin.imul($receiver.x, that.x), Kotlin.imul($receiver.y, that.y));
   }
-
   function div_4($receiver, that) {
     return PointInt$Companion_getInstance().invoke_vux9f0$($receiver.x / that.x | 0, $receiver.y / that.y | 0);
   }
-
   function rem($receiver, that) {
     return PointInt$Companion_getInstance().invoke_vux9f0$($receiver.x % that.x, $receiver.y % that.y);
   }
-
   function asInt($receiver) {
     return new PointInt($receiver);
   }
-
   function asDouble($receiver) {
     return $receiver.p;
   }
-
   function get_int($receiver) {
     return PointInt$Companion_getInstance().invoke_vux9f0$(numberToInt($receiver.x), numberToInt($receiver.y));
   }
-
   function get_float($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function getPolylineLength($receiver) {
     var tmp$;
     var out = 0.0;
@@ -3699,7 +3503,6 @@
     }
     return out;
   }
-
   function bounds($receiver, out, bb) {
     if (out === void 0) {
       out = new Rectangle(0.0, 0.0, 0.0, 0.0);
@@ -3708,7 +3511,6 @@
       bb = new BoundsBuilder();
     return add_1(new BoundsBuilder(), $receiver).getBounds_2da8yn$(out);
   }
-
   function PointArea(size) {
     this.size = size;
     var array = Array_0(this.size);
@@ -3720,7 +3522,6 @@
     this.points = array;
     this.offset = 0;
   }
-
   PointArea.prototype.alloc = function () {
     var tmp$;
     return this.points[tmp$ = this.offset, this.offset = tmp$ + 1 | 0, tmp$];
@@ -3759,7 +3560,8 @@
     var oldOffset = this.offset;
     try {
       callback(this);
-    } finally {
+    }
+    finally {
       this.offset = oldOffset;
     }
   });
@@ -3768,26 +3570,21 @@
     simpleName: 'PointArea',
     interfaces: []
   };
-
   function IPointArrayList() {
   }
-
   IPointArrayList.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IPointArrayList',
     interfaces: []
   };
-
   function getPoint($receiver, index) {
     return new Point($receiver.getX_za3lpa$(index), $receiver.getY_za3lpa$(index));
   }
-
   function getIPoint($receiver, index) {
     var x = $receiver.getX_za3lpa$(index);
     var y = $receiver.getY_za3lpa$(index);
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function toPoints($receiver) {
     var $receiver_0 = until(0, $receiver.size);
     var destination = ArrayList_init(collectionSizeOrDefault($receiver_0, 10));
@@ -3799,7 +3596,6 @@
     }
     return destination;
   }
-
   function toIPoints($receiver) {
     var $receiver_0 = until(0, $receiver.size);
     var destination = ArrayList_init(collectionSizeOrDefault($receiver_0, 10));
@@ -3811,7 +3607,6 @@
     }
     return destination;
   }
-
   var contains_1 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.contains_8lf6i7$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var contains = _.com.soywiz.korma.geom.contains_lzs23j$;
@@ -3819,7 +3614,6 @@
       return contains($receiver, numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function contains_2($receiver, x, y) {
     var tmp$;
     tmp$ = $receiver.size;
@@ -3828,7 +3622,6 @@
         return true;
     return false;
   }
-
   function PointArrayList(capacity) {
     PointArrayList$Companion_getInstance();
     if (capacity === void 0)
@@ -3836,7 +3629,6 @@
     this.xList_0 = new DoubleArrayList(capacity);
     this.yList_0 = new DoubleArrayList(capacity);
   }
-
   Object.defineProperty(PointArrayList.prototype, 'size', {
     get: function () {
       return this.xList_0.size;
@@ -3848,11 +3640,9 @@
   PointArrayList.prototype.isNotEmpty = function () {
     return this.size !== 0;
   };
-
   function PointArrayList$Companion() {
     PointArrayList$Companion_instance = this;
   }
-
   PointArrayList$Companion.prototype.invoke_r4cj56$ = function (capacity, callback) {
     if (capacity === void 0)
       capacity = 7;
@@ -3860,7 +3650,6 @@
     callback($receiver);
     return $receiver;
   };
-
   function PointArrayList$Companion$invoke$lambda(closure$points) {
     return function ($receiver) {
       for (var n = 0; n !== closure$points.size; ++n) {
@@ -3869,11 +3658,9 @@
       return Unit;
     };
   }
-
   PointArrayList$Companion.prototype.invoke_k4f1po$ = function (points) {
     return PointArrayList$Companion_getInstance().invoke_r4cj56$(points.size, PointArrayList$Companion$invoke$lambda(points));
   };
-
   function PointArrayList$Companion$invoke$lambda_0(closure$points) {
     return function ($receiver) {
       for (var n = 0; n !== closure$points.length; ++n) {
@@ -3882,7 +3669,6 @@
       return Unit;
     };
   }
-
   PointArrayList$Companion.prototype.invoke_hfwgde$ = function (points) {
     return PointArrayList$Companion_getInstance().invoke_r4cj56$(points.length, PointArrayList$Companion$invoke$lambda_0(points));
   };
@@ -3892,14 +3678,12 @@
     interfaces: []
   };
   var PointArrayList$Companion_instance = null;
-
   function PointArrayList$Companion_getInstance() {
     if (PointArrayList$Companion_instance === null) {
       new PointArrayList$Companion();
     }
     return PointArrayList$Companion_instance;
   }
-
   PointArrayList.prototype.add_lu1900$ = function (x, y) {
     this.xList_0.plusAssign_14dthe$(x);
     this.yList_0.plusAssign_14dthe$(y);
@@ -3960,12 +3744,10 @@
   PointArrayList.prototype.sort = function () {
     genericSort(this, 0, this.size - 1 | 0, PointArrayList$PointSortOpts_getInstance());
   };
-
   function PointArrayList$PointSortOpts() {
     PointArrayList$PointSortOpts_instance = this;
     SortOps.call(this);
   }
-
   PointArrayList$PointSortOpts.prototype.compare_8olpll$ = function (p, l, r) {
     return Point$Companion_getInstance().compare_6y0v78$(p.getX_za3lpa$(l), p.getY_za3lpa$(l), p.getX_za3lpa$(r), p.getY_za3lpa$(r));
   };
@@ -3978,14 +3760,12 @@
     interfaces: [SortOps]
   };
   var PointArrayList$PointSortOpts_instance = null;
-
   function PointArrayList$PointSortOpts_getInstance() {
     if (PointArrayList$PointSortOpts_instance === null) {
       new PointArrayList$PointSortOpts();
     }
     return PointArrayList$PointSortOpts_instance;
   }
-
   PointArrayList.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'PointArrayList',
@@ -3997,11 +3777,9 @@
       return $receiver.add_lu1900$(numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function add_6($receiver, p) {
     return $receiver.add_lu1900$(p.x, p.y);
   }
-
   function add_7($receiver, other) {
     var tmp$;
     tmp$ = other.size;
@@ -4009,7 +3787,6 @@
       $receiver.add_lu1900$(other.getX_za3lpa$(n), other.getY_za3lpa$(n));
     return $receiver;
   }
-
   var setX = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setX_mx0hxg$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     return function ($receiver, index, x) {
@@ -4028,16 +3805,13 @@
       $receiver.setXY_w4xg1m$(index, numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function IPointIntArrayList() {
   }
-
   IPointIntArrayList.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IPointIntArrayList',
     interfaces: []
   };
-
   function PointIntArrayList(capacity) {
     PointIntArrayList$Companion_getInstance();
     if (capacity === void 0)
@@ -4045,7 +3819,6 @@
     this.xList_0 = new IntArrayList(capacity);
     this.yList_0 = new IntArrayList(capacity);
   }
-
   Object.defineProperty(PointIntArrayList.prototype, 'size', {
     get: function () {
       return this.xList_0.size;
@@ -4057,11 +3830,9 @@
   PointIntArrayList.prototype.isNotEmpty = function () {
     return this.size !== 0;
   };
-
   function PointIntArrayList$Companion() {
     PointIntArrayList$Companion_instance = this;
   }
-
   PointIntArrayList$Companion.prototype.invoke_3liz77$ = function (capacity, callback) {
     if (capacity === void 0)
       capacity = 7;
@@ -4069,7 +3840,6 @@
     callback($receiver);
     return $receiver;
   };
-
   function PointIntArrayList$Companion$invoke$lambda(closure$points) {
     return function ($receiver) {
       for (var n = 0; n !== closure$points.size; ++n) {
@@ -4078,11 +3848,9 @@
       return Unit;
     };
   }
-
   PointIntArrayList$Companion.prototype.invoke_oulxyx$ = function (points) {
     return PointIntArrayList$Companion_getInstance().invoke_3liz77$(points.size, PointIntArrayList$Companion$invoke$lambda(points));
   };
-
   function PointIntArrayList$Companion$invoke$lambda_0(closure$points) {
     return function ($receiver) {
       for (var n = 0; n !== closure$points.length; ++n) {
@@ -4091,7 +3859,6 @@
       return Unit;
     };
   }
-
   PointIntArrayList$Companion.prototype.invoke_evk7jf$ = function (points) {
     return PointIntArrayList$Companion_getInstance().invoke_3liz77$(points.length, PointIntArrayList$Companion$invoke$lambda_0(points));
   };
@@ -4101,14 +3868,12 @@
     interfaces: []
   };
   var PointIntArrayList$Companion_instance = null;
-
   function PointIntArrayList$Companion_getInstance() {
     if (PointIntArrayList$Companion_instance === null) {
       new PointIntArrayList$Companion();
     }
     return PointIntArrayList$Companion_instance;
   }
-
   PointIntArrayList.prototype.add_vux9f0$ = function (x, y) {
     this.xList_0.plusAssign_za3lpa$(x);
     this.yList_0.plusAssign_za3lpa$(y);
@@ -4163,12 +3928,10 @@
   PointIntArrayList.prototype.sort = function () {
     genericSort(this, 0, this.size - 1 | 0, PointIntArrayList$PointSortOpts_getInstance());
   };
-
   function PointIntArrayList$PointSortOpts() {
     PointIntArrayList$PointSortOpts_instance = this;
     SortOps.call(this);
   }
-
   PointIntArrayList$PointSortOpts.prototype.compare_8olpll$ = function (p, l, r) {
     return PointInt$Companion_getInstance().compare_tjonv8$(p.getX_za3lpa$(l), p.getY_za3lpa$(l), p.getX_za3lpa$(r), p.getY_za3lpa$(r));
   };
@@ -4181,24 +3944,20 @@
     interfaces: [SortOps]
   };
   var PointIntArrayList$PointSortOpts_instance = null;
-
   function PointIntArrayList$PointSortOpts_getInstance() {
     if (PointIntArrayList$PointSortOpts_instance === null) {
       new PointIntArrayList$PointSortOpts();
     }
     return PointIntArrayList$PointSortOpts_instance;
   }
-
   PointIntArrayList.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'PointIntArrayList',
     interfaces: [IPointIntArrayList]
   };
-
   function add_8($receiver, p) {
     return $receiver.add_vux9f0$(p.x, p.y);
   }
-
   function add_9($receiver, other) {
     var tmp$;
     tmp$ = other.size;
@@ -4206,15 +3965,12 @@
       $receiver.add_vux9f0$(other.getX_za3lpa$(n), other.getY_za3lpa$(n));
     return $receiver;
   }
-
   function getPoint_0($receiver, index) {
     return PointInt$Companion_getInstance().invoke_vux9f0$($receiver.getX_za3lpa$(index), $receiver.getY_za3lpa$(index));
   }
-
   function getIPoint_0($receiver, index) {
     return IPointInt$Companion_getInstance().invoke_vux9f0$($receiver.getX_za3lpa$(index), $receiver.getY_za3lpa$(index));
   }
-
   function toPoints_0($receiver) {
     var $receiver_0 = until(0, $receiver.size);
     var destination = ArrayList_init(collectionSizeOrDefault($receiver_0, 10));
@@ -4226,7 +3982,6 @@
     }
     return destination;
   }
-
   function toIPoints_0($receiver) {
     var $receiver_0 = until(0, $receiver.size);
     var destination = ArrayList_init(collectionSizeOrDefault($receiver_0, 10));
@@ -4238,7 +3993,6 @@
     }
     return destination;
   }
-
   function contains_3($receiver, x, y) {
     var tmp$;
     tmp$ = $receiver.size;
@@ -4247,19 +4001,16 @@
         return true;
     return false;
   }
-
   function swap($receiver, indexA, indexB) {
     var tmp = $receiver.get_za3lpa$(indexA);
     $receiver.set_5wr77w$(indexA, $receiver.get_za3lpa$(indexB));
     $receiver.set_5wr77w$(indexB, tmp);
   }
-
   function swap_0($receiver, indexA, indexB) {
     var tmp = $receiver.get_za3lpa$(indexA);
     $receiver.set_vux9f0$(indexA, $receiver.get_za3lpa$(indexB));
     $receiver.set_vux9f0$(indexB, tmp);
   }
-
   function EulerRotation(x, y, z) {
     EulerRotation$Companion_getInstance();
     if (x === void 0) {
@@ -4275,25 +4026,21 @@
     this.y = y;
     this.z = z;
   }
-
   function EulerRotation$Companion() {
     EulerRotation$Companion_instance = this;
   }
-
   EulerRotation$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var EulerRotation$Companion_instance = null;
-
   function EulerRotation$Companion_getInstance() {
     if (EulerRotation$Companion_instance === null) {
       new EulerRotation$Companion();
     }
     return EulerRotation$Companion_instance;
   }
-
   EulerRotation.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'EulerRotation',
@@ -4324,7 +4071,6 @@
   EulerRotation.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.z, other.z)))));
   };
-
   function Quaternion(x, y, z, w) {
     Quaternion$Companion_getInstance();
     if (x === void 0)
@@ -4340,7 +4086,6 @@
     this.z = z;
     this.w = w;
   }
-
   Quaternion.prototype.get_za3lpa$ = function (index) {
     switch (index) {
       case 0:
@@ -4351,8 +4096,7 @@
         return this.z;
       case 3:
         return this.w;
-      default:
-        return kotlin_js_internal_DoubleCompanionObject.NaN;
+      default:return kotlin_js_internal_DoubleCompanionObject.NaN;
     }
   };
   Quaternion.prototype.setToFunc_2xafxe$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Quaternion.setToFunc_2xafxe$', wrapFunction(function () {
@@ -4369,11 +4113,9 @@
       return this;
     };
   }));
-
   function Quaternion$Companion() {
     Quaternion$Companion_instance = this;
   }
-
   Quaternion$Companion.prototype.dotProduct_tyayac$ = function (l, r) {
     return l.x * r.x + l.y * r.y + l.z * r.z + l.w * r.w;
   };
@@ -4383,14 +4125,12 @@
     interfaces: []
   };
   var Quaternion$Companion_instance = null;
-
   function Quaternion$Companion_getInstance() {
     if (Quaternion$Companion_instance === null) {
       new Quaternion$Companion();
     }
     return Quaternion$Companion_instance;
   }
-
   Quaternion.prototype.normalize_v317bm$ = function (v) {
     if (v === void 0)
       v = this;
@@ -4439,15 +4179,12 @@
   Quaternion.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.z, other.z) && Kotlin.equals(this.w, other.w)))));
   };
-
   function Quaternion_0(x, y, z, w) {
     return new Quaternion(numberToDouble(x), numberToDouble(y), numberToDouble(z), numberToDouble(w));
   }
-
   function setQuaternion($receiver, x, y, z, w) {
     return quaternionToEuler_1(numberToDouble(x), numberToDouble(y), numberToDouble(z), numberToDouble(w), $receiver);
   }
-
   function setQuaternion_0($receiver, quaternion) {
     var x = quaternion.x;
     var y = quaternion.y;
@@ -4455,30 +4192,24 @@
     var w = quaternion.w;
     return quaternionToEuler_1(numberToDouble(x), numberToDouble(y), numberToDouble(z), numberToDouble(w), $receiver);
   }
-
   function setTo_1($receiver, x, y, z) {
     $receiver.x = x;
     $receiver.y = y;
     $receiver.z = z;
     return $receiver;
   }
-
   function setTo_2($receiver, other) {
     return setTo_1($receiver, other.x, other.y, other.z);
   }
-
   function setEuler($receiver, x, y, z) {
     return eulerToQuaternion_0(x, y, z, $receiver);
   }
-
   function setEuler_0($receiver, euler) {
     return eulerToQuaternion(euler, $receiver);
   }
-
   function setTo_3($receiver, euler) {
     return eulerToQuaternion(euler, $receiver);
   }
-
   var setTo_4 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setTo_u3d1mb$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     return function ($receiver, x, y, z, w) {
@@ -4518,25 +4249,21 @@
     };
   }));
   var tempQuat;
-
   function toMatrix($receiver, out) {
     if (out === void 0)
       out = new Matrix3D();
     return toMatrix_0(setEuler_0(tempQuat, $receiver), out);
   }
-
   function toMatrix_0($receiver, out) {
     if (out === void 0)
       out = new Matrix3D();
     return quaternionToMatrix($receiver, out);
   }
-
   function eulerToQuaternion(euler, quaternion) {
     if (quaternion === void 0)
       quaternion = new Quaternion();
     return eulerToQuaternion_0(euler.x, euler.y, euler.z, quaternion);
   }
-
   function quaternionToEuler(q, euler) {
     if (euler === void 0)
       euler = new EulerRotation();
@@ -4546,7 +4273,6 @@
     var w = q.w;
     return quaternionToEuler_1(numberToDouble(x), numberToDouble(y), numberToDouble(z), numberToDouble(w), euler);
   }
-
   var quaternionToEuler_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.quaternionToEuler_4surfl$', wrapFunction(function () {
     var EulerRotation_init = _.com.soywiz.korma.geom.EulerRotation;
     var numberToDouble = Kotlin.numberToDouble;
@@ -4557,7 +4283,6 @@
       return quaternionToEuler(numberToDouble(x), numberToDouble(y), numberToDouble(z), numberToDouble(w), euler);
     };
   }));
-
   function eulerToQuaternion_0(roll, pitch, yaw, quaternion) {
     if (quaternion === void 0)
       quaternion = new Quaternion();
@@ -4583,7 +4308,6 @@
     quaternion.w = numberToDouble(w);
     return quaternion;
   }
-
   function quaternionToEuler_1(x, y, z, w, euler) {
     if (euler === void 0)
       euler = new EulerRotation();
@@ -4603,10 +4327,8 @@
     var yaw = Math_0.atan2(sinyCosp, cosyCosp);
     return setTo_1(euler, new Angle(numberToDouble(roll)), new Angle(numberToDouble(pitch)), new Angle(numberToDouble(yaw)));
   }
-
   var tempMat1_0;
   var tempMat2;
-
   function quaternionToMatrix(quat, out, temp1, temp2) {
     if (out === void 0)
       out = new Matrix3D();
@@ -4650,7 +4372,6 @@
     temp2.setRows_8odxlg$(numberToDouble(a00_0), numberToDouble(a01_0), numberToDouble(a02_0), numberToDouble(a03_0), numberToDouble(a10_0), numberToDouble(a11_0), numberToDouble(a12_0), numberToDouble(a13_0), numberToDouble(a20_0), numberToDouble(a21_0), numberToDouble(a22_0), numberToDouble(a23_0), numberToDouble(a30_0), numberToDouble(a31_0), numberToDouble(a32_0), numberToDouble(a33_0));
     return out.multiply_lb2hp0$(temp1, temp2);
   }
-
   function setFromRotationMatrix($receiver, m) {
     var q = $receiver;
     var t = m.data[0] + m.data[5] + m.data[10];
@@ -4665,7 +4386,8 @@
       q.y = numberToDouble(tmp$_0);
       q.z = numberToDouble(z);
       q.w = numberToDouble(w);
-    } else {
+    }
+     else {
       var tmp$_1 = m.data[0] > m.data[5];
       if (tmp$_1) {
         tmp$_1 = m.data[0] > m.data[10];
@@ -4681,7 +4403,8 @@
         q.y = numberToDouble(tmp$_3);
         q.z = numberToDouble(tmp$_4);
         q.w = numberToDouble(w_0);
-      } else {
+      }
+       else {
         if (m.data[5] > m.data[10]) {
           var x_1 = 1.0 + m.data[5] - m.data[0] - m.data[10];
           var s_1 = 2.0 * Math_0.sqrt(x_1);
@@ -4693,7 +4416,8 @@
           q.y = numberToDouble(tmp$_6);
           q.z = numberToDouble(tmp$_7);
           q.w = numberToDouble(w_1);
-        } else {
+        }
+         else {
           var x_2 = 1.0 + m.data[10] - m.data[0] - m.data[5];
           var s_2 = 2.0 * Math_0.sqrt(x_2);
           var tmp$_8 = (m.data[8] + m.data[2]) / s_2;
@@ -4709,27 +4433,21 @@
     }
     return $receiver;
   }
-
   function unaryMinus_0($receiver) {
     return new Quaternion(-$receiver.x, -$receiver.y, -$receiver.z, -$receiver.w);
   }
-
   function plus_2($receiver, other) {
     return new Quaternion($receiver.x + other.x, $receiver.y + other.y, $receiver.z + other.z, $receiver.w + other.w);
   }
-
   function minus_2($receiver, other) {
     return new Quaternion($receiver.x - other.x, $receiver.y - other.y, $receiver.z - other.z, $receiver.w - other.w);
   }
-
   function times_6($receiver, scale) {
     return new Quaternion($receiver.x * scale, $receiver.y * scale, $receiver.z * scale, $receiver.w * scale);
   }
-
   function times_7($receiver, scale) {
     return times_6(scale, $receiver);
   }
-
   function negate($receiver) {
     var x = -$receiver.x;
     var y = -$receiver.y;
@@ -4741,7 +4459,6 @@
     $receiver.w = numberToDouble(w);
     return $receiver;
   }
-
   function setToFunc($receiver, l, r, func) {
     var x = func(l.x, r.x);
     var y = func(l.y, r.y);
@@ -4753,26 +4470,21 @@
     $receiver.w = numberToDouble(w);
     return $receiver;
   }
-
   function setToFunc_0($receiver, l, r, func) {
     return $receiver.setTo_7b5o5w$(func(l.x, r.x), func(l.y, r.y), func(l.z, r.z), func(l.w, r.w));
   }
-
   var tleft;
   var tright;
-
   function setToSlerp$lambda(closure$t) {
     return function (l, r) {
       return l + closure$t * (r - l);
     };
   }
-
   function setToSlerp$lambda_0(closure$s0, closure$s1) {
     return function (l, r) {
       return closure$s0 * l + closure$s1 * r;
     };
   }
-
   function setToSlerp($receiver, left, right, t) {
     var $receiver_0 = tleft;
     var x = left.x;
@@ -4808,7 +4520,6 @@
     var s0 = Math_0.cos(angle1) - dot * s1;
     return setToFunc($receiver, tleft_0, tright_0, setToSlerp$lambda_0(s0, s1));
   }
-
   function setToNlerp($receiver, left, right, t) {
     var sign = Quaternion$Companion_getInstance().dotProduct_tyayac$(left, right) < 0 ? -1 : 1;
     var x = (1.0 - t) * left.get_za3lpa$(0) + t * right.get_za3lpa$(0) * sign;
@@ -4821,19 +4532,15 @@
     $receiver.w = numberToDouble(w);
     return $receiver.normalize_v317bm$();
   }
-
   function setToInterpolated_0($receiver, left, right, t) {
     return setToSlerp($receiver, left, right, t);
   }
-
   function IRectangle() {
     IRectangle$Companion_getInstance();
   }
-
   function IRectangle$Companion() {
     IRectangle$Companion_instance = this;
   }
-
   IRectangle$Companion.prototype.invoke_1ugm5o$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.IRectangle.Companion.invoke_1ugm5o$', wrapFunction(function () {
     var Rectangle = _.com.soywiz.korma.geom.Rectangle;
     var numberToDouble = Kotlin.numberToDouble;
@@ -4847,36 +4554,29 @@
     interfaces: []
   };
   var IRectangle$Companion_instance = null;
-
   function IRectangle$Companion_getInstance() {
     if (IRectangle$Companion_instance === null) {
       new IRectangle$Companion();
     }
     return IRectangle$Companion_instance;
   }
-
   IRectangle.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IRectangle',
     interfaces: []
   };
-
   function get_left($receiver) {
     return $receiver.x;
   }
-
   function get_top($receiver) {
     return $receiver.y;
   }
-
   function get_right($receiver) {
     return $receiver.x + $receiver.width;
   }
-
   function get_bottom($receiver) {
     return $receiver.y + $receiver.height;
   }
-
   function Rectangle(x, y, width, height) {
     Rectangle$Companion_getInstance();
     this.x_t9n1sf$_0 = x;
@@ -4884,7 +4584,6 @@
     this.width_n5nb31$_0 = width;
     this.height_gg7va4$_0 = height;
   }
-
   Object.defineProperty(Rectangle.prototype, 'x', {
     get: function () {
       return this.x_t9n1sf$_0;
@@ -4917,11 +4616,9 @@
       this.height_gg7va4$_0 = height;
     }
   });
-
   function Rectangle$Companion() {
     Rectangle$Companion_instance = this;
   }
-
   Rectangle$Companion.prototype.invoke = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Rectangle.Companion.invoke', wrapFunction(function () {
     var Rectangle_init = _.com.soywiz.korma.geom.Rectangle;
     return function () {
@@ -4951,14 +4648,12 @@
     interfaces: []
   };
   var Rectangle$Companion_instance = null;
-
   function Rectangle$Companion_getInstance() {
     if (Rectangle$Companion_instance === null) {
       new Rectangle$Companion();
     }
     return Rectangle$Companion_instance;
   }
-
   Object.defineProperty(Rectangle.prototype, 'isEmpty', {
     get: function () {
       return this.area === 0.0;
@@ -5080,7 +4775,8 @@
       var a_2 = this.bottom;
       var b_2 = that.bottom;
       tmp$ = target.setBounds_6y0v78$(tmp$_0, tmp$_1, tmp$_2, Math_0.min(a_2, b_2));
-    } else
+    }
+     else
       tmp$ = null;
     return tmp$;
   };
@@ -5208,15 +4904,12 @@
       $receiver.inflate_lu1900$(numberToDouble(dx), numberToDouble(dy));
     };
   }));
-
   function IRectangleInt() {
     IRectangleInt$Companion_getInstance();
   }
-
   function IRectangleInt$Companion() {
     IRectangleInt$Companion_instance = this;
   }
-
   IRectangleInt$Companion.prototype.invoke_1ugm5o$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.IRectangleInt.Companion.invoke_1ugm5o$', wrapFunction(function () {
     var RectangleInt = _.com.soywiz.korma.geom.RectangleInt;
     var numberToInt = Kotlin.numberToInt;
@@ -5236,41 +4929,33 @@
     interfaces: []
   };
   var IRectangleInt$Companion_instance = null;
-
   function IRectangleInt$Companion_getInstance() {
     if (IRectangleInt$Companion_instance === null) {
       new IRectangleInt$Companion();
     }
     return IRectangleInt$Companion_instance;
   }
-
   IRectangleInt.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'IRectangleInt',
     interfaces: []
   };
-
   function get_left_0($receiver) {
     return $receiver.x;
   }
-
   function get_top_0($receiver) {
     return $receiver.y;
   }
-
   function get_right_0($receiver) {
     return $receiver.x + $receiver.width | 0;
   }
-
   function get_bottom_0($receiver) {
     return $receiver.y + $receiver.height | 0;
   }
-
   function RectangleInt(rect) {
     RectangleInt$Companion_getInstance();
     this.rect = rect;
   }
-
   Object.defineProperty(RectangleInt.prototype, 'x', {
     get: function () {
       return numberToInt(this.rect.x);
@@ -5335,11 +5020,9 @@
       this.rect.bottom = value;
     }
   });
-
   function RectangleInt$Companion() {
     RectangleInt$Companion_instance = this;
   }
-
   RectangleInt$Companion.prototype.invoke = function () {
     return new RectangleInt(new Rectangle(0.0, 0.0, 0.0, 0.0));
   };
@@ -5362,14 +5045,12 @@
     interfaces: []
   };
   var RectangleInt$Companion_instance = null;
-
   function RectangleInt$Companion_getInstance() {
     if (RectangleInt$Companion_instance === null) {
       new RectangleInt$Companion();
     }
     return RectangleInt$Companion_instance;
   }
-
   RectangleInt.prototype.toString = function () {
     return 'Rectangle(x=' + this.x + ', y=' + this.y + ', width=' + this.width + ', height=' + this.height + ')';
   };
@@ -5389,11 +5070,9 @@
   RectangleInt.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.rect, other.rect))));
   };
-
   function setTo_7($receiver, that) {
     return setTo_8($receiver, that.x, that.y, that.width, that.height);
   }
-
   function setTo_8($receiver, x, y, width, height) {
     $receiver.x = x;
     $receiver.y = y;
@@ -5401,47 +5080,38 @@
     $receiver.height = height;
     return $receiver;
   }
-
   function setPosition($receiver, x, y) {
     $receiver.x = x;
     $receiver.y = y;
     return $receiver;
   }
-
   function setSize($receiver, width, height) {
     $receiver.width = width;
     $receiver.height = height;
     return $receiver;
   }
-
   function setBoundsTo($receiver, left, top, right, bottom) {
     return setTo_8($receiver, left, top, right - left | 0, bottom - top | 0);
   }
-
   function contains_5($receiver, v) {
     return v.width <= $receiver.width && v.height <= $receiver.height;
   }
-
   function anchoredIn($receiver, container, anchor, out) {
     if (out === void 0)
       out = RectangleInt$Companion_getInstance().invoke();
     return setTo_8(out, numberToInt((container.width - $receiver.width | 0) * anchor.sx), numberToInt((container.height - $receiver.height | 0) * anchor.sy), $receiver.width, $receiver.height);
   }
-
   function getAnchorPosition($receiver, anchor, out) {
     if (out === void 0)
       out = PointInt$Companion_getInstance().invoke();
     return out.setTo_vux9f0$(numberToInt($receiver.x + $receiver.width * anchor.sx), numberToInt($receiver.y + $receiver.height * anchor.sy));
   }
-
   function asInt_0($receiver) {
     return new RectangleInt($receiver);
   }
-
   function asDouble_0($receiver) {
     return $receiver.rect;
   }
-
   function get_int_0($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
@@ -5449,7 +5119,6 @@
     var height = $receiver.height;
     return new RectangleInt(new Rectangle(numberToDouble(x), numberToDouble(y), numberToDouble(width), numberToDouble(height)));
   }
-
   function get_float_0($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
@@ -5457,11 +5126,9 @@
     var height = $receiver.height;
     return new Rectangle(numberToDouble(x), numberToDouble(y), numberToDouble(width), numberToDouble(height));
   }
-
   function anchor($receiver, ax, ay) {
     return PointInt$Companion_getInstance().invoke_vux9f0$(numberToInt($receiver.x + $receiver.width * ax), numberToInt($receiver.y + $receiver.height * ay));
   }
-
   var anchor_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.anchor_f1v9p2$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var anchor = _.com.soywiz.korma.geom.anchor_sg85ae$;
@@ -5469,11 +5136,9 @@
       return anchor($receiver, numberToDouble(ax), numberToDouble(ay));
     };
   }));
-
   function get_center($receiver) {
     return anchor($receiver, 0.5, 0.5);
   }
-
   function bounds_0($receiver, target) {
     if (target === void 0) {
       target = new Rectangle(0.0, 0.0, 0.0, 0.0);
@@ -5493,7 +5158,8 @@
         top = r.top;
         bottom = r.bottom;
         first = false;
-      } else {
+      }
+       else {
         var a = left;
         var b = r.left;
         left = Math_0.min(a, b);
@@ -5510,12 +5176,10 @@
     }
     return target.setBounds_6y0v78$(left, top, right, bottom);
   }
-
   function ScaleMode(function_0) {
     ScaleMode$Companion_getInstance();
     this.function_0 = function_0;
   }
-
   ScaleMode.prototype.invoke_35cwq9$ = function (item, container, target) {
     if (target === void 0)
       target = Size$Companion_getInstance().invoke();
@@ -5528,7 +5192,6 @@
     this.function_0(this, asDouble_1(item), asDouble_1(container), asDouble_1(target));
     return target;
   };
-
   function ScaleMode$Companion() {
     ScaleMode$Companion_instance = this;
     this.COVER = new ScaleMode(ScaleMode$Companion$COVER$lambda);
@@ -5536,7 +5199,6 @@
     this.EXACT = new ScaleMode(ScaleMode$Companion$EXACT$lambda);
     this.NO_SCALE = new ScaleMode(ScaleMode$Companion$NO_SCALE$lambda);
   }
-
   function ScaleMode$Companion$COVER$lambda($receiver, item, container, target) {
     var s0 = container.width / item.width;
     var s1 = container.height / item.height;
@@ -5547,7 +5209,6 @@
     setToScaled(tmp$, numberToDouble(sx), numberToDouble(sy));
     return Unit;
   }
-
   function ScaleMode$Companion$SHOW_ALL$lambda($receiver, item, container, target) {
     var s0 = container.width / item.width;
     var s1 = container.height / item.height;
@@ -5558,44 +5219,37 @@
     setToScaled(tmp$, numberToDouble(sx), numberToDouble(sy));
     return Unit;
   }
-
   function ScaleMode$Companion$EXACT$lambda($receiver, item, container, target) {
     setTo_10(target, container);
     return Unit;
   }
-
   function ScaleMode$Companion$NO_SCALE$lambda($receiver, item, container, target) {
     setTo_10(target, item);
     return Unit;
   }
-
   ScaleMode$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var ScaleMode$Companion_instance = null;
-
   function ScaleMode$Companion_getInstance() {
     if (ScaleMode$Companion_instance === null) {
       new ScaleMode$Companion();
     }
     return ScaleMode$Companion_instance;
   }
-
   ScaleMode.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ScaleMode',
     interfaces: []
   };
-
   function applyScaleMode($receiver, container, mode, anchor, out) {
     if (out === void 0) {
       out = new Rectangle(0.0, 0.0, 0.0, 0.0);
     }
     return applyScaleMode_0($receiver.size, container, mode, anchor, out);
   }
-
   function applyScaleMode_0($receiver, container, mode, anchor, out, tempSize) {
     if (out === void 0) {
       out = new Rectangle(0.0, 0.0, 0.0, 0.0);
@@ -5608,7 +5262,6 @@
     out.setToAnchoredRectangle_7qw0rf$(new Rectangle(numberToDouble(0), numberToDouble(0), numberToDouble(width), numberToDouble(height)), anchor, container);
     return out;
   }
-
   function applyScaleMode_1($receiver, container, mode, anchor, out, tempSize) {
     if (out === void 0)
       out = RectangleInt$Companion_getInstance().invoke();
@@ -5616,41 +5269,34 @@
       tempSize = SizeInt$Companion_getInstance().invoke();
     return asInt_0(applyScaleMode_0(asDouble_1($receiver), asDouble_0(container), mode, anchor, asDouble_0(out), asDouble_1(tempSize)));
   }
-
   function applyScaleMode_2($receiver, container, mode, out) {
     if (out === void 0)
       out = SizeInt$Companion_getInstance().invoke_vux9f0$(0, 0);
     return mode.invoke_n3lmo2$($receiver, container, out);
   }
-
   function applyScaleMode_3($receiver, container, mode, out) {
     if (out === void 0) {
       out = new Size(new Point(numberToDouble(0), numberToDouble(0)));
     }
     return mode.invoke_35cwq9$($receiver, container, out);
   }
-
   function fitTo($receiver, container, out) {
     if (out === void 0)
       out = SizeInt$Companion_getInstance().invoke_vux9f0$(0, 0);
     return applyScaleMode_2($receiver, container, ScaleMode$Companion_getInstance().SHOW_ALL, out);
   }
-
   function fitTo_0($receiver, container, out) {
     if (out === void 0) {
       out = new Size(new Point(numberToDouble(0), numberToDouble(0)));
     }
     return applyScaleMode_3($receiver, container, ScaleMode$Companion_getInstance().SHOW_ALL, out);
   }
-
   function ISize() {
     ISize$Companion_getInstance();
   }
-
   function ISize$Companion() {
     ISize$Companion_instance = this;
   }
-
   ISize$Companion.prototype.invoke_z8e4lc$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.ISize.Companion.invoke_z8e4lc$', wrapFunction(function () {
     var Point = _.com.soywiz.korma.geom.Point;
     var Size_init = _.com.soywiz.korma.geom.Size;
@@ -5665,29 +5311,24 @@
     interfaces: []
   };
   var ISize$Companion_instance = null;
-
   function ISize$Companion_getInstance() {
     if (ISize$Companion_instance === null) {
       new ISize$Companion();
     }
     return ISize$Companion_instance;
   }
-
   ISize.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'ISize',
     interfaces: []
   };
-
   function Size(p) {
     Size$Companion_getInstance();
     this.p = p;
   }
-
   function Size$Companion() {
     Size$Companion_instance = this;
   }
-
   Size$Companion.prototype.invoke = function () {
     return new Size(new Point(numberToDouble(0), numberToDouble(0)));
   };
@@ -5705,14 +5346,12 @@
     interfaces: []
   };
   var Size$Companion_instance = null;
-
   function Size$Companion_getInstance() {
     if (Size$Companion_instance === null) {
       new Size$Companion();
     }
     return Size$Companion_instance;
   }
-
   Object.defineProperty(Size.prototype, 'size', {
     get: function () {
       return this;
@@ -5775,15 +5414,12 @@
       return $receiver.setTo_lu1900$(numberToDouble(width), numberToDouble(height));
     };
   }));
-
   function setTo_10($receiver, that) {
     return $receiver.setTo_lu1900$(that.width, that.height);
   }
-
   function setToScaled($receiver, sx, sy) {
     return $receiver.setTo_lu1900$($receiver.width * sx, $receiver.height * sy);
   }
-
   var setToScaled_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setToScaled_ykl03i$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var setToScaled = _.com.soywiz.korma.geom.setToScaled_n266aa$;
@@ -5793,45 +5429,36 @@
       return setToScaled($receiver, numberToDouble(sx), numberToDouble(sy));
     };
   }));
-
   function get_area($receiver) {
     return $receiver.width * $receiver.height;
   }
-
   function get_perimeter($receiver) {
     return $receiver.width * 2 + $receiver.height * 2;
   }
-
   function get_min($receiver) {
     var a = $receiver.width;
     var b = $receiver.height;
     return Math_0.min(a, b);
   }
-
   function get_max($receiver) {
     var a = $receiver.width;
     var b = $receiver.height;
     return Math_0.max(a, b);
   }
-
   function ISizeInt() {
   }
-
   ISizeInt.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'ISizeInt',
     interfaces: []
   };
-
   function SizeInt(size) {
     SizeInt$Companion_getInstance();
     this.size = size;
   }
-
   function SizeInt$Companion() {
     SizeInt$Companion_instance = this;
   }
-
   SizeInt$Companion.prototype.invoke = function () {
     return new SizeInt(new Size(new Point(numberToDouble(0), numberToDouble(0))));
   };
@@ -5844,14 +5471,12 @@
     interfaces: []
   };
   var SizeInt$Companion_instance = null;
-
   function SizeInt$Companion_getInstance() {
     if (SizeInt$Companion_instance === null) {
       new SizeInt$Companion();
     }
     return SizeInt$Companion_instance;
   }
-
   Object.defineProperty(SizeInt.prototype, 'width', {
     get: function () {
       return numberToInt(this.size.width);
@@ -5887,21 +5512,17 @@
   SizeInt.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.size, other.size))));
   };
-
   function setTo_11($receiver, width, height) {
     $receiver.width = width;
     $receiver.height = height;
     return $receiver;
   }
-
   function setTo_12($receiver, that) {
     return setTo_11($receiver, that.width, that.height);
   }
-
   function setToScaled_1($receiver, sx, sy) {
     return setTo_11($receiver, numberToInt($receiver.width * sx), numberToInt($receiver.height * sy));
   }
-
   var setToScaled_2 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.setToScaled_39ro3z$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var setToScaled = _.com.soywiz.korma.geom.setToScaled_a4l7hd$;
@@ -5911,23 +5532,19 @@
       return setToScaled($receiver, numberToDouble(sx), numberToDouble(sy));
     };
   }));
-
   function anchoredIn_0($receiver, container, anchor, out) {
     if (out === void 0)
       out = RectangleInt$Companion_getInstance().invoke();
     return setTo_8(out, numberToInt((container.width - $receiver.width | 0) * anchor.sx), numberToInt((container.height - $receiver.height | 0) * anchor.sy), $receiver.width, $receiver.height);
   }
-
   function contains_6($receiver, v) {
     return v.width <= $receiver.width && v.height <= $receiver.height;
   }
-
   function times_9($receiver, v) {
     var width = numberToInt($receiver.width * v);
     var height = numberToInt($receiver.height * v);
     return new SizeInt(new Size(new Point(numberToDouble(width), numberToDouble(height))));
   }
-
   var times_10 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.times_lwl45h$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var times = _.com.soywiz.korma.geom.times_h2z8p9$;
@@ -5935,35 +5552,28 @@
       return times($receiver, numberToDouble(v));
     };
   }));
-
   function getAnchorPosition_0($receiver, anchor, out) {
     if (out === void 0)
       out = PointInt$Companion_getInstance().invoke_vux9f0$(0, 0);
     return out.setTo_vux9f0$(numberToInt($receiver.width * anchor.sx), numberToInt($receiver.height * anchor.sy));
   }
-
   function asInt_1($receiver) {
     return new SizeInt($receiver);
   }
-
   function asDouble_1($receiver) {
     return $receiver.size;
   }
-
   function Sizeable() {
   }
-
   Sizeable.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Sizeable',
     interfaces: []
   };
-
   function Vector3D() {
     Vector3D$Companion_getInstance();
     this.data = new Float32Array([0.0, 0.0, 0.0, 1.0]);
   }
-
   Object.defineProperty(Vector3D.prototype, 'x', {
     get: function () {
       return this.data[0];
@@ -6024,11 +5634,9 @@
   Vector3D.prototype.set_24o109$ = function (index, value) {
     this.data[index] = value;
   };
-
   function Vector3D$Companion() {
     Vector3D$Companion_instance = this;
   }
-
   Vector3D$Companion.prototype.invoke_1ugm5o$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.Vector3D.Companion.invoke_1ugm5o$', wrapFunction(function () {
     var Vector3D_init = _.com.soywiz.korma.geom.Vector3D;
     var numberToDouble = Kotlin.numberToDouble;
@@ -6082,14 +5690,12 @@
     interfaces: []
   };
   var Vector3D$Companion_instance = null;
-
   function Vector3D$Companion_getInstance() {
     if (Vector3D$Companion_instance === null) {
       new Vector3D$Companion();
     }
     return Vector3D$Companion_instance;
   }
-
   Vector3D.prototype.copyFrom_t4ex0$ = function (other) {
     return this.setTo_7b5o5w$(other.x, other.y, other.z, other.w);
   };
@@ -6141,11 +5747,9 @@
     simpleName: 'Vector3D',
     interfaces: []
   };
-
   function IntVector3(v) {
     this.v = v;
   }
-
   Object.defineProperty(IntVector3.prototype, 'x', {
     get: function () {
       return numberToInt(this.v.x);
@@ -6185,19 +5789,15 @@
   IntVector3.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.v, other.v))));
   };
-
   function asIntVector3D($receiver) {
     return new IntVector3($receiver);
   }
-
   function setToInterpolated_1($receiver, left, right, t) {
     return $receiver.setTo_7b5o5w$(interpolate_0(t, left.get_za3lpa$(0), right.get_za3lpa$(0)), interpolate_0(t, left.get_za3lpa$(1), right.get_za3lpa$(1)), interpolate_0(t, left.get_za3lpa$(2), right.get_za3lpa$(2)), interpolate_0(t, left.get_za3lpa$(3), right.get_za3lpa$(3)));
   }
-
   function scale_2($receiver, scale) {
     return $receiver.setTo_7b5o5w$($receiver.x * scale, $receiver.y * scale, $receiver.z * scale, $receiver.w * scale);
   }
-
   var scale_3 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.scale_qy8mz9$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var scale = _.com.soywiz.korma.geom.scale_zd61ja$;
@@ -6211,11 +5811,9 @@
       return $receiver.setTo_7b5o5w$(numberToDouble(x), numberToDouble(y), numberToDouble(z), numberToDouble(1.0));
     };
   }));
-
   function Bezier() {
     Bezier$Companion_getInstance();
   }
-
   Bezier.prototype.getBounds_2da8yn$ = function (target, callback$default) {
     if (target === void 0) {
       target = new Rectangle(0.0, 0.0, 0.0, 0.0);
@@ -6227,13 +5825,11 @@
       target = Point$Companion_getInstance().invoke();
     return callback$default ? callback$default(t, target) : this.calc_iwfqvm$$default(t, target);
   };
-
   function Bezier$Quad(p0, p1, p2) {
     this.p0 = p0;
     this.p1 = p1;
     this.p2 = p2;
   }
-
   Bezier$Quad.prototype.getBounds_2da8yn$$default = function (target) {
     return Bezier$Companion_getInstance().quadBounds_oaz3ob$(this.p0.x, this.p0.y, this.p1.x, this.p1.y, this.p2.x, this.p2.y, target);
   };
@@ -6260,7 +5856,6 @@
     simpleName: 'Quad',
     interfaces: [Bezier]
   };
-
   function Bezier$Cubic(p0, p1, p2, p3) {
     this.p0 = p0;
     this.p1 = p1;
@@ -6268,7 +5863,6 @@
     this.p3 = p3;
     this.temp_0 = new Bezier$Temp();
   }
-
   Bezier$Cubic.prototype.getBounds_2da8yn$$default = function (target) {
     return Bezier$Companion_getInstance().cubicBounds_1htcsh$(this.p0.x, this.p0.y, this.p1.x, this.p1.y, this.p2.x, this.p2.y, this.p3.x, this.p3.y, target, this.temp_0);
   };
@@ -6280,23 +5874,19 @@
     simpleName: 'Cubic',
     interfaces: [Bezier]
   };
-
   function Bezier$Temp() {
     this.tvalues = new Float64Array(6);
     this.xvalues = new Float64Array(8);
     this.yvalues = new Float64Array(8);
   }
-
   Bezier$Temp.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Temp',
     interfaces: []
   };
-
   function Bezier$Companion() {
     Bezier$Companion_instance = this;
   }
-
   Bezier$Companion.prototype.invoke_36hh2h$ = function (p0, p1, p2) {
     return new Bezier$Quad(p0, p1, p2);
   };
@@ -6348,7 +5938,8 @@
         b = 6 * x0 - 12 * x1 + 6 * x2;
         a = -3 * x0 + 9 * x1 - 9 * x2 + 3 * x3;
         c = 3 * x1 - 3 * x0;
-      } else {
+      }
+       else {
         b = 6 * y0 - 12 * y1 + 6 * y2;
         a = -3 * y0 + 9 * y1 - 9 * y2 + 3 * y3;
         c = 3 * y1 - 3 * y0;
@@ -6362,7 +5953,8 @@
             temp.tvalues[tmp$ = j, j = tmp$ + 1 | 0, tmp$] = t;
           }
         }
-      } else {
+      }
+       else {
         b2ac = b * b - 4 * c * a;
         if (b2ac < 0)
           continue;
@@ -6419,20 +6011,17 @@
     interfaces: []
   };
   var Bezier$Companion_instance = null;
-
   function Bezier$Companion_getInstance() {
     if (Bezier$Companion_instance === null) {
       new Bezier$Companion();
     }
     return Bezier$Companion_instance;
   }
-
   Bezier.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Bezier',
     interfaces: []
   };
-
   function length($receiver, steps, temp) {
     if (steps === void 0)
       steps = 100;
@@ -6454,11 +6043,9 @@
     }
     return length;
   }
-
   function SegmentEmitter() {
     SegmentEmitter_instance = this;
   }
-
   SegmentEmitter.prototype.emit_nrsayj$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.bezier.SegmentEmitter.emit_nrsayj$', wrapFunction(function () {
     var Point = _.com.soywiz.korma.geom.Point;
     return function (segments, curveGen, gen, p1, p2) {
@@ -6481,18 +6068,15 @@
     interfaces: []
   };
   var SegmentEmitter_instance = null;
-
   function SegmentEmitter_getInstance() {
     if (SegmentEmitter_instance === null) {
       new SegmentEmitter();
     }
     return SegmentEmitter_instance;
   }
-
   function Comparator$ObjectLiteral(closure$comparison) {
     this.closure$comparison = closure$comparison;
   }
-
   Comparator$ObjectLiteral.prototype.compare = function (a, b) {
     return this.closure$comparison(a, b);
   };
@@ -6506,7 +6090,6 @@
       };
     };
   });
-
   function BinPacker(width, height, algo) {
     BinPacker$Companion_getInstance();
     if (algo === void 0)
@@ -6516,16 +6099,13 @@
     this.algo = algo;
     this.allocated = ArrayList_init_0();
   }
-
   function BinPacker$Algo() {
   }
-
   BinPacker$Algo.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Algo',
     interfaces: []
   };
-
   function BinPacker$Result(maxWidth, maxHeight, items) {
     this.maxWidth = maxWidth;
     this.maxHeight = maxHeight;
@@ -6559,7 +6139,6 @@
     }
     this.height = (tmp$_1 = max_0(destination_1)) != null ? tmp$_1 : 0.0;
   }
-
   Object.defineProperty(BinPacker$Result.prototype, 'rects', {
     get: function () {
       var $receiver = this.items;
@@ -6583,11 +6162,9 @@
     simpleName: 'Result',
     interfaces: []
   };
-
   function BinPacker$addBatch$lambda(it) {
     return get_area(it.second);
   }
-
   BinPacker.prototype.addBatch_c28qhz$ = function ($receiver, items, getSize) {
     var tmp$;
     var its = toList(items);
@@ -6604,7 +6181,7 @@
     while (tmp$.hasNext()) {
       var tmp$_1 = tmp$.next();
       var i = tmp$_1.component1()
-          , size = tmp$_1.component2();
+      , size = tmp$_1.component2();
       var value = $receiver.add_lu1900$(size.width, size.height);
       out.put_xwzc9p$(i, value);
     }
@@ -6638,11 +6215,9 @@
   BinPacker.prototype.addBatch_f0fc84$ = function (items, getSize) {
     return new BinPacker$Result(this.width, this.height, this.addBatch_c28qhz$(this.algo, items, getSize));
   };
-
   function BinPacker$addBatch$lambda_0(it) {
     return it;
   }
-
   BinPacker.prototype.addBatch_v79qp2$ = function (items) {
     var $receiver = this.addBatch_c28qhz$(this.algo, items, BinPacker$addBatch$lambda_0);
     var destination = ArrayList_init(collectionSizeOrDefault($receiver, 10));
@@ -6654,11 +6229,9 @@
     }
     return destination;
   };
-
   function BinPacker$Companion() {
     BinPacker$Companion_instance = this;
   }
-
   BinPacker$Companion.prototype.invoke_bc5jmq$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.binpack.BinPacker.Companion.invoke_bc5jmq$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var MaxRects_init = _.com.soywiz.korma.geom.binpack.MaxRects;
@@ -6680,22 +6253,18 @@
   }));
   BinPacker$Companion.prototype.packSeveral_6g33wa$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.binpack.BinPacker.Companion.packSeveral_6g33wa$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
-
     function BinPacker$Companion$packSeveral$lambda(it) {
       return it.size;
     }
-
     return function (maxWidth, maxHeight, items) {
       return this.packSeveral_7eyens$(numberToDouble(maxWidth), numberToDouble(maxHeight), items, BinPacker$Companion$packSeveral$lambda);
     };
   }));
-
   function BinPacker$Companion$packSeveral$lambda(closure$getSize) {
     return function (it) {
       return get_area(closure$getSize(it));
     };
   }
-
   function BinPacker$Companion$packSeveral$emit(closure$currentPairs, closure$out, closure$maxWidth, closure$maxHeight, closure$currentBinPacker) {
     return function () {
       if (closure$currentPairs.v.isEmpty())
@@ -6707,7 +6276,6 @@
       closure$currentBinPacker.v = new BinPacker(closure$maxWidth, closure$maxHeight);
     };
   }
-
   BinPacker$Companion.prototype.packSeveral_7eyens$ = function (maxWidth, maxHeight, items, getSize) {
     var tmp$;
     var currentBinPacker = {v: new BinPacker(maxWidth, maxHeight)};
@@ -6731,7 +6299,7 @@
       }
       any$result = false;
     }
-    while (false);
+     while (false);
     if (any$result) {
       throw IllegalArgumentException_init('Item is bigger than max size');
     }
@@ -6747,7 +6315,8 @@
         if (rect != null) {
           currentPairs.v.add_11rb$(to(item, rect));
           done = true;
-        } else {
+        }
+         else {
           emit();
         }
       }
@@ -6761,24 +6330,20 @@
     interfaces: []
   };
   var BinPacker$Companion_instance = null;
-
   function BinPacker$Companion_getInstance() {
     if (BinPacker$Companion_instance === null) {
       new BinPacker$Companion();
     }
     return BinPacker$Companion_instance;
   }
-
   BinPacker.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'BinPacker',
     interfaces: []
   };
-
   function MaxRects(maxWidth, maxHeight) {
     this.freeRectangles = arrayListOf([new Rectangle(0.0, 0.0, maxWidth, maxHeight)]);
   }
-
   MaxRects.prototype.add_lu1900$ = function (width, height) {
     return this.quickInsert_lu1900$(width, height);
   };
@@ -6921,43 +6486,35 @@
   var trySet_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.ds.trySet_vtn6wy$', function ($receiver, p, value) {
     $receiver.trySet_vq7693$(p.x, p.y, value);
   });
-
   function OpenRange(start, endExclusive) {
     this.start = start;
     this.endExclusive = endExclusive;
   }
-
   OpenRange.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'OpenRange',
     interfaces: []
   };
-
   function contains_7($receiver, item) {
     return Kotlin.compareTo(item, $receiver.start) >= 0 && Kotlin.compareTo(item, $receiver.endExclusive) < 0;
   }
-
   function HorizontalLine() {
     HorizontalLine_instance = this;
   }
-
   HorizontalLine.prototype.intersectionsWithLine_15yvbs$ = function (ax, ay, bx0, by0, bx1, by1) {
     return by1 > ay !== by0 > ay && ax < (bx0 - bx1) * (ay - by1) / (by0 - by1) + bx1 ? 1 : 0;
   };
-
   function HorizontalLine$interesectionsWithQuadBezier$lambda(closure$bx0, closure$by0, closure$bx1, closure$by1, closure$bx2, closure$by2) {
     return function (p, t) {
       return Bezier$Companion_getInstance().quadCalc_181vpe$(closure$bx0, closure$by0, closure$bx1, closure$by1, closure$bx2, closure$by2, t, p);
     };
   }
-
   function HorizontalLine$interesectionsWithQuadBezier$lambda_0(closure$count, closure$ax, closure$ay, this$HorizontalLine) {
     return function (p0, p1) {
       closure$count.v = closure$count.v + this$HorizontalLine.intersectionsWithLine_15yvbs$(closure$ax, closure$ay, p0.x, p0.y, p1.x, p1.y) | 0;
       return Unit;
     };
   }
-
   HorizontalLine.prototype.interesectionsWithQuadBezier_5vg17g$ = function (ax, ay, bx0, by0, bx1, by1, bx2, by2, t0, t1) {
     if (t0 === void 0)
       t0 = Point$Companion_getInstance().invoke();
@@ -6973,20 +6530,17 @@
     }
     return count.v;
   };
-
   function HorizontalLine$intersectionsWithCubicBezier$lambda(closure$bx0, closure$by0, closure$bx1, closure$by1, closure$bx2, closure$by2, closure$bx3, closure$by3) {
     return function (p, t) {
       return Bezier$Companion_getInstance().cubicCalc_bmgyua$(closure$bx0, closure$by0, closure$bx1, closure$by1, closure$bx2, closure$by2, closure$bx3, closure$by3, t, p);
     };
   }
-
   function HorizontalLine$intersectionsWithCubicBezier$lambda_0(closure$count, closure$ax, closure$ay, this$HorizontalLine) {
     return function (p0, p1) {
       closure$count.v = closure$count.v + this$HorizontalLine.intersectionsWithLine_15yvbs$(closure$ax, closure$ay, p0.x, p0.y, p1.x, p1.y) | 0;
       return Unit;
     };
   }
-
   HorizontalLine.prototype.intersectionsWithCubicBezier_erb1tk$ = function (ax, ay, bx0, by0, bx1, by1, bx2, by2, bx3, by3, t0, t1) {
     if (t0 === void 0)
       t0 = Point$Companion_getInstance().invoke();
@@ -7008,30 +6562,24 @@
     interfaces: []
   };
   var HorizontalLine_instance = null;
-
   function HorizontalLine_getInstance() {
     if (HorizontalLine_instance === null) {
       new HorizontalLine();
     }
     return HorizontalLine_instance;
   }
-
   function Shape2d() {
   }
-
   Shape2d.prototype.containsPoint_lu1900$ = function (x, y) {
     return false;
   };
-
   function Shape2d$WithArea() {
   }
-
   Shape2d$WithArea.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'WithArea',
     interfaces: []
   };
-
   function Shape2d$Empty() {
     Shape2d$Empty_instance = this;
     Shape2d.call(this);
@@ -7039,7 +6587,6 @@
     this.closed_ojj3px$_0 = false;
     this.area_5jn9v0$_0 = 0.0;
   }
-
   Object.defineProperty(Shape2d$Empty.prototype, 'paths', {
     get: function () {
       return this.paths_n07sij$_0;
@@ -7064,14 +6611,12 @@
     interfaces: [Shape2d$WithArea, Shape2d]
   };
   var Shape2d$Empty_instance = null;
-
   function Shape2d$Empty_getInstance() {
     if (Shape2d$Empty_instance === null) {
       new Shape2d$Empty();
     }
     return Shape2d$Empty_instance;
   }
-
   function Shape2d$Line(x0, y0, x1, y1) {
     Shape2d$Line$Companion_getInstance();
     Shape2d.call(this);
@@ -7081,11 +6626,9 @@
     this.y1 = y1;
     this.closed_wkx08c$_0 = false;
   }
-
   function Shape2d$Line$Companion() {
     Shape2d$Line$Companion_instance = this;
   }
-
   Shape2d$Line$Companion.prototype.invoke_1ugm5o$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.shape.Shape2d.Line.Companion.invoke_1ugm5o$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Shape2d$Shape2d$Line_init = _.com.soywiz.korma.geom.shape.Shape2d.Line;
@@ -7099,14 +6642,12 @@
     interfaces: []
   };
   var Shape2d$Line$Companion_instance = null;
-
   function Shape2d$Line$Companion_getInstance() {
     if (Shape2d$Line$Companion_instance === null) {
       new Shape2d$Line$Companion();
     }
     return Shape2d$Line$Companion_instance;
   }
-
   Object.defineProperty(Shape2d$Line.prototype, 'paths', {
     get: function () {
       var $receiver = new PointArrayList(2);
@@ -7161,7 +6702,6 @@
   Shape2d$Line.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x0, other.x0) && Kotlin.equals(this.y0, other.y0) && Kotlin.equals(this.x1, other.x1) && Kotlin.equals(this.y1, other.y1)))));
   };
-
   function Shape2d$Circle(x, y, radius, totalPoints) {
     Shape2d$Circle$Companion_getInstance();
     if (totalPoints === void 0)
@@ -7174,11 +6714,9 @@
     this.paths_bm3p3m$_0 = lazy(Shape2d$Circle$paths$lambda(this));
     this.closed_waqg5k$_0 = true;
   }
-
   function Shape2d$Circle$Companion() {
     Shape2d$Circle$Companion_instance = this;
   }
-
   Shape2d$Circle$Companion.prototype.invoke_kw9hvg$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.shape.Shape2d.Circle.Companion.invoke_kw9hvg$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     var Shape2d$Shape2d$Circle_init = _.com.soywiz.korma.geom.shape.Shape2d.Circle;
@@ -7194,14 +6732,12 @@
     interfaces: []
   };
   var Shape2d$Circle$Companion_instance = null;
-
   function Shape2d$Circle$Companion_getInstance() {
     if (Shape2d$Circle$Companion_instance === null) {
       new Shape2d$Circle$Companion();
     }
     return Shape2d$Circle$Companion_instance;
   }
-
   Object.defineProperty(Shape2d$Circle.prototype, 'paths', {
     get: function () {
       return this.paths_bm3p3m$_0.value;
@@ -7222,7 +6758,6 @@
     var y_0 = this.y - y;
     return Math_0.hypot(x_0, y_0) < this.radius;
   };
-
   function Shape2d$Circle$paths$lambda$lambda(this$Circle) {
     return function ($receiver) {
       var tmp$;
@@ -7233,13 +6768,11 @@
       return Unit;
     };
   }
-
   function Shape2d$Circle$paths$lambda(this$Circle) {
     return function () {
       return listOf(PointArrayList$Companion_getInstance().invoke_r4cj56$(this$Circle.totalPoints, Shape2d$Circle$paths$lambda$lambda(this$Circle)));
     };
   }
-
   Shape2d$Circle.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Circle',
@@ -7274,7 +6807,6 @@
   Shape2d$Circle.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.radius, other.radius) && Kotlin.equals(this.totalPoints, other.totalPoints)))));
   };
-
   function Shape2d$Rectangle(rect) {
     Shape2d$Rectangle$Companion_getInstance();
     Shape2d.call(this);
@@ -7282,11 +6814,9 @@
     this.paths_s0gmm5$_0 = listOf(PointArrayList$Companion_getInstance().invoke_r4cj56$(4, Shape2d$Rectangle$paths$lambda(this)));
     this.closed_be5ak7$_0 = true;
   }
-
   function Shape2d$Rectangle$Companion() {
     Shape2d$Rectangle$Companion_instance = this;
   }
-
   Shape2d$Rectangle$Companion.prototype.invoke_1ugm5o$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.shape.Shape2d.Rectangle.Companion.invoke_1ugm5o$', wrapFunction(function () {
     var Rectangle = _.com.soywiz.korma.geom.Rectangle;
     var Shape2d$Shape2d$Rectangle_init = _.com.soywiz.korma.geom.shape.Shape2d.Rectangle;
@@ -7301,14 +6831,12 @@
     interfaces: []
   };
   var Shape2d$Rectangle$Companion_instance = null;
-
   function Shape2d$Rectangle$Companion_getInstance() {
     if (Shape2d$Rectangle$Companion_instance === null) {
       new Shape2d$Rectangle$Companion();
     }
     return Shape2d$Rectangle$Companion_instance;
   }
-
   Object.defineProperty(Shape2d$Rectangle.prototype, 'paths', {
     get: function () {
       return this.paths_s0gmm5$_0;
@@ -7350,14 +6878,12 @@
       return this.rect.y;
     }
   });
-
   function Shape2d$Rectangle$paths$lambda(this$Rectangle) {
     return function ($receiver) {
       $receiver.add_lu1900$(this$Rectangle.x, this$Rectangle.y).add_lu1900$(this$Rectangle.x + this$Rectangle.width, this$Rectangle.y).add_lu1900$(this$Rectangle.x + this$Rectangle.width, this$Rectangle.y + this$Rectangle.height).add_lu1900$(this$Rectangle.x, this$Rectangle.y + this$Rectangle.height);
       return Unit;
     };
   }
-
   Shape2d$Rectangle.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Rectangle',
@@ -7377,14 +6903,12 @@
   Shape2d$Rectangle.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.rect, other.rect))));
   };
-
   function Shape2d$Polygon(points) {
     Shape2d.call(this);
     this.points = points;
     this.paths_dmz4uw$_0 = listOf(this.points);
     this.closed_o0oyo2$_0 = true;
   }
-
   Object.defineProperty(Shape2d$Polygon.prototype, 'paths', {
     get: function () {
       return this.paths_dmz4uw$_0;
@@ -7420,14 +6944,12 @@
   Shape2d$Polygon.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.points, other.points))));
   };
-
   function Shape2d$Polyline(points) {
     Shape2d.call(this);
     this.points = points;
     this.paths_6cx7oe$_0 = listOf(this.points);
     this.closed_rn9e4o$_0 = false;
   }
-
   Object.defineProperty(Shape2d$Polyline.prototype, 'paths', {
     get: function () {
       return this.paths_6cx7oe$_0;
@@ -7468,14 +6990,12 @@
   Shape2d$Polyline.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.points, other.points))));
   };
-
   function Shape2d$Complex(items) {
     Shape2d.call(this);
     this.items = items;
     this.paths_vlpala$_0 = lazy(Shape2d$Complex$paths$lambda(this));
     this.closed_sv7aq0$_0 = false;
   }
-
   Object.defineProperty(Shape2d$Complex.prototype, 'paths', {
     get: function () {
       return this.paths_vlpala$_0.value;
@@ -7489,7 +7009,6 @@
   Shape2d$Complex.prototype.containsPoint_lu1900$ = function (x, y) {
     return contains_2(getAllPoints(this), x, y);
   };
-
   function Shape2d$Complex$paths$lambda(this$Complex) {
     return function () {
       var $receiver = this$Complex.items;
@@ -7504,7 +7023,6 @@
       return destination;
     };
   }
-
   Shape2d$Complex.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Complex',
@@ -7532,7 +7050,6 @@
     simpleName: 'Shape2d',
     interfaces: []
   };
-
   function get_totalVertices($receiver) {
     var destination = ArrayList_init(collectionSizeOrDefault($receiver, 10));
     var tmp$;
@@ -7543,7 +7060,6 @@
     }
     return sum(destination);
   }
-
   function add_10($receiver, shape) {
     var tmp$;
     tmp$ = shape.paths.iterator();
@@ -7552,13 +7068,11 @@
       add_2($receiver, path);
     }
   }
-
   function get_bounds($receiver) {
     var $receiver_0 = new BoundsBuilder();
     add_10($receiver_0, $receiver);
     return $receiver_0.getBounds_2da8yn$();
   }
-
   function toShape($receiver) {
     var x = $receiver.x;
     var y = $receiver.y;
@@ -7566,7 +7080,6 @@
     var height = $receiver.height;
     return new Shape2d$Rectangle(new Rectangle(numberToDouble(x), numberToDouble(y), numberToDouble(width), numberToDouble(height)));
   }
-
   var emitPoints = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.shape.emitPoints_ppi5jo$', function ($receiver, flush, emit, curveSteps) {
     if (curveSteps === void 0)
       curveSteps = 20;
@@ -7644,7 +7157,6 @@
     }
     flush();
   });
-
   function toShape2d($receiver, closed) {
     if (closed === void 0)
       closed = true;
@@ -7659,7 +7171,6 @@
     }
     return closed ? new Shape2d$Polygon($receiver) : new Shape2d$Polyline($receiver);
   }
-
   function toShape2d_0($receiver, closed) {
     if (closed === void 0)
       closed = true;
@@ -7680,13 +7191,11 @@
       case 1:
         tmp$ = first(items);
         break;
-      default:
-        tmp$ = new Shape2d$Complex(items);
+      default:tmp$ = new Shape2d$Complex(items);
         break;
     }
     return tmp$;
   }
-
   function toPathList($receiver) {
     var paths = ArrayList_init_0();
     var path = {v: new PointArrayList()};
@@ -7778,7 +7287,6 @@
     }
     return paths;
   }
-
   function getAllPoints($receiver, out) {
     if (out === void 0)
       out = new PointArrayList();
@@ -7790,11 +7298,9 @@
     }
     return out;
   }
-
   function toPolygon($receiver) {
     return Kotlin.isType($receiver, Shape2d$Polygon) ? $receiver : new Shape2d$Polygon(getAllPoints($receiver));
   }
-
   function containsPoint($receiver, x, y) {
     var tmp$;
     var intersections = 0;
@@ -7806,22 +7312,18 @@
     }
     return intersections % 2 !== 0;
   }
-
   function Edge(dummy, p, q) {
     Edge$Companion_getInstance();
     this.dummy = dummy;
     this.p = p;
     this.q = q;
   }
-
   Edge.prototype.hasPoint_3qfxs9$ = function (point) {
     return equals(this.p, point) || equals(this.q, point);
   };
-
   function Edge$Companion() {
     Edge$Companion_instance = this;
   }
-
   Edge$Companion.prototype.invoke_v3tj7w$ = function (p1, p2) {
     var comp = Point$Companion_getInstance().compare_v3tj7w$(p1, p2);
     if (comp === 0)
@@ -7847,14 +7349,12 @@
     interfaces: []
   };
   var Edge$Companion_instance = null;
-
   function Edge$Companion_getInstance() {
     if (Edge$Companion_instance === null) {
       new Edge$Companion();
     }
     return Edge$Companion_instance;
   }
-
   Edge.prototype.toString = function () {
     return 'Edge(' + this.p + ', ' + this.q + ')';
   };
@@ -7885,17 +7385,14 @@
   Edge.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.dummy, other.dummy) && Kotlin.equals(this.p, other.p) && Kotlin.equals(this.q, other.q)))));
   };
-
   function Triangle() {
     Triangle$Companion_getInstance();
   }
-
   function Triangle$Base(p0, p1, p2) {
     this.p0_y3br3n$_0 = p0;
     this.p1_y3br2s$_0 = p1;
     this.p2_y3br1x$_0 = p2;
   }
-
   Object.defineProperty(Triangle$Base.prototype, 'p0', {
     get: function () {
       return this.p0_y3br3n$_0;
@@ -7941,12 +7438,10 @@
   Triangle$Base.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.p0, other.p0) && Kotlin.equals(this.p1, other.p1) && Kotlin.equals(this.p2, other.p2)))));
   };
-
   function Triangle$Companion() {
     Triangle$Companion_instance = this;
     this.EPSILON_0 = 1.0E-12;
   }
-
   Triangle$Companion.prototype.area_36hh2h$ = function (p1, p2, p3) {
     return this.area_15yvbs$(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
   };
@@ -8043,20 +7538,17 @@
     interfaces: []
   };
   var Triangle$Companion_instance = null;
-
   function Triangle$Companion_getInstance() {
     if (Triangle$Companion_instance === null) {
       new Triangle$Companion();
     }
     return Triangle$Companion_instance;
   }
-
   Triangle.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Triangle',
     interfaces: []
   };
-
   function point($receiver, index) {
     switch (index) {
       case 0:
@@ -8065,27 +7557,21 @@
         return $receiver.p1;
       case 2:
         return $receiver.p2;
-      default:
-        throw IllegalStateException_init(('Invalid triangle point index ' + index).toString());
+      default:throw IllegalStateException_init(('Invalid triangle point index ' + index).toString());
     }
   }
-
   function containsPoint_0($receiver, point) {
     return equals(point, $receiver.p0) || equals(point, $receiver.p1) || equals(point, $receiver.p2);
   }
-
   function containsEdge($receiver, edge) {
     return containsEdgePoints($receiver, edge.p, edge.q);
   }
-
   function containsEdgePoints($receiver, p1, p2) {
     return containsPoint_0($receiver, p1) && containsPoint_0($receiver, p2);
   }
-
   function _product(p1, p2, p3) {
     return (p1.x - p3.x) * (p2.y - p3.y) - (p1.y - p3.y) * (p2.x - p3.x);
   }
-
   function pointInsideTriangle($receiver, pp) {
     var sign0 = _product($receiver.p0, $receiver.p1, $receiver.p2);
     var sign1 = _product($receiver.p0, $receiver.p1, pp);
@@ -8093,7 +7579,6 @@
     var sign3 = _product($receiver.p2, $receiver.p0, pp);
     return sign0 >= 0 ? sign1 >= 0 && sign2 >= 0 && sign3 >= 0 : sign1 <= 0 && sign2 <= 0 && sign3 <= 0;
   }
-
   function getPointIndexOffsetNoThrow($receiver, p, offset, notFound) {
     if (offset === void 0)
       offset = 0;
@@ -8111,7 +7596,6 @@
     }
     return notFound;
   }
-
   function getPointIndexOffset($receiver, p, offset) {
     if (offset === void 0)
       offset = 0;
@@ -8120,19 +7604,15 @@
       throw Error_init('Point2d not in triangle');
     return v;
   }
-
   function pointCW($receiver, p) {
     return point($receiver, getPointIndexOffset($receiver, p, -1));
   }
-
   function pointCCW($receiver, p) {
     return point($receiver, getPointIndexOffset($receiver, p, 1));
   }
-
   function oppositePoint($receiver, t, p) {
     return pointCW($receiver, pointCW(t, p));
   }
-
   function Triangle_0(p0, p1, p2, fixOrientation, checkOrientation) {
     if (fixOrientation === void 0)
       fixOrientation = false;
@@ -8151,27 +7631,26 @@
       throw Error_init('Triangle must defined with Orientation.CW');
     return new Triangle$Base(p0, p1_0, p2_0);
   }
-
   function get_area_0($receiver) {
     return Triangle$Companion_getInstance().area_36hh2h$($receiver.p0, $receiver.p1, $receiver.p2);
   }
-
   function index($receiver, p) {
     return getPointIndexOffsetNoThrow($receiver, p, 0, -1);
   }
-
   function edgeIndex($receiver, p1, p2) {
     if (equals(p1, point($receiver, 0))) {
       if (equals(p2, point($receiver, 1)))
         return 2;
       if (equals(p2, point($receiver, 2)))
         return 1;
-    } else if (equals(p1, point($receiver, 1))) {
+    }
+     else if (equals(p1, point($receiver, 1))) {
       if (equals(p2, point($receiver, 2)))
         return 0;
       if (equals(p2, point($receiver, 0)))
         return 2;
-    } else if (equals(p1, point($receiver, 2))) {
+    }
+     else if (equals(p1, point($receiver, 2))) {
       if (equals(p2, point($receiver, 0)))
         return 1;
       if (equals(p2, point($receiver, 1)))
@@ -8179,24 +7658,19 @@
     }
     return -1;
   }
-
   function VectorBuilder() {
   }
-
   VectorBuilder.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'VectorBuilder',
     interfaces: []
   };
-
   function isEmpty($receiver) {
     return $receiver.totalPoints === 0;
   }
-
   function isNotEmpty($receiver) {
     return $receiver.totalPoints !== 0;
   }
-
   function arcTo($receiver, ax, ay, cx, cy, r) {
     if (isEmpty($receiver))
       $receiver.moveTo_lu1900$(ax, ay);
@@ -8221,7 +7695,6 @@
     $receiver.lineTo_lu1900$(A.x, A.y);
     $receiver.quadTo_6y0v78$(a.x, a.y, B.x, B.y);
   }
-
   function rect($receiver, x, y, width, height) {
     $receiver.moveTo_lu1900$(x, y);
     $receiver.lineTo_lu1900$(x + width, y);
@@ -8229,7 +7702,6 @@
     $receiver.lineTo_lu1900$(x, y + height);
     $receiver.close();
   }
-
   function rectHole($receiver, x, y, width, height) {
     $receiver.moveTo_lu1900$(x, y);
     $receiver.lineTo_lu1900$(x, y + height);
@@ -8237,13 +7709,13 @@
     $receiver.lineTo_lu1900$(x + width, y);
     $receiver.close();
   }
-
   function roundRect($receiver, x, y, w, h, rx, ry) {
     if (ry === void 0)
       ry = rx;
     if (rx === 0.0 && ry === 0.0) {
       rect($receiver, x, y, w, h);
-    } else {
+    }
+     else {
       var r = w < 2 * rx ? w / 2.0 : h < 2 * rx ? h / 2.0 : rx;
       $receiver.moveTo_lu1900$(x + r, y);
       arcTo($receiver, x + w, y, x + w, y + h, r);
@@ -8252,7 +7724,6 @@
       arcTo($receiver, x, y, x + w, y, r);
     }
   }
-
   function arc($receiver, x, y, r, start, end) {
     var EPSILON = 1.0E-5;
     var PI_TWO = math.PI * 2.0;
@@ -8308,11 +7779,9 @@
       $receiver.close();
     }
   }
-
   function circle($receiver, x, y, radius) {
     arc($receiver, x, y, radius, 0.0, math.PI * 2.0);
   }
-
   function ellipse($receiver, x, y, rw, rh) {
     var k = 0.5522848;
     var ox = rw / 2 * k;
@@ -8327,23 +7796,18 @@
     $receiver.cubicTo_15yvbs$(xe, ym + oy, xm + ox, ye, xm, ye);
     $receiver.cubicTo_15yvbs$(xm - ox, ye, x, ym + oy, x, ym);
   }
-
   function moveTo($receiver, p) {
     $receiver.moveTo_lu1900$(p.x, p.y);
   }
-
   function lineTo($receiver, p) {
     $receiver.lineTo_lu1900$(p.x, p.y);
   }
-
   function quadTo($receiver, c, a) {
     $receiver.quadTo_6y0v78$(c.x, c.y, a.x, a.y);
   }
-
   function cubicTo($receiver, c1, c2, a) {
     $receiver.cubicTo_15yvbs$(c1.x, c1.y, c2.x, c2.y, a.x, a.y);
   }
-
   var moveTo_0 = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.vector.moveTo_29p75a$', wrapFunction(function () {
     var numberToDouble = Kotlin.numberToDouble;
     return function ($receiver, x, y) {
@@ -8493,7 +7957,6 @@
       ellipse($receiver, numberToDouble(x), numberToDouble(y), numberToDouble(rw), numberToDouble(rh));
     };
   }));
-
   function VectorPath(commands, data, winding) {
     VectorPath$Companion_getInstance();
     if (commands === void 0)
@@ -8511,15 +7974,12 @@
     this.p1_xif5oy$_0 = Point$Companion_getInstance().invoke();
     this.p2_xif5o3$_0 = Point$Companion_getInstance().invoke();
   }
-
   VectorPath.prototype.clone = function () {
     return new VectorPath(IntArrayList_init(this.commands), DoubleArrayList_init(this.data), this.winding);
   };
-
   function VectorPath$Companion() {
     VectorPath$Companion_instance = this;
   }
-
   VectorPath$Companion.prototype.invoke_yrw2h7$ = defineInlineFunction('korma-root-korma.com.soywiz.korma.geom.vector.VectorPath.Companion.invoke_yrw2h7$', wrapFunction(function () {
     var VectorPath$Winding = _.com.soywiz.korma.geom.vector.VectorPath.Winding;
     var VectorPath_init = _.com.soywiz.korma.geom.vector.VectorPath;
@@ -8537,17 +7997,14 @@
     interfaces: []
   };
   var VectorPath$Companion_instance = null;
-
   function VectorPath$Companion_getInstance() {
     if (VectorPath$Companion_instance === null) {
       new VectorPath$Companion();
     }
     return VectorPath$Companion_instance;
   }
-
   function VectorPath$Visitor() {
   }
-
   VectorPath$Visitor.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Visitor',
@@ -8907,11 +8364,9 @@
     }
     return intersections.v;
   };
-
   function VectorPath$Stats() {
     this.stats = new Int32Array(5);
   }
-
   Object.defineProperty(VectorPath$Stats.prototype, 'moveTo', {
     get: function () {
       return this.stats[0];
@@ -8966,7 +8421,6 @@
     }
     return out;
   };
-
   function VectorPath$Command() {
     VectorPath$Command_instance = this;
     this.MOVE_TO = 0;
@@ -8975,80 +8429,64 @@
     this.CUBIC_TO = 3;
     this.CLOSE = 4;
   }
-
   VectorPath$Command.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Command',
     interfaces: []
   };
   var VectorPath$Command_instance = null;
-
   function VectorPath$Command_getInstance() {
     if (VectorPath$Command_instance === null) {
       new VectorPath$Command();
     }
     return VectorPath$Command_instance;
   }
-
   function VectorPath$Winding(name, ordinal, str) {
     Enum.call(this);
     this.str = str;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function VectorPath$Winding_initFields() {
     VectorPath$Winding_initFields = function () {
     };
     VectorPath$Winding$EVEN_ODD_instance = new VectorPath$Winding('EVEN_ODD', 0, 'evenOdd');
     VectorPath$Winding$NON_ZERO_instance = new VectorPath$Winding('NON_ZERO', 1, 'nonZero');
   }
-
   var VectorPath$Winding$EVEN_ODD_instance;
-
   function VectorPath$Winding$EVEN_ODD_getInstance() {
     VectorPath$Winding_initFields();
     return VectorPath$Winding$EVEN_ODD_instance;
   }
-
   var VectorPath$Winding$NON_ZERO_instance;
-
   function VectorPath$Winding$NON_ZERO_getInstance() {
     VectorPath$Winding_initFields();
     return VectorPath$Winding$NON_ZERO_instance;
   }
-
   VectorPath$Winding.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Winding',
     interfaces: [Enum]
   };
-
   function VectorPath$Winding$values() {
     return [VectorPath$Winding$EVEN_ODD_getInstance(), VectorPath$Winding$NON_ZERO_getInstance()];
   }
-
   VectorPath$Winding.values = VectorPath$Winding$values;
-
   function VectorPath$Winding$valueOf(name) {
     switch (name) {
       case 'EVEN_ODD':
         return VectorPath$Winding$EVEN_ODD_getInstance();
       case 'NON_ZERO':
         return VectorPath$Winding$NON_ZERO_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korma.geom.vector.VectorPath.Winding.' + name);
+      default:throwISE('No enum constant com.soywiz.korma.geom.vector.VectorPath.Winding.' + name);
     }
   }
-
   VectorPath$Winding.valueOf_61zpoe$ = VectorPath$Winding$valueOf;
-
   function VectorPath$LineCap(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function VectorPath$LineCap_initFields() {
     VectorPath$LineCap_initFields = function () {
     };
@@ -9056,40 +8494,30 @@
     VectorPath$LineCap$SQUARE_instance = new VectorPath$LineCap('SQUARE', 1);
     VectorPath$LineCap$ROUND_instance = new VectorPath$LineCap('ROUND', 2);
   }
-
   var VectorPath$LineCap$BUTT_instance;
-
   function VectorPath$LineCap$BUTT_getInstance() {
     VectorPath$LineCap_initFields();
     return VectorPath$LineCap$BUTT_instance;
   }
-
   var VectorPath$LineCap$SQUARE_instance;
-
   function VectorPath$LineCap$SQUARE_getInstance() {
     VectorPath$LineCap_initFields();
     return VectorPath$LineCap$SQUARE_instance;
   }
-
   var VectorPath$LineCap$ROUND_instance;
-
   function VectorPath$LineCap$ROUND_getInstance() {
     VectorPath$LineCap_initFields();
     return VectorPath$LineCap$ROUND_instance;
   }
-
   VectorPath$LineCap.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'LineCap',
     interfaces: [Enum]
   };
-
   function VectorPath$LineCap$values() {
     return [VectorPath$LineCap$BUTT_getInstance(), VectorPath$LineCap$SQUARE_getInstance(), VectorPath$LineCap$ROUND_getInstance()];
   }
-
   VectorPath$LineCap.values = VectorPath$LineCap$values;
-
   function VectorPath$LineCap$valueOf(name) {
     switch (name) {
       case 'BUTT':
@@ -9098,19 +8526,15 @@
         return VectorPath$LineCap$SQUARE_getInstance();
       case 'ROUND':
         return VectorPath$LineCap$ROUND_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korma.geom.vector.VectorPath.LineCap.' + name);
+      default:throwISE('No enum constant com.soywiz.korma.geom.vector.VectorPath.LineCap.' + name);
     }
   }
-
   VectorPath$LineCap.valueOf_61zpoe$ = VectorPath$LineCap$valueOf;
-
   function VectorPath$LineJoin(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function VectorPath$LineJoin_initFields() {
     VectorPath$LineJoin_initFields = function () {
     };
@@ -9118,40 +8542,30 @@
     VectorPath$LineJoin$ROUND_instance = new VectorPath$LineJoin('ROUND', 1);
     VectorPath$LineJoin$MITER_instance = new VectorPath$LineJoin('MITER', 2);
   }
-
   var VectorPath$LineJoin$SQUARE_instance;
-
   function VectorPath$LineJoin$SQUARE_getInstance() {
     VectorPath$LineJoin_initFields();
     return VectorPath$LineJoin$SQUARE_instance;
   }
-
   var VectorPath$LineJoin$ROUND_instance;
-
   function VectorPath$LineJoin$ROUND_getInstance() {
     VectorPath$LineJoin_initFields();
     return VectorPath$LineJoin$ROUND_instance;
   }
-
   var VectorPath$LineJoin$MITER_instance;
-
   function VectorPath$LineJoin$MITER_getInstance() {
     VectorPath$LineJoin_initFields();
     return VectorPath$LineJoin$MITER_instance;
   }
-
   VectorPath$LineJoin.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'LineJoin',
     interfaces: [Enum]
   };
-
   function VectorPath$LineJoin$values() {
     return [VectorPath$LineJoin$SQUARE_getInstance(), VectorPath$LineJoin$ROUND_getInstance(), VectorPath$LineJoin$MITER_getInstance()];
   }
-
   VectorPath$LineJoin.values = VectorPath$LineJoin$values;
-
   function VectorPath$LineJoin$valueOf(name) {
     switch (name) {
       case 'SQUARE':
@@ -9160,11 +8574,9 @@
         return VectorPath$LineJoin$ROUND_getInstance();
       case 'MITER':
         return VectorPath$LineJoin$MITER_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korma.geom.vector.VectorPath.LineJoin.' + name);
+      default:throwISE('No enum constant com.soywiz.korma.geom.vector.VectorPath.LineJoin.' + name);
     }
   }
-
   VectorPath$LineJoin.valueOf_61zpoe$ = VectorPath$LineJoin$valueOf;
   VectorPath.prototype.write_d3txdv$ = function (path) {
     this.commands.plusAssign_38vc8i$(path.commands);
@@ -9189,7 +8601,6 @@
       return $receiver.numberOfIntersections_lu1900$(numberToDouble(x), numberToDouble(y));
     };
   }));
-
   function add_11($receiver, path) {
     var bb = $receiver;
     var lx = {v: 0.0};
@@ -9239,15 +8650,12 @@
       }
     }
   }
-
   function get_niceStr($receiver) {
     return almostEquals(Kotlin.Long.fromNumber($receiver).toNumber(), $receiver) ? Kotlin.Long.fromNumber($receiver).toString() : $receiver.toString();
   }
-
   function get_niceStr_0($receiver) {
     return almostEquals_0(Kotlin.Long.fromNumber($receiver).toNumber(), $receiver) ? Kotlin.Long.fromNumber($receiver).toString() : $receiver.toString();
   }
-
   function umod($receiver, other) {
     var tmp$;
     var remainder = $receiver % other;
@@ -9257,41 +8665,32 @@
       tmp$ = remainder;
     return tmp$;
   }
-
   var KORMA_VERSION;
-
   function Easing() {
     Easing$Companion_getInstance();
   }
-
   function Easing$Companion() {
     Easing$Companion_instance = this;
   }
-
   function Easing$Companion$cubic$lambda(closure$f) {
     return function (it) {
       return closure$f(it, 0.0, 1.0, 1.0);
     };
   }
-
   Easing$Companion.prototype.cubic_ibw4ua$ = function (f) {
     return Easing$Companion_getInstance().invoke_7fnk9s$(Easing$Companion$cubic$lambda(f));
   };
-
   function Easing$Companion$combine$lambda(closure$start, closure$end) {
     return function (it) {
       return it < 0.5 ? 0.5 * closure$start.invoke_14dthe$(it * 2.0) : 0.5 * closure$end.invoke_14dthe$((it - 0.5) * 2.0) + 0.5;
     };
   }
-
   Easing$Companion.prototype.combine_eswojm$ = function (start, end) {
     return Easing$Companion_getInstance().invoke_7fnk9s$(Easing$Companion$combine$lambda(start, end));
   };
-
   function Easing$Companion$invoke$ObjectLiteral(closure$f) {
     this.closure$f = closure$f;
   }
-
   Easing$Companion$invoke$ObjectLiteral.prototype.invoke_14dthe$ = function (it) {
     return this.closure$f(it);
   };
@@ -9418,20 +8817,17 @@
     interfaces: []
   };
   var Easing$Companion_instance = null;
-
   function Easing$Companion_getInstance() {
     if (Easing$Companion_instance === null) {
       new Easing$Companion();
     }
     return Easing$Companion_instance;
   }
-
   Easing.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Easing',
     interfaces: []
   };
-
   function Easings() {
     Easings_instance = this;
     this.BOUNCE_10_0 = 1.70158;
@@ -9458,11 +8854,9 @@
     this.EASE_IN_OUT_QUAD = Easing$Companion_getInstance().invoke_7fnk9s$(Easings$EASE_IN_OUT_QUAD$lambda);
     this.EASE_SINE = Easing$Companion_getInstance().invoke_7fnk9s$(Easings$EASE_SINE$lambda);
   }
-
   function Easings$SMOOTH$lambda(it) {
     return it * it * (3 - 2 * it);
   }
-
   function Easings$EASE_IN_ELASTIC$lambda(it) {
     if (it === 0.0 || it === 1.0)
       return it;
@@ -9477,7 +8871,6 @@
       return tmp$_0 * Math_0.sin(x_0);
     }
   }
-
   function Easings$EASE_OUT_ELASTIC$lambda(it) {
     if (it === 0.0 || it === 1.0)
       return it;
@@ -9490,276 +8883,228 @@
       return tmp$ * Math_0.sin(x_0) + 1;
     }
   }
-
   function Easings$EASE_OUT_BOUNCE$lambda(it) {
     var s = 7.5625;
     var p = 2.75;
     if (it < 1.0 / p) {
       return s * Math_0.pow(it, 2.0);
-    } else if (it < 2.0 / p) {
+    }
+     else if (it < 2.0 / p) {
       var $receiver = it - 1.5 / p;
       return s * Math_0.pow($receiver, 2.0) + 0.75;
-    } else if (it < 2.5 / p) {
+    }
+     else if (it < 2.5 / p) {
       var $receiver_0 = it - 2.25 / p;
       return s * Math_0.pow($receiver_0, 2.0) + 0.9375;
-    } else {
+    }
+     else {
       var $receiver_1 = it - 2.625 / p;
       return s * Math_0.pow($receiver_1, 2.0) + 0.984375;
     }
   }
-
   function Easings$LINEAR$lambda(it) {
     return it;
   }
-
   function Easings$EASE_IN$lambda(it) {
     return it * it * it;
   }
-
   function Easings$EASE_OUT$lambda(it) {
     var inv = it - 1.0;
     return inv * inv * inv + 1;
   }
-
   function Easings$EASE_IN_BACK$lambda(this$Easings) {
     return function (it) {
       return Math_0.pow(it, 2.0) * ((this$Easings.BOUNCE_10_0 + 1.0) * it - this$Easings.BOUNCE_10_0);
     };
   }
-
   function Easings$EASE_OUT_BACK$lambda(this$Easings) {
     return function (it) {
       var inv = it - 1.0;
       return Math_0.pow(inv, 2.0) * ((this$Easings.BOUNCE_10_0 + 1.0) * inv + this$Easings.BOUNCE_10_0) + 1.0;
     };
   }
-
   function Easings$EASE_IN_BOUNCE$lambda(this$Easings) {
     return function (it) {
       return 1.0 - this$Easings.EASE_OUT_BOUNCE.invoke_14dthe$(1.0 - it);
     };
   }
-
   function Easings$EASE_IN_QUAD$lambda(it) {
     return 1.0 * it * it;
   }
-
   function Easings$EASE_OUT_QUAD$lambda(it) {
     return -1.0 * it * (it - 2);
   }
-
   function Easings$EASE_IN_OUT_QUAD$lambda(it) {
     var t = it * 2.0;
     return t < 1 ? 1.0 / 2 * t * t : -1.0 / 2 * ((t - 1) * (t - 1 - 2) - 1);
   }
-
   function Easings$EASE_SINE$lambda(it) {
     return Math_0.sin(it);
   }
-
   Easings.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Easings',
     interfaces: []
   };
   var Easings_instance = null;
-
   function Easings_getInstance() {
     if (Easings_instance === null) {
       new Easings();
     }
     return Easings_instance;
   }
-
   function Interpolable() {
   }
-
   Interpolable.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'Interpolable',
     interfaces: []
   };
-
   function MutableInterpolable() {
   }
-
   MutableInterpolable.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'MutableInterpolable',
     interfaces: []
   };
-
   function interpolateAny($receiver, min, max) {
     var tmp$, tmp$_0, tmp$_1, tmp$_2, tmp$_3, tmp$_4, tmp$_5, tmp$_6, tmp$_7, tmp$_8, tmp$_9, tmp$_10, tmp$_11, tmp$_12, tmp$_13;
     if (typeof min === 'number') {
       return (tmp$_1 = interpolate_0($receiver, typeof (tmp$ = min) === 'number' ? tmp$ : throwCCE(), typeof (tmp$_0 = max) === 'number' ? tmp$_0 : throwCCE())) == null || Kotlin.isType(tmp$_1, Any) ? tmp$_1 : throwCCE();
-    } else if (typeof min === 'number') {
+    }
+     else if (typeof min === 'number') {
       return (tmp$_4 = interpolate_2($receiver, typeof (tmp$_2 = min) === 'number' ? tmp$_2 : throwCCE(), typeof (tmp$_3 = max) === 'number' ? tmp$_3 : throwCCE())) == null || Kotlin.isType(tmp$_4, Any) ? tmp$_4 : throwCCE();
-    } else if (typeof min === 'number') {
+    }
+     else if (typeof min === 'number') {
       return (tmp$_7 = interpolate_1($receiver, typeof (tmp$_5 = min) === 'number' ? tmp$_5 : throwCCE(), typeof (tmp$_6 = max) === 'number' ? tmp$_6 : throwCCE())) == null || Kotlin.isType(tmp$_7, Any) ? tmp$_7 : throwCCE();
-    } else if (Kotlin.isType(min, Kotlin.Long)) {
+    }
+     else if (Kotlin.isType(min, Kotlin.Long)) {
       return (tmp$_10 = interpolate_3($receiver, Kotlin.isType(tmp$_8 = min, Kotlin.Long) ? tmp$_8 : throwCCE(), Kotlin.isType(tmp$_9 = max, Kotlin.Long) ? tmp$_9 : throwCCE())) == null || Kotlin.isType(tmp$_10, Any) ? tmp$_10 : throwCCE();
-    } else if (Kotlin.isType(min, Interpolable)) {
+    }
+     else if (Kotlin.isType(min, Interpolable)) {
       return (tmp$_13 = (Kotlin.isType(tmp$_11 = min, Interpolable) ? tmp$_11 : throwCCE()).interpolateWith_41hqm1$($receiver, Kotlin.isType(tmp$_12 = max, Interpolable) ? tmp$_12 : throwCCE())) == null || Kotlin.isType(tmp$_13, Any) ? tmp$_13 : throwCCE();
-    } else
+    }
+     else
       throw IllegalArgumentException_init('Value is not interpolable');
   }
-
   function interpolate_0($receiver, l, r) {
     return l + (r - l) * $receiver;
   }
-
   function interpolate_1($receiver, l, r) {
     return l + (r - l) * $receiver;
   }
-
   function interpolate_2($receiver, l, r) {
     return numberToInt(l + (r - l | 0) * $receiver);
   }
-
   function interpolate_3($receiver, l, r) {
     return Kotlin.Long.fromNumber(l.toNumber() + r.subtract(l).toNumber() * $receiver);
   }
-
   function interpolate_4($receiver, l, r) {
     var tmp$;
     return l.interpolateWith_41hqm1$($receiver, (tmp$ = r) == null || Kotlin.isType(tmp$, Any) ? tmp$ : throwCCE());
   }
-
   function interpolate_5($receiver, l, r) {
     return l.interpolateWith_41hqm1$($receiver, r);
   }
-
   function clamp($receiver, min, max) {
     return $receiver.compareTo_11rb$(min) < 0 ? min : $receiver.compareTo_11rb$(max) > 0 ? max : $receiver;
   }
-
   function clamp_0($receiver, min, max) {
     return $receiver < min ? min : $receiver > max ? max : $receiver;
   }
-
   function clamp_1($receiver, min, max) {
     return $receiver < min ? min : $receiver > max ? max : $receiver;
   }
-
   function clamp_2($receiver, min, max) {
     return $receiver < min ? min : $receiver > max ? max : $receiver;
   }
-
   function betweenInclusive($receiver, min, max) {
     return $receiver >= min && $receiver <= max;
   }
-
   function almostEquals(a, b) {
     return almostZero(a - b);
   }
-
   function almostZero(a) {
     return Math_0.abs(a) <= 1.0E-7;
   }
-
   function almostEquals_0(a, b) {
     return almostZero_0(a - b);
   }
-
   function almostZero_0(a) {
     return Math_0.abs(a) <= 1.0E-7;
   }
-
   function roundDecimalPlaces($receiver, places) {
     var placesFactor = Math_0.pow(10.0, places);
     return round($receiver * placesFactor) / placesFactor;
   }
-
   function isEquivalent(a, b, epsilon) {
     if (epsilon === void 0)
       epsilon = 1.0E-4;
     return a - epsilon < b && a + epsilon > b;
   }
-
   function smoothstep($receiver, edge0, edge1) {
     var v = ($receiver - edge0) / (edge1 - edge0);
     var step2 = clamp_1(v, 0.0, 1.0);
     return step2 * step2 * (3 - 2 * step2);
   }
-
   function convertRange($receiver, minSrc, maxSrc, minDst, maxDst) {
     return ($receiver - minSrc) / (maxSrc - minSrc) * (maxDst - minDst) + minDst;
   }
-
   function log_0(v, base) {
     return numberToInt(log(v, base));
   }
-
   function ln(v) {
     return numberToInt(Math_0.log(v));
   }
-
   function log2(v) {
     return numberToInt(log(v, 2.0));
   }
-
   function log10(v) {
     return numberToInt(log(v, 10.0));
   }
-
   function signNonZeroM1(x) {
     return x <= 0 ? -1 : 1;
   }
-
   function signNonZeroP1(x) {
     return x >= 0 ? 1 : -1;
   }
-
   function isAlmostZero($receiver) {
     return Math_0.abs($receiver) <= 1.0E-19;
   }
-
   function isNanOrInfinite($receiver) {
     return isNaN_0($receiver) || isInfinite($receiver);
   }
-
   function isAlmostZero_0($receiver) {
     return Math_0.abs($receiver) <= 1.0E-19;
   }
-
   function isNanOrInfinite_0($receiver) {
     return isNaN_1($receiver) || isInfinite_0($receiver);
   }
-
   function nextMultipleOf($receiver, multiple) {
     return isMultipleOf($receiver, multiple) ? $receiver : Kotlin.imul(($receiver / multiple | 0) + 1 | 0, multiple);
   }
-
   function nextMultipleOf_0($receiver, multiple) {
     return isMultipleOf_0($receiver, multiple) ? $receiver : $receiver.div(multiple).add(Kotlin.Long.fromInt(1)).multiply(multiple);
   }
-
   function prevMultipleOf($receiver, multiple) {
     return isMultipleOf($receiver, multiple) ? $receiver : nextMultipleOf($receiver, multiple) - multiple | 0;
   }
-
   function prevMultipleOf_0($receiver, multiple) {
     return isMultipleOf_0($receiver, multiple) ? $receiver : nextMultipleOf_0($receiver, multiple).subtract(multiple);
   }
-
   function isMultipleOf($receiver, multiple) {
     return multiple === 0 || $receiver % multiple === 0;
   }
-
   function isMultipleOf_0($receiver, multiple) {
     return equals(multiple, L0) || equals($receiver.modulo(multiple), L0);
   }
-
   function Comparator$ObjectLiteral_0(closure$comparison) {
     this.closure$comparison = closure$comparison;
   }
-
   Comparator$ObjectLiteral_0.prototype.compare = function (a, b) {
     return this.closure$comparison(a, b);
   };
   Comparator$ObjectLiteral_0.$metadata$ = {kind: Kind_CLASS, interfaces: [Comparator]};
-
   function Coroutine$ints$lambda(this$ints_0, $receiver_0, controller, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.$controller = controller;
@@ -9767,7 +9112,6 @@
     this.local$this$ints = this$ints_0;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$ints$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -9793,22 +9137,22 @@
           case 3:
             this.state_0 = 2;
             continue;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function ints$lambda(this$ints_0) {
     return function ($receiver_0, continuation_0, suspended) {
       var instance = new Coroutine$ints$lambda(this$ints_0, $receiver_0, this, continuation_0);
@@ -9818,11 +9162,9 @@
         return instance.doResume(null);
     };
   }
-
   function ints($receiver) {
     return sequence(ints$lambda($receiver));
   }
-
   function Coroutine$ints$lambda_0(closure$from_0, closure$until_0, this$ints_0, $receiver_0, controller, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.$controller = controller;
@@ -9832,7 +9174,6 @@
     this.local$this$ints = this$ints_0;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$ints$lambda_0.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -9858,22 +9199,22 @@
           case 3:
             this.state_0 = 2;
             continue;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function ints$lambda_0(closure$from_0, closure$until_0, this$ints_0) {
     return function ($receiver_0, continuation_0, suspended) {
       var instance = new Coroutine$ints$lambda_0(closure$from_0, closure$until_0, this$ints_0, $receiver_0, this, continuation_0);
@@ -9883,15 +9224,12 @@
         return instance.doResume(null);
     };
   }
-
   function ints_0($receiver, from, until) {
     return sequence(ints$lambda_0(from, until, $receiver));
   }
-
   function ints_1($receiver, range) {
     return ints_0($receiver, range.start, range.endInclusive + 1 | 0);
   }
-
   function Coroutine$doubles$lambda(this$doubles_0, $receiver_0, controller, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.$controller = controller;
@@ -9899,7 +9237,6 @@
     this.local$this$doubles = this$doubles_0;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$doubles$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -9925,22 +9262,22 @@
           case 3:
             this.state_0 = 2;
             continue;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function doubles$lambda(this$doubles_0) {
     return function ($receiver_0, continuation_0, suspended) {
       var instance = new Coroutine$doubles$lambda(this$doubles_0, $receiver_0, this, continuation_0);
@@ -9950,11 +9287,9 @@
         return instance.doResume(null);
     };
   }
-
   function doubles($receiver) {
     return sequence(doubles$lambda($receiver));
   }
-
   function Coroutine$floats$lambda(this$floats_0, $receiver_0, controller, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.$controller = controller;
@@ -9962,7 +9297,6 @@
     this.local$this$floats = this$floats_0;
     this.local$$receiver = $receiver_0;
   }
-
   Coroutine$floats$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -9988,22 +9322,22 @@
           case 3:
             this.state_0 = 2;
             continue;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function floats$lambda(this$floats_0) {
     return function ($receiver_0, continuation_0, suspended) {
       var instance = new Coroutine$floats$lambda(this$floats_0, $receiver_0, this, continuation_0);
@@ -10013,11 +9347,9 @@
         return instance.doResume(null);
     };
   }
-
   function floats($receiver) {
     return sequence(floats$lambda($receiver));
   }
-
   function random($receiver, random) {
     if (random === void 0)
       random = Random.Default;
@@ -10025,79 +9357,62 @@
       throw IllegalArgumentException_init('Empty list');
     return $receiver.get_za3lpa$(random.nextInt_za3lpa$($receiver.size));
   }
-
   function randomWithWeights($receiver, weights, random) {
     if (random === void 0)
       random = Random.Default;
     return weighted(random, toMap(zip($receiver, weights)));
   }
-
   function get_3($receiver, min, max) {
     return min + $receiver.nextDouble() * (max - min);
   }
-
   function get_4($receiver, min, max) {
     return min + $receiver.nextFloat() * (max - min);
   }
-
   function get_5($receiver, min, max) {
     return min + $receiver.nextInt_za3lpa$(max - min | 0) | 0;
   }
-
   function get_6($receiver, range) {
     return range.start + $receiver.nextInt_za3lpa$(range.endInclusive - range.start + 1 | 0) | 0;
   }
-
   function get_7($receiver, range) {
     return range.start.add($receiver.nextLong().modulo(range.endInclusive.subtract(range.start).add(Kotlin.Long.fromInt(1))));
   }
-
   function get_8($receiver, l, r) {
     return interpolate_5($receiver.nextInt_za3lpa$(65537) / 65536, l, r);
   }
-
   function get_9($receiver, list) {
     return list.get_za3lpa$(get_6($receiver, get_indices(list)));
   }
-
   function get_10($receiver, rectangle) {
     var x = get_3($receiver, rectangle.left, rectangle.right);
     var y = get_3($receiver, rectangle.top, rectangle.bottom);
     return new Point(numberToDouble(x), numberToDouble(y));
   }
-
   function setToRandom($receiver, min, max, random) {
     if (random === void 0)
       random = Random.Default;
     return $receiver.setToInterpolated_bs4suk$(random.nextDouble(), min, max);
   }
-
   function get_11($receiver, range) {
     return interpolateAny($receiver.nextInt_za3lpa$(65537) / 65536, range.start, range.endInclusive);
   }
-
   function weighted($receiver, weights) {
     return first(shuffledWeighted($receiver, weights));
   }
-
   function weighted_0($receiver, weights) {
     return first(shuffledWeighted_1($receiver, weights));
   }
-
   function shuffledWeighted($receiver, weights) {
     return shuffledWeighted_1($receiver, new RandomWeights(weights));
   }
-
   function shuffledWeighted_0($receiver, values, weights) {
     return shuffledWeighted_1($receiver, RandomWeights_init_0(values, weights));
   }
-
   function shuffledWeighted$lambda(closure$randoms) {
     return function (a, b) {
       return Kotlin.compareTo(closure$randoms.get_za3lpa$(a), closure$randoms.get_za3lpa$(b));
     };
   }
-
   function shuffledWeighted_1($receiver, weights) {
     var $receiver_0 = until(0, weights.items.size);
     var destination = ArrayList_init(collectionSizeOrDefault($receiver_0, 10));
@@ -10121,7 +9436,6 @@
     }
     return destination_0;
   }
-
   function RandomWeights(weightsMap) {
     RandomWeights$Companion_getInstance();
     this.weightsMap = weightsMap;
@@ -10129,11 +9443,9 @@
     this.weights = toList(this.weightsMap.values);
     this.normalizedWeights = RandomWeights$Companion_getInstance().normalizeWeights_0(this.weights);
   }
-
   function RandomWeights$Companion() {
     RandomWeights$Companion_instance = this;
   }
-
   RandomWeights$Companion.prototype.normalizeWeights_0 = function (weights) {
     var tmp$;
     var min = (tmp$ = min_0(weights)) != null ? tmp$ : 0.0;
@@ -10152,32 +9464,27 @@
     interfaces: []
   };
   var RandomWeights$Companion_instance = null;
-
   function RandomWeights$Companion_getInstance() {
     if (RandomWeights$Companion_instance === null) {
       new RandomWeights$Companion();
     }
     return RandomWeights$Companion_instance;
   }
-
   RandomWeights.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'RandomWeights',
     interfaces: []
   };
-
   function RandomWeights_init(pairs, $this) {
     $this = $this || Object.create(RandomWeights.prototype);
     RandomWeights.call($this, mapOf(pairs.slice()));
     return $this;
   }
-
   function RandomWeights_init_0(values, weights, $this) {
     $this = $this || Object.create(RandomWeights.prototype);
     RandomWeights.call($this, toMap(zip(values, weights)));
     return $this;
   }
-
   RandomWeights.prototype.component1 = function () {
     return this.weightsMap;
   };

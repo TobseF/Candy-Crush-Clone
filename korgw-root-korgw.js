@@ -358,10 +358,8 @@
   NodeJsGameWindow.prototype.constructor = NodeJsGameWindow;
   Nimbus_111_1420_Safari_GamepadMapping.prototype = Object.create(GamepadMapping.prototype);
   Nimbus_111_1420_Safari_GamepadMapping.prototype.constructor = Nimbus_111_1420_Safari_GamepadMapping;
-
   function IKmlGl() {
   }
-
   IKmlGl.prototype.startFrame = function () {
   };
   IKmlGl.prototype.endFrame = function () {
@@ -371,7 +369,6 @@
     simpleName: 'IKmlGl',
     interfaces: []
   };
-
   function toAsciiString($receiver) {
     var tmp$;
     var out = '';
@@ -384,7 +381,6 @@
     }
     return out;
   }
-
   function putAsciiString($receiver, str) {
     var tmp$, tmp$_0, tmp$_1;
     var n = 0;
@@ -400,46 +396,41 @@
     }
     return $receiver;
   }
-
   function kmlByteBufferOf(values) {
     var $receiver = FBuffer.Companion.invoke_za3lpa$(values.length * 1 | 0);
     for (var n = 0; n < values.length; n++)
       $receiver.setByte_6t1wet$(n, values[n]);
     return $receiver;
   }
-
   function kmlShortBufferOf(values) {
     var $receiver = FBuffer.Companion.invoke_za3lpa$(values.length * 2 | 0);
     for (var n = 0; n < values.length; n++)
       $receiver.setShort_2bqt6h$(n, values[n]);
     return $receiver;
   }
-
   function kmlIntBufferOf(values) {
     var $receiver = FBuffer.Companion.invoke_za3lpa$(values.length * 4 | 0);
     for (var n = 0; n < values.length; n++)
       $receiver.setInt_vux9f0$(n, values[n]);
     return $receiver;
   }
-
   function kmlFloatBufferOf(values) {
     var $receiver = FBuffer.Companion.invoke_za3lpa$(values.length * 4 | 0);
     for (var n = 0; n < values.length; n++)
       $receiver.setFloat_24o109$(n, values[n]);
     return $receiver;
   }
-
   var DataBufferAlloc = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.DataBufferAlloc_k36cnm$', wrapFunction(function () {
     var FBuffer = _.$$importsForInline$$['kmem-root-kmem'].com.soywiz.kmem.FBuffer;
     return function (size, callback) {
       var buffer = FBuffer.Companion.invoke_za3lpa$(size);
       try {
         return callback(buffer);
-      } finally {
+      }
+      finally {
       }
     };
   }));
-
   function toTempBuffer($receiver, callback) {
     var buffer = FBuffer.Companion.invoke_za3lpa$($receiver.length);
     var ints = buffer.arrayInt;
@@ -448,7 +439,6 @@
     }
     return callback(buffer);
   }
-
   function KmlGl() {
     this.$delegate_jm7esb$_0 = new Extra$Mixin();
     this.DEPTH_BUFFER_BIT = 256;
@@ -753,7 +743,6 @@
     this.MAX_RENDERBUFFER_SIZE = 34024;
     this.INVALID_FRAMEBUFFER_OPERATION = 1286;
   }
-
   KmlGl.prototype.startFrame = function () {
   };
   KmlGl.prototype.endFrame = function () {
@@ -771,7 +760,6 @@
     simpleName: 'KmlGl',
     interfaces: [IKmlGl, Extra]
   };
-
   function KmlGlCached(parent) {
     KmlGlFastProxy.call(this, parent);
     this.lastLineWidth_0 = new CachedFloat(-1.0);
@@ -795,7 +783,6 @@
     this.lastScissor_0 = new CachedInt4(-1, -1, -1, -1);
     this.lastUseProgram_0 = new CachedInt(-1);
   }
-
   KmlGlCached.prototype.lineWidth_mx4ult$ = function (width) {
     var $this = this.lastLineWidth_0;
     if ($this.current !== width) {
@@ -889,7 +876,8 @@
       this.enables_0[index] = enable;
       if (enable) {
         this.parent.enable_za3lpa$(cap);
-      } else {
+      }
+       else {
         this.parent.disable_za3lpa$(cap);
       }
     }
@@ -922,30 +910,25 @@
     simpleName: 'KmlGlCached',
     interfaces: [KmlGlFastProxy]
   };
-
   function KmlGlDummy() {
     KmlGlDummy_instance = this;
     KmlGlDummyBase.call(this);
   }
-
   KmlGlDummy.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'KmlGlDummy',
     interfaces: [KmlGlDummyBase]
   };
   var KmlGlDummy_instance = null;
-
   function KmlGlDummy_getInstance() {
     if (KmlGlDummy_instance === null) {
       new KmlGlDummy();
     }
     return KmlGlDummy_instance;
   }
-
   function KmlGlDummyBase() {
     KmlGl.call(this);
   }
-
   KmlGlDummyBase.prototype.activeTexture_za3lpa$ = function (texture) {
   };
   KmlGlDummyBase.prototype.attachShader_vux9f0$ = function (program, shader) {
@@ -1251,48 +1234,40 @@
     simpleName: 'KmlGlDummyBase',
     interfaces: [KmlGl]
   };
-
   function KmlGlException(message) {
     RuntimeException_init(message, this);
     this.name = 'KmlGlException';
   }
-
   KmlGlException.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'KmlGlException',
     interfaces: [RuntimeException]
   };
-
   function getShaderiv($receiver, shader, type) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.getShaderiv_7cqqrs$(shader, type, it);
     return it.getInt_za3lpa$(0);
   }
-
   function getProgramiv($receiver, program, type) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.getProgramiv_7cqqrs$(program, type, it);
     return it.getInt_za3lpa$(0);
   }
-
   function getBooleanv($receiver, pname) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.getBooleanv_26fqmq$(pname, it);
     return it.get_za3lpa$(0) !== 0;
   }
-
   function getFloatv($receiver, pname) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.getFloatv_26fqmq$(pname, it);
     return it.getFloat_za3lpa$(0);
   }
-
   function getIntegerv($receiver, pname) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.getIntegerv_26fqmq$(pname, it);
     return it.getInt_za3lpa$(0);
   }
-
   var getInfoLog = wrapFunction(function () {
     var FBuffer = _.$$importsForInline$$['kmem-root-kmem'].com.soywiz.kmem.FBuffer;
     return function ($receiver, obj, getiv, getInfoLog) {
@@ -1303,7 +1278,6 @@
       return toAsciiString(mbuffer);
     };
   });
-
   function getShaderInfoLog($receiver, shader) {
     var getiv = getCallableRef('getShaderiv', function ($receiver, shader, type) {
       return getShaderiv($receiver, shader, type);
@@ -1317,7 +1291,6 @@
     getInfoLog(shader, size, sizev, mbuffer);
     return toAsciiString(mbuffer);
   }
-
   function getProgramInfoLog($receiver, shader) {
     var getiv = getCallableRef('getProgramiv', function ($receiver, program, type) {
       return getProgramiv($receiver, program, type);
@@ -1331,21 +1304,18 @@
     getInfoLog(shader, size, sizev, mbuffer);
     return toAsciiString(mbuffer);
   }
-
   function compileShaderAndCheck($receiver, shader) {
     $receiver.compileShader_za3lpa$(shader);
     if (getShaderiv($receiver, shader, $receiver.COMPILE_STATUS) !== $receiver.TRUE) {
       throw new KmlGlException(getShaderInfoLog($receiver, shader));
     }
   }
-
   function linkProgramAndCheck($receiver, program) {
     $receiver.linkProgram_za3lpa$(program);
     if (getProgramiv($receiver, program, $receiver.LINK_STATUS) !== $receiver.TRUE) {
       throw new KmlGlException(getProgramInfoLog($receiver, program));
     }
   }
-
   function getErrorString($receiver, error) {
     if (error === void 0)
       error = $receiver.getError();
@@ -1366,18 +1336,15 @@
       case 1285:
         tmp$ = 'OUT_OF_MEMORY';
         break;
-      default:
-        tmp$ = 'UNKNOWN_ERROR' + error;
+      default:tmp$ = 'UNKNOWN_ERROR' + error;
         break;
     }
     return tmp$;
   }
-
   function KmlGlProxy(parent) {
     KmlGl.call(this);
     this.parent = parent;
   }
-
   KmlGlProxy.prototype.before_puj7f4$ = function (name, params) {
   };
   KmlGlProxy.prototype.after_6hosri$ = function (name, params, result) {
@@ -2388,12 +2355,10 @@
     simpleName: 'KmlGlProxy',
     interfaces: [KmlGl]
   };
-
   function KmlGlFastProxy(parent) {
     KmlGl.call(this);
     this.parent = parent;
   }
-
   KmlGlFastProxy.prototype.before_puj7f4$ = function (name, params) {
   };
   KmlGlFastProxy.prototype.after_6hosri$ = function (name, params, result) {
@@ -2832,11 +2797,9 @@
     simpleName: 'KmlGlFastProxy',
     interfaces: [KmlGl]
   };
-
   function LogKmlGlProxy(parent) {
     KmlGlProxy.call(this, parent);
   }
-
   LogKmlGlProxy.prototype.before_puj7f4$ = function (name, params) {
     println('before: ' + name + ' (' + params + ')');
   };
@@ -2848,14 +2811,12 @@
     simpleName: 'LogKmlGlProxy',
     interfaces: [KmlGlProxy]
   };
-
   function CheckErrorsKmlGlProxy(parent, throwException) {
     if (throwException === void 0)
       throwException = false;
     KmlGlProxy.call(this, parent);
     this.throwException = throwException;
   }
-
   CheckErrorsKmlGlProxy.prototype.after_6hosri$ = function (name, params, result) {
     do {
       var error = this.parent.getError();
@@ -2863,12 +2824,13 @@
         println('glError: ' + error + ' ' + getErrorString(this.parent, error) + ' calling ' + name + '(' + params + ') = ' + result);
         if (this.throwException) {
           throw RuntimeException_init('glError: ' + error + ' ' + getErrorString(this.parent, error) + ' calling ' + name + '(' + params + ') = ' + result);
-        } else {
+        }
+         else {
           printStackTrace();
         }
       }
     }
-    while (error !== this.NO_ERROR);
+     while (error !== this.NO_ERROR);
   };
   CheckErrorsKmlGlProxy.prototype.getError = function () {
     return this.parent.getError();
@@ -2878,14 +2840,12 @@
     simpleName: 'CheckErrorsKmlGlProxy',
     interfaces: [KmlGlProxy]
   };
-
   function KmlGlProgram(gl, program, vertex, fragment) {
     this.gl = gl;
     this.program = program;
     this.vertex = vertex;
     this.fragment = fragment;
   }
-
   KmlGlProgram.prototype.use = function () {
     this.gl.useProgram_za3lpa$(this.program);
   };
@@ -2910,7 +2870,8 @@
       this.gl.useProgram_za3lpa$(this.program);
       try {
         callback();
-      } finally {
+      }
+      finally {
         this.gl.useProgram_za3lpa$(oldProgram);
       }
     };
@@ -2920,14 +2881,12 @@
     simpleName: 'KmlGlProgram',
     interfaces: []
   };
-
   function createShader($receiver, type, source) {
     var shader = $receiver.createShader_za3lpa$(type);
     $receiver.shaderSource_19mbxw$(shader, source);
     compileShaderAndCheck($receiver, shader);
     return shader;
   }
-
   function createProgram($receiver, vertex, fragment) {
     var program = $receiver.createProgram();
     var shaderVertex = createShader($receiver, $receiver.VERTEX_SHADER, vertex);
@@ -2937,7 +2896,6 @@
     linkProgramAndCheck($receiver, program);
     return new KmlGlProgram($receiver, program, shaderVertex, shaderFragment);
   }
-
   function KmlGlVertexLayout(program) {
     this.program = program;
     this.gl = this.program.gl;
@@ -2945,7 +2903,6 @@
     this.size_0 = 0;
     this.elements_0 = ArrayList_init();
   }
-
   function KmlGlVertexLayout$Element(index, size, type, pointer, normalized) {
     this.index = index;
     this.size = size;
@@ -2953,7 +2910,6 @@
     this.pointer = pointer;
     this.normalized = normalized;
   }
-
   KmlGlVertexLayout$Element.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Element',
@@ -3060,10 +3016,12 @@
         this.enable();
         try {
           callback();
-        } finally {
+        }
+        finally {
           this.disable();
         }
-      } finally {
+      }
+      finally {
         $this.gl.useProgram_za3lpa$(oldProgram);
       }
     };
@@ -3073,19 +3031,16 @@
     simpleName: 'KmlGlVertexLayout',
     interfaces: []
   };
-
   function layout($receiver, config) {
     var $receiver_0 = new KmlGlVertexLayout($receiver);
     config($receiver_0);
     return $receiver_0;
   }
-
   function KmlGlBuffer(gl, type, buf) {
     this.gl = gl;
     this.type = type;
     this.buf = buf;
   }
-
   KmlGlBuffer.prototype.bind = function () {
     this.gl.bindBuffer_vux9f0$(this.type, this.buf);
   };
@@ -3096,7 +3051,8 @@
     this.bind();
     try {
       callback();
-    } finally {
+    }
+    finally {
       this.unbind();
     }
   });
@@ -3115,30 +3071,24 @@
     simpleName: 'KmlGlBuffer',
     interfaces: []
   };
-
   function createBuffer($receiver, type) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.genBuffers_26fqmq$(1, it);
     var id = it.getInt_za3lpa$(0);
     return new KmlGlBuffer($receiver, type, id);
   }
-
   function createArrayBuffer($receiver) {
     return createBuffer($receiver, $receiver.ARRAY_BUFFER);
   }
-
   function createElementArrayBuffer($receiver) {
     return createBuffer($receiver, $receiver.ELEMENT_ARRAY_BUFFER);
   }
-
   var drawArrays = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.drawArrays_pvmwt$', wrapFunction(function () {
     var Unit = Kotlin.kotlin.Unit;
     var getIntegerv = _.com.soywiz.kgl.getIntegerv_4t3mty$;
-
     function drawArrays$lambda($receiver) {
       return Unit;
     }
-
     return function ($receiver, vertices, mode, first, count, uniforms) {
       if (uniforms === void 0)
         uniforms = drawArrays$lambda;
@@ -3152,13 +3102,16 @@
           try {
             uniforms($receiver.gl);
             $receiver.gl.drawArrays_qt1dr2$(mode, first, count);
-          } finally {
+          }
+          finally {
             vertices.unbind();
           }
-        } finally {
+        }
+        finally {
           $receiver.disable();
         }
-      } finally {
+      }
+      finally {
         $this.gl.useProgram_za3lpa$(oldProgram);
       }
     };
@@ -3166,11 +3119,9 @@
   var drawElements = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.drawElements_albd6e$', wrapFunction(function () {
     var Unit = Kotlin.kotlin.Unit;
     var getIntegerv = _.com.soywiz.kgl.getIntegerv_4t3mty$;
-
     function drawElements$lambda($receiver) {
       return Unit;
     }
-
     return function ($receiver, vertices, indices, mode, count, type, offset, uniforms) {
       if (type === void 0)
         type = $receiver.gl.UNSIGNED_SHORT;
@@ -3190,21 +3141,24 @@
             try {
               uniforms($receiver.gl);
               $receiver.gl.drawElements_tjonv8$(mode, count, type, offset);
-            } finally {
+            }
+            finally {
               indices.unbind();
             }
-          } finally {
+          }
+          finally {
             vertices.unbind();
           }
-        } finally {
+        }
+        finally {
           $receiver.disable();
         }
-      } finally {
+      }
+      finally {
         $this.gl.useProgram_za3lpa$(oldProgram);
       }
     };
   }));
-
   function KmlGlTex(gl, tex) {
     this.gl = gl;
     this.tex = tex;
@@ -3213,7 +3167,6 @@
     this.smooth = true;
     this.clampToEdge = true;
   }
-
   KmlGlTex.prototype.bind_za3lpa$ = function (unit) {
     var $receiver = this.gl;
     $receiver.activeTexture_za3lpa$($receiver.TEXTURE0 + unit | 0);
@@ -3234,13 +3187,11 @@
     this.height = height;
     return this;
   };
-
   function KmlGlTex$upload$lambda(closure$width, closure$height, closure$format, closure$type, this$KmlGlTex) {
     return function (it) {
       return this$KmlGlTex.upload_4ijnpk$(closure$width, closure$height, it, closure$format, closure$type);
     };
   }
-
   KmlGlTex.prototype.upload_ydkzvt$ = function (width, height, data, format, type) {
     if (format === void 0)
       format = this.gl.RGBA;
@@ -3269,23 +3220,19 @@
     simpleName: 'KmlGlTex',
     interfaces: []
   };
-
   function createKmlTexture($receiver) {
     var it = FBuffer.Companion.invoke_za3lpa$(4);
     $receiver.genTextures_26fqmq$(1, it);
     var buf = it.getInt_za3lpa$(0);
     return (new KmlGlTex($receiver, buf)).upload_4ijnpk$(1, 1, FBuffer.Companion.invoke_za3lpa$(4));
   }
-
   function uniformTex($receiver, location, tex, unit) {
     tex.bind_za3lpa$(unit);
     $receiver.uniform1i_vux9f0$(location, unit);
   }
-
   function KmlGlUtil() {
     KmlGlUtil_instance = this;
   }
-
   KmlGlUtil.prototype.ortho_wwalyr$ = function (width, height, near, far, out) {
     if (near === void 0)
       near = 0.0;
@@ -3324,20 +3271,16 @@
     interfaces: []
   };
   var KmlGlUtil_instance = null;
-
   function KmlGlUtil_getInstance() {
     if (KmlGlUtil_instance === null) {
       new KmlGlUtil();
     }
     return KmlGlUtil_instance;
   }
-
   var KGL_VERSION;
-
   function CachedInt(initial) {
     this.current = initial;
   }
-
   CachedInt.prototype.invoke_n53o35$ = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.internal.CachedInt.invoke_n53o35$', function (value, callback) {
     if (this.current !== value) {
       this.current = value;
@@ -3349,12 +3292,10 @@
     simpleName: 'CachedInt',
     interfaces: []
   };
-
   function CachedInt2(i1, i2) {
     this.c1 = i1;
     this.c2 = i2;
   }
-
   CachedInt2.prototype.invoke_sxjeop$ = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.internal.CachedInt2.invoke_sxjeop$', function (i1, i2, callback) {
     if (this.c1 !== i1 || this.c2 !== i2) {
       this.c1 = i1;
@@ -3367,14 +3308,12 @@
     simpleName: 'CachedInt2',
     interfaces: []
   };
-
   function CachedInt4(i1, i2, i3, i4) {
     this.c1 = i1;
     this.c2 = i2;
     this.c3 = i3;
     this.c4 = i4;
   }
-
   CachedInt4.prototype.invoke_nfo28p$ = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.internal.CachedInt4.invoke_nfo28p$', function (i1, i2, i3, i4, callback) {
     if (this.c1 !== i1 || this.c2 !== i2 || this.c3 !== i3 || this.c4 !== i4) {
       this.c1 = i1;
@@ -3389,11 +3328,9 @@
     simpleName: 'CachedInt4',
     interfaces: []
   };
-
   function CachedFloat(initial) {
     this.current = initial;
   }
-
   CachedFloat.prototype.invoke_l5b6g4$ = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.internal.CachedFloat.invoke_l5b6g4$', function (value, callback) {
     if (this.current !== value) {
       this.current = value;
@@ -3405,12 +3342,10 @@
     simpleName: 'CachedFloat',
     interfaces: []
   };
-
   function CachedFloat2(i1, i2) {
     this.c1 = i1;
     this.c2 = i2;
   }
-
   CachedFloat2.prototype.invoke_tveb7r$ = defineInlineFunction('korgw-root-korgw.com.soywiz.kgl.internal.CachedFloat2.invoke_tveb7r$', function (i1, i2, callback) {
     if (this.c1 !== i1 || this.c2 !== i2) {
       this.c1 = i1;
@@ -3432,22 +3367,18 @@
       };
     };
   });
-
   function AGFactory() {
   }
-
   AGFactory.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'AGFactory',
     interfaces: []
   };
-
   function AGConfig(antialiasHint) {
     if (antialiasHint === void 0)
       antialiasHint = true;
     this.antialiasHint = antialiasHint;
   }
-
   AGConfig.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AGConfig',
@@ -3470,25 +3401,20 @@
   AGConfig.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.antialiasHint, other.antialiasHint))));
   };
-
   function AGContainer() {
   }
-
   AGContainer.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'AGContainer',
     interfaces: []
   };
-
   function AGWindow() {
   }
-
   AGWindow.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'AGWindow',
     interfaces: [AGContainer]
   };
-
   function AG() {
     this.$delegate_y4f8iy$_0 = new Extra$Mixin();
     this.contextVersion = 0;
@@ -3513,7 +3439,6 @@
     this.flipRenderTexture = true;
     this.drawTempTexture_npdcj3$_g2cado$_0 = lazy(AG$drawTempTexture$lambda(this));
   }
-
   AG.prototype.contextLost = function () {
     println('AG.contextLost() : ' + this);
     this.contextVersion = this.contextVersion + 1 | 0;
@@ -3568,13 +3493,11 @@
   AG.prototype.setViewport_q5rwfd$ = function (v) {
     this.setViewport_tjonv8$(v[0], v[1], v[2], v[3]);
   };
-
   function AG$BlendEquation(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$BlendEquation_initFields() {
     AG$BlendEquation_initFields = function () {
     };
@@ -3582,40 +3505,30 @@
     AG$BlendEquation$SUBTRACT_instance = new AG$BlendEquation('SUBTRACT', 1);
     AG$BlendEquation$REVERSE_SUBTRACT_instance = new AG$BlendEquation('REVERSE_SUBTRACT', 2);
   }
-
   var AG$BlendEquation$ADD_instance;
-
   function AG$BlendEquation$ADD_getInstance() {
     AG$BlendEquation_initFields();
     return AG$BlendEquation$ADD_instance;
   }
-
   var AG$BlendEquation$SUBTRACT_instance;
-
   function AG$BlendEquation$SUBTRACT_getInstance() {
     AG$BlendEquation_initFields();
     return AG$BlendEquation$SUBTRACT_instance;
   }
-
   var AG$BlendEquation$REVERSE_SUBTRACT_instance;
-
   function AG$BlendEquation$REVERSE_SUBTRACT_getInstance() {
     AG$BlendEquation_initFields();
     return AG$BlendEquation$REVERSE_SUBTRACT_instance;
   }
-
   AG$BlendEquation.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'BlendEquation',
     interfaces: [Enum]
   };
-
   function AG$BlendEquation$values() {
     return [AG$BlendEquation$ADD_getInstance(), AG$BlendEquation$SUBTRACT_getInstance(), AG$BlendEquation$REVERSE_SUBTRACT_getInstance()];
   }
-
   AG$BlendEquation.values = AG$BlendEquation$values;
-
   function AG$BlendEquation$valueOf(name) {
     switch (name) {
       case 'ADD':
@@ -3624,19 +3537,15 @@
         return AG$BlendEquation$SUBTRACT_getInstance();
       case 'REVERSE_SUBTRACT':
         return AG$BlendEquation$REVERSE_SUBTRACT_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.BlendEquation.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.BlendEquation.' + name);
     }
   }
-
   AG$BlendEquation.valueOf_61zpoe$ = AG$BlendEquation$valueOf;
-
   function AG$BlendFactor(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$BlendFactor_initFields() {
     AG$BlendFactor_initFields = function () {
     };
@@ -3651,89 +3560,65 @@
     AG$BlendFactor$SOURCE_COLOR_instance = new AG$BlendFactor('SOURCE_COLOR', 8);
     AG$BlendFactor$ZERO_instance = new AG$BlendFactor('ZERO', 9);
   }
-
   var AG$BlendFactor$DESTINATION_ALPHA_instance;
-
   function AG$BlendFactor$DESTINATION_ALPHA_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$DESTINATION_ALPHA_instance;
   }
-
   var AG$BlendFactor$DESTINATION_COLOR_instance;
-
   function AG$BlendFactor$DESTINATION_COLOR_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$DESTINATION_COLOR_instance;
   }
-
   var AG$BlendFactor$ONE_instance;
-
   function AG$BlendFactor$ONE_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$ONE_instance;
   }
-
   var AG$BlendFactor$ONE_MINUS_DESTINATION_ALPHA_instance;
-
   function AG$BlendFactor$ONE_MINUS_DESTINATION_ALPHA_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$ONE_MINUS_DESTINATION_ALPHA_instance;
   }
-
   var AG$BlendFactor$ONE_MINUS_DESTINATION_COLOR_instance;
-
   function AG$BlendFactor$ONE_MINUS_DESTINATION_COLOR_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$ONE_MINUS_DESTINATION_COLOR_instance;
   }
-
   var AG$BlendFactor$ONE_MINUS_SOURCE_ALPHA_instance;
-
   function AG$BlendFactor$ONE_MINUS_SOURCE_ALPHA_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$ONE_MINUS_SOURCE_ALPHA_instance;
   }
-
   var AG$BlendFactor$ONE_MINUS_SOURCE_COLOR_instance;
-
   function AG$BlendFactor$ONE_MINUS_SOURCE_COLOR_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$ONE_MINUS_SOURCE_COLOR_instance;
   }
-
   var AG$BlendFactor$SOURCE_ALPHA_instance;
-
   function AG$BlendFactor$SOURCE_ALPHA_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$SOURCE_ALPHA_instance;
   }
-
   var AG$BlendFactor$SOURCE_COLOR_instance;
-
   function AG$BlendFactor$SOURCE_COLOR_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$SOURCE_COLOR_instance;
   }
-
   var AG$BlendFactor$ZERO_instance;
-
   function AG$BlendFactor$ZERO_getInstance() {
     AG$BlendFactor_initFields();
     return AG$BlendFactor$ZERO_instance;
   }
-
   AG$BlendFactor.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'BlendFactor',
     interfaces: [Enum]
   };
-
   function AG$BlendFactor$values() {
     return [AG$BlendFactor$DESTINATION_ALPHA_getInstance(), AG$BlendFactor$DESTINATION_COLOR_getInstance(), AG$BlendFactor$ONE_getInstance(), AG$BlendFactor$ONE_MINUS_DESTINATION_ALPHA_getInstance(), AG$BlendFactor$ONE_MINUS_DESTINATION_COLOR_getInstance(), AG$BlendFactor$ONE_MINUS_SOURCE_ALPHA_getInstance(), AG$BlendFactor$ONE_MINUS_SOURCE_COLOR_getInstance(), AG$BlendFactor$SOURCE_ALPHA_getInstance(), AG$BlendFactor$SOURCE_COLOR_getInstance(), AG$BlendFactor$ZERO_getInstance()];
   }
-
   AG$BlendFactor.values = AG$BlendFactor$values;
-
   function AG$BlendFactor$valueOf(name) {
     switch (name) {
       case 'DESTINATION_ALPHA':
@@ -3756,20 +3641,16 @@
         return AG$BlendFactor$SOURCE_COLOR_getInstance();
       case 'ZERO':
         return AG$BlendFactor$ZERO_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.BlendFactor.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.BlendFactor.' + name);
     }
   }
-
   AG$BlendFactor.valueOf_61zpoe$ = AG$BlendFactor$valueOf;
-
   function AG$Scissor(x, y, width, height) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
   }
-
   Object.defineProperty(AG$Scissor.prototype, 'top', {
     get: function () {
       return this.y;
@@ -3834,7 +3715,6 @@
   AG$Scissor.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.width, other.width) && Kotlin.equals(this.height, other.height)))));
   };
-
   function AG$Blending(srcRGB, dstRGB, srcA, dstA, eqRGB, eqA) {
     AG$Blending$Companion_getInstance();
     if (srcA === void 0)
@@ -3852,7 +3732,6 @@
     this.eqRGB = eqRGB;
     this.eqA = eqA;
   }
-
   Object.defineProperty(AG$Blending.prototype, 'disabled', {
     get: function () {
       return this.srcRGB === AG$BlendFactor$ONE_getInstance() && this.dstRGB === AG$BlendFactor$ZERO_getInstance() && this.srcA === AG$BlendFactor$ONE_getInstance() && this.dstA === AG$BlendFactor$ZERO_getInstance();
@@ -3863,34 +3742,29 @@
       return !this.disabled;
     }
   });
-
   function AG$Blending$Companion() {
     AG$Blending$Companion_instance = this;
     this.NONE = new AG$Blending(AG$BlendFactor$ONE_getInstance(), AG$BlendFactor$ZERO_getInstance(), AG$BlendFactor$ONE_getInstance(), AG$BlendFactor$ZERO_getInstance());
     this.NORMAL = new AG$Blending(AG$BlendFactor$SOURCE_ALPHA_getInstance(), AG$BlendFactor$ONE_MINUS_SOURCE_ALPHA_getInstance(), AG$BlendFactor$ONE_getInstance(), AG$BlendFactor$ONE_MINUS_SOURCE_ALPHA_getInstance());
     this.ADD = new AG$Blending(AG$BlendFactor$SOURCE_ALPHA_getInstance(), AG$BlendFactor$DESTINATION_ALPHA_getInstance(), AG$BlendFactor$ONE_getInstance(), AG$BlendFactor$ONE_getInstance());
   }
-
   AG$Blending$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var AG$Blending$Companion_instance = null;
-
   function AG$Blending$Companion_getInstance() {
     if (AG$Blending$Companion_instance === null) {
       new AG$Blending$Companion();
     }
     return AG$Blending$Companion_instance;
   }
-
   AG$Blending.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Blending',
     interfaces: []
   };
-
   function AG$AG$Blending_init(src, dst, eq, $this) {
     if (eq === void 0)
       eq = AG$BlendEquation$ADD_getInstance();
@@ -3898,7 +3772,6 @@
     AG$Blending.call($this, src, dst, src, dst, eq, eq);
     return $this;
   }
-
   AG$Blending.prototype.component1 = function () {
     return this.srcRGB;
   };
@@ -3936,16 +3809,13 @@
   AG$Blending.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.srcRGB, other.srcRGB) && Kotlin.equals(this.dstRGB, other.dstRGB) && Kotlin.equals(this.srcA, other.srcA) && Kotlin.equals(this.dstA, other.dstA) && Kotlin.equals(this.eqRGB, other.eqRGB) && Kotlin.equals(this.eqA, other.eqA)))));
   };
-
   function AG$BitmapSourceBase() {
   }
-
   AG$BitmapSourceBase.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'BitmapSourceBase',
     interfaces: []
   };
-
   function AG$SyncBitmapSource(rgba, width, height, gen) {
     AG$SyncBitmapSource$Companion_getInstance();
     this.rgba_ltsnud$_0 = rgba;
@@ -3953,7 +3823,6 @@
     this.height_gq1qoy$_0 = height;
     this.gen = gen;
   }
-
   Object.defineProperty(AG$SyncBitmapSource.prototype, 'rgba', {
     get: function () {
       return this.rgba_ltsnud$_0;
@@ -3969,30 +3838,25 @@
       return this.height_gq1qoy$_0;
     }
   });
-
   function AG$SyncBitmapSource$Companion() {
     AG$SyncBitmapSource$Companion_instance = this;
     this.NULL = new AG$SyncBitmapSource(true, 0, 0, AG$SyncBitmapSource$Companion$NULL$lambda);
   }
-
   function AG$SyncBitmapSource$Companion$NULL$lambda() {
     return null;
   }
-
   AG$SyncBitmapSource$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var AG$SyncBitmapSource$Companion_instance = null;
-
   function AG$SyncBitmapSource$Companion_getInstance() {
     if (AG$SyncBitmapSource$Companion_instance === null) {
       new AG$SyncBitmapSource$Companion();
     }
     return AG$SyncBitmapSource$Companion_instance;
   }
-
   AG$SyncBitmapSource.prototype.toString = function () {
     return 'SyncBitmapSource(rgba=' + this.rgba + ', width=' + this.width + ', height=' + this.height + ')';
   };
@@ -4001,7 +3865,6 @@
     simpleName: 'SyncBitmapSource',
     interfaces: [AG$BitmapSourceBase]
   };
-
   function AG$AsyncBitmapSource(coroutineContext, rgba, width, height, gen) {
     AG$AsyncBitmapSource$Companion_getInstance();
     this.coroutineContext = coroutineContext;
@@ -4010,7 +3873,6 @@
     this.height_eqw6oj$_0 = height;
     this.gen = gen;
   }
-
   Object.defineProperty(AG$AsyncBitmapSource.prototype, 'rgba', {
     get: function () {
       return this.rgba_gss57q$_0;
@@ -4026,17 +3888,14 @@
       return this.height_eqw6oj$_0;
     }
   });
-
   function AG$AsyncBitmapSource$Companion() {
     AG$AsyncBitmapSource$Companion_instance = this;
     this.NULL = new AG$AsyncBitmapSource(coroutines.EmptyCoroutineContext, true, 0, 0, AG$AsyncBitmapSource$Companion$NULL$lambda);
   }
-
   function Coroutine$AG$AsyncBitmapSource$Companion$NULL$lambda(continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
   }
-
   Coroutine$AG$AsyncBitmapSource$Companion$NULL$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4052,22 +3911,22 @@
             return null;
           case 1:
             throw this.exception_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function AG$AsyncBitmapSource$Companion$NULL$lambda(continuation_0, suspended) {
     var instance = new Coroutine$AG$AsyncBitmapSource$Companion$NULL$lambda(continuation_0);
     if (suspended)
@@ -4075,79 +3934,63 @@
     else
       return instance.doResume(null);
   }
-
   AG$AsyncBitmapSource$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var AG$AsyncBitmapSource$Companion_instance = null;
-
   function AG$AsyncBitmapSource$Companion_getInstance() {
     if (AG$AsyncBitmapSource$Companion_instance === null) {
       new AG$AsyncBitmapSource$Companion();
     }
     return AG$AsyncBitmapSource$Companion_instance;
   }
-
   AG$AsyncBitmapSource.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AsyncBitmapSource',
     interfaces: [AG$BitmapSourceBase]
   };
-
   function AG$TextureKind(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$TextureKind_initFields() {
     AG$TextureKind_initFields = function () {
     };
     AG$TextureKind$RGBA_instance = new AG$TextureKind('RGBA', 0);
     AG$TextureKind$LUMINANCE_instance = new AG$TextureKind('LUMINANCE', 1);
   }
-
   var AG$TextureKind$RGBA_instance;
-
   function AG$TextureKind$RGBA_getInstance() {
     AG$TextureKind_initFields();
     return AG$TextureKind$RGBA_instance;
   }
-
   var AG$TextureKind$LUMINANCE_instance;
-
   function AG$TextureKind$LUMINANCE_getInstance() {
     AG$TextureKind_initFields();
     return AG$TextureKind$LUMINANCE_instance;
   }
-
   AG$TextureKind.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'TextureKind',
     interfaces: [Enum]
   };
-
   function AG$TextureKind$values() {
     return [AG$TextureKind$RGBA_getInstance(), AG$TextureKind$LUMINANCE_getInstance()];
   }
-
   AG$TextureKind.values = AG$TextureKind$values;
-
   function AG$TextureKind$valueOf(name) {
     switch (name) {
       case 'RGBA':
         return AG$TextureKind$RGBA_getInstance();
       case 'LUMINANCE':
         return AG$TextureKind$LUMINANCE_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.TextureKind.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.TextureKind.' + name);
     }
   }
-
   AG$TextureKind.valueOf_61zpoe$ = AG$TextureKind$valueOf;
-
   function AG$Texture($outer) {
     this.$outer = $outer;
     this.isFbo = false;
@@ -4166,7 +4009,6 @@
     this.$outer.createdTextureCount = tmp$_0 + 1 | 0;
     this.alreadyClosed_j6qvi7$_0 = false;
   }
-
   Object.defineProperty(AG$Texture.prototype, 'premultiplied', {
     get: function () {
       return this.premultiplied_ra8tjj$_0;
@@ -4193,13 +4035,11 @@
     this.generating_dlstkz$_0 = false;
     this.generated_6fnrcm$_0 = false;
   };
-
   function AG$Texture$upload$lambda(closure$bmp) {
     return function () {
       return closure$bmp;
     };
   }
-
   AG$Texture.prototype.upload_nn58bg$ = function (bmp, mipmaps) {
     if (mipmaps === void 0)
       mipmaps = false;
@@ -4229,14 +4069,12 @@
     this.uploaded_bjht0x$_0 = true;
     return this;
   };
-
   function Coroutine$AG$Texture$bindEnsuring$lambda(closure$source_0, this$Texture_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$closure$source = closure$source_0;
     this.local$this$Texture = this$Texture_0;
   }
-
   Coroutine$AG$Texture$bindEnsuring$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -4259,22 +4097,22 @@
           case 2:
             this.local$this$Texture.tempBitmap_rlmwj0$_0 = this.result_0;
             return this.local$this$Texture.generated_6fnrcm$_0 = true, Unit;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function AG$Texture$bindEnsuring$lambda(closure$source_0, this$Texture_0) {
     return function (continuation_0, suspended) {
       var instance = new Coroutine$AG$Texture$bindEnsuring$lambda(closure$source_0, this$Texture_0, continuation_0);
@@ -4284,7 +4122,6 @@
         return instance.doResume(null);
     };
   }
-
   AG$Texture.prototype.bindEnsuring = function () {
     this.bind();
     if (!this.isFbo) {
@@ -4295,7 +4132,8 @@
           if (Kotlin.isType(source, AG$SyncBitmapSource)) {
             this.tempBitmap_rlmwj0$_0 = source.gen();
             this.generated_6fnrcm$_0 = true;
-          } else if (Kotlin.isType(source, AG$AsyncBitmapSource))
+          }
+           else if (Kotlin.isType(source, AG$AsyncBitmapSource))
             asyncImmediately(source.coroutineContext, AG$Texture$bindEnsuring$lambda(source, this));
         }
         if (this.generated_6fnrcm$_0) {
@@ -4328,7 +4166,6 @@
     simpleName: 'Texture',
     interfaces: [Closeable]
   };
-
   function AG$TextureUnit(texture, linear) {
     if (texture === void 0)
       texture = null;
@@ -4337,7 +4174,6 @@
     this.texture = texture;
     this.linear = linear;
   }
-
   AG$TextureUnit.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'TextureUnit',
@@ -4364,7 +4200,6 @@
   AG$TextureUnit.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.texture, other.texture) && Kotlin.equals(this.linear, other.linear)))));
   };
-
   function AG$Buffer(kind) {
     this.kind = kind;
     this.dirty = false;
@@ -4372,57 +4207,45 @@
     this.memOffset = 0;
     this.memLength = 0;
   }
-
   function AG$Buffer$Kind(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$Buffer$Kind_initFields() {
     AG$Buffer$Kind_initFields = function () {
     };
     AG$Buffer$Kind$INDEX_instance = new AG$Buffer$Kind('INDEX', 0);
     AG$Buffer$Kind$VERTEX_instance = new AG$Buffer$Kind('VERTEX', 1);
   }
-
   var AG$Buffer$Kind$INDEX_instance;
-
   function AG$Buffer$Kind$INDEX_getInstance() {
     AG$Buffer$Kind_initFields();
     return AG$Buffer$Kind$INDEX_instance;
   }
-
   var AG$Buffer$Kind$VERTEX_instance;
-
   function AG$Buffer$Kind$VERTEX_getInstance() {
     AG$Buffer$Kind_initFields();
     return AG$Buffer$Kind$VERTEX_instance;
   }
-
   AG$Buffer$Kind.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Kind',
     interfaces: [Enum]
   };
-
   function AG$Buffer$Kind$values() {
     return [AG$Buffer$Kind$INDEX_getInstance(), AG$Buffer$Kind$VERTEX_getInstance()];
   }
-
   AG$Buffer$Kind.values = AG$Buffer$Kind$values;
-
   function AG$Buffer$Kind$valueOf(name) {
     switch (name) {
       case 'INDEX':
         return AG$Buffer$Kind$INDEX_getInstance();
       case 'VERTEX':
         return AG$Buffer$Kind$VERTEX_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.Buffer.Kind.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.Buffer.Kind.' + name);
     }
   }
-
   AG$Buffer$Kind.valueOf_61zpoe$ = AG$Buffer$Kind$valueOf;
   AG$Buffer.prototype.afterSetMem = function () {
   };
@@ -4501,13 +4324,11 @@
     simpleName: 'Buffer',
     interfaces: [Closeable]
   };
-
   function AG$DrawType(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$DrawType_initFields() {
     AG$DrawType_initFields = function () {
     };
@@ -4519,68 +4340,50 @@
     AG$DrawType$TRIANGLE_STRIP_instance = new AG$DrawType('TRIANGLE_STRIP', 5);
     AG$DrawType$TRIANGLE_FAN_instance = new AG$DrawType('TRIANGLE_FAN', 6);
   }
-
   var AG$DrawType$POINTS_instance;
-
   function AG$DrawType$POINTS_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$POINTS_instance;
   }
-
   var AG$DrawType$LINE_STRIP_instance;
-
   function AG$DrawType$LINE_STRIP_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$LINE_STRIP_instance;
   }
-
   var AG$DrawType$LINE_LOOP_instance;
-
   function AG$DrawType$LINE_LOOP_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$LINE_LOOP_instance;
   }
-
   var AG$DrawType$LINES_instance;
-
   function AG$DrawType$LINES_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$LINES_instance;
   }
-
   var AG$DrawType$TRIANGLES_instance;
-
   function AG$DrawType$TRIANGLES_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$TRIANGLES_instance;
   }
-
   var AG$DrawType$TRIANGLE_STRIP_instance;
-
   function AG$DrawType$TRIANGLE_STRIP_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$TRIANGLE_STRIP_instance;
   }
-
   var AG$DrawType$TRIANGLE_FAN_instance;
-
   function AG$DrawType$TRIANGLE_FAN_getInstance() {
     AG$DrawType_initFields();
     return AG$DrawType$TRIANGLE_FAN_instance;
   }
-
   AG$DrawType.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'DrawType',
     interfaces: [Enum]
   };
-
   function AG$DrawType$values() {
     return [AG$DrawType$POINTS_getInstance(), AG$DrawType$LINE_STRIP_getInstance(), AG$DrawType$LINE_LOOP_getInstance(), AG$DrawType$LINES_getInstance(), AG$DrawType$TRIANGLES_getInstance(), AG$DrawType$TRIANGLE_STRIP_getInstance(), AG$DrawType$TRIANGLE_FAN_getInstance()];
   }
-
   AG$DrawType.values = AG$DrawType$values;
-
   function AG$DrawType$valueOf(name) {
     switch (name) {
       case 'POINTS':
@@ -4597,11 +4400,9 @@
         return AG$DrawType$TRIANGLE_STRIP_getInstance();
       case 'TRIANGLE_FAN':
         return AG$DrawType$TRIANGLE_FAN_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.DrawType.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.DrawType.' + name);
     }
   }
-
   AG$DrawType.valueOf_61zpoe$ = AG$DrawType$valueOf;
   Object.defineProperty(AG.prototype, 'dummyTexture', {
     get: function () {
@@ -4676,13 +4477,11 @@
     $receiver.upload_khrw8o$(data, offset, length);
     return $receiver;
   };
-
   function AG$StencilOp(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$StencilOp_initFields() {
     AG$StencilOp_initFields = function () {
     };
@@ -4695,75 +4494,55 @@
     AG$StencilOp$SET_instance = new AG$StencilOp('SET', 6);
     AG$StencilOp$ZERO_instance = new AG$StencilOp('ZERO', 7);
   }
-
   var AG$StencilOp$DECREMENT_SATURATE_instance;
-
   function AG$StencilOp$DECREMENT_SATURATE_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$DECREMENT_SATURATE_instance;
   }
-
   var AG$StencilOp$DECREMENT_WRAP_instance;
-
   function AG$StencilOp$DECREMENT_WRAP_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$DECREMENT_WRAP_instance;
   }
-
   var AG$StencilOp$INCREMENT_SATURATE_instance;
-
   function AG$StencilOp$INCREMENT_SATURATE_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$INCREMENT_SATURATE_instance;
   }
-
   var AG$StencilOp$INCREMENT_WRAP_instance;
-
   function AG$StencilOp$INCREMENT_WRAP_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$INCREMENT_WRAP_instance;
   }
-
   var AG$StencilOp$INVERT_instance;
-
   function AG$StencilOp$INVERT_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$INVERT_instance;
   }
-
   var AG$StencilOp$KEEP_instance;
-
   function AG$StencilOp$KEEP_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$KEEP_instance;
   }
-
   var AG$StencilOp$SET_instance;
-
   function AG$StencilOp$SET_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$SET_instance;
   }
-
   var AG$StencilOp$ZERO_instance;
-
   function AG$StencilOp$ZERO_getInstance() {
     AG$StencilOp_initFields();
     return AG$StencilOp$ZERO_instance;
   }
-
   AG$StencilOp.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'StencilOp',
     interfaces: [Enum]
   };
-
   function AG$StencilOp$values() {
     return [AG$StencilOp$DECREMENT_SATURATE_getInstance(), AG$StencilOp$DECREMENT_WRAP_getInstance(), AG$StencilOp$INCREMENT_SATURATE_getInstance(), AG$StencilOp$INCREMENT_WRAP_getInstance(), AG$StencilOp$INVERT_getInstance(), AG$StencilOp$KEEP_getInstance(), AG$StencilOp$SET_getInstance(), AG$StencilOp$ZERO_getInstance()];
   }
-
   AG$StencilOp.values = AG$StencilOp$values;
-
   function AG$StencilOp$valueOf(name) {
     switch (name) {
       case 'DECREMENT_SATURATE':
@@ -4782,19 +4561,15 @@
         return AG$StencilOp$SET_getInstance();
       case 'ZERO':
         return AG$StencilOp$ZERO_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.StencilOp.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.StencilOp.' + name);
     }
   }
-
   AG$StencilOp.valueOf_61zpoe$ = AG$StencilOp$valueOf;
-
   function AG$TriangleFace(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$TriangleFace_initFields() {
     AG$TriangleFace_initFields = function () {
     };
@@ -4803,47 +4578,35 @@
     AG$TriangleFace$FRONT_AND_BACK_instance = new AG$TriangleFace('FRONT_AND_BACK', 2);
     AG$TriangleFace$NONE_instance = new AG$TriangleFace('NONE', 3);
   }
-
   var AG$TriangleFace$FRONT_instance;
-
   function AG$TriangleFace$FRONT_getInstance() {
     AG$TriangleFace_initFields();
     return AG$TriangleFace$FRONT_instance;
   }
-
   var AG$TriangleFace$BACK_instance;
-
   function AG$TriangleFace$BACK_getInstance() {
     AG$TriangleFace_initFields();
     return AG$TriangleFace$BACK_instance;
   }
-
   var AG$TriangleFace$FRONT_AND_BACK_instance;
-
   function AG$TriangleFace$FRONT_AND_BACK_getInstance() {
     AG$TriangleFace_initFields();
     return AG$TriangleFace$FRONT_AND_BACK_instance;
   }
-
   var AG$TriangleFace$NONE_instance;
-
   function AG$TriangleFace$NONE_getInstance() {
     AG$TriangleFace_initFields();
     return AG$TriangleFace$NONE_instance;
   }
-
   AG$TriangleFace.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'TriangleFace',
     interfaces: [Enum]
   };
-
   function AG$TriangleFace$values() {
     return [AG$TriangleFace$FRONT_getInstance(), AG$TriangleFace$BACK_getInstance(), AG$TriangleFace$FRONT_AND_BACK_getInstance(), AG$TriangleFace$NONE_getInstance()];
   }
-
   AG$TriangleFace.values = AG$TriangleFace$values;
-
   function AG$TriangleFace$valueOf(name) {
     switch (name) {
       case 'FRONT':
@@ -4854,19 +4617,15 @@
         return AG$TriangleFace$FRONT_AND_BACK_getInstance();
       case 'NONE':
         return AG$TriangleFace$NONE_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.TriangleFace.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.TriangleFace.' + name);
     }
   }
-
   AG$TriangleFace.valueOf_61zpoe$ = AG$TriangleFace$valueOf;
-
   function AG$CompareMode(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$CompareMode_initFields() {
     AG$CompareMode_initFields = function () {
     };
@@ -4879,75 +4638,55 @@
     AG$CompareMode$NEVER_instance = new AG$CompareMode('NEVER', 6);
     AG$CompareMode$NOT_EQUAL_instance = new AG$CompareMode('NOT_EQUAL', 7);
   }
-
   var AG$CompareMode$ALWAYS_instance;
-
   function AG$CompareMode$ALWAYS_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$ALWAYS_instance;
   }
-
   var AG$CompareMode$EQUAL_instance;
-
   function AG$CompareMode$EQUAL_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$EQUAL_instance;
   }
-
   var AG$CompareMode$GREATER_instance;
-
   function AG$CompareMode$GREATER_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$GREATER_instance;
   }
-
   var AG$CompareMode$GREATER_EQUAL_instance;
-
   function AG$CompareMode$GREATER_EQUAL_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$GREATER_EQUAL_instance;
   }
-
   var AG$CompareMode$LESS_instance;
-
   function AG$CompareMode$LESS_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$LESS_instance;
   }
-
   var AG$CompareMode$LESS_EQUAL_instance;
-
   function AG$CompareMode$LESS_EQUAL_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$LESS_EQUAL_instance;
   }
-
   var AG$CompareMode$NEVER_instance;
-
   function AG$CompareMode$NEVER_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$NEVER_instance;
   }
-
   var AG$CompareMode$NOT_EQUAL_instance;
-
   function AG$CompareMode$NOT_EQUAL_getInstance() {
     AG$CompareMode_initFields();
     return AG$CompareMode$NOT_EQUAL_instance;
   }
-
   AG$CompareMode.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'CompareMode',
     interfaces: [Enum]
   };
-
   function AG$CompareMode$values() {
     return [AG$CompareMode$ALWAYS_getInstance(), AG$CompareMode$EQUAL_getInstance(), AG$CompareMode$GREATER_getInstance(), AG$CompareMode$GREATER_EQUAL_getInstance(), AG$CompareMode$LESS_getInstance(), AG$CompareMode$LESS_EQUAL_getInstance(), AG$CompareMode$NEVER_getInstance(), AG$CompareMode$NOT_EQUAL_getInstance()];
   }
-
   AG$CompareMode.values = AG$CompareMode$values;
-
   function AG$CompareMode$valueOf(name) {
     switch (name) {
       case 'ALWAYS':
@@ -4966,13 +4705,10 @@
         return AG$CompareMode$NEVER_getInstance();
       case 'NOT_EQUAL':
         return AG$CompareMode$NOT_EQUAL_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.CompareMode.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.CompareMode.' + name);
     }
   }
-
   AG$CompareMode.valueOf_61zpoe$ = AG$CompareMode$valueOf;
-
   function AG$ColorMaskState(red, green, blue, alpha) {
     if (red === void 0)
       red = true;
@@ -4987,7 +4723,6 @@
     this.blue = blue;
     this.alpha = alpha;
   }
-
   AG$ColorMaskState.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ColorMaskState',
@@ -5022,13 +4757,11 @@
   AG$ColorMaskState.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.red, other.red) && Kotlin.equals(this.green, other.green) && Kotlin.equals(this.blue, other.blue) && Kotlin.equals(this.alpha, other.alpha)))));
   };
-
   function AG$FrontFace(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function AG$FrontFace_initFields() {
     AG$FrontFace_initFields = function () {
     };
@@ -5036,40 +4769,30 @@
     AG$FrontFace$CW_instance = new AG$FrontFace('CW', 1);
     AG$FrontFace$CCW_instance = new AG$FrontFace('CCW', 2);
   }
-
   var AG$FrontFace$BOTH_instance;
-
   function AG$FrontFace$BOTH_getInstance() {
     AG$FrontFace_initFields();
     return AG$FrontFace$BOTH_instance;
   }
-
   var AG$FrontFace$CW_instance;
-
   function AG$FrontFace$CW_getInstance() {
     AG$FrontFace_initFields();
     return AG$FrontFace$CW_instance;
   }
-
   var AG$FrontFace$CCW_instance;
-
   function AG$FrontFace$CCW_getInstance() {
     AG$FrontFace_initFields();
     return AG$FrontFace$CCW_instance;
   }
-
   AG$FrontFace.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'FrontFace',
     interfaces: [Enum]
   };
-
   function AG$FrontFace$values() {
     return [AG$FrontFace$BOTH_getInstance(), AG$FrontFace$CW_getInstance(), AG$FrontFace$CCW_getInstance()];
   }
-
   AG$FrontFace.values = AG$FrontFace$values;
-
   function AG$FrontFace$valueOf(name) {
     switch (name) {
       case 'BOTH':
@@ -5078,13 +4801,10 @@
         return AG$FrontFace$CW_getInstance();
       case 'CCW':
         return AG$FrontFace$CCW_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.AG.FrontFace.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.AG.FrontFace.' + name);
     }
   }
-
   AG$FrontFace.valueOf_61zpoe$ = AG$FrontFace$valueOf;
-
   function AG$RenderState(depthFunc, depthMask, depthNear, depthFar, lineWidth, frontFace) {
     if (depthFunc === void 0)
       depthFunc = AG$CompareMode$ALWAYS_getInstance();
@@ -5105,7 +4825,6 @@
     this.lineWidth = lineWidth;
     this.frontFace = frontFace;
   }
-
   AG$RenderState.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'RenderState',
@@ -5148,7 +4867,6 @@
   AG$RenderState.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.depthFunc, other.depthFunc) && Kotlin.equals(this.depthMask, other.depthMask) && Kotlin.equals(this.depthNear, other.depthNear) && Kotlin.equals(this.depthFar, other.depthFar) && Kotlin.equals(this.lineWidth, other.lineWidth) && Kotlin.equals(this.frontFace, other.frontFace)))));
   };
-
   function AG$StencilState(enabled, triangleFace, compareMode, actionOnBothPass, actionOnDepthFail, actionOnDepthPassStencilFail, referenceValue, readMask, writeMask) {
     if (enabled === void 0)
       enabled = false;
@@ -5178,7 +4896,6 @@
     this.readMask = readMask;
     this.writeMask = writeMask;
   }
-
   AG$StencilState.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'StencilState',
@@ -5279,16 +4996,13 @@
   };
   AG.prototype.disposeTemporalPerFrameStuff = function () {
   };
-
   function AG$BaseRenderBuffer() {
   }
-
   AG$BaseRenderBuffer.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'BaseRenderBuffer',
     interfaces: []
   };
-
   function AG$RenderBuffer($outer) {
     this.$outer = $outer;
     this.id_9ezup$_0 = -1;
@@ -5298,7 +5012,6 @@
     this.height_3jy0zx$_0 = 0;
     this.dirty = false;
   }
-
   Object.defineProperty(AG$RenderBuffer.prototype, 'id', {
     get: function () {
       return this.id_9ezup$_0;
@@ -5391,7 +5104,8 @@
     }
     try {
       callback();
-    } finally {
+    }
+    finally {
       if (tex != null)
         this.drawTexture_iljvab$(tex);
     }
@@ -5400,18 +5114,17 @@
     var old = this.setRenderBuffer_m67x29$(rb);
     try {
       callback();
-    } finally {
+    }
+    finally {
       this.setRenderBuffer_m67x29$(old);
     }
   });
   AG.prototype.renderToTexture_kwdgib$ = defineInlineFunction('korgw-root-korgw.com.soywiz.korag.AG.renderToTexture_kwdgib$', wrapFunction(function () {
     var Unit = Kotlin.kotlin.Unit;
     var color = _.$$importsForInline$$['korim-root-korim'].com.soywiz.korim.color;
-
     function AG$renderToTexture$lambda(it) {
       return Unit;
     }
-
     return function (width, height, render, use) {
       if (use === void 0)
         use = AG$renderToTexture$lambda;
@@ -5423,12 +5136,14 @@
       try {
         this.clear_yvqa77$(color.Colors.TRANSPARENT_BLACK);
         render();
-      } finally {
+      }
+      finally {
         this.setRenderBuffer_m67x29$(oldRenderBuffer);
       }
       try {
         use(rb.tex);
-      } finally {
+      }
+      finally {
         this.frameRenderBuffers.remove_11rb$(rb);
         this.renderBuffers.free_11rb$(rb);
       }
@@ -5456,12 +5171,14 @@
         this.clear_yvqa77$(color.Colors.TRANSPARENT_BLACK);
         render();
         this.readColor_59u9qz$(bmp);
-      } finally {
+      }
+      finally {
         this.setRenderBuffer_m67x29$(oldRenderBuffer);
       }
       try {
         rb.tex;
-      } finally {
+      }
+      finally {
         this.frameRenderBuffers.remove_11rb$(rb);
         this.renderBuffers.free_11rb$(rb);
       }
@@ -5505,7 +5222,6 @@
     this.readDepth_say4ff$($receiver);
     return $receiver;
   };
-
   function AG$TextureDrawer($outer) {
     this.$outer = $outer;
     this.VERTEX_COUNT = 4;
@@ -5515,7 +5231,6 @@
     this.program = new Program(VertexShader_0(AG$TextureDrawer$program$lambda), FragmentShader_0(AG$TextureDrawer$program$lambda_0));
     this.uniforms = new AG$UniformValues();
   }
-
   AG$TextureDrawer.prototype.setVertex_xpxj32$ = function (n, px, py, tx, ty) {
     var offset = n * 4 | 0;
     this.verticesData.setAlignedFloat32_24o109$(offset + 0 | 0, px);
@@ -5543,20 +5258,17 @@
     tmp$_4 = AG$Blending$Companion_getInstance().NONE;
     this.$outer.draw_gb6ti8$(tmp$, tmp$_0, tmp$_1, tmp$_2, 4, void 0, void 0, tmp$_4, tmp$_3);
   };
-
   function AG$TextureDrawer$program$lambda($receiver) {
     var $receiver_0 = DefaultShaders_getInstance();
     $receiver.setTo_2oogdr$($receiver_0.v_Tex, $receiver_0.a_Tex);
     $receiver.setTo_2oogdr$($receiver.out, $receiver.vec4_hywno3$([$receiver_0.a_Pos, $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(1.0)]));
     return Unit;
   }
-
   function AG$TextureDrawer$program$lambda_0($receiver) {
     var $receiver_0 = DefaultShaders_getInstance();
     $receiver.setTo_2oogdr$($receiver.out, $receiver.texture2D_q0hzsk$($receiver_0.u_Tex, $receiver.get_hhgt4v$($receiver_0.v_Tex, 'xy')));
     return Unit;
   }
-
   AG$TextureDrawer.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'TextureDrawer',
@@ -5580,7 +5292,6 @@
     this.drawTexture_iljvab$(this.drawTempTexture_npdcj3$_0);
     this.drawTempTexture_npdcj3$_0.upload_2ug3a3$(bitmap.Bitmaps.transparent);
   };
-
   function AG$UniformValues() {
     AG$UniformValues$Companion_getInstance();
     this._uniforms_0 = ArrayList_init();
@@ -5589,26 +5300,22 @@
     this.uniforms = Kotlin.isType(tmp$ = this._uniforms_0, List) ? tmp$ : throwCCE();
     this.values = Kotlin.isType(tmp$_0 = this._values_0, List) ? tmp$_0 : throwCCE();
   }
-
   function AG$UniformValues$Companion() {
     AG$UniformValues$Companion_instance = this;
     this.EMPTY_8be2vx$ = new AG$UniformValues();
   }
-
   AG$UniformValues$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var AG$UniformValues$Companion_instance = null;
-
   function AG$UniformValues$Companion_getInstance() {
     if (AG$UniformValues$Companion_instance === null) {
       new AG$UniformValues$Companion();
     }
     return AG$UniformValues$Companion_instance;
   }
-
   Object.defineProperty(AG$UniformValues.prototype, 'keys', {
     get: function () {
       return this.uniforms;
@@ -5638,7 +5345,8 @@
   AG$UniformValues.prototype.putOrRemove_lyfqxb$ = function (uniform, value) {
     if (value == null) {
       this.remove_2f4vi3$(uniform);
-    } else {
+    }
+     else {
       this.put_8gg9u8$(uniform, value);
     }
   };
@@ -5692,7 +5400,6 @@
     simpleName: 'UniformValues',
     interfaces: []
   };
-
   function AG$AG$UniformValues_init(pairs, $this) {
     $this = $this || Object.create(AG$UniformValues.prototype);
     AG$UniformValues.call($this);
@@ -5703,7 +5410,6 @@
     }
     return $this;
   }
-
   Object.defineProperty(AG.prototype, 'extra', {
     get: function () {
       return this.$delegate_y4f8iy$_0.extra;
@@ -5712,25 +5418,21 @@
       this.$delegate_y4f8iy$_0.extra = tmp$;
     }
   });
-
   function AG$dummyTexture$lambda(this$AG) {
     return function () {
       return this$AG.createTexture();
     };
   }
-
   function AG$renderBuffers$lambda(this$AG) {
     return function (it) {
       return this$AG.createRenderBuffer();
     };
   }
-
   function AG$mainRenderBuffer$ObjectLiteral(this$AG) {
     this.this$AG = this$AG;
     this.width_z7cjf6$_0 = 128;
     this.height_gyu105$_0 = 128;
   }
-
   Object.defineProperty(AG$mainRenderBuffer$ObjectLiteral.prototype, 'width', {
     get: function () {
       return this.width_z7cjf6$_0;
@@ -5758,33 +5460,27 @@
     kind: Kind_CLASS,
     interfaces: [AG$BaseRenderBuffer]
   };
-
   function AG$textureDrawer$lambda(this$AG) {
     return function () {
       return new AG$TextureDrawer(this$AG);
     };
   }
-
   function AG$drawTempTexture$lambda(this$AG) {
     return function () {
       return this$AG.createTexture();
     };
   }
-
   AG.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AG',
     interfaces: [Extra]
   };
-
   function toRenderFboIntoBack($receiver) {
     return $receiver;
   }
-
   function toRenderImageIntoFbo($receiver) {
     return $receiver;
   }
-
   function ProgramWithDefault(vertex, fragment, name) {
     if (vertex === void 0)
       vertex = DefaultShaders_getInstance().VERTEX_DEFAULT;
@@ -5794,7 +5490,6 @@
       name = 'program';
     return new Program(vertex, fragment, name);
   }
-
   function DefaultShaders() {
     DefaultShaders_instance = this;
     this.u_Tex = Uniform_init('u_Tex', VarType$TextureUnit_getInstance());
@@ -5822,7 +5517,6 @@
     this.PROGRAM_DEBUG_WITH_PROJ = new Program(VertexShader_0(DefaultShaders$PROGRAM_DEBUG_WITH_PROJ$lambda(this)), FragmentShader_0(DefaultShaders$PROGRAM_DEBUG_WITH_PROJ$lambda_0), 'PROGRAM_DEBUG_WITH_PROJ');
     this.PROGRAM_DEFAULT_lphlbv$_0 = lazy(DefaultShaders$PROGRAM_DEFAULT$lambda(this));
   }
-
   Object.defineProperty(DefaultShaders.prototype, 'PROGRAM_DEFAULT', {
     get: function () {
       return this.PROGRAM_DEFAULT_lphlbv$_0.value;
@@ -5832,7 +5526,6 @@
     callback(this);
     return this;
   });
-
   function DefaultShaders$VERTEX_DEFAULT$lambda(this$DefaultShaders) {
     return function ($receiver) {
       $receiver.SET_q0hzsk$(this$DefaultShaders.v_Tex, this$DefaultShaders.a_Tex);
@@ -5841,26 +5534,22 @@
       return Unit;
     };
   }
-
   function DefaultShaders$FRAGMENT_DEBUG$lambda($receiver) {
     $receiver.set_2oogdr$($receiver.out, $receiver.vec4_hywno3$([$receiver.get_lit_81szk$(1.0), $receiver.get_lit_81szk$(1.0), $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(1.0)]));
     return Unit;
   }
-
   function DefaultShaders$FRAGMENT_SOLID_COLOR$lambda(this$DefaultShaders) {
     return function ($receiver) {
       $receiver.set_2oogdr$($receiver.out, this$DefaultShaders.v_Col);
       return Unit;
     };
   }
-
   function DefaultShaders$PROGRAM_TINTED_TEXTURE$lambda(this$DefaultShaders) {
     return function ($receiver) {
       $receiver.SET_q0hzsk$($receiver.out, $receiver.times_2oogdr$($receiver.get_hhgt4v$($receiver.texture2D_q0hzsk$(this$DefaultShaders.u_Tex, $receiver.get_hhgt4v$(this$DefaultShaders.v_Tex, 'xy')), 'rgba'), this$DefaultShaders.v_Col));
       return Unit;
     };
   }
-
   function DefaultShaders$PROGRAM_TINTED_TEXTURE_PREMULT$lambda(this$DefaultShaders) {
     return function ($receiver) {
       $receiver.SET_q0hzsk$(this$DefaultShaders.t_Temp0, $receiver.texture2D_q0hzsk$(this$DefaultShaders.u_Tex, $receiver.get_hhgt4v$(this$DefaultShaders.v_Tex, 'xy')));
@@ -5869,51 +5558,43 @@
       return Unit;
     };
   }
-
   function DefaultShaders$PROGRAM_DEBUG$lambda(this$DefaultShaders) {
     return function ($receiver) {
       $receiver.SET_q0hzsk$($receiver.out, $receiver.vec4_hywno3$([this$DefaultShaders.a_Pos, $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(1.0)]));
       return Unit;
     };
   }
-
   function DefaultShaders$PROGRAM_DEBUG$lambda_0($receiver) {
     $receiver.set_2oogdr$($receiver.out, $receiver.vec4_hywno3$([$receiver.get_lit_81szk$(1.0), $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(1.0)]));
     return Unit;
   }
-
   function DefaultShaders$PROGRAM_DEBUG_WITH_PROJ$lambda(this$DefaultShaders) {
     return function ($receiver) {
       $receiver.SET_q0hzsk$($receiver.out, $receiver.times_2oogdr$(this$DefaultShaders.u_ProjMat, $receiver.vec4_hywno3$([this$DefaultShaders.a_Pos, $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(1.0)])));
       return Unit;
     };
   }
-
   function DefaultShaders$PROGRAM_DEBUG_WITH_PROJ$lambda_0($receiver) {
     $receiver.SET_q0hzsk$($receiver.out, $receiver.vec4_hywno3$([$receiver.get_lit_81szk$(1.0), $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(0.0), $receiver.get_lit_81szk$(1.0)]));
     return Unit;
   }
-
   function DefaultShaders$PROGRAM_DEFAULT$lambda(this$DefaultShaders) {
     return function () {
       return this$DefaultShaders.PROGRAM_TINTED_TEXTURE_PREMULT;
     };
   }
-
   DefaultShaders.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'DefaultShaders',
     interfaces: []
   };
   var DefaultShaders_instance = null;
-
   function DefaultShaders_getInstance() {
     if (DefaultShaders_instance === null) {
       new DefaultShaders();
     }
     return DefaultShaders_instance;
   }
-
   function AGOpengl() {
     AG.call(this);
     this.isGlAvailable_1m52nr$_0 = true;
@@ -5933,7 +5614,6 @@
     this.mat3dArray_qu1n07$_0 = [new Matrix3D()];
     this.programs_nsjc6a$_0 = HashMap_init();
   }
-
   Object.defineProperty(AGOpengl.prototype, 'isGlAvailable', {
     get: function () {
       return this.isGlAvailable_1m52nr$_0;
@@ -5979,7 +5659,6 @@
     this.gl.bindFramebuffer_vux9f0$(this.gl.FRAMEBUFFER, 0);
     this.setViewport_tjonv8$(0, 0, width, height);
   };
-
   function AGOpengl$GlRenderBuffer($outer) {
     this.$outer = $outer;
     AG$RenderBuffer.call(this, this.$outer);
@@ -5989,7 +5668,6 @@
     this.depth = FBuffer.Companion.invoke_za3lpa$(4);
     this.framebuffer = FBuffer.Companion.invoke_za3lpa$(4);
   }
-
   Object.defineProperty(AGOpengl$GlRenderBuffer.prototype, 'id', {
     get: function () {
       return this.id_4ayp91$_0;
@@ -6052,8 +5730,7 @@
         return this.gl.FUNC_SUBTRACT;
       case 'REVERSE_SUBTRACT':
         return this.gl.FUNC_REVERSE_SUBTRACT;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.toGl_yoxntk$_0 = function ($receiver) {
@@ -6078,8 +5755,7 @@
         return this.gl.SRC_COLOR;
       case 'ZERO':
         return this.gl.ZERO;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.toGl_j3v1aq$ = function ($receiver) {
@@ -6092,8 +5768,7 @@
         return this.gl.FRONT_AND_BACK;
       case 'NONE':
         return this.gl.FRONT;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.toGl_d0rqip$ = function ($receiver) {
@@ -6114,8 +5789,7 @@
         return this.gl.NEVER;
       case 'NOT_EQUAL':
         return this.gl.NOTEQUAL;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.toGl_7ptukq$ = function ($receiver) {
@@ -6136,8 +5810,7 @@
         return this.gl.REPLACE;
       case 'ZERO':
         return this.gl.ZERO;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.draw_36194n$$default = function (vertices, program, type, vertexLayout, vertexCount, indices, offset, blending, uniforms, stencil, colorMask, renderState, scissor) {
@@ -6147,7 +5820,8 @@
     if (scissor != null) {
       this.gl.enable_za3lpa$(this.gl.SCISSOR_TEST);
       this.gl.scissor_tjonv8$(scissor.x, this.backHeight - scissor.y - scissor.height | 0, scissor.width, scissor.height);
-    } else {
+    }
+     else {
       this.gl.disable_za3lpa$(this.gl.SCISSOR_TEST);
     }
     this.checkBuffers_p517yr$(vertices, indices);
@@ -6199,7 +5873,8 @@
             var $receiver = this.mat3dArray_qu1n07$_0;
             $receiver[0].copyFrom_p62hku$(value);
             tmp$_6 = $receiver;
-          } else {
+          }
+           else {
             throw IllegalStateException_init('Not an array or a matrix3d'.toString());
           }
 
@@ -6215,8 +5890,7 @@
             case 'Mat4':
               tmp$_8 = 4;
               break;
-            default:
-              tmp$_8 = -1;
+            default:tmp$_8 = -1;
               break;
           }
 
@@ -6237,8 +5911,7 @@
               case 'Mat4':
                 tmp$_9 = this.tempBufferM4;
                 break;
-              default:
-                tmp$_9 = this.tempBufferM4;
+              default:tmp$_9 = this.tempBufferM4;
                 break;
             }
             var tb = tmp$_9;
@@ -6255,12 +5928,12 @@
                 case 'Mat4':
                   this.gl.uniformMatrix4fv_24ez2x$(itLocation, 1, false, tb);
                   break;
-                default:
-                  invalidOp("Don't know how to set uniform matrix " + uniform.type);
+                default:invalidOp("Don't know how to set uniform matrix " + uniform.type);
                   break;
               }
             }
-          } else {
+          }
+           else {
             switch (uniform.type.name) {
               case 'Mat2':
                 this.gl.uniformMatrix2fv_24ez2x$(location, arrayCount, false, this.tempBuffer);
@@ -6271,8 +5944,7 @@
               case 'Mat4':
                 this.gl.uniformMatrix4fv_24ez2x$(location, arrayCount, false, this.tempBuffer);
                 break;
-              default:
-                invalidOp("Don't know how to set uniform matrix " + uniform.type);
+              default:invalidOp("Don't know how to set uniform matrix " + uniform.type);
                 break;
             }
           }
@@ -6291,13 +5963,15 @@
             var b = value.length / stride | 0;
             arrayCount_0 = Math_0.min(declArrayCount, b);
             setFloats(this.tempBuffer, 0, value, 0, Kotlin.imul(stride, arrayCount_0));
-          } else if (Kotlin.isArray(value)) {
+          }
+           else if (Kotlin.isArray(value)) {
             arrayCount_0 = Math_0.min(declArrayCount, value.length);
             for (var n_3 = 0; n_3 < value.length; n_3++) {
               var vector = Kotlin.isType(tmp$_10 = value[n_3], Vector3D) ? tmp$_10 : throwCCE();
               setFloats(this.tempBuffer, Kotlin.imul(n_3, stride), vector.data, 0, stride);
             }
-          } else {
+          }
+           else {
             throw IllegalStateException_init(("Unknown type '" + value.toString() + "'").toString());
           }
 
@@ -6321,11 +5995,11 @@
                 case 'Float4':
                   this.gl.uniform4f_xpxj32$(itLocation_0, f32[0], f32[1], f32[2], f32[3]);
                   break;
-                default:
-                  break;
+                default:break;
               }
             }
-          } else {
+          }
+           else {
             switch (uniform.type.name) {
               case 'Float1':
                 this.gl.uniform1fv_7cqqrs$(location, arrayCount_0, this.tempBuffer);
@@ -6339,14 +6013,12 @@
               case 'Float4':
                 this.gl.uniform4fv_7cqqrs$(location, arrayCount_0, this.tempBuffer);
                 break;
-              default:
-                break;
+              default:break;
             }
           }
 
           break;
-        default:
-          invalidOp("Don't know how to set uniform " + uniform.type);
+        default:invalidOp("Don't know how to set uniform " + uniform.type);
           break;
       }
     }
@@ -6354,12 +6026,14 @@
       this.gl.enable_za3lpa$(this.gl.BLEND);
       this.gl.blendEquationSeparate_vux9f0$(this.toGl_8vgxol$_0(blending.eqRGB), this.toGl_8vgxol$_0(blending.eqA));
       this.gl.blendFuncSeparate_tjonv8$(this.toGl_yoxntk$_0(blending.srcRGB), this.toGl_yoxntk$_0(blending.dstRGB), this.toGl_yoxntk$_0(blending.srcA), this.toGl_yoxntk$_0(blending.dstA));
-    } else {
+    }
+     else {
       this.gl.disable_za3lpa$(this.gl.BLEND);
     }
     if (renderState.frontFace === AG$FrontFace$BOTH_getInstance()) {
       this.gl.disable_za3lpa$(this.gl.CULL_FACE);
-    } else {
+    }
+     else {
       this.gl.enable_za3lpa$(this.gl.CULL_FACE);
       this.gl.frontFace_za3lpa$(renderState.frontFace === AG$FrontFace$CW_getInstance() ? this.gl.CW : this.gl.CCW);
     }
@@ -6369,7 +6043,8 @@
     if (renderState.depthFunc !== AG$CompareMode$ALWAYS_getInstance()) {
       this.gl.enable_za3lpa$(this.gl.DEPTH_TEST);
       this.gl.depthFunc_za3lpa$(this.toGl_d0rqip$(renderState.depthFunc));
-    } else {
+    }
+     else {
       this.gl.disable_za3lpa$(this.gl.DEPTH_TEST);
     }
     this.gl.colorMask_nyyhg$(colorMask.red, colorMask.green, colorMask.blue, colorMask.alpha);
@@ -6378,13 +6053,15 @@
       this.gl.stencilFunc_qt1dr2$(this.toGl_d0rqip$(stencil.compareMode), stencil.referenceValue, stencil.readMask);
       this.gl.stencilOp_qt1dr2$(this.toGl_7ptukq$(stencil.actionOnDepthFail), this.toGl_7ptukq$(stencil.actionOnDepthPassStencilFail), this.toGl_7ptukq$(stencil.actionOnBothPass));
       this.gl.stencilMask_za3lpa$(stencil.writeMask);
-    } else {
+    }
+     else {
       this.gl.disable_za3lpa$(this.gl.STENCIL_TEST);
       this.gl.stencilMask_za3lpa$(0);
     }
     if (indices != null) {
       this.gl.drawElements_tjonv8$(this.get_glDrawMode_7dvn3b$(type), vertexCount, this.gl.UNSIGNED_SHORT, offset);
-    } else {
+    }
+     else {
       this.gl.drawArrays_qt1dr2$(this.get_glDrawMode_7dvn3b$(type), offset, vertexCount);
     }
     tmp$_12 = vattrs.size;
@@ -6414,8 +6091,7 @@
         return this.gl.TRIANGLE_FAN;
       case 'TRIANGLES':
         return this.gl.TRIANGLES;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.get_glElementType_bxje6x$ = function ($receiver) {
@@ -6432,8 +6108,7 @@
         return this.gl.UNSIGNED_INT;
       case 'TFLOAT':
         return this.gl.FLOAT;
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   AGOpengl.prototype.getProgram_21rgaz$ = function (program) {
@@ -6444,12 +6119,12 @@
       var answer = new AGOpengl$GlProgram(this, this.gl, program);
       $receiver.put_xwzc9p$(program, answer);
       tmp$ = answer;
-    } else {
+    }
+     else {
       tmp$ = value;
     }
     return tmp$;
   };
-
   function AGOpengl$GlProgram($outer, gl, program) {
     this.$outer = $outer;
     this.gl = gl;
@@ -6460,7 +6135,6 @@
     this.vertexShaderId = 0;
     this.cachedAttribLocations = FastStringMap();
   }
-
   AGOpengl$GlProgram.prototype.getAttribLocation_61zpoe$ = function (name) {
     var $receiver = this.cachedAttribLocations;
     var getOrPut$result;
@@ -6474,7 +6148,7 @@
       $receiver.set(name, out);
       getOrPut$result = out;
     }
-    while (false);
+     while (false);
     return getOrPut$result;
   };
   AGOpengl$GlProgram.prototype.replaceVersion_0 = function ($receiver, version) {
@@ -6547,7 +6221,6 @@
   AGOpengl.prototype.createTexture_6taknv$ = function (premultiplied) {
     return new AGOpengl$GlTexture(this, this.gl, premultiplied);
   };
-
   function AGOpengl$GlBuffer($outer, kind) {
     this.$outer = $outer;
     AG$Buffer.call(this, kind);
@@ -6555,7 +6228,6 @@
     this.id_0 = -1;
     this.glKind = kind === AG$Buffer$Kind$INDEX_getInstance() ? this.$outer.gl.ELEMENT_ARRAY_BUFFER : this.$outer.gl.ARRAY_BUFFER;
   }
-
   AGOpengl$GlBuffer.prototype.afterSetMem = function () {
   };
   AGOpengl$GlBuffer.prototype.close = function () {
@@ -6598,7 +6270,6 @@
   };
   AGOpengl.prototype.prepareUploadNativeTexture_m8r6i1$ = function (bmp) {
   };
-
   function AGOpengl$GlTexture($outer, gl, premultiplied) {
     this.$outer = $outer;
     AG$Texture.call(this, this.$outer);
@@ -6608,7 +6279,6 @@
     this.texIds = FBuffer.Companion.invoke_za3lpa$(4);
     this.closed_0 = false;
   }
-
   Object.defineProperty(AGOpengl$GlTexture.prototype, 'premultiplied', {
     get: function () {
       return this.premultiplied_8apmqt$_0;
@@ -6634,12 +6304,14 @@
       var mem = FBuffer.Companion.invoke_za3lpa$(bmp.area);
       arraycopy_0(bmp.data, 0, mem.arrayByte, 0, bmp.area);
       return mem;
-    } else if (Kotlin.isType(bmp, Bitmap32)) {
+    }
+     else if (Kotlin.isType(bmp, Bitmap32)) {
       var abmp = this.premultiplied ? bmp.premultipliedIfRequired() : bmp.depremultipliedIfRequired();
       var mem_0 = FBuffer.Companion.invoke_za3lpa$(abmp.area * 4 | 0);
       arraycopy_1(abmp.data.ints, 0, mem_0.arrayInt, 0, abmp.area);
       return mem_0;
-    } else
+    }
+     else
       tmp$ = unsupported_0();
     return tmp$;
   };
@@ -6649,7 +6321,8 @@
     var bytesPerPixel = source.rgba ? 4 : 1;
     if (source.rgba) {
       tmp$ = this.gl.RGBA;
-    } else {
+    }
+     else {
       tmp$ = this.gl.LUMINANCE;
     }
     var type = tmp$;
@@ -6658,7 +6331,8 @@
       if (bmp.area !== 0) {
         this.gl.texImage2D_gqqctv$(this.gl.TEXTURE_2D, 0, type, type, this.gl.UNSIGNED_BYTE, bmp);
       }
-    } else {
+    }
+     else {
       var buffer = this.createBufferForBitmap_p18la5$(bmp);
       if (buffer != null && source.width !== 0 && source.height !== 0 && buffer.size !== 0) {
         this.gl.texImage2D_byudfd$(this.gl.TEXTURE_2D, 0, type, source.width, source.height, 0, type, this.gl.UNSIGNED_BYTE, buffer);
@@ -6689,7 +6363,8 @@
     var tmp$;
     if (this.mipmaps) {
       tmp$ = linear ? this.gl.LINEAR_MIPMAP_NEAREST : this.gl.NEAREST_MIPMAP_NEAREST;
-    } else {
+    }
+     else {
       tmp$ = linear ? this.gl.LINEAR : this.gl.NEAREST;
     }
     var minFilter = tmp$;
@@ -6734,14 +6409,11 @@
     simpleName: 'AGOpengl',
     interfaces: [AG]
   };
-
   function versionString$lambda($receiver) {
     return $receiver.getString_za3lpa$($receiver.SHADING_LANGUAGE_VERSION);
   }
-
   var versionString;
   var versionString_metadata = new PropertyMetadata('versionString');
-
   function get_versionString($receiver) {
     var getValue_e5fciw$result;
     getValue_e5fciw$break: do {
@@ -6765,20 +6437,17 @@
       }
       getValue_e5fciw$result = res;
     }
-    while (false);
+     while (false);
     return getValue_e5fciw$result;
   }
-
   function versionInt$lambda($receiver) {
     var tmp$;
     var $receiver_0 = replace(get_versionString($receiver), '.', '');
     var tmp$_0;
     return (tmp$ = toIntOrNull(trim(Kotlin.isCharSequence(tmp$_0 = $receiver_0) ? tmp$_0 : throwCCE()).toString())) != null ? tmp$ : 100;
   }
-
   var versionInt;
   var versionInt_metadata = new PropertyMetadata('versionInt');
-
   function get_versionInt($receiver) {
     var getValue_e5fciw$result;
     getValue_e5fciw$break: do {
@@ -6802,18 +6471,15 @@
       }
       getValue_e5fciw$result = res;
     }
-    while (false);
+     while (false);
     return getValue_e5fciw$result;
   }
-
   var KORAG_VERSION;
-
   function setFloats($receiver, offset, data, dataOffset, count) {
     for (var n = 0; n < count; n++)
       $receiver.setFloat_24o109$(offset + n | 0, data[dataOffset + n | 0]);
     return $receiver;
   }
-
   function DummyAG(width, height) {
     if (width === void 0)
       width = 1280;
@@ -6824,7 +6490,6 @@
     this.backWidth_n6snhn$_0 = width;
     this.backHeight_hftjv2$_0 = height;
   }
-
   Object.defineProperty(DummyAG.prototype, 'nativeComponent', {
     get: function () {
       return this.nativeComponent_kz1fki$_0;
@@ -6851,7 +6516,6 @@
     simpleName: 'DummyAG',
     interfaces: [AG]
   };
-
   function LogAG(width, height) {
     if (width === void 0)
       width = 640;
@@ -6867,7 +6531,6 @@
     this.bufferId_lvkfs1$_0 = 0;
     this.renderBufferId_2y4l0r$_0 = 0;
   }
-
   Object.defineProperty(LogAG.prototype, 'nativeComponent', {
     get: function () {
       return this.nativeComponent_kfwasu$_0;
@@ -6906,14 +6569,12 @@
   LogAG.prototype.dispose = function () {
     this.log_61zpoe$('dispose()');
   };
-
   function LogAG$LogTexture($outer, id, premultiplied) {
     this.$outer = $outer;
     AG$Texture.call(this, this.$outer);
     this.id = id;
     this.premultiplied_pk2gt9$_0 = premultiplied;
   }
-
   Object.defineProperty(LogAG$LogTexture.prototype, 'premultiplied', {
     get: function () {
       return this.premultiplied_pk2gt9$_0;
@@ -6934,13 +6595,11 @@
     simpleName: 'LogTexture',
     interfaces: [AG$Texture]
   };
-
   function LogAG$LogBuffer($outer, id, kind) {
     this.$outer = $outer;
     AG$Buffer.call(this, kind);
     this.id = id;
   }
-
   Object.defineProperty(LogAG$LogBuffer.prototype, 'logmem', {
     get: function () {
       return this.mem;
@@ -6970,13 +6629,11 @@
     simpleName: 'LogBuffer',
     interfaces: [AG$Buffer]
   };
-
   function LogAG$LogRenderBuffer($outer, id) {
     this.$outer = $outer;
     AG$RenderBuffer.call(this, this.$outer);
     this.id_z0ejyl$_0 = id;
   }
-
   Object.defineProperty(LogAG$LogRenderBuffer.prototype, 'id', {
     get: function () {
       return this.id_z0ejyl$_0;
@@ -7050,7 +6707,7 @@
         while (tmp$_2.hasNext()) {
           var tmp$_5 = tmp$_2.next();
           var attribute = tmp$_5.component1()
-              , pos = tmp$_5.component2();
+          , pos = tmp$_5.component2();
           var o = os + pos + vertexMemOffset | 0;
           switch (attribute.type.name) {
             case 'Int1':
@@ -7068,8 +6725,7 @@
             case 'Byte4':
               tmp$_3 = 'byte4(' + toString(vertexMem.getUnalignedInt32_za3lpa$(o + 0 | 0)) + ')';
               break;
-            default:
-              tmp$_3 = 'Unsupported(' + attribute.type + ')';
+            default:tmp$_3 = 'Unsupported(' + attribute.type + ')';
               break;
           }
           var info = tmp$_3;
@@ -7078,11 +6734,13 @@
         }
         this.log_61zpoe$('::draw.vertex[' + index + ']: ' + joinToString(attributes, ', '));
       }
-    } catch (e) {
+    }
+     catch (e) {
       if (Kotlin.isType(e, Throwable)) {
         this.log_61zpoe$('ERROR: ' + toString(e.message));
         printStackTrace_0(e);
-      } else
+      }
+       else
         throw e;
     }
   };
@@ -7109,7 +6767,6 @@
     simpleName: 'LogAG',
     interfaces: [AG]
   };
-
   function DoubleDelegatedUniform(uniform, values, index, onSet, default_0) {
     this.uniform = uniform;
     this.values = values;
@@ -7117,7 +6774,6 @@
     this.onSet = onSet;
     this.values[this.index] = default_0;
   }
-
   DoubleDelegatedUniform.prototype.getValue_t0xcdd$ = function (obj, prop) {
     return this.values[this.index];
   };
@@ -7130,7 +6786,6 @@
     simpleName: 'DoubleDelegatedUniform',
     interfaces: []
   };
-
   function FloatDelegatedUniform(uniform, values, index, onSet, default_0) {
     this.uniform = uniform;
     this.values = values;
@@ -7138,7 +6793,6 @@
     this.onSet = onSet;
     this.values[this.index] = default_0;
   }
-
   FloatDelegatedUniform.prototype.getValue_t0xcdd$ = function (obj, prop) {
     return this.values[this.index];
   };
@@ -7151,7 +6805,6 @@
     simpleName: 'FloatDelegatedUniform',
     interfaces: []
   };
-
   function IntDelegatedUniform(uniform, values, index, onSet, default_0) {
     this.uniform = uniform;
     this.values = values;
@@ -7159,7 +6812,6 @@
     this.onSet = onSet;
     this.values[this.index] = default_0;
   }
-
   IntDelegatedUniform.prototype.getValue_t0xcdd$ = function (obj, prop) {
     return numberToInt(this.values[this.index]);
   };
@@ -7172,7 +6824,6 @@
     simpleName: 'IntDelegatedUniform',
     interfaces: []
   };
-
   function BoolDelegatedUniform(uniform, values, index, onSet, default_0) {
     this.uniform = uniform;
     this.values = values;
@@ -7180,7 +6831,6 @@
     this.onSet = onSet;
     this.values[this.index] = default_0 ? 1 : 0;
   }
-
   BoolDelegatedUniform.prototype.getValue_t0xcdd$ = function (obj, prop) {
     return this.values[this.index] !== 0.0;
   };
@@ -7193,18 +6843,15 @@
     simpleName: 'BoolDelegatedUniform',
     interfaces: []
   };
-
   function UniformFloatStorage(uniforms, uniform, array) {
     this.uniforms = uniforms;
     this.uniform = uniform;
     this.array = array;
     this.uniforms.set_8gg9u8$(this.uniform, this.array);
   }
-
   function UniformFloatStorage$doubleDelegate$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.doubleDelegate_7qp2ad$ = function (index, default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7212,11 +6859,9 @@
       onSet = UniformFloatStorage$doubleDelegate$lambda;
     return new DoubleDelegatedUniform(this.uniform, this.array, index, onSet, default_0);
   };
-
   function UniformFloatStorage$doubleDelegateX$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.doubleDelegateX_gjghr5$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7224,11 +6869,9 @@
       onSet = UniformFloatStorage$doubleDelegateX$lambda;
     return this.doubleDelegate_7qp2ad$(0, default_0, onSet);
   };
-
   function UniformFloatStorage$doubleDelegateY$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.doubleDelegateY_gjghr5$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7236,11 +6879,9 @@
       onSet = UniformFloatStorage$doubleDelegateY$lambda;
     return this.doubleDelegate_7qp2ad$(1, default_0, onSet);
   };
-
   function UniformFloatStorage$doubleDelegateZ$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.doubleDelegateZ_gjghr5$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7248,11 +6889,9 @@
       onSet = UniformFloatStorage$doubleDelegateZ$lambda;
     return this.doubleDelegate_7qp2ad$(2, default_0, onSet);
   };
-
   function UniformFloatStorage$doubleDelegateW$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.doubleDelegateW_gjghr5$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7260,11 +6899,9 @@
       onSet = UniformFloatStorage$doubleDelegateW$lambda;
     return this.doubleDelegate_7qp2ad$(3, default_0, onSet);
   };
-
   function UniformFloatStorage$floatDelegate$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.floatDelegate_8hvjyt$ = function (index, default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7272,11 +6909,9 @@
       onSet = UniformFloatStorage$floatDelegate$lambda;
     return new FloatDelegatedUniform(this.uniform, this.array, index, onSet, default_0);
   };
-
   function UniformFloatStorage$floatDelegateX$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.floatDelegateX_quopaj$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7284,11 +6919,9 @@
       onSet = UniformFloatStorage$floatDelegateX$lambda;
     return this.floatDelegate_8hvjyt$(0, default_0, onSet);
   };
-
   function UniformFloatStorage$floatDelegateY$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.floatDelegateY_quopaj$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7296,11 +6929,9 @@
       onSet = UniformFloatStorage$floatDelegateY$lambda;
     return this.floatDelegate_8hvjyt$(1, default_0, onSet);
   };
-
   function UniformFloatStorage$floatDelegateZ$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.floatDelegateZ_quopaj$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7308,11 +6939,9 @@
       onSet = UniformFloatStorage$floatDelegateZ$lambda;
     return this.floatDelegate_8hvjyt$(2, default_0, onSet);
   };
-
   function UniformFloatStorage$floatDelegateW$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.floatDelegateW_quopaj$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0.0;
@@ -7320,11 +6949,9 @@
       onSet = UniformFloatStorage$floatDelegateW$lambda;
     return this.floatDelegate_8hvjyt$(3, default_0, onSet);
   };
-
   function UniformFloatStorage$intDelegate$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.intDelegate_e1b8mt$ = function (index, default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0;
@@ -7332,11 +6959,9 @@
       onSet = UniformFloatStorage$intDelegate$lambda;
     return new IntDelegatedUniform(this.uniform, this.array, index, onSet, default_0);
   };
-
   function UniformFloatStorage$intDelegateX$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.intDelegateX_8b5ljp$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0;
@@ -7344,11 +6969,9 @@
       onSet = UniformFloatStorage$intDelegateX$lambda;
     return this.intDelegate_e1b8mt$(0, default_0, onSet);
   };
-
   function UniformFloatStorage$intDelegateY$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.intDelegateY_8b5ljp$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0;
@@ -7356,11 +6979,9 @@
       onSet = UniformFloatStorage$intDelegateY$lambda;
     return this.intDelegate_e1b8mt$(1, default_0, onSet);
   };
-
   function UniformFloatStorage$intDelegateZ$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.intDelegateZ_8b5ljp$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0;
@@ -7368,11 +6989,9 @@
       onSet = UniformFloatStorage$intDelegateZ$lambda;
     return this.intDelegate_e1b8mt$(2, default_0, onSet);
   };
-
   function UniformFloatStorage$intDelegateW$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.intDelegateW_8b5ljp$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = 0;
@@ -7380,11 +6999,9 @@
       onSet = UniformFloatStorage$intDelegateW$lambda;
     return this.intDelegate_e1b8mt$(3, default_0, onSet);
   };
-
   function UniformFloatStorage$boolDelegate$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.boolDelegate_zc8s2z$ = function (index, default_0, onSet) {
     if (default_0 === void 0)
       default_0 = false;
@@ -7392,11 +7009,9 @@
       onSet = UniformFloatStorage$boolDelegate$lambda;
     return new BoolDelegatedUniform(this.uniform, this.array, index, onSet, default_0);
   };
-
   function UniformFloatStorage$boolDelegateX$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.boolDelegateX_1l5823$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = false;
@@ -7404,11 +7019,9 @@
       onSet = UniformFloatStorage$boolDelegateX$lambda;
     return this.boolDelegate_zc8s2z$(0, default_0, onSet);
   };
-
   function UniformFloatStorage$boolDelegateY$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.boolDelegateY_1l5823$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = false;
@@ -7416,11 +7029,9 @@
       onSet = UniformFloatStorage$boolDelegateY$lambda;
     return this.boolDelegate_zc8s2z$(1, default_0, onSet);
   };
-
   function UniformFloatStorage$boolDelegateZ$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.boolDelegateZ_1l5823$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = false;
@@ -7428,11 +7039,9 @@
       onSet = UniformFloatStorage$boolDelegateZ$lambda;
     return this.boolDelegate_zc8s2z$(2, default_0, onSet);
   };
-
   function UniformFloatStorage$boolDelegateW$lambda(it) {
     return Unit;
   }
-
   UniformFloatStorage.prototype.boolDelegateW_1l5823$ = function (default_0, onSet) {
     if (default_0 === void 0)
       default_0 = false;
@@ -7445,14 +7054,12 @@
     simpleName: 'UniformFloatStorage',
     interfaces: []
   };
-
   function UniformValueStorage(uniforms, uniform, value) {
     this.uniforms = uniforms;
     this.uniform = uniform;
     this.value = value;
     this.uniforms.set_8gg9u8$(this.uniform, this.value);
   }
-
   UniformValueStorage.prototype.delegate = function () {
     return this;
   };
@@ -7467,19 +7074,16 @@
     simpleName: 'UniformValueStorage',
     interfaces: []
   };
-
   function storageFor($receiver, uniform, array) {
     if (array === void 0)
       array = new Float32Array(4);
     return new UniformFloatStorage($receiver, uniform, array);
   }
-
   function storageForMatrix3D($receiver, uniform, matrix) {
     if (matrix === void 0)
       matrix = new Matrix3D();
     return new UniformValueStorage($receiver, uniform, matrix);
   }
-
   function toNewGlslString($receiver, gles, version) {
     if (gles === void 0)
       gles = true;
@@ -7487,19 +7091,16 @@
       version = 100;
     return (new GlslGenerator($receiver.type, gles, version)).generate_57b21j$($receiver.stm);
   }
-
   function toGlSlString($receiver, gles) {
     if (gles === void 0)
       gles = true;
     return (new GlslGenerator(ShaderType$VERTEX_getInstance(), gles)).generate_57b21j$($receiver.stm);
   }
-
   function toGlSlString_0($receiver, gles) {
     if (gles === void 0)
       gles = true;
     return (new GlslGenerator(ShaderType$FRAGMENT_getInstance(), gles)).generate_57b21j$($receiver.stm);
   }
-
   function GlslGenerator(kind, gles, version) {
     if (gles === void 0)
       gles = true;
@@ -7515,7 +7116,6 @@
     this.uniforms_0 = HashSet_init();
     this.programIndenter_0 = new Indenter();
   }
-
   GlslGenerator.prototype.errorType_0 = function (type) {
     return invalidOp("Don't know how to serialize type " + type);
   };
@@ -7531,8 +7131,7 @@
         return 'mat4';
       case 'TextureUnit':
         return 'sampler2D';
-      default:
-        switch (type.kind.name) {
+      default:switch (type.kind.name) {
           case 'TBYTE':
           case 'TUNSIGNED_BYTE':
           case 'TSHORT':
@@ -7547,8 +7146,7 @@
                 return 'vec3';
               case 4:
                 return 'vec4';
-              default:
-                return this.errorType_0(type);
+              default:return this.errorType_0(type);
             }
 
           case 'TINT':
@@ -7561,12 +7159,10 @@
                 return 'ivec3';
               case 4:
                 return 'ivec4';
-              default:
-                return this.errorType_0(type);
+              default:return this.errorType_0(type);
             }
 
-          default:
-            return Kotlin.noWhenBranchMatched();
+          default:return Kotlin.noWhenBranchMatched();
         }
 
         break;
@@ -7575,7 +7171,6 @@
   GlslGenerator.prototype.get_arrayDecl_55mpc6$ = function ($receiver) {
     return $receiver.arrayCount !== 1 ? '[' + $receiver.arrayCount + ']' : '';
   };
-
   function GlslGenerator$generate$lambda(this$GlslGenerator) {
     return function ($receiver) {
       var tmp$, tmp$_0, tmp$_1;
@@ -7588,7 +7183,8 @@
           $receiver.line_61zpoe$('precision mediump int;');
           $receiver.line_61zpoe$('precision lowp sampler2D;');
           $receiver.line_61zpoe$('precision lowp samplerCube;');
-        } finally {
+        }
+        finally {
           $receiver._unindent();
         }
         $receiver.line_61zpoe$('#endif');
@@ -7620,14 +7216,14 @@
           $receiver.line_61zpoe$(this$GlslGenerator_0.typeToString_b2kxjc$(temp.type) + ' ' + temp.name + ';');
         }
         $receiver.line_2swh6d$(this$GlslGenerator_0.programIndenter_0);
-      } finally {
+      }
+      finally {
         $receiver._unindent();
       }
       $receiver.line_61zpoe$('}');
       return Unit;
     };
   }
-
   GlslGenerator.prototype.generate_57b21j$ = function (root) {
     this.temps_0.clear();
     this.attributes_0.clear();
@@ -7658,26 +7254,22 @@
   GlslGenerator.prototype.visit_d6ige1$ = function (stm) {
     this.programIndenter_0.line_61zpoe$('discard;');
   };
-
   function GlslGenerator$visit$lambda(this$GlslGenerator) {
     return function (it) {
       return this$GlslGenerator.visit_dq1c34$(it);
     };
   }
-
   GlslGenerator.prototype.visit_b87eze$ = function (operand) {
     return this.typeToString_b2kxjc$(operand.type) + '(' + joinToString_0(operand.ops, ', ', void 0, void 0, void 0, void 0, GlslGenerator$visit$lambda(this)) + ')';
   };
   GlslGenerator.prototype.visit_s5t3yz$ = function (operand) {
     return '(' + this.visit_dq1c34$(operand.left) + ' ' + operand.op + ' ' + this.visit_dq1c34$(operand.right) + ')';
   };
-
   function GlslGenerator$visit$lambda_0(this$GlslGenerator) {
     return function (it) {
       return this$GlslGenerator.visit_dq1c34$(it);
     };
   }
-
   GlslGenerator.prototype.visit_j8ixcp$ = function (func) {
     return func.name + '(' + joinToString(func.ops, ', ', void 0, void 0, void 0, void 0, GlslGenerator$visit$lambda_0(this)) + ')';
   };
@@ -7688,7 +7280,8 @@
     $receiver._indent();
     try {
       this.visit_57b21j$(stm.tbody);
-    } finally {
+    }
+    finally {
       $receiver._unindent();
     }
     $receiver.line_61zpoe$('}');
@@ -7697,7 +7290,8 @@
       $receiver._indent();
       try {
         this.visit_57b21j$(ensureNotNull(stm.fbody));
-      } finally {
+      }
+      finally {
         $receiver._unindent();
       }
       $receiver.line_61zpoe$('}');
@@ -7714,11 +7308,11 @@
         case 'FRAGMENT':
           tmp$ = 'gl_FragColor';
           break;
-        default:
-          tmp$ = Kotlin.noWhenBranchMatched();
+        default:tmp$ = Kotlin.noWhenBranchMatched();
           break;
       }
-    } else
+    }
+     else
       tmp$ = operand.name;
     return tmp$;
   };
@@ -7762,18 +7356,15 @@
     simpleName: 'GlslGenerator',
     interfaces: [Program$Visitor]
   };
-
   function toGlSl($receiver) {
     return (new GlslGenerator($receiver.type)).generate_57b21j$($receiver.stm);
   }
-
   function VarKind(name, ordinal, bytesSize) {
     Enum.call(this);
     this.bytesSize = bytesSize;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function VarKind_initFields() {
     VarKind_initFields = function () {
     };
@@ -7784,61 +7375,45 @@
     VarKind$TINT_instance = new VarKind('TINT', 4, 4);
     VarKind$TFLOAT_instance = new VarKind('TFLOAT', 5, 4);
   }
-
   var VarKind$TBYTE_instance;
-
   function VarKind$TBYTE_getInstance() {
     VarKind_initFields();
     return VarKind$TBYTE_instance;
   }
-
   var VarKind$TUNSIGNED_BYTE_instance;
-
   function VarKind$TUNSIGNED_BYTE_getInstance() {
     VarKind_initFields();
     return VarKind$TUNSIGNED_BYTE_instance;
   }
-
   var VarKind$TSHORT_instance;
-
   function VarKind$TSHORT_getInstance() {
     VarKind_initFields();
     return VarKind$TSHORT_instance;
   }
-
   var VarKind$TUNSIGNED_SHORT_instance;
-
   function VarKind$TUNSIGNED_SHORT_getInstance() {
     VarKind_initFields();
     return VarKind$TUNSIGNED_SHORT_instance;
   }
-
   var VarKind$TINT_instance;
-
   function VarKind$TINT_getInstance() {
     VarKind_initFields();
     return VarKind$TINT_instance;
   }
-
   var VarKind$TFLOAT_instance;
-
   function VarKind$TFLOAT_getInstance() {
     VarKind_initFields();
     return VarKind$TFLOAT_instance;
   }
-
   VarKind.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'VarKind',
     interfaces: [Enum]
   };
-
   function VarKind$values() {
     return [VarKind$TBYTE_getInstance(), VarKind$TUNSIGNED_BYTE_getInstance(), VarKind$TSHORT_getInstance(), VarKind$TUNSIGNED_SHORT_getInstance(), VarKind$TINT_getInstance(), VarKind$TFLOAT_getInstance()];
   }
-
   VarKind.values = VarKind$values;
-
   function VarKind$valueOf(name) {
     switch (name) {
       case 'TBYTE':
@@ -7853,13 +7428,10 @@
         return VarKind$TINT_getInstance();
       case 'TFLOAT':
         return VarKind$TFLOAT_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.shader.VarKind.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.shader.VarKind.' + name);
     }
   }
-
   VarKind.valueOf_61zpoe$ = VarKind$valueOf;
-
   function VarType(name, ordinal, kind, elementCount, isMatrix) {
     if (isMatrix === void 0)
       isMatrix = false;
@@ -7871,7 +7443,6 @@
     this.ordinal$ = ordinal;
     this.bytesSize = Kotlin.imul(this.kind.bytesSize, this.elementCount);
   }
-
   function VarType_initFields() {
     VarType_initFields = function () {
     };
@@ -7913,263 +7484,189 @@
     VarType$SInt4_instance = new VarType('SInt4', 35, VarKind$TINT_getInstance(), 4);
     VarType$Companion_getInstance();
   }
-
   var VarType$TVOID_instance;
-
   function VarType$TVOID_getInstance() {
     VarType_initFields();
     return VarType$TVOID_instance;
   }
-
   var VarType$Mat2_instance;
-
   function VarType$Mat2_getInstance() {
     VarType_initFields();
     return VarType$Mat2_instance;
   }
-
   var VarType$Mat3_instance;
-
   function VarType$Mat3_getInstance() {
     VarType_initFields();
     return VarType$Mat3_instance;
   }
-
   var VarType$Mat4_instance;
-
   function VarType$Mat4_getInstance() {
     VarType_initFields();
     return VarType$Mat4_instance;
   }
-
   var VarType$TextureUnit_instance;
-
   function VarType$TextureUnit_getInstance() {
     VarType_initFields();
     return VarType$TextureUnit_instance;
   }
-
   var VarType$Int1_instance;
-
   function VarType$Int1_getInstance() {
     VarType_initFields();
     return VarType$Int1_instance;
   }
-
   var VarType$Float1_instance;
-
   function VarType$Float1_getInstance() {
     VarType_initFields();
     return VarType$Float1_instance;
   }
-
   var VarType$Float2_instance;
-
   function VarType$Float2_getInstance() {
     VarType_initFields();
     return VarType$Float2_instance;
   }
-
   var VarType$Float3_instance;
-
   function VarType$Float3_getInstance() {
     VarType_initFields();
     return VarType$Float3_instance;
   }
-
   var VarType$Float4_instance;
-
   function VarType$Float4_getInstance() {
     VarType_initFields();
     return VarType$Float4_instance;
   }
-
   var VarType$Short1_instance;
-
   function VarType$Short1_getInstance() {
     VarType_initFields();
     return VarType$Short1_instance;
   }
-
   var VarType$Short2_instance;
-
   function VarType$Short2_getInstance() {
     VarType_initFields();
     return VarType$Short2_instance;
   }
-
   var VarType$Short3_instance;
-
   function VarType$Short3_getInstance() {
     VarType_initFields();
     return VarType$Short3_instance;
   }
-
   var VarType$Short4_instance;
-
   function VarType$Short4_getInstance() {
     VarType_initFields();
     return VarType$Short4_instance;
   }
-
   var VarType$Bool1_instance;
-
   function VarType$Bool1_getInstance() {
     VarType_initFields();
     return VarType$Bool1_instance;
   }
-
   var VarType$Byte4_instance;
-
   function VarType$Byte4_getInstance() {
     VarType_initFields();
     return VarType$Byte4_instance;
   }
-
   var VarType$SByte1_instance;
-
   function VarType$SByte1_getInstance() {
     VarType_initFields();
     return VarType$SByte1_instance;
   }
-
   var VarType$SByte2_instance;
-
   function VarType$SByte2_getInstance() {
     VarType_initFields();
     return VarType$SByte2_instance;
   }
-
   var VarType$SByte3_instance;
-
   function VarType$SByte3_getInstance() {
     VarType_initFields();
     return VarType$SByte3_instance;
   }
-
   var VarType$SByte4_instance;
-
   function VarType$SByte4_getInstance() {
     VarType_initFields();
     return VarType$SByte4_instance;
   }
-
   var VarType$UByte1_instance;
-
   function VarType$UByte1_getInstance() {
     VarType_initFields();
     return VarType$UByte1_instance;
   }
-
   var VarType$UByte2_instance;
-
   function VarType$UByte2_getInstance() {
     VarType_initFields();
     return VarType$UByte2_instance;
   }
-
   var VarType$UByte3_instance;
-
   function VarType$UByte3_getInstance() {
     VarType_initFields();
     return VarType$UByte3_instance;
   }
-
   var VarType$UByte4_instance;
-
   function VarType$UByte4_getInstance() {
     VarType_initFields();
     return VarType$UByte4_instance;
   }
-
   var VarType$SShort1_instance;
-
   function VarType$SShort1_getInstance() {
     VarType_initFields();
     return VarType$SShort1_instance;
   }
-
   var VarType$SShort2_instance;
-
   function VarType$SShort2_getInstance() {
     VarType_initFields();
     return VarType$SShort2_instance;
   }
-
   var VarType$SShort3_instance;
-
   function VarType$SShort3_getInstance() {
     VarType_initFields();
     return VarType$SShort3_instance;
   }
-
   var VarType$SShort4_instance;
-
   function VarType$SShort4_getInstance() {
     VarType_initFields();
     return VarType$SShort4_instance;
   }
-
   var VarType$UShort1_instance;
-
   function VarType$UShort1_getInstance() {
     VarType_initFields();
     return VarType$UShort1_instance;
   }
-
   var VarType$UShort2_instance;
-
   function VarType$UShort2_getInstance() {
     VarType_initFields();
     return VarType$UShort2_instance;
   }
-
   var VarType$UShort3_instance;
-
   function VarType$UShort3_getInstance() {
     VarType_initFields();
     return VarType$UShort3_instance;
   }
-
   var VarType$UShort4_instance;
-
   function VarType$UShort4_getInstance() {
     VarType_initFields();
     return VarType$UShort4_instance;
   }
-
   var VarType$SInt1_instance;
-
   function VarType$SInt1_getInstance() {
     VarType_initFields();
     return VarType$SInt1_instance;
   }
-
   var VarType$SInt2_instance;
-
   function VarType$SInt2_getInstance() {
     VarType_initFields();
     return VarType$SInt2_instance;
   }
-
   var VarType$SInt3_instance;
-
   function VarType$SInt3_getInstance() {
     VarType_initFields();
     return VarType$SInt3_instance;
   }
-
   var VarType$SInt4_instance;
-
   function VarType$SInt4_getInstance() {
     VarType_initFields();
     return VarType$SInt4_instance;
   }
-
   function VarType$Companion() {
     VarType$Companion_instance = this;
   }
-
   VarType$Companion.prototype.BYTE_za3lpa$ = function (count) {
     switch (count) {
       case 0:
@@ -8182,8 +7679,7 @@
         return VarType$SByte3_getInstance();
       case 4:
         return VarType$SByte4_getInstance();
-      default:
-        return lang.invalidOp;
+      default:return lang.invalidOp;
     }
   };
   VarType$Companion.prototype.UBYTE_za3lpa$ = function (count) {
@@ -8198,8 +7694,7 @@
         return VarType$UByte3_getInstance();
       case 4:
         return VarType$UByte4_getInstance();
-      default:
-        return lang.invalidOp;
+      default:return lang.invalidOp;
     }
   };
   VarType$Companion.prototype.SHORT_za3lpa$ = function (count) {
@@ -8214,8 +7709,7 @@
         return VarType$SShort3_getInstance();
       case 4:
         return VarType$SShort4_getInstance();
-      default:
-        return lang.invalidOp;
+      default:return lang.invalidOp;
     }
   };
   VarType$Companion.prototype.USHORT_za3lpa$ = function (count) {
@@ -8230,8 +7724,7 @@
         return VarType$UShort3_getInstance();
       case 4:
         return VarType$UShort4_getInstance();
-      default:
-        return lang.invalidOp;
+      default:return lang.invalidOp;
     }
   };
   VarType$Companion.prototype.INT_za3lpa$ = function (count) {
@@ -8246,8 +7739,7 @@
         return VarType$SInt3_getInstance();
       case 4:
         return VarType$SInt4_getInstance();
-      default:
-        return lang.invalidOp;
+      default:return lang.invalidOp;
     }
   };
   VarType$Companion.prototype.FLOAT_za3lpa$ = function (count) {
@@ -8262,8 +7754,7 @@
         return VarType$Float3_getInstance();
       case 4:
         return VarType$Float4_getInstance();
-      default:
-        return lang.invalidOp;
+      default:return lang.invalidOp;
     }
   };
   VarType$Companion.$metadata$ = {
@@ -8272,7 +7763,6 @@
     interfaces: []
   };
   var VarType$Companion_instance = null;
-
   function VarType$Companion_getInstance() {
     VarType_initFields();
     if (VarType$Companion_instance === null) {
@@ -8280,19 +7770,15 @@
     }
     return VarType$Companion_instance;
   }
-
   VarType.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'VarType',
     interfaces: [Enum]
   };
-
   function VarType$values() {
     return [VarType$TVOID_getInstance(), VarType$Mat2_getInstance(), VarType$Mat3_getInstance(), VarType$Mat4_getInstance(), VarType$TextureUnit_getInstance(), VarType$Int1_getInstance(), VarType$Float1_getInstance(), VarType$Float2_getInstance(), VarType$Float3_getInstance(), VarType$Float4_getInstance(), VarType$Short1_getInstance(), VarType$Short2_getInstance(), VarType$Short3_getInstance(), VarType$Short4_getInstance(), VarType$Bool1_getInstance(), VarType$Byte4_getInstance(), VarType$SByte1_getInstance(), VarType$SByte2_getInstance(), VarType$SByte3_getInstance(), VarType$SByte4_getInstance(), VarType$UByte1_getInstance(), VarType$UByte2_getInstance(), VarType$UByte3_getInstance(), VarType$UByte4_getInstance(), VarType$SShort1_getInstance(), VarType$SShort2_getInstance(), VarType$SShort3_getInstance(), VarType$SShort4_getInstance(), VarType$UShort1_getInstance(), VarType$UShort2_getInstance(), VarType$UShort3_getInstance(), VarType$UShort4_getInstance(), VarType$SInt1_getInstance(), VarType$SInt2_getInstance(), VarType$SInt3_getInstance(), VarType$SInt4_getInstance()];
   }
-
   VarType.values = VarType$values;
-
   function VarType$valueOf(name) {
     switch (name) {
       case 'TVOID':
@@ -8367,75 +7853,58 @@
         return VarType$SInt3_getInstance();
       case 'SInt4':
         return VarType$SInt4_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.shader.VarType.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.shader.VarType.' + name);
     }
   }
-
   VarType.valueOf_61zpoe$ = VarType$valueOf;
-
   function ShaderType(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function ShaderType_initFields() {
     ShaderType_initFields = function () {
     };
     ShaderType$VERTEX_instance = new ShaderType('VERTEX', 0);
     ShaderType$FRAGMENT_instance = new ShaderType('FRAGMENT', 1);
   }
-
   var ShaderType$VERTEX_instance;
-
   function ShaderType$VERTEX_getInstance() {
     ShaderType_initFields();
     return ShaderType$VERTEX_instance;
   }
-
   var ShaderType$FRAGMENT_instance;
-
   function ShaderType$FRAGMENT_getInstance() {
     ShaderType_initFields();
     return ShaderType$FRAGMENT_instance;
   }
-
   ShaderType.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ShaderType',
     interfaces: [Enum]
   };
-
   function ShaderType$values() {
     return [ShaderType$VERTEX_getInstance(), ShaderType$FRAGMENT_getInstance()];
   }
-
   ShaderType.values = ShaderType$values;
-
   function ShaderType$valueOf(name) {
     switch (name) {
       case 'VERTEX':
         return ShaderType$VERTEX_getInstance();
       case 'FRAGMENT':
         return ShaderType$FRAGMENT_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korag.shader.ShaderType.' + name);
+      default:throwISE('No enum constant com.soywiz.korag.shader.ShaderType.' + name);
     }
   }
-
   ShaderType.valueOf_61zpoe$ = ShaderType$valueOf;
-
   function Operand(type) {
     this.type = type;
   }
-
   Operand.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Operand',
     interfaces: []
   };
-
   function Variable(name, type, arrayCount) {
     Operand.call(this, type);
     this.name = name;
@@ -8450,19 +7919,16 @@
     this.id = 0;
     this.data = null;
   }
-
   Variable.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Variable',
     interfaces: [Operand]
   };
-
   function Variable_init(name, type, $this) {
     $this = $this || Object.create(Variable.prototype);
     Variable.call($this, name, type, 1);
     return $this;
   }
-
   function Attribute(name, type, normalized, offset, active) {
     if (offset === void 0)
       offset = null;
@@ -8473,7 +7939,6 @@
     this.offset = offset;
     this.active = active;
   }
-
   Attribute.prototype.inactived = function () {
     return new Attribute(this.name, this.type, this.normalized, null, false);
   };
@@ -8485,17 +7950,14 @@
     simpleName: 'Attribute',
     interfaces: [Variable]
   };
-
   function Attribute_init(name, type, normalized, $this) {
     $this = $this || Object.create(Attribute.prototype);
     Attribute.call($this, name, type, normalized, null, true);
     return $this;
   }
-
   function Varying(name, type, arrayCount) {
     Variable.call(this, name, type, arrayCount);
   }
-
   Varying.prototype.toString = function () {
     return 'Varying(' + this.name + ')';
   };
@@ -8504,17 +7966,14 @@
     simpleName: 'Varying',
     interfaces: [Variable]
   };
-
   function Varying_init(name, type, $this) {
     $this = $this || Object.create(Varying.prototype);
     Varying.call($this, name, type, 1);
     return $this;
   }
-
   function Uniform(name, type, arrayCount) {
     Variable.call(this, name, type, arrayCount);
   }
-
   Uniform.prototype.toString = function () {
     return 'Uniform(' + this.name + ')';
   };
@@ -8523,17 +7982,14 @@
     simpleName: 'Uniform',
     interfaces: [Variable]
   };
-
   function Uniform_init(name, type, $this) {
     $this = $this || Object.create(Uniform.prototype);
     Uniform.call($this, name, type, 1);
     return $this;
   }
-
   function Temp(id, type, arrayCount) {
     Variable.call(this, 'temp' + id, type, arrayCount);
   }
-
   Temp.prototype.toString = function () {
     return 'Temp(' + this.name + ')';
   };
@@ -8542,18 +7998,15 @@
     simpleName: 'Temp',
     interfaces: [Variable]
   };
-
   function Temp_init(id, type, $this) {
     $this = $this || Object.create(Temp.prototype);
     Temp.call($this, id, type, 1);
     return $this;
   }
-
   function Output() {
     Output_instance = this;
     Variable_init('out', VarType$Float4_getInstance(), this);
   }
-
   Output.prototype.toString = function () {
     return 'Output';
   };
@@ -8563,14 +8016,12 @@
     interfaces: [Variable]
   };
   var Output_instance = null;
-
   function Output_getInstance() {
     if (Output_instance === null) {
       new Output();
     }
     return Output_instance;
   }
-
   function Program(vertex, fragment, name) {
     if (name === void 0)
       name = 'program';
@@ -8580,7 +8031,6 @@
     this.uniforms = plus(this.vertex.uniforms, this.fragment.uniforms);
     this.attributes = plus(this.vertex.attributes, this.fragment.attributes);
   }
-
   Program.prototype.close = function () {
   };
   Program.prototype.toString = function () {
@@ -8604,142 +8054,117 @@
     }
     return tmp$_1 + destination_0 + ')';
   };
-
   function Program$Binop(left, op, right) {
     Operand.call(this, left.type);
     this.left = left;
     this.op = op;
     this.right = right;
   }
-
   Program$Binop.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Binop',
     interfaces: [Operand]
   };
-
   function Program$IntLiteral(value) {
     Operand.call(this, VarType$Int1_getInstance());
     this.value = value;
   }
-
   Program$IntLiteral.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'IntLiteral',
     interfaces: [Operand]
   };
-
   function Program$FloatLiteral(value) {
     Operand.call(this, VarType$Float1_getInstance());
     this.value = value;
   }
-
   Program$FloatLiteral.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'FloatLiteral',
     interfaces: [Operand]
   };
-
   function Program$BoolLiteral(value) {
     Operand.call(this, VarType$Bool1_getInstance());
     this.value = value;
   }
-
   Program$BoolLiteral.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'BoolLiteral',
     interfaces: [Operand]
   };
-
   function Program$Vector(type, ops) {
     Operand.call(this, type);
     this.ops = ops;
   }
-
   Program$Vector.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Vector',
     interfaces: [Operand]
   };
-
   function Program$Swizzle(left, swizzle) {
     Operand.call(this, left.type);
     this.left = left;
     this.swizzle = swizzle;
   }
-
   Program$Swizzle.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Swizzle',
     interfaces: [Operand]
   };
-
   function Program$ArrayAccess(left, index) {
     Operand.call(this, left.type);
     this.left = left;
     this.index = index;
   }
-
   Program$ArrayAccess.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'ArrayAccess',
     interfaces: [Operand]
   };
-
   function Program$Func(name, ops) {
     Operand.call(this, VarType$Float1_getInstance());
     this.name = name;
     this.ops = ops;
   }
-
   Program$Func.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Func',
     interfaces: [Operand]
   };
-
   function Program$Program$Func_init(name, ops, $this) {
     $this = $this || Object.create(Program$Func.prototype);
     Program$Func.call($this, name, toList(ops));
     return $this;
   }
-
   function Program$Stm() {
   }
-
   function Program$Stm$Stms(stms) {
     Program$Stm.call(this);
     this.stms = stms;
   }
-
   Program$Stm$Stms.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Stms',
     interfaces: [Program$Stm]
   };
-
   function Program$Stm$Set(to, from) {
     Program$Stm.call(this);
     this.to = to;
     this.from = from;
   }
-
   Program$Stm$Set.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Set',
     interfaces: [Program$Stm]
   };
-
   function Program$Stm$Discard() {
     Program$Stm.call(this);
   }
-
   Program$Stm$Discard.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Discard',
     interfaces: [Program$Stm]
   };
-
   function Program$Stm$If(cond, tbody, fbody) {
     if (fbody === void 0)
       fbody = null;
@@ -8748,7 +8173,6 @@
     this.tbody = tbody;
     this.fbody = fbody;
   }
-
   Program$Stm$If.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'If',
@@ -8759,14 +8183,12 @@
     simpleName: 'Stm',
     interfaces: []
   };
-
   function Program$Builder(type) {
     this.type = type;
     this.outputStms = ArrayList_init();
     this.tempLastId_0 = 3;
     this.out = Output_getInstance();
   }
-
   Program$Builder.prototype.ELSE_q23b5m$ = function ($receiver, callback) {
     var body = new Program$Builder(this.type);
     callback(body);
@@ -8984,8 +8406,7 @@
         case 3:
           tmp$ = this.get_w_rix7j$($receiver);
           break;
-        default:
-          throw IllegalStateException_init(('Invalid index ' + index).toString());
+        default:throw IllegalStateException_init(('Invalid index ' + index).toString());
       }
     }
     return tmp$;
@@ -9058,11 +8479,9 @@
     simpleName: 'Builder',
     interfaces: []
   };
-
   function Program$Visitor(default_0) {
     this.default = default_0;
   }
-
   Program$Visitor.prototype.visit_57b21j$ = function (stm) {
     if (Kotlin.isType(stm, Program$Stm$Stms))
       this.visit_1xgyq4$(stm);
@@ -9195,7 +8614,6 @@
     simpleName: 'Program',
     interfaces: [Closeable]
   };
-
   function Shader(type, stm) {
     this.type = type;
     this.stm = stm;
@@ -9206,12 +8624,10 @@
     (new Shader$attributes$lambda$ObjectLiteral($receiver_0, Unit)).visit_57b21j$(this.stm);
     this.attributes = toSet($receiver_0);
   }
-
   function Shader$uniforms$lambda$ObjectLiteral(closure$out, default_0) {
     this.closure$out = closure$out;
     Program$Visitor.call(this, default_0);
   }
-
   Shader$uniforms$lambda$ObjectLiteral.prototype.visit_2f4vi3$ = function (uniform) {
     this.closure$out;
     this.closure$out.add_11rb$(uniform);
@@ -9220,12 +8636,10 @@
     kind: Kind_CLASS,
     interfaces: [Program$Visitor]
   };
-
   function Shader$attributes$lambda$ObjectLiteral(closure$out, default_0) {
     this.closure$out = closure$out;
     Program$Visitor.call(this, default_0);
   }
-
   Shader$attributes$lambda$ObjectLiteral.prototype.visit_3kqgd9$ = function (attribute) {
     this.closure$out;
     this.closure$out.add_11rb$(attribute);
@@ -9239,43 +8653,35 @@
     simpleName: 'Shader',
     interfaces: []
   };
-
   function VertexShader(stm) {
     Shader.call(this, ShaderType$VERTEX_getInstance(), stm);
   }
-
   VertexShader.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'VertexShader',
     interfaces: [Shader]
   };
-
   function FragmentShader(stm) {
     Shader.call(this, ShaderType$FRAGMENT_getInstance(), stm);
   }
-
   FragmentShader.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'FragmentShader',
     interfaces: [Shader]
   };
-
   function appending($receiver, callback) {
     return new FragmentShader(new Program$Stm$Stms(listOf([$receiver.stm, FragmentShader_0(callback).stm])));
   }
-
   function VertexShader_0(callback) {
     var builder = new Program$Builder(ShaderType$VERTEX_getInstance());
     callback(builder);
     return new VertexShader(new Program$Stm$Stms(builder.outputStms));
   }
-
   function FragmentShader_0(callback) {
     var builder = new Program$Builder(ShaderType$FRAGMENT_getInstance());
     callback(builder);
     return new FragmentShader(new Program$Stm$Stms(builder.outputStms));
   }
-
   function VertexLayout(attr, layoutSize) {
     this.layoutSize_0 = layoutSize;
     this.myattr_0 = attr;
@@ -9301,7 +8707,8 @@
       var tmp$_2 = destination_0.add_11rb$;
       if (item_0.offset != null) {
         this._lastPos_0 = item_0.offset;
-      } else {
+      }
+       else {
         this._lastPos_0 = nextAlignedTo(this._lastPos_0, item_0.type.kind.bytesSize);
       }
       var out = this._lastPos_0;
@@ -9314,7 +8721,6 @@
     var tmp$_4;
     this.totalSize = (tmp$_4 = this.layoutSize_0) != null ? tmp$_4 : nextAlignedTo(this._lastPos_0, this.maxAlignment);
   }
-
   VertexLayout.prototype.toString = function () {
     var $receiver = this.myattr_0;
     var destination = ArrayList_init_0(collectionSizeOrDefault($receiver, 10));
@@ -9331,19 +8737,16 @@
     simpleName: 'VertexLayout',
     interfaces: []
   };
-
   function VertexLayout_init(attributes, $this) {
     $this = $this || Object.create(VertexLayout.prototype);
     VertexLayout.call($this, attributes, null);
     return $this;
   }
-
   function VertexLayout_init_0(attributes, $this) {
     $this = $this || Object.create(VertexLayout.prototype);
     VertexLayout.call($this, toList(attributes), null);
     return $this;
   }
-
   function VertexLayout_init_1(attributes, layoutSize, $this) {
     if (layoutSize === void 0)
       layoutSize = null;
@@ -9351,11 +8754,9 @@
     VertexLayout.call($this, toList(attributes), layoutSize);
     return $this;
   }
-
   function AGFactorySoftware() {
     this.supportsNativeFrame_tmfibi$_0 = false;
   }
-
   Object.defineProperty(AGFactorySoftware.prototype, 'supportsNativeFrame', {
     get: function () {
       return this.supportsNativeFrame_tmfibi$_0;
@@ -9373,14 +8774,12 @@
     simpleName: 'AGFactorySoftware',
     interfaces: [AGFactory]
   };
-
   function AGSoftware(bitmap) {
     AG.call(this);
     this.bitmap = bitmap;
     this.nativeComponent_wz502q$_0 = this.bitmap;
     this.ready();
   }
-
   Object.defineProperty(AGSoftware.prototype, 'nativeComponent', {
     get: function () {
       return this.nativeComponent_wz502q$_0;
@@ -9391,18 +8790,14 @@
     simpleName: 'AGSoftware',
     interfaces: [AG]
   };
-
   function EventDispatcher() {
     EventDispatcher$Companion_getInstance();
   }
-
   EventDispatcher.prototype.copyFrom_qquois$ = function (other) {
   };
-
   function EventDispatcher$Mixin() {
     this.handlers_kcnnde$_0 = null;
   }
-
   EventDispatcher$Mixin.prototype.getHandlersFor_tu2jiv$_0 = function (clazz) {
     var tmp$, tmp$_0;
     if (this.handlers_kcnnde$_0 == null)
@@ -9420,12 +8815,12 @@
       var answer = ArrayList_init();
       $receiver.put_xwzc9p$(clazz, answer);
       tmp$_0 = answer;
-    } else {
+    }
+     else {
       tmp$_0 = value;
     }
     return Kotlin.isType(tmp$ = tmp$_0, ArrayList) ? tmp$ : throwCCE();
   };
-
   function EventDispatcher$Mixin$addEventListener$lambda(closure$handlers, closure$handler) {
     return function () {
       var $receiver = closure$handlers;
@@ -9434,7 +8829,6 @@
       return Unit;
     };
   }
-
   EventDispatcher$Mixin.prototype.addEventListener_xa594f$ = function (clazz, handler) {
     var handlers = this.getHandlersForCreate_5hfomz$_0(clazz);
     handlers.add_11rb$(handler);
@@ -9477,11 +8871,9 @@
     simpleName: 'Mixin',
     interfaces: [EventDispatcher]
   };
-
   function EventDispatcher$Companion() {
     EventDispatcher$Companion_instance = this;
   }
-
   EventDispatcher$Companion.prototype.invoke = function () {
     return new EventDispatcher$Mixin();
   };
@@ -9491,24 +8883,20 @@
     interfaces: []
   };
   var EventDispatcher$Companion_instance = null;
-
   function EventDispatcher$Companion_getInstance() {
     if (EventDispatcher$Companion_instance === null) {
       new EventDispatcher$Companion();
     }
     return EventDispatcher$Companion_instance;
   }
-
   EventDispatcher.$metadata$ = {
     kind: Kind_INTERFACE,
     simpleName: 'EventDispatcher',
     interfaces: []
   };
-
   function DummyEventDispatcher() {
     DummyEventDispatcher_instance = this;
   }
-
   DummyEventDispatcher.prototype.close = function () {
   };
   DummyEventDispatcher.prototype.addEventListener_xa594f$ = function (clazz, handler) {
@@ -9522,14 +8910,12 @@
     interfaces: [Closeable, EventDispatcher]
   };
   var DummyEventDispatcher_instance = null;
-
   function DummyEventDispatcher_getInstance() {
     if (DummyEventDispatcher_instance === null) {
       new DummyEventDispatcher();
     }
     return DummyEventDispatcher_instance;
   }
-
   var addEventListener = defineInlineFunction('korgw-root-korgw.com.soywiz.korev.addEventListener_f5v43j$', wrapFunction(function () {
     var getKClass = Kotlin.getKClass;
     return function (T_0, isT, $receiver, handler) {
@@ -9546,29 +8932,24 @@
     callback($receiver);
     return $receiver;
   });
-
   function Event() {
     this.target = null;
   }
-
   Event.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Event',
     interfaces: []
   };
-
   function preventDefault($receiver, reason) {
     if (reason === void 0)
       reason = null;
     throw new PreventDefaultException(reason);
   }
-
   function preventDefault_0(reason) {
     if (reason === void 0)
       reason = null;
     throw new PreventDefaultException(reason);
   }
-
   function PreventDefaultException(reason) {
     if (reason === void 0)
       reason = null;
@@ -9576,13 +8957,11 @@
     this.reason = reason;
     this.name = 'PreventDefaultException';
   }
-
   PreventDefaultException.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'PreventDefaultException',
     interfaces: [Exception]
   };
-
   function MouseEvent(type, id, x, y, button, buttons, scrollDeltaX, scrollDeltaY, scrollDeltaZ, isShiftDown, isCtrlDown, isAltDown, isMetaDown, scaleCoords) {
     if (type === void 0)
       type = MouseEvent$Type$MOVE_getInstance();
@@ -9628,13 +9007,11 @@
     this.isMetaDown = isMetaDown;
     this.scaleCoords = scaleCoords;
   }
-
   function MouseEvent$Type(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function MouseEvent$Type_initFields() {
     MouseEvent$Type_initFields = function () {
     };
@@ -9647,75 +9024,55 @@
     MouseEvent$Type$EXIT_instance = new MouseEvent$Type('EXIT', 6);
     MouseEvent$Type$SCROLL_instance = new MouseEvent$Type('SCROLL', 7);
   }
-
   var MouseEvent$Type$MOVE_instance;
-
   function MouseEvent$Type$MOVE_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$MOVE_instance;
   }
-
   var MouseEvent$Type$DRAG_instance;
-
   function MouseEvent$Type$DRAG_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$DRAG_instance;
   }
-
   var MouseEvent$Type$UP_instance;
-
   function MouseEvent$Type$UP_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$UP_instance;
   }
-
   var MouseEvent$Type$DOWN_instance;
-
   function MouseEvent$Type$DOWN_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$DOWN_instance;
   }
-
   var MouseEvent$Type$CLICK_instance;
-
   function MouseEvent$Type$CLICK_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$CLICK_instance;
   }
-
   var MouseEvent$Type$ENTER_instance;
-
   function MouseEvent$Type$ENTER_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$ENTER_instance;
   }
-
   var MouseEvent$Type$EXIT_instance;
-
   function MouseEvent$Type$EXIT_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$EXIT_instance;
   }
-
   var MouseEvent$Type$SCROLL_instance;
-
   function MouseEvent$Type$SCROLL_getInstance() {
     MouseEvent$Type_initFields();
     return MouseEvent$Type$SCROLL_instance;
   }
-
   MouseEvent$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function MouseEvent$Type$values() {
     return [MouseEvent$Type$MOVE_getInstance(), MouseEvent$Type$DRAG_getInstance(), MouseEvent$Type$UP_getInstance(), MouseEvent$Type$DOWN_getInstance(), MouseEvent$Type$CLICK_getInstance(), MouseEvent$Type$ENTER_getInstance(), MouseEvent$Type$EXIT_getInstance(), MouseEvent$Type$SCROLL_getInstance()];
   }
-
   MouseEvent$Type.values = MouseEvent$Type$values;
-
   function MouseEvent$Type$valueOf(name) {
     switch (name) {
       case 'MOVE':
@@ -9734,11 +9091,9 @@
         return MouseEvent$Type$EXIT_getInstance();
       case 'SCROLL':
         return MouseEvent$Type$SCROLL_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.MouseEvent.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.MouseEvent.Type.' + name);
     }
   }
-
   MouseEvent$Type.valueOf_61zpoe$ = MouseEvent$Type$valueOf;
   MouseEvent.prototype.copyFrom_imq2sa$ = function (other) {
     this.type = other.type;
@@ -9830,7 +9185,6 @@
   MouseEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.id, other.id) && Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.button, other.button) && Kotlin.equals(this.buttons, other.buttons) && Kotlin.equals(this.scrollDeltaX, other.scrollDeltaX) && Kotlin.equals(this.scrollDeltaY, other.scrollDeltaY) && Kotlin.equals(this.scrollDeltaZ, other.scrollDeltaZ) && Kotlin.equals(this.isShiftDown, other.isShiftDown) && Kotlin.equals(this.isCtrlDown, other.isCtrlDown) && Kotlin.equals(this.isAltDown, other.isAltDown) && Kotlin.equals(this.isMetaDown, other.isMetaDown) && Kotlin.equals(this.scaleCoords, other.scaleCoords)))));
   };
-
   function Touch(index, active, id, startTime, currentTime, start, current) {
     Touch$Companion_getInstance();
     if (index === void 0)
@@ -9856,26 +9210,22 @@
     this.current = current;
     this.$delegate_kl8l8a$_0 = new Extra$Mixin();
   }
-
   function Touch$Companion() {
     Touch$Companion_instance = this;
     this.dummy = new Touch(-1);
   }
-
   Touch$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Touch$Companion_instance = null;
-
   function Touch$Companion_getInstance() {
     if (Touch$Companion_instance === null) {
       new Touch$Companion();
     }
     return Touch$Companion_instance;
   }
-
   Touch.prototype.copyFrom_kl8l8a$ = function (other) {
     this.active = other.active;
     this.id = other.id;
@@ -9937,7 +9287,6 @@
   Touch.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.index, other.index) && Kotlin.equals(this.active, other.active) && Kotlin.equals(this.id, other.id) && Kotlin.equals(this.startTime, other.startTime) && Kotlin.equals(this.currentTime, other.currentTime) && Kotlin.equals(this.start, other.start) && Kotlin.equals(this.current, other.current)))));
   };
-
   function TouchEvent(type, screen, startTime, currentTime, scaleCoords) {
     TouchEvent$Companion_getInstance();
     if (type === void 0)
@@ -9965,26 +9314,22 @@
     this.bufferTouches_0 = array;
     this._touches_0 = LinkedHashSet_init();
   }
-
   function TouchEvent$Companion() {
     TouchEvent$Companion_instance = this;
     this.MAX_TOUCHES = 10;
   }
-
   TouchEvent$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var TouchEvent$Companion_instance = null;
-
   function TouchEvent$Companion_getInstance() {
     if (TouchEvent$Companion_instance === null) {
       new TouchEvent$Companion();
     }
     return TouchEvent$Companion_instance;
   }
-
   Object.defineProperty(TouchEvent.prototype, 'touches', {
     get: function () {
       return this._touches_0;
@@ -10027,7 +9372,7 @@
       }
       firstOrNull$result = null;
     }
-    while (false);
+     while (false);
     if ((tmp$ = firstOrNull$result) != null)
       tmp$_2 = tmp$;
     else {
@@ -10044,7 +9389,7 @@
         }
         firstOrNull$result_0 = null;
       }
-      while (false);
+       while (false);
       tmp$_2 = firstOrNull$result_0;
     }
     var tmp$_5;
@@ -10064,7 +9409,7 @@
         }
         firstOrNull$result_1 = null;
       }
-      while (false);
+       while (false);
       tmp$_5 = firstOrNull$result_1;
     }
     return (tmp$_1 = tmp$_5) != null ? tmp$_1 : this.bufferTouches_0[TouchEvent$Companion_getInstance().MAX_TOUCHES - 1 | 0];
@@ -10095,13 +9440,11 @@
       this.bufferTouches_0[n].copyFrom_kl8l8a$(other.bufferTouches_0[n]);
     }
   };
-
   function TouchEvent$Type(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function TouchEvent$Type_initFields() {
     TouchEvent$Type_initFields = function () {
     };
@@ -10109,40 +9452,30 @@
     TouchEvent$Type$END_instance = new TouchEvent$Type('END', 1);
     TouchEvent$Type$MOVE_instance = new TouchEvent$Type('MOVE', 2);
   }
-
   var TouchEvent$Type$START_instance;
-
   function TouchEvent$Type$START_getInstance() {
     TouchEvent$Type_initFields();
     return TouchEvent$Type$START_instance;
   }
-
   var TouchEvent$Type$END_instance;
-
   function TouchEvent$Type$END_getInstance() {
     TouchEvent$Type_initFields();
     return TouchEvent$Type$END_instance;
   }
-
   var TouchEvent$Type$MOVE_instance;
-
   function TouchEvent$Type$MOVE_getInstance() {
     TouchEvent$Type_initFields();
     return TouchEvent$Type$MOVE_instance;
   }
-
   TouchEvent$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function TouchEvent$Type$values() {
     return [TouchEvent$Type$START_getInstance(), TouchEvent$Type$END_getInstance(), TouchEvent$Type$MOVE_getInstance()];
   }
-
   TouchEvent$Type.values = TouchEvent$Type$values;
-
   function TouchEvent$Type$valueOf(name) {
     switch (name) {
       case 'START':
@@ -10151,11 +9484,9 @@
         return TouchEvent$Type$END_getInstance();
       case 'MOVE':
         return TouchEvent$Type$MOVE_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.TouchEvent.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.TouchEvent.Type.' + name);
     }
   }
-
   TouchEvent$Type.valueOf_61zpoe$ = TouchEvent$Type$valueOf;
   TouchEvent.$metadata$ = {
     kind: Kind_CLASS,
@@ -10195,7 +9526,6 @@
   TouchEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.screen, other.screen) && Kotlin.equals(this.startTime, other.startTime) && Kotlin.equals(this.currentTime, other.currentTime) && Kotlin.equals(this.scaleCoords, other.scaleCoords)))));
   };
-
   function KeyEvent(type, id, key, keyCode, character) {
     if (type === void 0)
       type = KeyEvent$Type$UP_getInstance();
@@ -10214,13 +9544,11 @@
     this.keyCode = keyCode;
     this.character = toBoxedChar(character);
   }
-
   function KeyEvent$Type(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function KeyEvent$Type_initFields() {
     KeyEvent$Type_initFields = function () {
     };
@@ -10228,40 +9556,30 @@
     KeyEvent$Type$DOWN_instance = new KeyEvent$Type('DOWN', 1);
     KeyEvent$Type$TYPE_instance = new KeyEvent$Type('TYPE', 2);
   }
-
   var KeyEvent$Type$UP_instance;
-
   function KeyEvent$Type$UP_getInstance() {
     KeyEvent$Type_initFields();
     return KeyEvent$Type$UP_instance;
   }
-
   var KeyEvent$Type$DOWN_instance;
-
   function KeyEvent$Type$DOWN_getInstance() {
     KeyEvent$Type_initFields();
     return KeyEvent$Type$DOWN_instance;
   }
-
   var KeyEvent$Type$TYPE_instance;
-
   function KeyEvent$Type$TYPE_getInstance() {
     KeyEvent$Type_initFields();
     return KeyEvent$Type$TYPE_instance;
   }
-
   KeyEvent$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function KeyEvent$Type$values() {
     return [KeyEvent$Type$UP_getInstance(), KeyEvent$Type$DOWN_getInstance(), KeyEvent$Type$TYPE_getInstance()];
   }
-
   KeyEvent$Type.values = KeyEvent$Type$values;
-
   function KeyEvent$Type$valueOf(name) {
     switch (name) {
       case 'UP':
@@ -10270,11 +9588,9 @@
         return KeyEvent$Type$DOWN_getInstance();
       case 'TYPE':
         return KeyEvent$Type$TYPE_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.KeyEvent.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.KeyEvent.Type.' + name);
     }
   }
-
   KeyEvent$Type.valueOf_61zpoe$ = KeyEvent$Type$valueOf;
   KeyEvent.prototype.copyFrom_5xeie8$ = function (other) {
     this.type = other.type;
@@ -10321,7 +9637,6 @@
   KeyEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.id, other.id) && Kotlin.equals(this.key, other.key) && Kotlin.equals(this.keyCode, other.keyCode) && Kotlin.equals(this.character, other.character)))));
   };
-
   function GamePadConnectionEvent(type, gamepad) {
     if (type === void 0)
       type = GamePadConnectionEvent$Type$CONNECTED_getInstance();
@@ -10331,57 +9646,45 @@
     this.type = type;
     this.gamepad = gamepad;
   }
-
   function GamePadConnectionEvent$Type(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function GamePadConnectionEvent$Type_initFields() {
     GamePadConnectionEvent$Type_initFields = function () {
     };
     GamePadConnectionEvent$Type$CONNECTED_instance = new GamePadConnectionEvent$Type('CONNECTED', 0);
     GamePadConnectionEvent$Type$DISCONNECTED_instance = new GamePadConnectionEvent$Type('DISCONNECTED', 1);
   }
-
   var GamePadConnectionEvent$Type$CONNECTED_instance;
-
   function GamePadConnectionEvent$Type$CONNECTED_getInstance() {
     GamePadConnectionEvent$Type_initFields();
     return GamePadConnectionEvent$Type$CONNECTED_instance;
   }
-
   var GamePadConnectionEvent$Type$DISCONNECTED_instance;
-
   function GamePadConnectionEvent$Type$DISCONNECTED_getInstance() {
     GamePadConnectionEvent$Type_initFields();
     return GamePadConnectionEvent$Type$DISCONNECTED_instance;
   }
-
   GamePadConnectionEvent$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function GamePadConnectionEvent$Type$values() {
     return [GamePadConnectionEvent$Type$CONNECTED_getInstance(), GamePadConnectionEvent$Type$DISCONNECTED_getInstance()];
   }
-
   GamePadConnectionEvent$Type.values = GamePadConnectionEvent$Type$values;
-
   function GamePadConnectionEvent$Type$valueOf(name) {
     switch (name) {
       case 'CONNECTED':
         return GamePadConnectionEvent$Type$CONNECTED_getInstance();
       case 'DISCONNECTED':
         return GamePadConnectionEvent$Type$DISCONNECTED_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.GamePadConnectionEvent.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.GamePadConnectionEvent.Type.' + name);
     }
   }
-
   GamePadConnectionEvent$Type.valueOf_61zpoe$ = GamePadConnectionEvent$Type$valueOf;
   GamePadConnectionEvent.prototype.copyFrom_a4csu8$ = function (other) {
     this.type = other.type;
@@ -10413,7 +9716,6 @@
   GamePadConnectionEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.gamepad, other.gamepad)))));
   };
-
   function GamePadUpdateEvent(gamepadsLength, gamepads) {
     if (gamepadsLength === void 0)
       gamepadsLength = 0;
@@ -10430,7 +9732,6 @@
     this.gamepadsLength = gamepadsLength;
     this.gamepads = gamepads;
   }
-
   GamePadUpdateEvent.prototype.copyFrom_ypku17$ = function (that) {
     var tmp$;
     this.gamepadsLength = that.gamepadsLength;
@@ -10473,7 +9774,6 @@
   GamePadUpdateEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.gamepadsLength, other.gamepadsLength) && Kotlin.equals(this.gamepads, other.gamepads)))));
   };
-
   function GamePadButtonEvent(type, gamepad, button, value) {
     if (type === void 0)
       type = GamePadButtonEvent$Type$DOWN_getInstance();
@@ -10489,57 +9789,45 @@
     this.button = button;
     this.value = value;
   }
-
   function GamePadButtonEvent$Type(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function GamePadButtonEvent$Type_initFields() {
     GamePadButtonEvent$Type_initFields = function () {
     };
     GamePadButtonEvent$Type$UP_instance = new GamePadButtonEvent$Type('UP', 0);
     GamePadButtonEvent$Type$DOWN_instance = new GamePadButtonEvent$Type('DOWN', 1);
   }
-
   var GamePadButtonEvent$Type$UP_instance;
-
   function GamePadButtonEvent$Type$UP_getInstance() {
     GamePadButtonEvent$Type_initFields();
     return GamePadButtonEvent$Type$UP_instance;
   }
-
   var GamePadButtonEvent$Type$DOWN_instance;
-
   function GamePadButtonEvent$Type$DOWN_getInstance() {
     GamePadButtonEvent$Type_initFields();
     return GamePadButtonEvent$Type$DOWN_instance;
   }
-
   GamePadButtonEvent$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function GamePadButtonEvent$Type$values() {
     return [GamePadButtonEvent$Type$UP_getInstance(), GamePadButtonEvent$Type$DOWN_getInstance()];
   }
-
   GamePadButtonEvent$Type.values = GamePadButtonEvent$Type$values;
-
   function GamePadButtonEvent$Type$valueOf(name) {
     switch (name) {
       case 'UP':
         return GamePadButtonEvent$Type$UP_getInstance();
       case 'DOWN':
         return GamePadButtonEvent$Type$DOWN_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.GamePadButtonEvent.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.GamePadButtonEvent.Type.' + name);
     }
   }
-
   GamePadButtonEvent$Type.valueOf_61zpoe$ = GamePadButtonEvent$Type$valueOf;
   GamePadButtonEvent.prototype.copyFrom_gpfygc$ = function (other) {
     this.type = other.type;
@@ -10581,7 +9869,6 @@
   GamePadButtonEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.gamepad, other.gamepad) && Kotlin.equals(this.button, other.button) && Kotlin.equals(this.value, other.value)))));
   };
-
   function GamePadStickEvent(gamepad, stick, x, y) {
     if (gamepad === void 0)
       gamepad = 0;
@@ -10597,7 +9884,6 @@
     this.x = x;
     this.y = y;
   }
-
   GamePadStickEvent.prototype.copyFrom_8q9l1i$ = function (other) {
     this.gamepad = other.gamepad;
     this.stick = other.stick;
@@ -10638,7 +9924,6 @@
   GamePadStickEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.gamepad, other.gamepad) && Kotlin.equals(this.stick, other.stick) && Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y)))));
   };
-
   function ChangeEvent(oldValue, newValue) {
     if (oldValue === void 0)
       oldValue = null;
@@ -10648,7 +9933,6 @@
     this.oldValue = oldValue;
     this.newValue = newValue;
   }
-
   ChangeEvent.prototype.copyFrom_pmilob$ = function (other) {
     this.oldValue = other.oldValue;
     this.newValue = other.newValue;
@@ -10679,7 +9963,6 @@
   ChangeEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.oldValue, other.oldValue) && Kotlin.equals(this.newValue, other.newValue)))));
   };
-
   function ReshapeEvent(x, y, width, height) {
     if (x === void 0)
       x = 0;
@@ -10695,7 +9978,6 @@
     this.width = width;
     this.height = height;
   }
-
   ReshapeEvent.prototype.copyFrom_itcimp$ = function (other) {
     this.x = other.x;
     this.y = other.y;
@@ -10736,14 +10018,12 @@
   ReshapeEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.x, other.x) && Kotlin.equals(this.y, other.y) && Kotlin.equals(this.width, other.width) && Kotlin.equals(this.height, other.height)))));
   };
-
   function FullScreenEvent(fullscreen) {
     if (fullscreen === void 0)
       fullscreen = false;
     Event.call(this);
     this.fullscreen = fullscreen;
   }
-
   FullScreenEvent.prototype.copyFrom_jpj46y$ = function (other) {
     this.fullscreen = other.fullscreen;
   };
@@ -10769,11 +10049,9 @@
   FullScreenEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && Kotlin.equals(this.fullscreen, other.fullscreen))));
   };
-
   function RenderEvent() {
     Event.call(this);
   }
-
   RenderEvent.prototype.copyFrom_p6hw0x$ = function (other) {
   };
   RenderEvent.$metadata$ = {
@@ -10781,11 +10059,9 @@
     simpleName: 'RenderEvent',
     interfaces: [Event]
   };
-
   function InitEvent() {
     Event.call(this);
   }
-
   InitEvent.prototype.copyFrom_6vf17f$ = function (other) {
   };
   InitEvent.$metadata$ = {
@@ -10793,11 +10069,9 @@
     simpleName: 'InitEvent',
     interfaces: [Event]
   };
-
   function ResumeEvent() {
     Event.call(this);
   }
-
   ResumeEvent.prototype.copyFrom_fgwvc$ = function (other) {
   };
   ResumeEvent.$metadata$ = {
@@ -10805,11 +10079,9 @@
     simpleName: 'ResumeEvent',
     interfaces: [Event]
   };
-
   function PauseEvent() {
     Event.call(this);
   }
-
   PauseEvent.prototype.copyFrom_16m5m1$ = function (other) {
   };
   PauseEvent.$metadata$ = {
@@ -10817,11 +10089,9 @@
     simpleName: 'PauseEvent',
     interfaces: [Event]
   };
-
   function StopEvent() {
     Event.call(this);
   }
-
   StopEvent.prototype.copyFrom_ociv03$ = function (other) {
   };
   StopEvent.$metadata$ = {
@@ -10829,11 +10099,9 @@
     simpleName: 'StopEvent',
     interfaces: [Event]
   };
-
   function DestroyEvent() {
     Event.call(this);
   }
-
   DestroyEvent.prototype.copyFrom_r21b6j$ = function (other) {
   };
   DestroyEvent.$metadata$ = {
@@ -10841,11 +10109,9 @@
     simpleName: 'DestroyEvent',
     interfaces: [Event]
   };
-
   function DisposeEvent() {
     Event.call(this);
   }
-
   DisposeEvent.prototype.copyFrom_7fwhls$ = function (other) {
   };
   DisposeEvent.$metadata$ = {
@@ -10853,7 +10119,6 @@
     simpleName: 'DisposeEvent',
     interfaces: [Event]
   };
-
   function DropFileEvent(type, files) {
     if (type === void 0)
       type = DropFileEvent$Type$ENTER_getInstance();
@@ -10863,13 +10128,11 @@
     this.type = type;
     this.files = files;
   }
-
   function DropFileEvent$Type(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function DropFileEvent$Type_initFields() {
     DropFileEvent$Type_initFields = function () {
     };
@@ -10877,40 +10140,30 @@
     DropFileEvent$Type$EXIT_instance = new DropFileEvent$Type('EXIT', 1);
     DropFileEvent$Type$DROP_instance = new DropFileEvent$Type('DROP', 2);
   }
-
   var DropFileEvent$Type$ENTER_instance;
-
   function DropFileEvent$Type$ENTER_getInstance() {
     DropFileEvent$Type_initFields();
     return DropFileEvent$Type$ENTER_instance;
   }
-
   var DropFileEvent$Type$EXIT_instance;
-
   function DropFileEvent$Type$EXIT_getInstance() {
     DropFileEvent$Type_initFields();
     return DropFileEvent$Type$EXIT_instance;
   }
-
   var DropFileEvent$Type$DROP_instance;
-
   function DropFileEvent$Type$DROP_getInstance() {
     DropFileEvent$Type_initFields();
     return DropFileEvent$Type$DROP_instance;
   }
-
   DropFileEvent$Type.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Type',
     interfaces: [Enum]
   };
-
   function DropFileEvent$Type$values() {
     return [DropFileEvent$Type$ENTER_getInstance(), DropFileEvent$Type$EXIT_getInstance(), DropFileEvent$Type$DROP_getInstance()];
   }
-
   DropFileEvent$Type.values = DropFileEvent$Type$values;
-
   function DropFileEvent$Type$valueOf(name) {
     switch (name) {
       case 'ENTER':
@@ -10919,11 +10172,9 @@
         return DropFileEvent$Type$EXIT_getInstance();
       case 'DROP':
         return DropFileEvent$Type$DROP_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.DropFileEvent.Type.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.DropFileEvent.Type.' + name);
     }
   }
-
   DropFileEvent$Type.valueOf_61zpoe$ = DropFileEvent$Type$valueOf;
   DropFileEvent.prototype.copyFrom_2nqp3e$ = function (other) {
     var tmp$;
@@ -10956,11 +10207,9 @@
   DropFileEvent.prototype.equals = function (other) {
     return this === other || (other !== null && (typeof other === 'object' && (Object.getPrototypeOf(this) === Object.getPrototypeOf(other) && (Kotlin.equals(this.type, other.type) && Kotlin.equals(this.files, other.files)))));
   };
-
   function MouseEvents(ed) {
     this.ed = ed;
   }
-
   function MouseEvents$click$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$CLICK_getInstance())
@@ -10968,11 +10217,9 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.click_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$click$lambda(callback));
   };
-
   function MouseEvents$up$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$UP_getInstance())
@@ -10980,11 +10227,9 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.up_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$up$lambda(callback));
   };
-
   function MouseEvents$down$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$DOWN_getInstance())
@@ -10992,11 +10237,9 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.down_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$down$lambda(callback));
   };
-
   function MouseEvents$move$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$MOVE_getInstance())
@@ -11004,11 +10247,9 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.move_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$move$lambda(callback));
   };
-
   function MouseEvents$drag$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$DRAG_getInstance())
@@ -11016,11 +10257,9 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.drag_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$drag$lambda(callback));
   };
-
   function MouseEvents$enter$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$ENTER_getInstance())
@@ -11028,11 +10267,9 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.enter_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$enter$lambda(callback));
   };
-
   function MouseEvents$exit$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$EXIT_getInstance())
@@ -11040,7 +10277,6 @@
       return Unit;
     };
   }
-
   MouseEvents.prototype.exit_o14v8n$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$exit$lambda(callback));
   };
@@ -11051,11 +10287,9 @@
     simpleName: 'MouseEvents',
     interfaces: [Closeable]
   };
-
   function KeysEvents(ed) {
     this.ed = ed;
   }
-
   function KeysEvents$down$lambda(closure$callback) {
     return function (it) {
       if (it.type === KeyEvent$Type$DOWN_getInstance())
@@ -11063,11 +10297,9 @@
       return Unit;
     };
   }
-
   KeysEvents.prototype.down_3u38lt$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(KeyEvent), KeysEvents$down$lambda(callback));
   };
-
   function KeysEvents$up$lambda(closure$callback) {
     return function (it) {
       if (it.type === KeyEvent$Type$UP_getInstance())
@@ -11075,11 +10307,9 @@
       return Unit;
     };
   }
-
   KeysEvents.prototype.up_3u38lt$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(KeyEvent), KeysEvents$up$lambda(callback));
   };
-
   function KeysEvents$press$lambda(closure$callback) {
     return function (it) {
       if (it.type === KeyEvent$Type$TYPE_getInstance())
@@ -11087,11 +10317,9 @@
       return Unit;
     };
   }
-
   KeysEvents.prototype.press_3u38lt$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(KeyEvent), KeysEvents$press$lambda(callback));
   };
-
   function KeysEvents$down$lambda_0(closure$key, closure$callback) {
     return function (it) {
       if (it.type === KeyEvent$Type$DOWN_getInstance() && it.key === closure$key)
@@ -11099,11 +10327,9 @@
       return Unit;
     };
   }
-
   KeysEvents.prototype.down_sorlsz$ = function (key, callback) {
     return this.ed.addEventListener_xa594f$(getKClass(KeyEvent), KeysEvents$down$lambda_0(key, callback));
   };
-
   function KeysEvents$up$lambda_0(closure$key, closure$callback) {
     return function (it) {
       if (it.type === KeyEvent$Type$UP_getInstance() && it.key === closure$key)
@@ -11111,11 +10337,9 @@
       return Unit;
     };
   }
-
   KeysEvents.prototype.up_sorlsz$ = function (key, callback) {
     return this.ed.addEventListener_xa594f$(getKClass(KeyEvent), KeysEvents$up$lambda_0(key, callback));
   };
-
   function KeysEvents$press$lambda_0(closure$key, closure$callback) {
     return function (it) {
       if (it.type === KeyEvent$Type$TYPE_getInstance() && it.key === closure$key)
@@ -11123,7 +10347,6 @@
       return Unit;
     };
   }
-
   KeysEvents.prototype.press_sorlsz$ = function (key, callback) {
     return this.ed.addEventListener_xa594f$(getKClass(KeyEvent), KeysEvents$press$lambda_0(key, callback));
   };
@@ -11134,19 +10357,16 @@
     simpleName: 'KeysEvents',
     interfaces: [Closeable]
   };
-
   function mouse($receiver, callback) {
     var $receiver_0 = new MouseEvents($receiver);
     callback($receiver_0);
     return $receiver_0;
   }
-
   function keys($receiver, callback) {
     var $receiver_0 = new KeysEvents($receiver);
     callback($receiver_0);
     return $receiver_0;
   }
-
   var arraycopy$lambda_0 = wrapFunction(function () {
     var arrayCopy = Kotlin.kotlin.collections.arrayCopy;
     return function (closure$src, closure$dst, closure$dstPos, closure$srcPos, closure$size) {
@@ -11165,14 +10385,12 @@
       };
     };
   });
-
   function MouseButton(name, ordinal, id) {
     Enum.call(this);
     this.id = id;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function MouseButton_initFields() {
     MouseButton_initFields = function () {
     };
@@ -11185,61 +10403,45 @@
     MouseButton$BUTTON_UNKNOWN_instance = new MouseButton('BUTTON_UNKNOWN', 6, 6);
     MouseButton$Companion_getInstance();
   }
-
   var MouseButton$LEFT_instance;
-
   function MouseButton$LEFT_getInstance() {
     MouseButton_initFields();
     return MouseButton$LEFT_instance;
   }
-
   var MouseButton$RIGHT_instance;
-
   function MouseButton$RIGHT_getInstance() {
     MouseButton_initFields();
     return MouseButton$RIGHT_instance;
   }
-
   var MouseButton$MIDDLE_instance;
-
   function MouseButton$MIDDLE_getInstance() {
     MouseButton_initFields();
     return MouseButton$MIDDLE_instance;
   }
-
   var MouseButton$BUTTON3_instance;
-
   function MouseButton$BUTTON3_getInstance() {
     MouseButton_initFields();
     return MouseButton$BUTTON3_instance;
   }
-
   var MouseButton$BUTTON4_instance;
-
   function MouseButton$BUTTON4_getInstance() {
     MouseButton_initFields();
     return MouseButton$BUTTON4_instance;
   }
-
   var MouseButton$BUTTON5_instance;
-
   function MouseButton$BUTTON5_getInstance() {
     MouseButton_initFields();
     return MouseButton$BUTTON5_instance;
   }
-
   var MouseButton$BUTTON_UNKNOWN_instance;
-
   function MouseButton$BUTTON_UNKNOWN_getInstance() {
     MouseButton_initFields();
     return MouseButton$BUTTON_UNKNOWN_instance;
   }
-
   function MouseButton$Companion() {
     MouseButton$Companion_instance = this;
     this.BUTTONS = MouseButton$values();
   }
-
   MouseButton$Companion.prototype.get_za3lpa$ = function (id) {
     var $receiver = this.BUTTONS;
     return id >= 0 && id <= get_lastIndex($receiver) ? $receiver[id] : MouseButton$BUTTON_UNKNOWN_getInstance();
@@ -11250,7 +10452,6 @@
     interfaces: []
   };
   var MouseButton$Companion_instance = null;
-
   function MouseButton$Companion_getInstance() {
     MouseButton_initFields();
     if (MouseButton$Companion_instance === null) {
@@ -11258,19 +10459,15 @@
     }
     return MouseButton$Companion_instance;
   }
-
   MouseButton.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'MouseButton',
     interfaces: [Enum]
   };
-
   function MouseButton$values() {
     return [MouseButton$LEFT_getInstance(), MouseButton$RIGHT_getInstance(), MouseButton$MIDDLE_getInstance(), MouseButton$BUTTON3_getInstance(), MouseButton$BUTTON4_getInstance(), MouseButton$BUTTON5_getInstance(), MouseButton$BUTTON_UNKNOWN_getInstance()];
   }
-
   MouseButton.values = MouseButton$values;
-
   function MouseButton$valueOf(name) {
     switch (name) {
       case 'LEFT':
@@ -11287,19 +10484,15 @@
         return MouseButton$BUTTON5_getInstance();
       case 'BUTTON_UNKNOWN':
         return MouseButton$BUTTON_UNKNOWN_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.MouseButton.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.MouseButton.' + name);
     }
   }
-
   MouseButton.valueOf_61zpoe$ = MouseButton$valueOf;
-
   function Key(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function Key_initFields() {
     Key_initFields = function () {
     };
@@ -11446,994 +10639,711 @@
     Key$UNKNOWN_instance = new Key('UNKNOWN', 140);
     Key$Companion_getInstance();
   }
-
   var Key$SPACE_instance;
-
   function Key$SPACE_getInstance() {
     Key_initFields();
     return Key$SPACE_instance;
   }
-
   var Key$APOSTROPHE_instance;
-
   function Key$APOSTROPHE_getInstance() {
     Key_initFields();
     return Key$APOSTROPHE_instance;
   }
-
   var Key$COMMA_instance;
-
   function Key$COMMA_getInstance() {
     Key_initFields();
     return Key$COMMA_instance;
   }
-
   var Key$MINUS_instance;
-
   function Key$MINUS_getInstance() {
     Key_initFields();
     return Key$MINUS_instance;
   }
-
   var Key$PERIOD_instance;
-
   function Key$PERIOD_getInstance() {
     Key_initFields();
     return Key$PERIOD_instance;
   }
-
   var Key$SLASH_instance;
-
   function Key$SLASH_getInstance() {
     Key_initFields();
     return Key$SLASH_instance;
   }
-
   var Key$N0_instance;
-
   function Key$N0_getInstance() {
     Key_initFields();
     return Key$N0_instance;
   }
-
   var Key$N1_instance;
-
   function Key$N1_getInstance() {
     Key_initFields();
     return Key$N1_instance;
   }
-
   var Key$N2_instance;
-
   function Key$N2_getInstance() {
     Key_initFields();
     return Key$N2_instance;
   }
-
   var Key$N3_instance;
-
   function Key$N3_getInstance() {
     Key_initFields();
     return Key$N3_instance;
   }
-
   var Key$N4_instance;
-
   function Key$N4_getInstance() {
     Key_initFields();
     return Key$N4_instance;
   }
-
   var Key$N5_instance;
-
   function Key$N5_getInstance() {
     Key_initFields();
     return Key$N5_instance;
   }
-
   var Key$N6_instance;
-
   function Key$N6_getInstance() {
     Key_initFields();
     return Key$N6_instance;
   }
-
   var Key$N7_instance;
-
   function Key$N7_getInstance() {
     Key_initFields();
     return Key$N7_instance;
   }
-
   var Key$N8_instance;
-
   function Key$N8_getInstance() {
     Key_initFields();
     return Key$N8_instance;
   }
-
   var Key$N9_instance;
-
   function Key$N9_getInstance() {
     Key_initFields();
     return Key$N9_instance;
   }
-
   var Key$SEMICOLON_instance;
-
   function Key$SEMICOLON_getInstance() {
     Key_initFields();
     return Key$SEMICOLON_instance;
   }
-
   var Key$EQUAL_instance;
-
   function Key$EQUAL_getInstance() {
     Key_initFields();
     return Key$EQUAL_instance;
   }
-
   var Key$A_instance;
-
   function Key$A_getInstance() {
     Key_initFields();
     return Key$A_instance;
   }
-
   var Key$B_instance;
-
   function Key$B_getInstance() {
     Key_initFields();
     return Key$B_instance;
   }
-
   var Key$C_instance;
-
   function Key$C_getInstance() {
     Key_initFields();
     return Key$C_instance;
   }
-
   var Key$D_instance;
-
   function Key$D_getInstance() {
     Key_initFields();
     return Key$D_instance;
   }
-
   var Key$E_instance;
-
   function Key$E_getInstance() {
     Key_initFields();
     return Key$E_instance;
   }
-
   var Key$F_instance;
-
   function Key$F_getInstance() {
     Key_initFields();
     return Key$F_instance;
   }
-
   var Key$G_instance;
-
   function Key$G_getInstance() {
     Key_initFields();
     return Key$G_instance;
   }
-
   var Key$H_instance;
-
   function Key$H_getInstance() {
     Key_initFields();
     return Key$H_instance;
   }
-
   var Key$I_instance;
-
   function Key$I_getInstance() {
     Key_initFields();
     return Key$I_instance;
   }
-
   var Key$J_instance;
-
   function Key$J_getInstance() {
     Key_initFields();
     return Key$J_instance;
   }
-
   var Key$K_instance;
-
   function Key$K_getInstance() {
     Key_initFields();
     return Key$K_instance;
   }
-
   var Key$L_instance;
-
   function Key$L_getInstance() {
     Key_initFields();
     return Key$L_instance;
   }
-
   var Key$M_instance;
-
   function Key$M_getInstance() {
     Key_initFields();
     return Key$M_instance;
   }
-
   var Key$N_instance;
-
   function Key$N_getInstance() {
     Key_initFields();
     return Key$N_instance;
   }
-
   var Key$O_instance;
-
   function Key$O_getInstance() {
     Key_initFields();
     return Key$O_instance;
   }
-
   var Key$P_instance;
-
   function Key$P_getInstance() {
     Key_initFields();
     return Key$P_instance;
   }
-
   var Key$Q_instance;
-
   function Key$Q_getInstance() {
     Key_initFields();
     return Key$Q_instance;
   }
-
   var Key$R_instance;
-
   function Key$R_getInstance() {
     Key_initFields();
     return Key$R_instance;
   }
-
   var Key$S_instance;
-
   function Key$S_getInstance() {
     Key_initFields();
     return Key$S_instance;
   }
-
   var Key$T_instance;
-
   function Key$T_getInstance() {
     Key_initFields();
     return Key$T_instance;
   }
-
   var Key$U_instance;
-
   function Key$U_getInstance() {
     Key_initFields();
     return Key$U_instance;
   }
-
   var Key$V_instance;
-
   function Key$V_getInstance() {
     Key_initFields();
     return Key$V_instance;
   }
-
   var Key$W_instance;
-
   function Key$W_getInstance() {
     Key_initFields();
     return Key$W_instance;
   }
-
   var Key$X_instance;
-
   function Key$X_getInstance() {
     Key_initFields();
     return Key$X_instance;
   }
-
   var Key$Y_instance;
-
   function Key$Y_getInstance() {
     Key_initFields();
     return Key$Y_instance;
   }
-
   var Key$Z_instance;
-
   function Key$Z_getInstance() {
     Key_initFields();
     return Key$Z_instance;
   }
-
   var Key$LEFT_BRACKET_instance;
-
   function Key$LEFT_BRACKET_getInstance() {
     Key_initFields();
     return Key$LEFT_BRACKET_instance;
   }
-
   var Key$BACKSLASH_instance;
-
   function Key$BACKSLASH_getInstance() {
     Key_initFields();
     return Key$BACKSLASH_instance;
   }
-
   var Key$RIGHT_BRACKET_instance;
-
   function Key$RIGHT_BRACKET_getInstance() {
     Key_initFields();
     return Key$RIGHT_BRACKET_instance;
   }
-
   var Key$GRAVE_ACCENT_instance;
-
   function Key$GRAVE_ACCENT_getInstance() {
     Key_initFields();
     return Key$GRAVE_ACCENT_instance;
   }
-
   var Key$WORLD_1_instance;
-
   function Key$WORLD_1_getInstance() {
     Key_initFields();
     return Key$WORLD_1_instance;
   }
-
   var Key$WORLD_2_instance;
-
   function Key$WORLD_2_getInstance() {
     Key_initFields();
     return Key$WORLD_2_instance;
   }
-
   var Key$ESCAPE_instance;
-
   function Key$ESCAPE_getInstance() {
     Key_initFields();
     return Key$ESCAPE_instance;
   }
-
   var Key$META_instance;
-
   function Key$META_getInstance() {
     Key_initFields();
     return Key$META_instance;
   }
-
   var Key$ENTER_instance;
-
   function Key$ENTER_getInstance() {
     Key_initFields();
     return Key$ENTER_instance;
   }
-
   var Key$TAB_instance;
-
   function Key$TAB_getInstance() {
     Key_initFields();
     return Key$TAB_instance;
   }
-
   var Key$BACKSPACE_instance;
-
   function Key$BACKSPACE_getInstance() {
     Key_initFields();
     return Key$BACKSPACE_instance;
   }
-
   var Key$INSERT_instance;
-
   function Key$INSERT_getInstance() {
     Key_initFields();
     return Key$INSERT_instance;
   }
-
   var Key$DELETE_instance;
-
   function Key$DELETE_getInstance() {
     Key_initFields();
     return Key$DELETE_instance;
   }
-
   var Key$RIGHT_instance;
-
   function Key$RIGHT_getInstance() {
     Key_initFields();
     return Key$RIGHT_instance;
   }
-
   var Key$LEFT_instance;
-
   function Key$LEFT_getInstance() {
     Key_initFields();
     return Key$LEFT_instance;
   }
-
   var Key$DOWN_instance;
-
   function Key$DOWN_getInstance() {
     Key_initFields();
     return Key$DOWN_instance;
   }
-
   var Key$UP_instance;
-
   function Key$UP_getInstance() {
     Key_initFields();
     return Key$UP_instance;
   }
-
   var Key$PAGE_UP_instance;
-
   function Key$PAGE_UP_getInstance() {
     Key_initFields();
     return Key$PAGE_UP_instance;
   }
-
   var Key$PAGE_DOWN_instance;
-
   function Key$PAGE_DOWN_getInstance() {
     Key_initFields();
     return Key$PAGE_DOWN_instance;
   }
-
   var Key$FUNCTION_instance;
-
   function Key$FUNCTION_getInstance() {
     Key_initFields();
     return Key$FUNCTION_instance;
   }
-
   var Key$HELP_instance;
-
   function Key$HELP_getInstance() {
     Key_initFields();
     return Key$HELP_instance;
   }
-
   var Key$MUTE_instance;
-
   function Key$MUTE_getInstance() {
     Key_initFields();
     return Key$MUTE_instance;
   }
-
   var Key$VOLUME_DOWN_instance;
-
   function Key$VOLUME_DOWN_getInstance() {
     Key_initFields();
     return Key$VOLUME_DOWN_instance;
   }
-
   var Key$VOLUME_UP_instance;
-
   function Key$VOLUME_UP_getInstance() {
     Key_initFields();
     return Key$VOLUME_UP_instance;
   }
-
   var Key$HOME_instance;
-
   function Key$HOME_getInstance() {
     Key_initFields();
     return Key$HOME_instance;
   }
-
   var Key$END_instance;
-
   function Key$END_getInstance() {
     Key_initFields();
     return Key$END_instance;
   }
-
   var Key$CAPS_LOCK_instance;
-
   function Key$CAPS_LOCK_getInstance() {
     Key_initFields();
     return Key$CAPS_LOCK_instance;
   }
-
   var Key$SCROLL_LOCK_instance;
-
   function Key$SCROLL_LOCK_getInstance() {
     Key_initFields();
     return Key$SCROLL_LOCK_instance;
   }
-
   var Key$NUM_LOCK_instance;
-
   function Key$NUM_LOCK_getInstance() {
     Key_initFields();
     return Key$NUM_LOCK_instance;
   }
-
   var Key$PRINT_SCREEN_instance;
-
   function Key$PRINT_SCREEN_getInstance() {
     Key_initFields();
     return Key$PRINT_SCREEN_instance;
   }
-
   var Key$PAUSE_instance;
-
   function Key$PAUSE_getInstance() {
     Key_initFields();
     return Key$PAUSE_instance;
   }
-
   var Key$F1_instance;
-
   function Key$F1_getInstance() {
     Key_initFields();
     return Key$F1_instance;
   }
-
   var Key$F2_instance;
-
   function Key$F2_getInstance() {
     Key_initFields();
     return Key$F2_instance;
   }
-
   var Key$F3_instance;
-
   function Key$F3_getInstance() {
     Key_initFields();
     return Key$F3_instance;
   }
-
   var Key$F4_instance;
-
   function Key$F4_getInstance() {
     Key_initFields();
     return Key$F4_instance;
   }
-
   var Key$F5_instance;
-
   function Key$F5_getInstance() {
     Key_initFields();
     return Key$F5_instance;
   }
-
   var Key$F6_instance;
-
   function Key$F6_getInstance() {
     Key_initFields();
     return Key$F6_instance;
   }
-
   var Key$F7_instance;
-
   function Key$F7_getInstance() {
     Key_initFields();
     return Key$F7_instance;
   }
-
   var Key$F8_instance;
-
   function Key$F8_getInstance() {
     Key_initFields();
     return Key$F8_instance;
   }
-
   var Key$F9_instance;
-
   function Key$F9_getInstance() {
     Key_initFields();
     return Key$F9_instance;
   }
-
   var Key$F10_instance;
-
   function Key$F10_getInstance() {
     Key_initFields();
     return Key$F10_instance;
   }
-
   var Key$F11_instance;
-
   function Key$F11_getInstance() {
     Key_initFields();
     return Key$F11_instance;
   }
-
   var Key$F12_instance;
-
   function Key$F12_getInstance() {
     Key_initFields();
     return Key$F12_instance;
   }
-
   var Key$F13_instance;
-
   function Key$F13_getInstance() {
     Key_initFields();
     return Key$F13_instance;
   }
-
   var Key$F14_instance;
-
   function Key$F14_getInstance() {
     Key_initFields();
     return Key$F14_instance;
   }
-
   var Key$F15_instance;
-
   function Key$F15_getInstance() {
     Key_initFields();
     return Key$F15_instance;
   }
-
   var Key$F16_instance;
-
   function Key$F16_getInstance() {
     Key_initFields();
     return Key$F16_instance;
   }
-
   var Key$F17_instance;
-
   function Key$F17_getInstance() {
     Key_initFields();
     return Key$F17_instance;
   }
-
   var Key$F18_instance;
-
   function Key$F18_getInstance() {
     Key_initFields();
     return Key$F18_instance;
   }
-
   var Key$F19_instance;
-
   function Key$F19_getInstance() {
     Key_initFields();
     return Key$F19_instance;
   }
-
   var Key$F20_instance;
-
   function Key$F20_getInstance() {
     Key_initFields();
     return Key$F20_instance;
   }
-
   var Key$F21_instance;
-
   function Key$F21_getInstance() {
     Key_initFields();
     return Key$F21_instance;
   }
-
   var Key$F22_instance;
-
   function Key$F22_getInstance() {
     Key_initFields();
     return Key$F22_instance;
   }
-
   var Key$F23_instance;
-
   function Key$F23_getInstance() {
     Key_initFields();
     return Key$F23_instance;
   }
-
   var Key$F24_instance;
-
   function Key$F24_getInstance() {
     Key_initFields();
     return Key$F24_instance;
   }
-
   var Key$F25_instance;
-
   function Key$F25_getInstance() {
     Key_initFields();
     return Key$F25_instance;
   }
-
   var Key$KP_0_instance;
-
   function Key$KP_0_getInstance() {
     Key_initFields();
     return Key$KP_0_instance;
   }
-
   var Key$KP_1_instance;
-
   function Key$KP_1_getInstance() {
     Key_initFields();
     return Key$KP_1_instance;
   }
-
   var Key$KP_2_instance;
-
   function Key$KP_2_getInstance() {
     Key_initFields();
     return Key$KP_2_instance;
   }
-
   var Key$KP_3_instance;
-
   function Key$KP_3_getInstance() {
     Key_initFields();
     return Key$KP_3_instance;
   }
-
   var Key$KP_4_instance;
-
   function Key$KP_4_getInstance() {
     Key_initFields();
     return Key$KP_4_instance;
   }
-
   var Key$KP_5_instance;
-
   function Key$KP_5_getInstance() {
     Key_initFields();
     return Key$KP_5_instance;
   }
-
   var Key$KP_6_instance;
-
   function Key$KP_6_getInstance() {
     Key_initFields();
     return Key$KP_6_instance;
   }
-
   var Key$KP_7_instance;
-
   function Key$KP_7_getInstance() {
     Key_initFields();
     return Key$KP_7_instance;
   }
-
   var Key$KP_8_instance;
-
   function Key$KP_8_getInstance() {
     Key_initFields();
     return Key$KP_8_instance;
   }
-
   var Key$KP_9_instance;
-
   function Key$KP_9_getInstance() {
     Key_initFields();
     return Key$KP_9_instance;
   }
-
   var Key$KP_DECIMAL_instance;
-
   function Key$KP_DECIMAL_getInstance() {
     Key_initFields();
     return Key$KP_DECIMAL_instance;
   }
-
   var Key$KP_DIVIDE_instance;
-
   function Key$KP_DIVIDE_getInstance() {
     Key_initFields();
     return Key$KP_DIVIDE_instance;
   }
-
   var Key$KP_MULTIPLY_instance;
-
   function Key$KP_MULTIPLY_getInstance() {
     Key_initFields();
     return Key$KP_MULTIPLY_instance;
   }
-
   var Key$KP_SUBTRACT_instance;
-
   function Key$KP_SUBTRACT_getInstance() {
     Key_initFields();
     return Key$KP_SUBTRACT_instance;
   }
-
   var Key$KP_ADD_instance;
-
   function Key$KP_ADD_getInstance() {
     Key_initFields();
     return Key$KP_ADD_instance;
   }
-
   var Key$KP_ENTER_instance;
-
   function Key$KP_ENTER_getInstance() {
     Key_initFields();
     return Key$KP_ENTER_instance;
   }
-
   var Key$KP_EQUAL_instance;
-
   function Key$KP_EQUAL_getInstance() {
     Key_initFields();
     return Key$KP_EQUAL_instance;
   }
-
   var Key$KP_SEPARATOR_instance;
-
   function Key$KP_SEPARATOR_getInstance() {
     Key_initFields();
     return Key$KP_SEPARATOR_instance;
   }
-
   var Key$LEFT_SHIFT_instance;
-
   function Key$LEFT_SHIFT_getInstance() {
     Key_initFields();
     return Key$LEFT_SHIFT_instance;
   }
-
   var Key$LEFT_CONTROL_instance;
-
   function Key$LEFT_CONTROL_getInstance() {
     Key_initFields();
     return Key$LEFT_CONTROL_instance;
   }
-
   var Key$LEFT_ALT_instance;
-
   function Key$LEFT_ALT_getInstance() {
     Key_initFields();
     return Key$LEFT_ALT_instance;
   }
-
   var Key$LEFT_SUPER_instance;
-
   function Key$LEFT_SUPER_getInstance() {
     Key_initFields();
     return Key$LEFT_SUPER_instance;
   }
-
   var Key$RIGHT_SHIFT_instance;
-
   function Key$RIGHT_SHIFT_getInstance() {
     Key_initFields();
     return Key$RIGHT_SHIFT_instance;
   }
-
   var Key$RIGHT_CONTROL_instance;
-
   function Key$RIGHT_CONTROL_getInstance() {
     Key_initFields();
     return Key$RIGHT_CONTROL_instance;
   }
-
   var Key$RIGHT_ALT_instance;
-
   function Key$RIGHT_ALT_getInstance() {
     Key_initFields();
     return Key$RIGHT_ALT_instance;
   }
-
   var Key$RIGHT_SUPER_instance;
-
   function Key$RIGHT_SUPER_getInstance() {
     Key_initFields();
     return Key$RIGHT_SUPER_instance;
   }
-
   var Key$MENU_instance;
-
   function Key$MENU_getInstance() {
     Key_initFields();
     return Key$MENU_instance;
   }
-
   var Key$BACKQUOTE_instance;
-
   function Key$BACKQUOTE_getInstance() {
     Key_initFields();
     return Key$BACKQUOTE_instance;
   }
-
   var Key$QUOTE_instance;
-
   function Key$QUOTE_getInstance() {
     Key_initFields();
     return Key$QUOTE_instance;
   }
-
   var Key$KP_UP_instance;
-
   function Key$KP_UP_getInstance() {
     Key_initFields();
     return Key$KP_UP_instance;
   }
-
   var Key$KP_DOWN_instance;
-
   function Key$KP_DOWN_getInstance() {
     Key_initFields();
     return Key$KP_DOWN_instance;
   }
-
   var Key$KP_LEFT_instance;
-
   function Key$KP_LEFT_getInstance() {
     Key_initFields();
     return Key$KP_LEFT_instance;
   }
-
   var Key$KP_RIGHT_instance;
-
   function Key$KP_RIGHT_getInstance() {
     Key_initFields();
     return Key$KP_RIGHT_instance;
   }
-
   var Key$UNDERLINE_instance;
-
   function Key$UNDERLINE_getInstance() {
     Key_initFields();
     return Key$UNDERLINE_instance;
   }
-
   var Key$SELECT_KEY_instance;
-
   function Key$SELECT_KEY_getInstance() {
     Key_initFields();
     return Key$SELECT_KEY_instance;
   }
-
   var Key$CANCEL_instance;
-
   function Key$CANCEL_getInstance() {
     Key_initFields();
     return Key$CANCEL_instance;
   }
-
   var Key$CLEAR_instance;
-
   function Key$CLEAR_getInstance() {
     Key_initFields();
     return Key$CLEAR_instance;
   }
-
   var Key$OPEN_BRACKET_instance;
-
   function Key$OPEN_BRACKET_getInstance() {
     Key_initFields();
     return Key$OPEN_BRACKET_instance;
   }
-
   var Key$CLOSE_BRACKET_instance;
-
   function Key$CLOSE_BRACKET_getInstance() {
     Key_initFields();
     return Key$CLOSE_BRACKET_instance;
   }
-
   var Key$UNDEFINED_instance;
-
   function Key$UNDEFINED_getInstance() {
     Key_initFields();
     return Key$UNDEFINED_instance;
   }
-
   var Key$UNKNOWN_instance;
-
   function Key$UNKNOWN_getInstance() {
     Key_initFields();
     return Key$UNKNOWN_instance;
   }
-
   function Key$Companion() {
     Key$Companion_instance = this;
     this.MAX = Key$UNKNOWN_getInstance().ordinal + 1 | 0;
@@ -12449,14 +11359,12 @@
     this.NUMPAD8 = Key$N8_getInstance();
     this.NUMPAD9 = Key$N9_getInstance();
   }
-
   Key$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var Key$Companion_instance = null;
-
   function Key$Companion_getInstance() {
     Key_initFields();
     if (Key$Companion_instance === null) {
@@ -12464,19 +11372,15 @@
     }
     return Key$Companion_instance;
   }
-
   Key.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Key',
     interfaces: [Enum]
   };
-
   function Key$values() {
     return [Key$SPACE_getInstance(), Key$APOSTROPHE_getInstance(), Key$COMMA_getInstance(), Key$MINUS_getInstance(), Key$PERIOD_getInstance(), Key$SLASH_getInstance(), Key$N0_getInstance(), Key$N1_getInstance(), Key$N2_getInstance(), Key$N3_getInstance(), Key$N4_getInstance(), Key$N5_getInstance(), Key$N6_getInstance(), Key$N7_getInstance(), Key$N8_getInstance(), Key$N9_getInstance(), Key$SEMICOLON_getInstance(), Key$EQUAL_getInstance(), Key$A_getInstance(), Key$B_getInstance(), Key$C_getInstance(), Key$D_getInstance(), Key$E_getInstance(), Key$F_getInstance(), Key$G_getInstance(), Key$H_getInstance(), Key$I_getInstance(), Key$J_getInstance(), Key$K_getInstance(), Key$L_getInstance(), Key$M_getInstance(), Key$N_getInstance(), Key$O_getInstance(), Key$P_getInstance(), Key$Q_getInstance(), Key$R_getInstance(), Key$S_getInstance(), Key$T_getInstance(), Key$U_getInstance(), Key$V_getInstance(), Key$W_getInstance(), Key$X_getInstance(), Key$Y_getInstance(), Key$Z_getInstance(), Key$LEFT_BRACKET_getInstance(), Key$BACKSLASH_getInstance(), Key$RIGHT_BRACKET_getInstance(), Key$GRAVE_ACCENT_getInstance(), Key$WORLD_1_getInstance(), Key$WORLD_2_getInstance(), Key$ESCAPE_getInstance(), Key$META_getInstance(), Key$ENTER_getInstance(), Key$TAB_getInstance(), Key$BACKSPACE_getInstance(), Key$INSERT_getInstance(), Key$DELETE_getInstance(), Key$RIGHT_getInstance(), Key$LEFT_getInstance(), Key$DOWN_getInstance(), Key$UP_getInstance(), Key$PAGE_UP_getInstance(), Key$PAGE_DOWN_getInstance(), Key$FUNCTION_getInstance(), Key$HELP_getInstance(), Key$MUTE_getInstance(), Key$VOLUME_DOWN_getInstance(), Key$VOLUME_UP_getInstance(), Key$HOME_getInstance(), Key$END_getInstance(), Key$CAPS_LOCK_getInstance(), Key$SCROLL_LOCK_getInstance(), Key$NUM_LOCK_getInstance(), Key$PRINT_SCREEN_getInstance(), Key$PAUSE_getInstance(), Key$F1_getInstance(), Key$F2_getInstance(), Key$F3_getInstance(), Key$F4_getInstance(), Key$F5_getInstance(), Key$F6_getInstance(), Key$F7_getInstance(), Key$F8_getInstance(), Key$F9_getInstance(), Key$F10_getInstance(), Key$F11_getInstance(), Key$F12_getInstance(), Key$F13_getInstance(), Key$F14_getInstance(), Key$F15_getInstance(), Key$F16_getInstance(), Key$F17_getInstance(), Key$F18_getInstance(), Key$F19_getInstance(), Key$F20_getInstance(), Key$F21_getInstance(), Key$F22_getInstance(), Key$F23_getInstance(), Key$F24_getInstance(), Key$F25_getInstance(), Key$KP_0_getInstance(), Key$KP_1_getInstance(), Key$KP_2_getInstance(), Key$KP_3_getInstance(), Key$KP_4_getInstance(), Key$KP_5_getInstance(), Key$KP_6_getInstance(), Key$KP_7_getInstance(), Key$KP_8_getInstance(), Key$KP_9_getInstance(), Key$KP_DECIMAL_getInstance(), Key$KP_DIVIDE_getInstance(), Key$KP_MULTIPLY_getInstance(), Key$KP_SUBTRACT_getInstance(), Key$KP_ADD_getInstance(), Key$KP_ENTER_getInstance(), Key$KP_EQUAL_getInstance(), Key$KP_SEPARATOR_getInstance(), Key$LEFT_SHIFT_getInstance(), Key$LEFT_CONTROL_getInstance(), Key$LEFT_ALT_getInstance(), Key$LEFT_SUPER_getInstance(), Key$RIGHT_SHIFT_getInstance(), Key$RIGHT_CONTROL_getInstance(), Key$RIGHT_ALT_getInstance(), Key$RIGHT_SUPER_getInstance(), Key$MENU_getInstance(), Key$BACKQUOTE_getInstance(), Key$QUOTE_getInstance(), Key$KP_UP_getInstance(), Key$KP_DOWN_getInstance(), Key$KP_LEFT_getInstance(), Key$KP_RIGHT_getInstance(), Key$UNDERLINE_getInstance(), Key$SELECT_KEY_getInstance(), Key$CANCEL_getInstance(), Key$CLEAR_getInstance(), Key$OPEN_BRACKET_getInstance(), Key$CLOSE_BRACKET_getInstance(), Key$UNDEFINED_getInstance(), Key$UNKNOWN_getInstance()];
   }
-
   Key.values = Key$values;
-
   function Key$valueOf(name) {
     switch (name) {
       case 'SPACE':
@@ -12761,20 +11665,16 @@
         return Key$UNDEFINED_getInstance();
       case 'UNKNOWN':
         return Key$UNKNOWN_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.Key.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.Key.' + name);
     }
   }
-
   Key.valueOf_61zpoe$ = Key$valueOf;
-
   function GameStick(name, ordinal, id) {
     Enum.call(this);
     this.id = id;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function GameStick_initFields() {
     GameStick_initFields = function () {
     };
@@ -12782,33 +11682,26 @@
     GameStick$RIGHT_instance = new GameStick('RIGHT', 1, 1);
     GameStick$Companion_getInstance();
   }
-
   var GameStick$LEFT_instance;
-
   function GameStick$LEFT_getInstance() {
     GameStick_initFields();
     return GameStick$LEFT_instance;
   }
-
   var GameStick$RIGHT_instance;
-
   function GameStick$RIGHT_getInstance() {
     GameStick_initFields();
     return GameStick$RIGHT_instance;
   }
-
   function GameStick$Companion() {
     GameStick$Companion_instance = this;
     this.STICKS = GameStick$values();
   }
-
   GameStick$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var GameStick$Companion_instance = null;
-
   function GameStick$Companion_getInstance() {
     GameStick_initFields();
     if (GameStick$Companion_instance === null) {
@@ -12816,39 +11709,31 @@
     }
     return GameStick$Companion_instance;
   }
-
   GameStick.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'GameStick',
     interfaces: [Enum]
   };
-
   function GameStick$values() {
     return [GameStick$LEFT_getInstance(), GameStick$RIGHT_getInstance()];
   }
-
   GameStick.values = GameStick$values;
-
   function GameStick$valueOf(name) {
     switch (name) {
       case 'LEFT':
         return GameStick$LEFT_getInstance();
       case 'RIGHT':
         return GameStick$RIGHT_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.GameStick.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.GameStick.' + name);
     }
   }
-
   GameStick.valueOf_61zpoe$ = GameStick$valueOf;
-
   function GameButton(name, ordinal, index) {
     Enum.call(this);
     this.index = index;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function GameButton_initFields() {
     GameButton_initFields = function () {
     };
@@ -12880,202 +11765,147 @@
     GameButton$BUTTON8_instance = new GameButton('BUTTON8', 25, 28);
     GameButton$Companion_getInstance();
   }
-
   var GameButton$LEFT_instance;
-
   function GameButton$LEFT_getInstance() {
     GameButton_initFields();
     return GameButton$LEFT_instance;
   }
-
   var GameButton$RIGHT_instance;
-
   function GameButton$RIGHT_getInstance() {
     GameButton_initFields();
     return GameButton$RIGHT_instance;
   }
-
   var GameButton$UP_instance;
-
   function GameButton$UP_getInstance() {
     GameButton_initFields();
     return GameButton$UP_instance;
   }
-
   var GameButton$DOWN_instance;
-
   function GameButton$DOWN_getInstance() {
     GameButton_initFields();
     return GameButton$DOWN_instance;
   }
-
   var GameButton$BUTTON0_instance;
-
   function GameButton$BUTTON0_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON0_instance;
   }
-
   var GameButton$BUTTON1_instance;
-
   function GameButton$BUTTON1_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON1_instance;
   }
-
   var GameButton$BUTTON2_instance;
-
   function GameButton$BUTTON2_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON2_instance;
   }
-
   var GameButton$BUTTON3_instance;
-
   function GameButton$BUTTON3_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON3_instance;
   }
-
   var GameButton$SELECT_instance;
-
   function GameButton$SELECT_getInstance() {
     GameButton_initFields();
     return GameButton$SELECT_instance;
   }
-
   var GameButton$START_instance;
-
   function GameButton$START_getInstance() {
     GameButton_initFields();
     return GameButton$START_instance;
   }
-
   var GameButton$SYSTEM_instance;
-
   function GameButton$SYSTEM_getInstance() {
     GameButton_initFields();
     return GameButton$SYSTEM_instance;
   }
-
   var GameButton$L1_instance;
-
   function GameButton$L1_getInstance() {
     GameButton_initFields();
     return GameButton$L1_instance;
   }
-
   var GameButton$R1_instance;
-
   function GameButton$R1_getInstance() {
     GameButton_initFields();
     return GameButton$R1_instance;
   }
-
   var GameButton$L2_instance;
-
   function GameButton$L2_getInstance() {
     GameButton_initFields();
     return GameButton$L2_instance;
   }
-
   var GameButton$R2_instance;
-
   function GameButton$R2_getInstance() {
     GameButton_initFields();
     return GameButton$R2_instance;
   }
-
   var GameButton$L3_instance;
-
   function GameButton$L3_getInstance() {
     GameButton_initFields();
     return GameButton$L3_instance;
   }
-
   var GameButton$R3_instance;
-
   function GameButton$R3_getInstance() {
     GameButton_initFields();
     return GameButton$R3_instance;
   }
-
   var GameButton$LX_instance;
-
   function GameButton$LX_getInstance() {
     GameButton_initFields();
     return GameButton$LX_instance;
   }
-
   var GameButton$LY_instance;
-
   function GameButton$LY_getInstance() {
     GameButton_initFields();
     return GameButton$LY_instance;
   }
-
   var GameButton$RX_instance;
-
   function GameButton$RX_getInstance() {
     GameButton_initFields();
     return GameButton$RX_instance;
   }
-
   var GameButton$RY_instance;
-
   function GameButton$RY_getInstance() {
     GameButton_initFields();
     return GameButton$RY_instance;
   }
-
   var GameButton$BUTTON4_instance;
-
   function GameButton$BUTTON4_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON4_instance;
   }
-
   var GameButton$BUTTON5_instance;
-
   function GameButton$BUTTON5_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON5_instance;
   }
-
   var GameButton$BUTTON6_instance;
-
   function GameButton$BUTTON6_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON6_instance;
   }
-
   var GameButton$BUTTON7_instance;
-
   function GameButton$BUTTON7_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON7_instance;
   }
-
   var GameButton$BUTTON8_instance;
-
   function GameButton$BUTTON8_getInstance() {
     GameButton_initFields();
     return GameButton$BUTTON8_instance;
   }
-
   function GameButton$Companion() {
     GameButton$Companion_instance = this;
     this.BUTTONS = GameButton$values();
     this.MAX = 32;
   }
-
   GameButton$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var GameButton$Companion_instance = null;
-
   function GameButton$Companion_getInstance() {
     GameButton_initFields();
     if (GameButton$Companion_instance === null) {
@@ -13083,19 +11913,15 @@
     }
     return GameButton$Companion_instance;
   }
-
   GameButton.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'GameButton',
     interfaces: [Enum]
   };
-
   function GameButton$values() {
     return [GameButton$LEFT_getInstance(), GameButton$RIGHT_getInstance(), GameButton$UP_getInstance(), GameButton$DOWN_getInstance(), GameButton$BUTTON0_getInstance(), GameButton$BUTTON1_getInstance(), GameButton$BUTTON2_getInstance(), GameButton$BUTTON3_getInstance(), GameButton$SELECT_getInstance(), GameButton$START_getInstance(), GameButton$SYSTEM_getInstance(), GameButton$L1_getInstance(), GameButton$R1_getInstance(), GameButton$L2_getInstance(), GameButton$R2_getInstance(), GameButton$L3_getInstance(), GameButton$R3_getInstance(), GameButton$LX_getInstance(), GameButton$LY_getInstance(), GameButton$RX_getInstance(), GameButton$RY_getInstance(), GameButton$BUTTON4_getInstance(), GameButton$BUTTON5_getInstance(), GameButton$BUTTON6_getInstance(), GameButton$BUTTON7_getInstance(), GameButton$BUTTON8_getInstance()];
   }
-
   GameButton.values = GameButton$values;
-
   function GameButton$valueOf(name) {
     switch (name) {
       case 'LEFT':
@@ -13150,13 +11976,10 @@
         return GameButton$BUTTON7_getInstance();
       case 'BUTTON8':
         return GameButton$BUTTON8_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korev.GameButton.' + name);
+      default:throwISE('No enum constant com.soywiz.korev.GameButton.' + name);
     }
   }
-
   GameButton.valueOf_61zpoe$ = GameButton$valueOf;
-
   function GamepadInfo(index, connected, name, mapping, rawButtonsPressure, rawButtonsPressed, rawAxes, axesLength, buttonsLength) {
     if (index === void 0)
       index = 0;
@@ -13193,7 +12016,6 @@
     }
     this.axesData_0 = array;
   }
-
   GamepadInfo.prototype.copyFrom_u2qnca$ = function (that) {
     this.index = that.index;
     this.name = that.name;
@@ -13233,8 +12055,7 @@
         return this.get_4pistl$(GameButton$LX_getInstance());
       case 'RIGHT':
         return this.get_4pistl$(GameButton$LY_getInstance());
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   GamepadInfo.prototype.getY_e5pshl$ = function (stick) {
@@ -13243,8 +12064,7 @@
         return this.get_4pistl$(GameButton$RX_getInstance());
       case 'RIGHT':
         return this.get_4pistl$(GameButton$RY_getInstance());
-      default:
-        return Kotlin.noWhenBranchMatched();
+      default:return Kotlin.noWhenBranchMatched();
     }
   };
   GamepadInfo.prototype.toString = function () {
@@ -13255,10 +12075,8 @@
     simpleName: 'GamepadInfo',
     interfaces: []
   };
-
   function GamepadMapping() {
   }
-
   GamepadMapping.prototype.getButton_92twlb$_0 = function ($receiver, index) {
     return extract($receiver, index) ? 1.0 : 0.0;
   };
@@ -13269,13 +12087,11 @@
     var $receiver_0 = $receiver.rawAxes;
     return index >= 0 && index <= get_lastIndex_0($receiver_0) ? $receiver_0[index] : 0.0;
   };
-
   function GamepadMapping$toString$lambda(closure$info, this$GamepadMapping) {
     return function (it) {
       return it.name + '=' + this$GamepadMapping.get_nr7vgt$(it, closure$info);
     };
   }
-
   GamepadMapping.prototype.toString_u2qnca$ = function (info) {
     return this.id + '(' + joinToString_0(GameButton$values(), ', ', void 0, void 0, void 0, void 0, GamepadMapping$toString$lambda(info, this)) + ')';
   };
@@ -13284,13 +12100,11 @@
     simpleName: 'GamepadMapping',
     interfaces: []
   };
-
   function StandardGamepadMapping() {
     StandardGamepadMapping_instance = this;
     GamepadMapping.call(this);
     this.id_tj66ww$_0 = 'Standard';
   }
-
   Object.defineProperty(StandardGamepadMapping.prototype, 'id', {
     get: function () {
       return this.id_tj66ww$_0;
@@ -13362,8 +12176,7 @@
       case 'RY':
         tmp$ = this.getRawAxe_qw5gbr$(info, 3);
         break;
-      default:
-        tmp$ = 0.0;
+      default:tmp$ = 0.0;
         break;
     }
     return tmp$;
@@ -13374,14 +12187,12 @@
     interfaces: [GamepadMapping]
   };
   var StandardGamepadMapping_instance = null;
-
   function StandardGamepadMapping_getInstance() {
     if (StandardGamepadMapping_instance === null) {
       new StandardGamepadMapping();
     }
     return StandardGamepadMapping_instance;
   }
-
   var fastForEach = defineInlineFunction('korgw-root-korgw.com.soywiz.korev.internal.fastForEach_kf7q02$', function ($receiver, callback) {
     var tmp$;
     var n = 0;
@@ -13389,19 +12200,15 @@
       callback($receiver.get_za3lpa$((tmp$ = n, n = tmp$ + 1 | 0, tmp$)));
     }
   });
-
   function Runnable$ObjectLiteral(closure$block) {
     this.closure$block = closure$block;
   }
-
   Runnable$ObjectLiteral.prototype.run = function () {
     this.closure$block();
   };
   Runnable$ObjectLiteral.$metadata$ = {kind: Kind_CLASS, interfaces: [Runnable]};
-
   function DialogInterface() {
   }
-
   DialogInterface.prototype.browse_ptvjoy$ = function (url, continuation) {
     return unsupported_0();
   };
@@ -13436,24 +12243,20 @@
     simpleName: 'DialogInterface',
     interfaces: []
   };
-
   function GameWindowCoroutineDispatcher() {
     CoroutineDispatcher.call(this);
     this.tasks = new Queue();
     this.timedTasks = PriorityQueue.Companion.invoke_km2rfd$(void 0, GameWindowCoroutineDispatcher$timedTasks$lambda);
   }
-
   GameWindowCoroutineDispatcher.prototype.dispatchYield_5bn72i$ = function (context, block) {
     this.dispatch_5bn72i$(context, block);
   };
-
   function GameWindowCoroutineDispatcher$TimedTask(time, continuation, callback) {
     this.time = time;
     this.continuation = continuation;
     this.callback = callback;
     this.exception = null;
   }
-
   Object.defineProperty(GameWindowCoroutineDispatcher$TimedTask.prototype, 'ms', {
     get: function () {
       return this.time;
@@ -13464,14 +12267,12 @@
     simpleName: 'TimedTask',
     interfaces: []
   };
-
   function GameWindowCoroutineDispatcher$queue$lambda(closure$block) {
     return function () {
       closure$block();
       return Unit;
     };
   }
-
   GameWindowCoroutineDispatcher.prototype.queue_o14v8n$ = function (block) {
     this.tasks.enqueue_11rb$(new Runnable$ObjectLiteral(GameWindowCoroutineDispatcher$queue$lambda(block)));
   };
@@ -13486,25 +12287,21 @@
   GameWindowCoroutineDispatcher.prototype.now = function () {
     return DateTime.Companion.now();
   };
-
   function GameWindowCoroutineDispatcher$scheduleResumeAfterDelay$lambda(closure$task) {
     return function (it) {
       closure$task.exception = it;
       return Unit;
     };
   }
-
   GameWindowCoroutineDispatcher.prototype.scheduleResumeAfterDelay_egqmvs$ = function (timeMillis, continuation) {
     var task = new GameWindowCoroutineDispatcher$TimedTask(this.now().plus_fv8bff$(TimeSpan.Companion.fromMilliseconds_14dthe$(numberToDouble(timeMillis))), continuation, null);
     continuation.invokeOnCancellation_f05bi3$(GameWindowCoroutineDispatcher$scheduleResumeAfterDelay$lambda(task));
     this.timedTasks.add_11rb$(task);
   };
-
   function GameWindowCoroutineDispatcher$invokeOnTimeout$ObjectLiteral(this$GameWindowCoroutineDispatcher, closure$task) {
     this.this$GameWindowCoroutineDispatcher = this$GameWindowCoroutineDispatcher;
     this.closure$task = closure$task;
   }
-
   GameWindowCoroutineDispatcher$invokeOnTimeout$ObjectLiteral.prototype.dispose = function () {
     this.this$GameWindowCoroutineDispatcher.timedTasks.remove_11rb$(this.closure$task);
   };
@@ -13531,7 +12328,8 @@
           if (item.callback != null) {
             (tmp$_0 = item.exception) != null ? (printStackTrace_0(tmp$_0), Unit) : null;
           }
-        } else {
+        }
+         else {
           if ((tmp$_1 = item.continuation) != null) {
             tmp$_1.resumeWith_tl1gpc$(new Result(Unit));
           }
@@ -13542,11 +12340,13 @@
         var task = this.tasks.dequeue();
         task != null ? (task.run(), Unit) : null;
       }
-    } catch (e) {
+    }
+     catch (e) {
       if (Kotlin.isType(e, Throwable)) {
         println('Error in GameWindowCoroutineDispatcher.executePending:');
         printStackTrace_0(e);
-      } else
+      }
+       else
         throw e;
     }
   };
@@ -13566,17 +12366,14 @@
   GameWindowCoroutineDispatcher.prototype.toString = function () {
     return 'GameWindowCoroutineDispatcher';
   };
-
   function GameWindowCoroutineDispatcher$timedTasks$lambda(a, b) {
     return a.time.compareTo_11rb$(b.time);
   }
-
   GameWindowCoroutineDispatcher.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'GameWindowCoroutineDispatcher',
     interfaces: [Closeable, Delay, CoroutineDispatcher]
   };
-
   function GameWindow() {
     GameWindow$CoroutineKey_getInstance();
     EventDispatcher$Mixin.call(this);
@@ -13607,31 +12404,26 @@
     this.visible_dcbvzi$_0 = false;
     this.running_v4pvl$_0 = true;
   }
-
   Object.defineProperty(GameWindow.prototype, 'key', {
     get: function () {
       return GameWindow$CoroutineKey_getInstance();
     }
   });
-
   function GameWindow$CoroutineKey() {
     GameWindow$CoroutineKey_instance = this;
   }
-
   GameWindow$CoroutineKey.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'CoroutineKey',
     interfaces: [CoroutineContext$Key]
   };
   var GameWindow$CoroutineKey_instance = null;
-
   function GameWindow$CoroutineKey_getInstance() {
     if (GameWindow$CoroutineKey_instance === null) {
       new GameWindow$CoroutineKey();
     }
     return GameWindow$CoroutineKey_instance;
   }
-
   Object.defineProperty(GameWindow.prototype, 'ag', {
     get: function () {
       return this.ag_96elwu$_0;
@@ -13710,13 +12502,11 @@
       return TimeSpan.Companion.fromMilliseconds_14dthe$(numberToDouble($receiver));
     }
   });
-
   function GameWindow$Quality(name, ordinal) {
     Enum.call(this);
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-
   function GameWindow$Quality_initFields() {
     GameWindow$Quality_initFields = function () {
     };
@@ -13724,40 +12514,30 @@
     GameWindow$Quality$QUALITY_instance = new GameWindow$Quality('QUALITY', 1);
     GameWindow$Quality$AUTOMATIC_instance = new GameWindow$Quality('AUTOMATIC', 2);
   }
-
   var GameWindow$Quality$PERFORMANCE_instance;
-
   function GameWindow$Quality$PERFORMANCE_getInstance() {
     GameWindow$Quality_initFields();
     return GameWindow$Quality$PERFORMANCE_instance;
   }
-
   var GameWindow$Quality$QUALITY_instance;
-
   function GameWindow$Quality$QUALITY_getInstance() {
     GameWindow$Quality_initFields();
     return GameWindow$Quality$QUALITY_instance;
   }
-
   var GameWindow$Quality$AUTOMATIC_instance;
-
   function GameWindow$Quality$AUTOMATIC_getInstance() {
     GameWindow$Quality_initFields();
     return GameWindow$Quality$AUTOMATIC_instance;
   }
-
   GameWindow$Quality.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'Quality',
     interfaces: [Enum]
   };
-
   function GameWindow$Quality$values() {
     return [GameWindow$Quality$PERFORMANCE_getInstance(), GameWindow$Quality$QUALITY_getInstance(), GameWindow$Quality$AUTOMATIC_getInstance()];
   }
-
   GameWindow$Quality.values = GameWindow$Quality$values;
-
   function GameWindow$Quality$valueOf(name) {
     switch (name) {
       case 'PERFORMANCE':
@@ -13766,11 +12546,9 @@
         return GameWindow$Quality$QUALITY_getInstance();
       case 'AUTOMATIC':
         return GameWindow$Quality$AUTOMATIC_getInstance();
-      default:
-        throwISE('No enum constant com.soywiz.korgw.GameWindow.Quality.' + name);
+      default:throwISE('No enum constant com.soywiz.korgw.GameWindow.Quality.' + name);
     }
   }
-
   GameWindow$Quality.valueOf_61zpoe$ = GameWindow$Quality$valueOf;
   GameWindow.prototype.setSize_vux9f0$ = function (width, height) {
   };
@@ -13805,14 +12583,12 @@
   };
   GameWindow.prototype.repaint = function () {
   };
-
   function Coroutine$GameWindow$loop$lambda(closure$entry_0, this$GameWindow_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$closure$entry = closure$entry_0;
     this.local$this$GameWindow = this$GameWindow_0;
   }
-
   Coroutine$GameWindow$loop$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -13834,22 +12610,22 @@
             throw this.exception_0;
           case 2:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function GameWindow$loop$lambda(closure$entry_0, this$GameWindow_0) {
     return function (continuation_0, suspended) {
       var instance = new Coroutine$GameWindow$loop$lambda(closure$entry_0, this$GameWindow_0, continuation_0);
@@ -13859,14 +12635,12 @@
         return instance.doResume(null);
     };
   }
-
   function Coroutine$loop_179clj$($this, entry_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.$this = $this;
     this.local$entry = entry_0;
   }
-
   Coroutine$loop_179clj$.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -13905,20 +12679,21 @@
             continue;
           case 4:
             return;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
   GameWindow.prototype.loop_179clj$ = function (entry_0, continuation_0, suspended) {
     var instance = new Coroutine$loop_179clj$(this, entry_0, continuation_0);
@@ -14043,13 +12818,11 @@
     var event = this.touchEvent;
     this.dispatch_nipq8w$(getKClass(TouchEvent), event);
   };
-
   function Coroutine$GameWindow$entry$lambda(closure$callback_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 5;
     this.local$closure$callback = closure$callback_0;
   }
-
   Coroutine$GameWindow$entry$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -14076,7 +12849,8 @@
             if (Kotlin.isType(e, Throwable)) {
               println('ERROR GameWindow.entry:');
               return printStackTrace_0(e), Unit;
-            } else {
+            }
+             else {
               throw e;
             }
 
@@ -14087,22 +12861,22 @@
             return;
           case 5:
             throw this.exception_0;
-          default:
-            this.state_0 = 5;
+          default:this.state_0 = 5;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 5) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function GameWindow$entry$lambda(closure$callback_0) {
     return function (continuation_0, suspended) {
       var instance = new Coroutine$GameWindow$entry$lambda(closure$callback_0, continuation_0);
@@ -14112,7 +12886,6 @@
         return instance.doResume(null);
     };
   }
-
   GameWindow.prototype.entry_g2bo5h$ = function (callback) {
     launch(this.coroutineDispatcher, GameWindow$entry$lambda(callback));
   };
@@ -14121,7 +12894,6 @@
     simpleName: 'GameWindow',
     interfaces: [AGWindow, CoroutineContext$Element, Closeable, DialogInterface, EventDispatcher$Mixin]
   };
-
   function Coroutine$mainLoop$lambda(closure$entry_0, this$mainLoop_0, $receiver_0, controller, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.$controller = controller;
@@ -14129,7 +12901,6 @@
     this.local$closure$entry = closure$entry_0;
     this.local$this$mainLoop = this$mainLoop_0;
   }
-
   Coroutine$mainLoop$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -14151,22 +12922,22 @@
             throw this.exception_0;
           case 2:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function mainLoop$lambda(closure$entry_0, this$mainLoop_0) {
     return function ($receiver_0, continuation_0, suspended) {
       var instance = new Coroutine$mainLoop$lambda(closure$entry_0, this$mainLoop_0, $receiver_0, this, continuation_0);
@@ -14176,15 +12947,12 @@
         return instance.doResume(null);
     };
   }
-
   function mainLoop($receiver, entry) {
     return Korio(mainLoop$lambda(entry, $receiver));
   }
-
   function toggleFullScreen($receiver) {
     $receiver.fullscreen = !$receiver.fullscreen;
   }
-
   function configure($receiver, width, height, title, icon, fullscreen) {
     if (title === void 0)
       title = 'GameWindow';
@@ -14200,46 +12968,38 @@
       $receiver.fullscreen = fullscreen;
     $receiver.visible = true;
   }
-
   function Korgw() {
     Korgw_instance = this;
   }
-
   function Korgw$Sample() {
     Korgw$Sample_instance = this;
   }
-
   Korgw$Sample.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Sample',
     interfaces: []
   };
   var Korgw$Sample_instance = null;
-
   function Korgw$Sample_getInstance() {
     if (Korgw$Sample_instance === null) {
       new Korgw$Sample();
     }
     return Korgw$Sample_instance;
   }
-
   Korgw.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Korgw',
     interfaces: []
   };
   var Korgw_instance = null;
-
   function Korgw_getInstance() {
     if (Korgw_instance === null) {
       new Korgw();
     }
     return Korgw_instance;
   }
-
   var KORGW_VERSION;
   var korgwJvmEngine;
-
   function KmlGlJsCanvas(canvas, glOpts) {
     KmlGl.call(this);
     this.canvas = canvas;
@@ -14257,10 +13017,12 @@
         $receiver.style.font = '30px Arial';
         $receiver.innerText = "Can't get webgl context. Running in an android emulator without cross-walk?";
         tmp$_3 != null ? (tmp$_3.prepend($receiver), Unit) : null;
-      } catch (e) {
+      }
+       catch (e) {
         if (Kotlin.isType(e, Throwable)) {
           printStackTrace_0(e);
-        } else
+        }
+         else
           throw e;
       }
       throw IllegalStateException_init("Can't get webgl context".toString());
@@ -14269,7 +13031,6 @@
     this.items_0 = Kotlin.newArray(8192, null);
     this.freeList_0 = toMutableList(reversed(until(1, this.items_0.length)));
   }
-
   KmlGlJsCanvas.prototype.alloc_0 = function ($receiver) {
     if ($receiver === null)
       return 0;
@@ -14290,7 +13051,8 @@
       this.freeList_0.add_11rb$($receiver);
       this.items_0[$receiver] = null;
       block$result = out;
-    } else {
+    }
+     else {
       block$result = null;
     }
     return block$result;
@@ -14538,7 +13300,8 @@
     var tmp$, tmp$_0, tmp$_1;
     if (pname === this.INFO_LOG_LENGTH) {
       params.arrayInt[0] = (tmp$_1 = (tmp$_0 = (tmp$ = this.gl.getProgramInfoLog(this.get_0(program))) != null ? tmp$.length : null) != null ? tmp$_0 + 1 | 0 : null) != null ? tmp$_1 : 1;
-    } else {
+    }
+     else {
       params.arrayInt[0] = this.gl.getProgramParameter(this.get_0(program), pname);
     }
   };
@@ -14546,7 +13309,8 @@
     var tmp$, tmp$_0, tmp$_1;
     if (pname === this.INFO_LOG_LENGTH) {
       params.arrayInt[0] = (tmp$_1 = (tmp$_0 = (tmp$ = this.gl.getShaderInfoLog(this.get_0(shader))) != null ? tmp$.length : null) != null ? tmp$_0 + 1 | 0 : null) != null ? tmp$_1 : 1;
-    } else {
+    }
+     else {
       params.arrayInt[0] = this.gl.getShaderParameter(this.get_0(shader), pname);
     }
   };
@@ -14788,20 +13552,16 @@
     simpleName: 'KmlGlJsCanvas',
     interfaces: [KmlGl]
   };
-
   function get_arrayBuffer($receiver) {
     var tmp$;
     return Kotlin.isType(tmp$ = $receiver.mem, ArrayBuffer) ? tmp$ : throwCCE();
   }
-
   function get_arrayUByte($receiver) {
     return new Uint8Array($receiver.mem);
   }
-
   function AGOpenglFactory() {
     AGOpenglFactory_instance = this;
   }
-
   AGOpenglFactory.prototype.create_s8jyv4$ = function (nativeComponent) {
     return AGFactoryWebgl_getInstance();
   };
@@ -14816,19 +13576,16 @@
     interfaces: []
   };
   var AGOpenglFactory_instance = null;
-
   function AGOpenglFactory_getInstance() {
     if (AGOpenglFactory_instance === null) {
       new AGOpenglFactory();
     }
     return AGOpenglFactory_instance;
   }
-
   function AGFactoryWebgl() {
     AGFactoryWebgl_instance = this;
     this.supportsNativeFrame_xyi6nj$_0 = true;
   }
-
   Object.defineProperty(AGFactoryWebgl.prototype, 'supportsNativeFrame', {
     get: function () {
       return this.supportsNativeFrame_xyi6nj$_0;
@@ -14846,31 +13603,27 @@
     interfaces: [AGFactory]
   };
   var AGFactoryWebgl_instance = null;
-
   function AGFactoryWebgl_getInstance() {
     if (AGFactoryWebgl_instance === null) {
       new AGFactoryWebgl();
     }
     return AGFactoryWebgl_instance;
   }
-
   function jsEmptyObject() {
     return {};
   }
-
   function jsObject(pairs) {
     var tmp$;
     var out = jsEmptyObject();
     for (tmp$ = 0; tmp$ !== pairs.length; ++tmp$) {
       var tmp$_0 = pairs[tmp$];
       var k = tmp$_0.component1()
-          , v = tmp$_0.component2();
+      , v = tmp$_0.component2();
       if (v != null)
         out[k] = v;
     }
     return out;
   }
-
   function AGWebgl(config, glDecorator) {
     AGWebgl$Companion_getInstance();
     if (glDecorator === void 0)
@@ -14891,32 +13644,27 @@
     this.canvas.addEventListener('webglcontextlost', AGWebgl_init$lambda_0, false);
     this.canvas.addEventListener('webglcontextrestored', AGWebgl_init$lambda_1(this), false);
   }
-
   Object.defineProperty(AGWebgl.prototype, 'webgl', {
     get: function () {
       return this.webgl_qzhorw$_0;
     }
   });
-
   function AGWebgl$Companion() {
     AGWebgl$Companion_instance = this;
     this.UNPACK_PREMULTIPLY_ALPHA_WEBGL = 37441;
   }
-
   AGWebgl$Companion.$metadata$ = {
     kind: Kind_OBJECT,
     simpleName: 'Companion',
     interfaces: []
   };
   var AGWebgl$Companion_instance = null;
-
   function AGWebgl$Companion_getInstance() {
     if (AGWebgl$Companion_instance === null) {
       new AGWebgl$Companion();
     }
     return AGWebgl$Companion_instance;
   }
-
   Object.defineProperty(AGWebgl.prototype, 'ag', {
     get: function () {
       return this.ag_1tusrt$_0;
@@ -14965,16 +13713,13 @@
   AGWebgl.prototype.prepareUploadNativeTexture_m8r6i1$ = function (bmp) {
     this.gl.pixelStorei_vux9f0$(37441, bmp.premultiplied ? 1 : 0);
   };
-
   function AGWebgl_init$lambda(it) {
     return it;
   }
-
   function AGWebgl_init$lambda_0(e) {
     e.preventDefault();
     return Unit;
   }
-
   function AGWebgl_init$lambda_1(this$AGWebgl) {
     return function (e) {
       var tmp$;
@@ -14983,13 +13728,11 @@
       return Unit;
     };
   }
-
   AGWebgl.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'AGWebgl',
     interfaces: [AGContainer, AGOpengl]
   };
-
   function BrowserGameWindow() {
     GameWindow.call(this);
     this.ag_k6miga$_0 = new AGWebgl(new AGConfig());
@@ -15027,7 +13770,6 @@
     this.jsFrame_yy4udc$_0 = this.jsFrame_yy4udc$_0;
     this.jsFrame_0 = BrowserGameWindow_init$lambda_16(this);
   }
-
   Object.defineProperty(BrowserGameWindow.prototype, 'ag', {
     get: function () {
       return this.ag_k6miga$_0;
@@ -15044,7 +13786,8 @@
       try {
         document.createEvent('TouchEvent');
         tmp$ = true;
-      } catch (e) {
+      }
+       catch (e) {
         tmp$ = false;
       }
       this.isTouchDeviceCache_0 = tmp$;
@@ -15098,7 +13841,8 @@
         var event = this.gamePadUpdateEvent;
         this.dispatch_nipq8w$(getKClass(GamePadUpdateEvent), event);
       }
-    } catch (e) {
+    }
+     catch (e) {
       console.error(e);
     }
   };
@@ -15164,8 +13908,7 @@
       case 'keypress':
         tmp$ = KeyEvent$Type$TYPE_getInstance();
         break;
-      default:
-        throw IllegalStateException_init(('Unsupported event type ' + me.type).toString());
+      default:throw IllegalStateException_init(('Unsupported event type ' + me.type).toString());
     }
     $receiver.type = tmp$;
     $receiver.id = 0;
@@ -15354,8 +14097,7 @@
       case 'F25':
         tmp$_0 = Key$F25_getInstance();
         break;
-      default:
-        switch (me.code) {
+      default:switch (me.code) {
           case 'MetaLeft':
             tmp$_0 = Key$LEFT_SUPER_getInstance();
             break;
@@ -15419,8 +14161,7 @@
           case 'Tab':
             tmp$_0 = Key$TAB_getInstance();
             break;
-          default:
-            tmp$_0 = Key$UNKNOWN_getInstance();
+          default:tmp$_0 = Key$UNKNOWN_getInstance();
             break;
         }
 
@@ -15494,7 +14235,8 @@
         link.rel = 'shortcut icon';
         link.href = 'data:image/png;base64,' + toBase64(format.PNG.encode_hnx2ev$(value));
         (tmp$ = document.getElementsByTagName('head')[0]) != null ? tmp$.appendChild(link) : null;
-      } else {
+      }
+       else {
         (tmp$_0 = document.querySelector("link[rel*='icon']")) != null ? (tmp$_0.remove(), Unit) : null;
       }
     }
@@ -15510,14 +14252,17 @@
           var block$result;
           if (value) {
             block$result = this.canvas.requestFullscreen();
-          } else {
+          }
+           else {
             block$result = document.exitFullscreen();
           }
           tmp$ = new Result(block$result);
-        } catch (e) {
+        }
+         catch (e) {
           if (Kotlin.isType(e, Throwable)) {
             tmp$ = new Result(createFailure(e));
-          } else
+          }
+           else
             throw e;
         }
       }
@@ -15553,13 +14298,11 @@
   BrowserGameWindow.prototype.openFileDialog_r0su5d$$default = function (filter, write, multi, continuation) {
     throw new NotImplementedError_init();
   };
-
   function Coroutine$BrowserGameWindow$close$lambda(this$BrowserGameWindow_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$this$BrowserGameWindow = this$BrowserGameWindow_0;
   }
-
   Coroutine$BrowserGameWindow$close$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -15579,7 +14322,8 @@
               if (this.result_0 === COROUTINE_SUSPENDED)
                 return COROUTINE_SUSPENDED;
               continue;
-            } else {
+            }
+             else {
               this.result_0 = null;
               this.state_0 = 3;
               continue;
@@ -15593,22 +14337,22 @@
             continue;
           case 3:
             return window.close(), Unit;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function BrowserGameWindow$close$lambda(this$BrowserGameWindow_0) {
     return function (continuation_0, suspended) {
       var instance = new Coroutine$BrowserGameWindow$close$lambda(this$BrowserGameWindow_0, continuation_0);
@@ -15618,20 +14362,17 @@
         return instance.doResume(null);
     };
   }
-
   BrowserGameWindow.prototype.close = function () {
     GameWindow.prototype.close.call(this);
     launchImmediately(this.coroutineDispatcher, BrowserGameWindow$close$lambda(this));
     this.loopJob_0 = null;
   };
-
   function Coroutine$BrowserGameWindow$loop$lambda(closure$entry_0, this$BrowserGameWindow_0, continuation_0) {
     CoroutineImpl.call(this, continuation_0);
     this.exceptionState_0 = 1;
     this.local$closure$entry = closure$entry_0;
     this.local$this$BrowserGameWindow = this$BrowserGameWindow_0;
   }
-
   Coroutine$BrowserGameWindow$loop$lambda.$metadata$ = {
     kind: Kotlin.Kind.CLASS,
     simpleName: null,
@@ -15653,22 +14394,22 @@
             throw this.exception_0;
           case 2:
             return this.result_0;
-          default:
-            this.state_0 = 1;
+          default:this.state_0 = 1;
             throw new Error('State Machine Unreachable execution');
         }
-      } catch (e) {
+      }
+       catch (e) {
         if (this.state_0 === 1) {
           this.exceptionState_0 = this.state_0;
           throw e;
-        } else {
+        }
+         else {
           this.state_0 = this.exceptionState_0;
           this.exception_0 = e;
         }
       }
-    while (true);
+     while (true);
   };
-
   function BrowserGameWindow$loop$lambda(closure$entry_0, this$BrowserGameWindow_0) {
     return function (continuation_0, suspended) {
       var instance = new Coroutine$BrowserGameWindow$loop$lambda(closure$entry_0, this$BrowserGameWindow_0, continuation_0);
@@ -15678,7 +14419,6 @@
         return instance.doResume(null);
     };
   }
-
   BrowserGameWindow.prototype.loop_179clj$ = function (entry, continuation) {
     this.loopJob_0 = launchImmediately(this.coroutineDispatcher, BrowserGameWindow$loop$lambda(entry, this));
     this.jsFrame_0(0.0);
@@ -15693,105 +14433,90 @@
       this.jsFrame_yy4udc$_0 = jsFrame;
     }
   });
-
   function BrowserGameWindow_init$lambda(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$ENTER_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_0(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$EXIT_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_1(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$MOVE_getInstance(), MouseEvent$Type$DRAG_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_2(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$MOVE_getInstance(), MouseEvent$Type$DRAG_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_3(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$EXIT_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_4(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$UP_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_5(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$DOWN_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_6(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.mouseEvent_0(it, MouseEvent$Type$CLICK_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_7(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.touchEvent_0(it, TouchEvent$Type$START_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_8(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.touchEvent_0(it, TouchEvent$Type$MOVE_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_9(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.touchEvent_0(it, TouchEvent$Type$END_getInstance());
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_10(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.keyEvent_0(it);
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_11(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.keyEvent_0(it);
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_12(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.keyEvent_0(it);
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_13(this$BrowserGameWindow) {
     return function (e) {
       var e_0 = e;
@@ -15803,7 +14528,6 @@
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_14(this$BrowserGameWindow) {
     return function (e) {
       var e_0 = e;
@@ -15815,14 +14539,12 @@
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_15(this$BrowserGameWindow) {
     return function (it) {
       this$BrowserGameWindow.onResized_0();
       return Unit;
     };
   }
-
   function BrowserGameWindow_init$lambda_16(this$BrowserGameWindow) {
     return function (step) {
       this$BrowserGameWindow.updateGamepad_0();
@@ -15832,37 +14554,30 @@
       return Unit;
     };
   }
-
   BrowserGameWindow.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'BrowserGameWindow',
     interfaces: [GameWindow]
   };
-
   function get_0($receiver, index) {
     return $receiver[index];
   }
-
   function NodeJsGameWindow() {
     GameWindow.call(this);
   }
-
   NodeJsGameWindow.$metadata$ = {
     kind: Kind_CLASS,
     simpleName: 'NodeJsGameWindow',
     interfaces: [GameWindow]
   };
-
   function CreateDefaultGameWindow() {
     return util.OS.isJsNodeJs ? new NodeJsGameWindow() : new BrowserGameWindow();
   }
-
   function Nimbus_111_1420_Safari_GamepadMapping() {
     Nimbus_111_1420_Safari_GamepadMapping_instance = this;
     GamepadMapping.call(this);
     this.id_bkfnxk$_0 = '111-1420-Nimbus';
   }
-
   Object.defineProperty(Nimbus_111_1420_Safari_GamepadMapping.prototype, 'id', {
     get: function () {
       return this.id_bkfnxk$_0;
@@ -15928,8 +14643,7 @@
       case 'RY':
         tmp$ = this.getRawAxe_qw5gbr$(info, 3);
         break;
-      default:
-        tmp$ = 0.0;
+      default:tmp$ = 0.0;
         break;
     }
     return tmp$;
@@ -15940,14 +14654,12 @@
     interfaces: [GamepadMapping]
   };
   var Nimbus_111_1420_Safari_GamepadMapping_instance = null;
-
   function Nimbus_111_1420_Safari_GamepadMapping_getInstance() {
     if (Nimbus_111_1420_Safari_GamepadMapping_instance === null) {
       new Nimbus_111_1420_Safari_GamepadMapping();
     }
     return Nimbus_111_1420_Safari_GamepadMapping_instance;
   }
-
   var knownControllers;
   var package$com = _.com || (_.com = {});
   var package$soywiz = package$com.soywiz || (package$com.soywiz = {});
