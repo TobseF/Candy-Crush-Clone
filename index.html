@@ -1,10 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="no" name="msapplication-tap-highlight">
+	<meta content="initial-scale=1, width=device-width, viewport-fit=cover" name="viewport">
+	<link href="appicon.png" rel="apple-touch-icon"/>
+	<link href="favicon.png" rel="shortcut icon" type="image/png"/>
 	<title>Candy Crush</title>
+	<style type="text/css">html, body {
+		touch-action: auto;
+		position: fixed;
+	}
+
+	html, body, canvas {
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		touch-action: none;
+	} </style>
 </head>
 <body>
-<h1>🍭 Candy Crush</h1>
+
+<script data-main="candy-crush-clone" src="require.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    /*
+	function toggleFullScreen() {
+		var doc = window.document;
+		var docEl = doc.documentElement;
+
+		var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+		var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+		if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+			if (requestFullScreen) requestFullScreen.call(docEl);
+		}
+		else {
+			if (cancelFullScreen) cancelFullScreen.call(doc);
+		}
+	}
+
+	window.addEventListener('touchend', function() {
+		if ((!document.mozFullScreen && !document.webkitIsFullScreen)) {
+			//FullScreen is disabled
+			toggleFullScreen();
+		} else {
+			//FullScreen is enabled
+		}
+	}, { passive: false });
+	*/
+
+    document.addEventListener("touchstart", function () {
+        event.preventDefault();
+    }, {passive: false});
+
+    document.addEventListener('touchmove', function (event) {
+        if (event.scale !== 1) event.preventDefault();
+    }, {passive: false});
+
+    var lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+        var now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, {passive: false});
+</script>
+
 </body>
 </html>
