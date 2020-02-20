@@ -113,9 +113,9 @@ class GameMechanicsTest {
 
         // Vertical
         val vertical = listOf(field.getTileCell(1, 0), field.getTileCell(1, 1), field.getTileCell(1, 2))
-        assertEquals(vertical, mechanics.getVerticalConnected(Position(1, 0)))
-        assertEquals(vertical, mechanics.getVerticalConnected(Position(1, 1)))
-        assertEquals(vertical, mechanics.getVerticalConnected(Position(1, 2)))
+        assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 0)))
+        assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 1)))
+        assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 2)))
     }
 
     @Test
@@ -129,9 +129,9 @@ class GameMechanicsTest {
 
         val horizontal = listOf(field.getTileCell(1, 1), field.getTileCell(2, 1), field.getTileCell(3, 1))
 
-        assertEquals(horizontal, mechanics.getHorizontalConnected(Position(2, 1)))
-        assertEquals(horizontal, mechanics.getHorizontalConnected(Position(1, 1)))
-        assertEquals(horizontal, mechanics.getHorizontalConnected(Position(3, 1)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(2, 1)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(1, 1)))
+        assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(3, 1)))
     }
 
     @Test
@@ -196,16 +196,16 @@ class GameMechanicsTest {
         // Dont't match holes!
 
         val hole1 = listOf(field.getTileCell(0, 0))
-        assertEquals(hole1, mechanics.getHorizontalConnected(Position(0, 0)))
-        assertEquals(hole1, mechanics.getVerticalConnected(Position(0, 0)))
+        assertEquals(hole1, mechanics.getHorizontalSurroundings(Position(0, 0)))
+        assertEquals(hole1, mechanics.getVerticalSurroundings(Position(0, 0)))
 
         val hole2 = listOf(field.getTileCell(0, 1))
-        assertEquals(hole2, mechanics.getHorizontalConnected(Position(0, 1)))
-        assertEquals(hole2, mechanics.getVerticalConnected(Position(0, 1)))
+        assertEquals(hole2, mechanics.getHorizontalSurroundings(Position(0, 1)))
+        assertEquals(hole2, mechanics.getVerticalSurroundings(Position(0, 1)))
 
         val hole3 = listOf(field.getTileCell(0, 2))
-        assertEquals(hole3, mechanics.getHorizontalConnected(Position(0, 2)))
-        assertEquals(hole3, mechanics.getVerticalConnected(Position(0, 2)))
+        assertEquals(hole3, mechanics.getHorizontalSurroundings(Position(0, 2)))
+        assertEquals(hole3, mechanics.getVerticalSurroundings(Position(0, 2)))
     }
 
     private fun tilePositions(vararg tiles: Tile): List<TileCell> {

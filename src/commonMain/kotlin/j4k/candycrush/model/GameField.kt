@@ -2,6 +2,9 @@ package j4k.candycrush.model
 
 import j4k.candycrush.math.PositionGrid.Position
 
+/**
+ * Field with [rows] of [Tile]s.
+ */
 data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     private val rows = Array(rowSize) { Row(columnsSize) }
@@ -21,8 +24,7 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         }
 
         private fun parseRow(line: String): Row {
-            val values = line.trim().removePrefix("[").removeSuffix("]").trim().split(",").filter { it.isNotBlank() }
-                    .map { it.trim() }
+            val values = line.trim().removePrefix("[").removeSuffix("]").trim().split(",").filter { it.isNotBlank() }.map { it.trim() }
             val tiles = values.map { Tile.getTile(it) }
             val row = Row(tiles.size)
             tiles.forEachIndexed { index, tile -> row[index] = tile }

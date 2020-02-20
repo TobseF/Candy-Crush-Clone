@@ -6,8 +6,11 @@ import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Tile
+import j4k.candycrush.model.TileCell
 
-
+/**
+ * Game cycle which reacts on swapped tiles [onDragTileEvent].
+ */
 class GameFlow(val field: GameField, private val mechanics: GameMechanics, private val animator: TileAnimator) :
         DragTileListener {
 
@@ -27,19 +30,52 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
         }
     }
 
+    /**
+     * Swaps two tiles and triggers the removal of and refill of connected tiles. A illegal swap, will be swapped back.
+     */
     private fun swapTiles(posA: Position, posB: Position) {
         mechanics.swapTiles(posA, posB)
-        val connectedTiles = mechanics.getConnectedTiles(posA, posB)
+        val connectedTiles: List<TileCell> = mechanics.getConnectedTiles(posA, posB)
         mechanics.removeTileCells(connectedTiles)
         val nextMoves: List<Move> = mechanics.getNextMoves()
-        val newTileMoves: List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
+        val newTileMoves: List<InsertMove> = getNewTileMoves()
         animator.animateSwap(posA, posB).invokeOnCompletion {
             animator.animateRemoveTiles(connectedTiles)
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
-            animator.animateInsert(newTileMoves)
+            animator.animateInsert(newTileMoves).invokeOnCompletion {
+                checkNewField()
+            }
         }
     }
 
+
+    /**
+     * Check the whole field for connected rows, deletes them and refill with new tiles. This will be repeated until no
+     * more connected tiles are left.
+     */
+    fun checkNewField() {
+        val horizontal: List<List<TileCell>> = GameMechanics(field.clone()).getAndRemoveAllHorizontalRows()
+        val vertical: List<List<TileCell>> = GameMechanics(field.clone()).getAndRemoveAllVerticalRows()
+        val tilesToRemove: List<TileCell> = horizontal.flatten() + vertical.flatten()
+
+        if (tilesToRemove.isNotEmpty()) {
+            mechanics.removeTileCells(tilesToRemove)
+            animator.animateRemoveTiles(tilesToRemove)
+            val nextMoves: List<Move> = mechanics.getNextMoves()
+            val newTileMoves: List<InsertMove> = getNewTileMoves()
+            animator.animateMoves(nextMoves)
+            mechanics.insert(newTileMoves)
+            animator.animateInsert(newTileMoves).invokeOnCompletion {
+                checkNewField()
+            }
+        }
+    }
+
+
+    /**
+     * @return new random tiles for each empty cell
+     */
+    private fun getNewTileMoves(): List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
 
 }

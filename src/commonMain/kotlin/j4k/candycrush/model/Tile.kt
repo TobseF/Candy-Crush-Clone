@@ -1,5 +1,8 @@
 package j4k.candycrush.model
 
+/**
+ * Single tile.
+ */
 enum class Tile {
 
     A, B, C, D, E, Wall, Hole, OutOfSpace;

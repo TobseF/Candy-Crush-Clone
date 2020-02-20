@@ -7,7 +7,9 @@ import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Tile
 import j4k.candycrush.model.TileCell
 
-
+/**
+ * Actions and checks for the provided [GameField]
+ */
 class GameMechanics(private val field: GameField) {
 
     companion object {
@@ -34,16 +36,7 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun getConnectedTiles(pos: Position): List<TileCell> {
-        val vertical = getVerticalConnected(pos)
-        val horizontal = getHorizontalConnected(pos)
-        if ((horizontal.size >= 3) && (vertical.size >= 3)) {
-            return vertical + horizontal
-        } else if (horizontal.size >= 3) {
-            return horizontal
-        } else if (vertical.size >= 3) {
-            return vertical
-        }
-        return emptyList()
+        return getVerticalConnectedOrEmpty(pos) + getHorizontalConnectedOrEmpty(pos)
     }
 
     fun getConnectedTiles(a: Position, b: Position): List<TileCell> {
@@ -63,15 +56,33 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun isHorizontalConnected(pos: Position): Boolean {
-        return getHorizontalSurroundings(pos).size >= 3
+        return getHorizontalConnectedOrEmpty(pos).isNotEmpty()
     }
 
-    fun getHorizontalConnected(pos: Position): List<TileCell> {
-        return getHorizontalSurroundings(pos)
+    fun getAndRemoveAllHorizontalRows(): List<List<TileCell>> {
+        return field.listAllPositions().map {
+            val connected = getHorizontalConnectedOrEmpty(it)
+            removeTileCells(connected)
+            connected
+        }.filter { it.isNotEmpty() }
     }
 
-    fun getVerticalConnected(pos: Position): List<TileCell> {
-        return getVerticalSurroundings(pos)
+    fun getAndRemoveAllVerticalRows(): List<List<TileCell>> {
+        return field.listAllPositions().map {
+            val connected = getVerticalConnectedOrEmpty(it)
+            removeTileCells(connected)
+            connected
+        }.filter { it.isNotEmpty() }
+    }
+
+    fun getHorizontalConnectedOrEmpty(pos: Position): List<TileCell> {
+        val horizontalConnected = this.getHorizontalSurroundings(pos)
+        return if (horizontalConnected.size < 3) emptyList() else horizontalConnected
+    }
+
+    fun getVerticalConnectedOrEmpty(pos: Position): List<TileCell> {
+        val verticalConnected = this.getVerticalSurroundings(pos)
+        return if (verticalConnected.size < 3) emptyList() else verticalConnected
     }
 
     fun getHorizontalSurroundings(pos: Position): List<TileCell> {
@@ -121,7 +132,7 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun isVerticalConnected(pos: Position): Boolean {
-        return getVerticalSurroundings(pos).size >= 3
+        return getVerticalConnectedOrEmpty(pos).isNotEmpty()
     }
 
     override fun toString(): String {
@@ -184,8 +195,6 @@ class GameMechanics(private val field: GameField) {
     fun insert(move: InsertMove) {
         field[move.target] = move.tile
     }
-
-    fun move(moves: List<Move>) = moves.forEach { move(it) }
 
     fun move(move: Move) {
         field[move.target] = field[move.tile]

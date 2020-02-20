@@ -18,10 +18,7 @@ import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.TileCell
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 
 class TileAnimator(override val view: Stage, private val renderer: GameFieldRenderer) : UpdateComponent {
@@ -154,12 +151,18 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         override fun toString() = point.toString()
     }
 
-    fun animateInsert(moves: List<InsertMove>) {
+    fun animateInsert(moves: List<InsertMove>): Job {
         val moveByColumn: Map<Int, List<InsertMove>> = moves.groupBy { it.target.column }
-        moveByColumn.keys.forEach { column ->
-            val columnMoves = moveByColumn[column]?.sorted()
-            columnMoves?.forEachIndexed { row, move -> animateInsert(move, ((1 + row) * 500).toLong()) }
-        }
+        return addJob(view.launch {
+            moveByColumn.keys.forEach { column ->
+                val columnMoves = moveByColumn[column]?.sorted()
+                columnMoves?.forEachIndexed { row, move ->
+                    launch {
+                        animateInsert(move, ((1 + row) * 500).toLong(), this)
+                    }
+                }
+            }
+        })
     }
 
     fun isAnimationRunning(): Boolean {
@@ -170,19 +173,17 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         return active
     }
 
-    fun animateInsert(move: InsertMove, delay: Long) {
+    suspend fun animateInsert(move: InsertMove, delay: Long, scope: CoroutineScope) {
         val image = renderer.addTile(move.target, move.tile)
         image.alpha = 0.0
         val target = move.target.getImagePoint()
         val start = move.target.moveToStart().getImagePoint()
         image.position(start)
-        addJob(view.launch {
-            delay(delay)
-            launch {
-                image.tween(image::alpha[1.0], time = 150.milliseconds, easing = Easing.EASE_IN)
-            }
-            image.move(target, fallingAnimation(move.target.row))
-        })
+        delay(delay)
+        scope.launch {
+            image.tween(image::alpha[1.0], time = 150.milliseconds, easing = Easing.EASE_IN)
+        }
+        image.move(target, fallingAnimation(move.target.row))
     }
 
 }

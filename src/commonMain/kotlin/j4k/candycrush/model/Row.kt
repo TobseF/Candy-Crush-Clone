@@ -1,5 +1,8 @@
 package j4k.candycrush.model
 
+/**
+ * A horizontal row of [Tile]s.
+ */
 class Row(rowSize: Int) : Iterable<Tile> {
 
     constructor(vararg tiles: Tile) : this(tiles.size) {

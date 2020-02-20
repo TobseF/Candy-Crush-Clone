@@ -71,7 +71,7 @@ class PositionGrid(val x: Int = 0, val y: Int = 0, val columns: Int, val rows: I
     }
 
     /**
-     * Position in the grid
+     * Position in the [PositionGrid]
      */
     data class Position(val column: Int, val row: Int) : IPoint by Point(column, row) {
         fun getIndex(): Int {
