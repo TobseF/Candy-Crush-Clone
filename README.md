@@ -2,6 +2,8 @@
 
 This is a **🚧 WIP** match 3 game for a workshop with children on the [JavaLand4Kids](https://www.javaland.eu/de/javaland-2018/javaland4kids/).
 
+### [🎮 Run the game as WebApp](https://tobsef.github.io/Candy-Crush-Clone/)
+
 ---
 
 You can open this project in IntelliJ IDEA by opening the folder or the build.gradle.kts file.
