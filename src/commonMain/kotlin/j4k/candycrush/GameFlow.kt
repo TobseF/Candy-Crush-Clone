@@ -11,12 +11,16 @@ import j4k.candycrush.model.TileCell
 /**
  * Game cycle which reacts on swapped tiles [onDragTileEvent].
  */
-class GameFlow(val field: GameField, private val mechanics: GameMechanics, private val animator: TileAnimator) :
-        DragTileListener {
+class GameFlow(val field: GameField,
+        private val mechanics: GameMechanics,
+        private val animator: TileAnimator,
+        private val deletionListener: TileDeletionListener) : DragTileListener {
 
     companion object {
         val log = Logger("GameFlow")
     }
+
+    private var rush = 1
 
     override fun onDragTileEvent(posA: Position, posB: Position) {
         if (animator.isAnimationRunning()) {
@@ -34,13 +38,15 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
      * Swaps two tiles and triggers the removal of and refill of connected tiles. A illegal swap, will be swapped back.
      */
     private fun swapTiles(posA: Position, posB: Position) {
+        rush = 1
         mechanics.swapTiles(posA, posB)
-        val connectedTiles: List<TileCell> = mechanics.getConnectedTiles(posA, posB)
-        mechanics.removeTileCells(connectedTiles)
+        val tilesToRemove: List<TileCell> = mechanics.getConnectedTiles(posA, posB)
+        mechanics.removeTileCells(tilesToRemove)
         val nextMoves: List<Move> = mechanics.getNextMoves()
         val newTileMoves: List<InsertMove> = getNewTileMoves()
         animator.animateSwap(posA, posB).invokeOnCompletion {
-            animator.animateRemoveTiles(connectedTiles)
+            animator.animateRemoveTiles(tilesToRemove)
+            deletionListener.onTilesDeletion(rush, tilesToRemove)
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
             animator.animateInsert(newTileMoves).invokeOnCompletion {
@@ -60,8 +66,11 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
         val tilesToRemove: List<TileCell> = horizontal.flatten() + vertical.flatten()
 
         if (tilesToRemove.isNotEmpty()) {
+            log.debug { "Removing tiles after rush $rush: ${tilesToRemove.size}" }
+            rush++
             mechanics.removeTileCells(tilesToRemove)
             animator.animateRemoveTiles(tilesToRemove)
+            deletionListener.onTilesDeletion(rush, tilesToRemove)
             val nextMoves: List<Move> = mechanics.getNextMoves()
             val newTileMoves: List<InsertMove> = getNewTileMoves()
             animator.animateMoves(nextMoves)
@@ -69,6 +78,8 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
             animator.animateInsert(newTileMoves).invokeOnCompletion {
                 checkNewField()
             }
+        } else {
+            log.debug { "Field was clean on rush: $rush" }
         }
     }
 
@@ -77,5 +88,9 @@ class GameFlow(val field: GameField, private val mechanics: GameMechanics, priva
      * @return new random tiles for each empty cell
      */
     private fun getNewTileMoves(): List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
+
+    fun reset() {
+        rush = 1
+    }
 
 }

@@ -1,6 +1,5 @@
 package j4k.candycrush
 
-import com.soywiz.klock.TimeSpan
 import com.soywiz.klock.milliseconds
 import com.soywiz.klock.seconds
 import com.soywiz.klogger.Logger
@@ -38,13 +37,6 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
 
     private fun fallingAnimation(rows: Int) = AnimationSettings((500 * rows).milliseconds, easing = Easing.EASE_IN)
 
-    private suspend fun Image.move(point: IPoint, settings: AnimationSettings) {
-        return move(point, settings.time, settings.easing)
-    }
-
-    private suspend fun Image.move(point: IPoint, time: TimeSpan, easing: Easing) {
-        return this.tween(this::x[point.x], this::y[point.y], time = time, easing = easing)
-    }
 
     private fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
 
@@ -134,7 +126,6 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         })
     }
 
-    class AnimationSettings(val time: TimeSpan, val easing: Easing)
 
     fun Position.getImagePosition(): ImagePosition {
         return ImagePosition(getImage(), this.getImagePoint())

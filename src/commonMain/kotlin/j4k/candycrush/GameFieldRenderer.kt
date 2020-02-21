@@ -23,7 +23,7 @@ class GameFieldRenderer(private val gameField: GameField,
     /**
      * Distance in PX from top
      */
-    private val top = 80
+    private val top = 160
     /**
      * Left and Right spacings in PX
      */
