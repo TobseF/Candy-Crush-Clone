@@ -40,7 +40,7 @@ class GameFlow(val field: GameField,
     private fun swapTiles(posA: Position, posB: Position) {
         rush = 1
         mechanics.swapTiles(posA, posB)
-        val tilesToRemove: List<TileCell> = mechanics.getConnectedTiles(posA, posB)
+        val tilesToRemove: List<TileCell> = getConnectedTiles(posA, posB)
         mechanics.removeTileCells(tilesToRemove)
         val nextMoves: List<Move> = mechanics.getNextMoves()
         val newTileMoves: List<InsertMove> = getNewTileMoves()
@@ -53,6 +53,15 @@ class GameFlow(val field: GameField,
                 checkNewField()
             }
         }
+    }
+
+    fun getConnectedTiles(posA: Position, posB: Position): List<TileCell> {
+        val connectedA = mechanics.getConnectedTiles(posA)
+        val connectedB = mechanics.getConnectedTiles(posB)
+        if (connectedA.isNotEmpty() && connectedB.isNotEmpty()) {
+            rush += 1
+        }
+        return connectedA + connectedB
     }
 
 
