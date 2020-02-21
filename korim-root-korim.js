@@ -78,6 +78,7 @@
   var Kind_INTERFACE = Kotlin.Kind.INTERFACE;
   var SizeInt = $module$korma_root_korma.com.soywiz.korma.geom.SizeInt;
   var getCyclic = $module$kds_root_kds.com.soywiz.kds.getCyclic_r20n03$;
+  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_287e2$;
   var toBase64 = $module$korio_root_korio.com.soywiz.korio.util.encoding.toBase64_964n91$;
   var UnsupportedOperationException_init_0 = Kotlin.kotlin.UnsupportedOperationException_init;
   var printStackTrace = $module$korio_root_korio.com.soywiz.korio.lang.printStackTrace_dbl4o4$;
@@ -94,7 +95,6 @@
   var CoroutineImpl = Kotlin.kotlin.coroutines.CoroutineImpl;
   var throwUPAE = Kotlin.throwUPAE;
   var equals = Kotlin.equals;
-  var ArrayList_init_0 = Kotlin.kotlin.collections.ArrayList_init_287e2$;
   var Any = Object;
   var LinkedHashMap_init = Kotlin.kotlin.collections.LinkedHashMap_init_q3lmfv$;
   var rect = $module$korma_root_korma.com.soywiz.korma.geom.vector.rect_clsz36$;
@@ -2160,7 +2160,7 @@
     return extract_0(this.bmp, this.bounds.x, this.bounds.y, this.bounds.width, this.bounds.height);
   };
   BitmapSlice.prototype.sliceWithBounds_tjonv8$ = function (left, top, right, bottom) {
-    return new BitmapSlice(this.bmp, RectangleInt.Companion.fromBounds_tjonv8$(this.clampX_0(left + this.bounds.left | 0), this.clampY_0(top + this.bounds.top | 0), this.clampX_0(right + this.bounds.left | 0), this.clampY_0(bottom + this.bounds.top | 0)));
+    return new BitmapSlice(this.bmp, createRectangleInt(this.bounds.left, this.bounds.top, this.bounds.right, this.bounds.bottom, left, top, right, bottom));
   };
   BitmapSlice.prototype.sliceWithSize_tjonv8$ = function (x, y, width, height) {
     return this.sliceWithBounds_tjonv8$(x, y, x + width | 0, y + height | 0);
@@ -2171,11 +2171,17 @@
   BitmapSlice.prototype.slice_2da8yn$ = function (rect) {
     return this.slice_t9mhyo$(rect.toInt());
   };
-  BitmapSlice.prototype.clampX_0 = function ($receiver) {
-    return clamp($receiver, this.bounds.left, this.bounds.right);
-  };
-  BitmapSlice.prototype.clampY_0 = function ($receiver) {
-    return clamp($receiver, this.bounds.top, this.bounds.bottom);
+  BitmapSlice.prototype.split_vux9f0$ = function (width, height) {
+    var self_0 = this;
+    var nheight = self_0.height / height | 0;
+    var nwidth = self_0.width / width | 0;
+    var $receiver = ArrayList_init_0();
+    for (var y = 0; y < nheight; y++) {
+      for (var x = 0; x < nwidth; x++) {
+        $receiver.add_11rb$(self_0.sliceWithSize_tjonv8$(Kotlin.imul(x, width), Kotlin.imul(y, height), width, height));
+      }
+    }
+    return $receiver;
   };
   Object.defineProperty(BitmapSlice.prototype, 'rotated', {
     get: function () {
@@ -2219,12 +2225,15 @@
     return new BitmapSlice($receiver, bounds, name);
   }
   function sliceWithBounds($receiver, left, top, right, bottom) {
-    var width = right - left | 0;
-    var height = bottom - top | 0;
-    return new BitmapSlice($receiver, new RectangleInt(new Rectangle(numberToDouble(left), numberToDouble(top), numberToDouble(width), numberToDouble(height))));
+    return slice($receiver, createRectangleInt(0, 0, $receiver.width, $receiver.height, left, top, right, bottom));
   }
   function sliceWithSize_1($receiver, x, y, width, height) {
-    return new BitmapSlice($receiver, new RectangleInt(new Rectangle(numberToDouble(x), numberToDouble(y), numberToDouble(width), numberToDouble(height))));
+    return sliceWithBounds($receiver, x, y, x + width | 0, y + height | 0);
+  }
+  function createRectangleInt(bleft, btop, bright, bbottom, left, top, right, bottom, allowInvalidBounds) {
+    if (allowInvalidBounds === void 0)
+      allowInvalidBounds = false;
+    return RectangleInt.Companion.fromBounds_tjonv8$(clamp(bleft + left | 0, bleft, bright), clamp(btop + top | 0, btop, bbottom), clamp(bleft + right | 0, allowInvalidBounds ? bleft : bleft + left | 0, bright), clamp(btop + bottom | 0, allowInvalidBounds ? btop : btop + top | 0, bbottom));
   }
   function Bitmaps() {
     Bitmaps_instance = this;
@@ -17627,7 +17636,7 @@
   fourcc = new Extra$Property(void 0, fourcc$lambda);
   nativeImageLoadingEnabled = true;
   RegisteredImageFormats_formats = ImageFormats_init([]);
-  KORIM_VERSION = '1.9.7';
+  KORIM_VERSION = '1.9.8';
   nativeImageFormatProvider = HtmlNativeImageFormatProvider_getInstance();
   myJsRequire = require;
   nodeJsCanvas = lazy(nodeJsCanvas$lambda);

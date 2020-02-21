@@ -10213,71 +10213,71 @@
   function MouseEvents$click$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$CLICK_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.click_o14v8n$ = function (callback) {
+  MouseEvents.prototype.click_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$click$lambda(callback));
   };
   function MouseEvents$up$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$UP_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.up_o14v8n$ = function (callback) {
+  MouseEvents.prototype.up_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$up$lambda(callback));
   };
   function MouseEvents$down$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$DOWN_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.down_o14v8n$ = function (callback) {
+  MouseEvents.prototype.down_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$down$lambda(callback));
   };
   function MouseEvents$move$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$MOVE_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.move_o14v8n$ = function (callback) {
+  MouseEvents.prototype.move_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$move$lambda(callback));
   };
   function MouseEvents$drag$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$DRAG_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.drag_o14v8n$ = function (callback) {
+  MouseEvents.prototype.drag_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$drag$lambda(callback));
   };
   function MouseEvents$enter$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$ENTER_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.enter_o14v8n$ = function (callback) {
+  MouseEvents.prototype.enter_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$enter$lambda(callback));
   };
   function MouseEvents$exit$lambda(closure$callback) {
     return function (it) {
       if (it.type === MouseEvent$Type$EXIT_getInstance())
-        closure$callback();
+        closure$callback(it);
       return Unit;
     };
   }
-  MouseEvents.prototype.exit_o14v8n$ = function (callback) {
+  MouseEvents.prototype.exit_f5l7iv$ = function (callback) {
     return this.ed.addEventListener_xa594f$(getKClass(MouseEvent), MouseEvents$exit$lambda(callback));
   };
   MouseEvents.prototype.close = function () {
@@ -15880,7 +15880,7 @@
   versionString = new Extra$PropertyThis(void 0, versionString$lambda);
   versionInt = new Extra$PropertyThis(void 0, versionInt$lambda);
   KORAG_VERSION = '1.7.0-pre-50';
-  KORGW_VERSION = '1.9.11';
+  KORGW_VERSION = '1.9.12';
   korgwJvmEngine = null;
   var $receiver = listOf([StandardGamepadMapping_getInstance(), Nimbus_111_1420_Safari_GamepadMapping_getInstance()]);
   var capacity = coerceAtLeast(mapCapacity(collectionSizeOrDefault($receiver, 10)), 16);

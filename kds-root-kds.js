@@ -8991,29 +8991,47 @@
     this.default = default_0;
   }
   extraProperty.prototype.getValue_jvq2vc$ = defineInlineFunction('kds-root-kds.com.soywiz.kds.extraProperty.getValue_jvq2vc$', wrapFunction(function () {
+    var LinkedHashMap_init = Kotlin.kotlin.collections.LinkedHashMap_init_q3lmfv$;
+    var ensureNotNull = Kotlin.ensureNotNull;
     var Any = Object;
     var throwCCE = Kotlin.throwCCE;
+    function extraProperty$getValue$lambda(this$extraProperty) {
+      return function () {
+        return this$extraProperty.default();
+      };
+    }
     return function (thisRef, property) {
-      var tmp$, tmp$_0, tmp$_1, tmp$_2, tmp$_3;
-      tmp$_1 = thisRef.extra;
-      tmp$_0 = (tmp$ = this.name) != null ? tmp$ : property.callableName;
-      return (tmp$_3 = (tmp$_2 = tmp$_1 != null ? tmp$_1.get_11rb$(tmp$_0) : null) == null || Kotlin.isType(tmp$_2, Any) ? tmp$_2 : throwCCE()) != null ? tmp$_3 : this.default();
+      var tmp$, tmp$_0, tmp$_1;
+      if (thisRef.extra == null)
+        thisRef.extra = LinkedHashMap_init();
+      tmp$_0 = ensureNotNull(thisRef.extra);
+      var key = (tmp$ = this.name) != null ? tmp$ : property.callableName;
+      var tmp$_2;
+      var value = tmp$_0.get_11rb$(key);
+      if (value == null) {
+        var answer = extraProperty$getValue$lambda(this)();
+        tmp$_0.put_xwzc9p$(key, answer);
+        tmp$_2 = answer;
+      }
+       else {
+        tmp$_2 = value;
+      }
+      return (tmp$_1 = tmp$_2) == null || Kotlin.isType(tmp$_1, Any) ? tmp$_1 : throwCCE();
     };
   }));
   extraProperty.prototype.setValue_tgmkxv$ = defineInlineFunction('kds-root-kds.com.soywiz.kds.extraProperty.setValue_tgmkxv$', wrapFunction(function () {
     var LinkedHashMap_init = Kotlin.kotlin.collections.LinkedHashMap_init_q3lmfv$;
     var Any = Object;
     var throwCCE = Kotlin.throwCCE;
+    var ensureNotNull = Kotlin.ensureNotNull;
     return function (thisRef, property, value) {
-      var tmp$, tmp$_0, tmp$_1, tmp$_2, tmp$_3;
+      var tmp$, tmp$_0, tmp$_1, tmp$_2;
       if (thisRef.extra == null)
         thisRef.extra = LinkedHashMap_init();
-      tmp$_3 = thisRef.extra;
-      tmp$_0 = (tmp$ = this.name) != null ? tmp$ : property.callableName;
-      tmp$_2 = (tmp$_1 = value) == null || Kotlin.isType(tmp$_1, Any) ? tmp$_1 : throwCCE();
-      if (tmp$_3 != null) {
-        tmp$_3.put_xwzc9p$(tmp$_0, tmp$_2);
-      }
+      tmp$_2 = ensureNotNull(thisRef.extra);
+      tmp$_1 = (tmp$_0 = this.name) != null ? tmp$_0 : property.callableName;
+      var value_0 = (tmp$ = value) == null || Kotlin.isType(tmp$, Any) ? tmp$ : throwCCE();
+      tmp$_2.put_xwzc9p$(tmp$_1, value_0);
     };
   }));
   extraProperty.$metadata$ = {

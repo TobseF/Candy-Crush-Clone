@@ -19050,7 +19050,7 @@
   registerStandard($receiver);
   defaultAudioFormats = $receiver;
   temp = new Float32Array(1);
-  KORAU_VERSION = '1.9.10';
+  KORAU_VERSION = '1.9.11';
   nativeSoundProvider = lazy(nativeSoundProvider$lambda);
   programPool = Pool_init(1, programPool$lambda);
   Kotlin.defineModule('korau-root-korau', _);

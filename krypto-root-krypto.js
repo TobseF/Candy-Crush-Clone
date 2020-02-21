@@ -193,6 +193,9 @@
     return out;
   };
   AES$Companion.prototype.encryptEes128Cbc_r9qwmk$ = function (data, key) {
+    return this.encryptAes128Cbc_r9qwmk$(data, key);
+  };
+  AES$Companion.prototype.encryptAes128Cbc_r9qwmk$ = function (data, key) {
     var aes = AES_init(key);
     var words = this.toIntArray_0(data);
     var wordsLength = words.length;
@@ -794,7 +797,7 @@
   });
   package$krypto.fillRandomBytes_fqrh44$ = fillRandomBytes;
   randomUnittesting = false;
-  KRYPTO_VERSION = '1.9.1';
+  KRYPTO_VERSION = '1.9.2';
   isNodeJs = lazy(isNodeJs$lambda);
   global_0 = typeof global !== 'undefined' ? global : self;
   Kotlin.defineModule('krypto-root-krypto', _);
