@@ -33,12 +33,15 @@ suspend fun main() = Korge(width = resolution.width,
         bgcolor = Colors["#2b2b2b"],
         debug = debug) {
 
-    Logger.defaultLevel = Logger.Level.DEBUG
+    //Logger.defaultLevel = Logger.Level.DEBUG
 
     val log = Logger("main")
 
     val gameField = GameField.fromString(levelData)
     val gameMechanics = GameMechanics(gameField)
+
+    JukeBox().load()
+    val soundMachine = SoundMachine().apply { load() }
 
     val fieldRenderer = GameFieldRenderer(gameField, resolution.width, resolution.height, getTilesSheet())
     addChild(fieldRenderer)
@@ -49,7 +52,7 @@ suspend fun main() = Korge(width = resolution.width,
     val scoring = Scoring(scoringRenderer)
     val animator = TileAnimator(this, fieldRenderer)
 
-    val gameFlow = GameFlow(gameField, gameMechanics, animator, scoring)
+    val gameFlow = GameFlow(gameField, gameMechanics, animator, soundMachine, scoring)
     addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
 
     onClick { } // Needed to activate debugging

@@ -14,6 +14,7 @@ import j4k.candycrush.model.TileCell
 class GameFlow(val field: GameField,
         private val mechanics: GameMechanics,
         private val animator: TileAnimator,
+        private val soundMachine: SoundMachine,
         private val deletionListener: TileDeletionListener) : DragTileListener {
 
     companion object {
@@ -31,6 +32,7 @@ class GameFlow(val field: GameField,
             swapTiles(posA, posB)
         } else {
             animator.animateIllegalSwap(posA, posB)
+            soundMachine.playWrongMove()
         }
     }
 
@@ -45,6 +47,7 @@ class GameFlow(val field: GameField,
         val nextMoves: List<Move> = mechanics.getNextMoves()
         val newTileMoves: List<InsertMove> = getNewTileMoves()
         animator.animateSwap(posA, posB).invokeOnCompletion {
+            soundMachine.playClear()
             animator.animateRemoveTiles(tilesToRemove)
             deletionListener.onTilesDeletion(rush, tilesToRemove)
             animator.animateMoves(nextMoves)
@@ -77,6 +80,7 @@ class GameFlow(val field: GameField,
         if (tilesToRemove.isNotEmpty()) {
             log.debug { "Removing tiles after rush $rush: ${tilesToRemove.size}" }
             rush++
+            soundMachine.playMulti(rush)
             mechanics.removeTileCells(tilesToRemove)
             animator.animateRemoveTiles(tilesToRemove)
             deletionListener.onTilesDeletion(rush, tilesToRemove)

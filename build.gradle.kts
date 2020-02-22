@@ -22,4 +22,6 @@ korge {
     id = "j4k.candycrush"
     name = "Candy Crush"
     gameCategory = GameCategory.ARCADE
+
+    //dependencyMulti("com.soywiz:korau-mp3:0.19.1")
 }
