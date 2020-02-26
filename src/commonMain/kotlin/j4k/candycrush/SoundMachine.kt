@@ -2,11 +2,13 @@ package j4k.candycrush
 
 import com.soywiz.korau.sound.NativeSound
 import com.soywiz.korau.sound.readNativeSound
+import com.soywiz.korge.view.Stage
+import com.soywiz.korge.view.Views
 import com.soywiz.korio.file.std.resourcesVfs
 import j4k.candycrush.lib.Loadable
 
 
-class SoundMachine : Loadable {
+class SoundMachine(override val stage: Stage) : Loadable {
 
     private var clear: NativeSound? = null
     private var dopGround: NativeSound? = null
