@@ -9,7 +9,7 @@ import com.soywiz.korio.file.std.resourcesVfs
 import j4k.candycrush.*
 import j4k.candycrush.config.fruits
 import j4k.candycrush.config.testTiles
-import j4k.candycrush.model.GameField
+import j4k.candycrush.model.Level
 
 val log = Logger("main")
 
@@ -18,6 +18,14 @@ const val debug = false
 const val useTestTiles = false
 
 val resolution = Resolution(width = 1280, height = 1024)
+
+val playBackgroundMusic = false
+
+
+val reserveData = """
+            |[E,C,B,A,D,D,C,C]
+            |[D,A,E,C,B,E,D,B]
+            """.trimMargin()
 
 val levelData = """
             |[A,B,C,D,E,B,D,A]
@@ -28,6 +36,7 @@ val levelData = """
             |[E,A,D,C,B,A,A,E]
             """.trimMargin()
 
+
 suspend fun main() = Korge(width = resolution.width,
         height = resolution.height,
         bgcolor = Colors["#2b2b2b"],
@@ -37,13 +46,17 @@ suspend fun main() = Korge(width = resolution.width,
 
     val log = Logger("main")
 
-    val gameField = GameField.fromString(levelData)
-    val gameMechanics = GameMechanics(gameField)
+    val level1 = Level(levelData, reserveData)
+    val gameMechanics = GameMechanics(level1.field)
 
-    JukeBox(this).apply { load() }.apply { play() }
+    JukeBox(this).apply {
+        activated = playBackgroundMusic
+        load()
+        play()
+    }
     val soundMachine = SoundMachine(this).apply { load() }
 
-    val fieldRenderer = GameFieldRenderer(gameField, resolution.width, resolution.height, getTilesSheet())
+    val fieldRenderer = GameFieldRenderer(level1.field, resolution.width, resolution.height, fruits(), testTiles())
     addChild(fieldRenderer)
 
     val candyFont = resourcesVfs["fonts/candy.fnt"].readBitmapFont()
@@ -52,7 +65,7 @@ suspend fun main() = Korge(width = resolution.width,
     val scoring = Scoring(scoringRenderer)
     val animator = TileAnimator(this, fieldRenderer)
 
-    val gameFlow = GameFlow(gameField, gameMechanics, animator, soundMachine, scoring)
+    val gameFlow = GameFlow(level1, gameMechanics, animator, soundMachine, scoring)
     addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
 
     onClick { } // Needed to activate debugging
@@ -60,25 +73,28 @@ suspend fun main() = Korge(width = resolution.width,
     onKeyDown {
         if (it.key == Key.P) {
             log.debug { "Print Field Data" }
-            println(gameField)
+            println(level1.field)
+        }
+        if (it.key == Key.D) {
+            log.debug { "Show Debug Letters" }
+            fieldRenderer.toggleDebug()
         }
         if (it.key == Key.I) {
             log.debug { "Print Image Data" }
             println(fieldRenderer)
-            println("Renderer data is equal to field data: " + (fieldRenderer.toString() == gameField.toString()))
+            println("Renderer data is equal to field data: " + (fieldRenderer.toString() == level1.field.toString()))
         }
         if (it.key == Key.S) {
             log.debug { "Shuffle & Reset" }
             scoring.reset()
             scoringRenderer.reset()
             gameFlow.reset()
-            gameField.shuffle()
+            level1.field.shuffle()
             fieldRenderer.updateImagesFromField()
             gameFlow.checkNewField()
         }
     }
 }
 
-suspend fun getTilesSheet() = if (useTestTiles) testTiles() else fruits()
 
 class Resolution(val width: Int, val height: Int)

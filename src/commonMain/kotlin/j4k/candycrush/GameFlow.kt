@@ -4,18 +4,19 @@ import com.soywiz.klogger.Logger
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.GameField
-import j4k.candycrush.model.Tile
+import j4k.candycrush.model.Level
 import j4k.candycrush.model.TileCell
 
 /**
  * Game cycle which reacts on swapped tiles [onDragTileEvent].
  */
-class GameFlow(val field: GameField,
+class GameFlow(val level: Level,
         private val mechanics: GameMechanics,
         private val animator: TileAnimator,
         private val soundMachine: SoundMachine,
         private val deletionListener: TileDeletionListener) : DragTileListener {
+
+    private val field = level.field
 
     companion object {
         val log = Logger("GameFlow")
@@ -44,7 +45,7 @@ class GameFlow(val field: GameField,
         mechanics.swapTiles(posA, posB)
         val tilesToRemove: List<TileCell> = getConnectedTiles(posA, posB)
         mechanics.removeTileCells(tilesToRemove)
-        val nextMoves: List<Move> = mechanics.getNextMoves()
+        val nextMoves: List<Move> = mechanics.dropAllToGround()
         val newTileMoves: List<InsertMove> = getNewTileMoves()
         animator.animateSwap(posA, posB).invokeOnCompletion {
             soundMachine.playClear()
@@ -84,7 +85,7 @@ class GameFlow(val field: GameField,
             mechanics.removeTileCells(tilesToRemove)
             animator.animateRemoveTiles(tilesToRemove)
             deletionListener.onTilesDeletion(rush, tilesToRemove)
-            val nextMoves: List<Move> = mechanics.getNextMoves()
+            val nextMoves: List<Move> = mechanics.dropAllToGround()
             val newTileMoves: List<InsertMove> = getNewTileMoves()
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
@@ -100,7 +101,7 @@ class GameFlow(val field: GameField,
     /**
      * @return new random tiles for each empty cell
      */
-    private fun getNewTileMoves(): List<InsertMove> = mechanics.getNewTileMoves { Tile.randomTile() }
+    private fun getNewTileMoves(): List<InsertMove> = mechanics.getNewTileMoves(level::getNextTile)
 
     fun reset() {
         rush = 1

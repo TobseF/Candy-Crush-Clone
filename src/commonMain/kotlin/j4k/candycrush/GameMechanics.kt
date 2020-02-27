@@ -10,7 +10,7 @@ import j4k.candycrush.model.TileCell
 /**
  * Actions and checks for the provided [GameField]
  */
-class GameMechanics(private val field: GameField) {
+class GameMechanics(val field: GameField) {
 
     companion object {
         val log = Logger("GameMechanics")
@@ -139,11 +139,19 @@ class GameMechanics(private val field: GameField) {
         return field.toString()
     }
 
-    fun getNextMoves(): List<Move> {
-        return (0 until field.columnsSize).flatMap { column -> moveAll(column) }
+    /**
+     * Drops all tiles to ground level. After that, empty cells are only over tiles.
+     * @return a list of the moves which were triggered by this drop
+     */
+    fun dropAllToGround(): List<Move> {
+        return (0 until field.columnsSize).flatMap { column -> dropToGround(column) }
     }
 
-    fun moveAll(column: Int): List<Move> {
+    /**
+     * Drops the tiles of a column to ground level. After that, empty cells are only over tiles.
+     * @return a list of the moves which were triggered by this drop
+     */
+    fun dropToGround(column: Int): List<Move> {
         val moves = mutableListOf<Move>()
         while (true) {
             val nextMove = getNextMove(column)
@@ -183,7 +191,7 @@ class GameMechanics(private val field: GameField) {
     }
 
     fun getNewTileMoves(tileStore: (Int) -> Tile): List<InsertMove> {
-        return listEmptyCells().map { cell -> InsertMove(cell, tileStore.invoke(cell.column)) }
+        return listEmptyCells().map { cell -> InsertMove(cell, tileStore.invoke(cell.column)) }.sorted()
     }
 
     data class InsertMove(val target: Position, val tile: Tile) : Comparable<InsertMove> {

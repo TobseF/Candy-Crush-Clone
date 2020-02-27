@@ -14,10 +14,12 @@ import kotlin.math.min
 class GameFieldRenderer(private val gameField: GameField,
         private val widthMax: Int,
         heightMax: Int,
-        private val candies: CandySprites) : Container() {
+        private val candies: CandySprites,
+        private val debgLetters: CandySprites) : Container() {
 
     private val sizeFix = 10
     private val paddingFix = -10
+    private var debug = false
 
     val positionGrid: PositionGrid
     /**
@@ -90,8 +92,12 @@ class GameFieldRenderer(private val gameField: GameField,
     private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile): CandyImage {
         val pos = positionGrid.getCenterPosition(column = columnIndex, row = rowIndex)
         val bitmap = getTile(tile.index)
+        val debugLetter = getDebugTile(tile.index)
         val tileSize = tileSize * tileScale
-        val image = CandyImage(tileSize, pos, bitmap, tile)
+        val image = CandyImage(tileSize, pos, bitmap, debugLetter, tile)
+        if (debug) {
+            image.debug()
+        }
         if (gameField.isNotOnField(columnIndex, rowIndex)) {
             throw IllegalArgumentException("Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
         }
@@ -104,11 +110,23 @@ class GameFieldRenderer(private val gameField: GameField,
         return image
     }
 
-    class CandyImage(tileSize: Number, position: Point, bitmap: BmpSlice, val tile: Tile) : Image(bitmap) {
+    class CandyImage(tileSize: Number,
+            position: Point,
+            val candy: BmpSlice,
+            val debugLetter: BmpSlice,
+            val tile: Tile) : Image(candy) {
         init {
             anchor(0.5, 0.5)
             size(tileSize, tileSize)
             position(position)
+        }
+
+        fun debug() {
+            bitmap = debugLetter
+        }
+
+        fun disableDebug() {
+            bitmap = candy
         }
 
         override fun toString(): String {
@@ -116,7 +134,26 @@ class GameFieldRenderer(private val gameField: GameField,
         }
     }
 
+    fun toggleDebug() {
+        debug = !debug
+        if (debug) {
+            debug()
+        } else {
+            disableDebug()
+        }
+    }
+
+    fun debug() {
+        gameField.listAllPositions().forEach { tiles[it.row][it.column]?.debug() }
+    }
+
+    fun disableDebug() {
+        gameField.listAllPositions().forEach { tiles[it.row][it.column]?.disableDebug() }
+    }
+
     private fun getTile(index: Int) = candies.getTile(index)
+
+    private fun getDebugTile(index: Int) = debgLetters.getTile(index)
 
     private fun getTile(column: Int, row: Int): CandyImage {
         return tiles[row][column]

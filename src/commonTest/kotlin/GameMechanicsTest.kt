@@ -229,7 +229,7 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun testMovesAll() {
+    fun testDropToGround() {
         val field = GameField.fromString("""
                         |[H, A, A, A]
                         |[H, A, H, A]
@@ -238,7 +238,7 @@ class GameMechanicsTest {
                         |[H, A, A, H]
                         """.trimMargin())
         val mechanics = GameMechanics(field)
-        mechanics.moveAll(0)
+        mechanics.dropToGround(0)
         assertEquals("""
                         |[H, A, A, A]
                         |[H, A, H, A]
@@ -246,7 +246,7 @@ class GameMechanicsTest {
                         |[H, H, H, H]
                         |[A, A, A, H]
                         """.trimMargin(), mechanics.toString())
-        mechanics.moveAll(1)
+        mechanics.dropToGround(1)
         assertEquals("""
                         |[H, H, A, A]
                         |[H, H, H, A]
@@ -254,7 +254,7 @@ class GameMechanicsTest {
                         |[H, A, H, H]
                         |[A, A, A, H]
                         """.trimMargin(), mechanics.toString())
-        mechanics.moveAll(2)
+        mechanics.dropToGround(2)
         assertEquals("""
                         |[H, H, H, A]
                         |[H, H, H, A]
@@ -262,7 +262,7 @@ class GameMechanicsTest {
                         |[H, A, A, H]
                         |[A, A, A, H]
                         """.trimMargin(), mechanics.toString())
-        mechanics.moveAll(3)
+        mechanics.dropToGround(3)
         assertEquals("""
                         |[H, H, H, H]
                         |[H, H, H, H]

@@ -1,5 +1,6 @@
 package j4k.candycrush
 
+import com.soywiz.klock.seconds
 import com.soywiz.korau.sound.NativeSound
 import com.soywiz.korau.sound.NativeSoundChannel
 import com.soywiz.korau.sound.readNativeSound
@@ -14,14 +15,17 @@ class JukeBox(override val stage: Stage) : Loadable {
     private var playing: NativeSoundChannel? = null
     private val playList = mutableListOf<NativeSound>()
     private var started = false
+    var activated = true
 
     override suspend fun load() {
-        playList += newMusic("monkey_drama_enc.mp3")
-        playList += newMusic("monkey_island_puzzler.mp3")
+        if (activated) {
+            playList += newMusic("monkey_drama.mp3")
+            playList += newMusic("monkey_island_puzzler.mp3")
+        }
     }
 
     fun play() {
-        if (!started) {
+        if (activated && !started) {
             stage.launch {
                 loopMusicPlaylist()
             }
@@ -33,7 +37,7 @@ class JukeBox(override val stage: Stage) : Loadable {
         while (started) {
             val nextSong: NativeSound = playList.random()
             playing = nextSong.play()
-            delay(nextSong.length)
+            delay(nextSong.length.coerceAtLeast(2.seconds))
             playing?.stop()
         }
     }

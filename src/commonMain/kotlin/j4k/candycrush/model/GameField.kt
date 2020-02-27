@@ -24,7 +24,8 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         }
 
         private fun parseRow(line: String): Row {
-            val values = line.trim().removePrefix("[").removeSuffix("]").trim().split(",").filter { it.isNotBlank() }.map { it.trim() }
+            val values = line.trim().removePrefix("[").removeSuffix("]").trim().split(",").filter { it.isNotBlank() }
+                    .map { it.trim() }
             val tiles = values.map { Tile.getTile(it) }
             val row = Row(tiles.size)
             tiles.forEachIndexed { index, tile -> row[index] = tile }
@@ -44,6 +45,7 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     fun getTileCell(column: Int, row: Int) = TileCell(get(column, row), Position(column, row))
 
+    fun getTileCellOnGround(column: Int) = getTileCell(column, rowSize - 1)
 
     operator fun get(position: Position): Tile = get(position.column, position.row)
 
@@ -96,7 +98,9 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         rows[position.row][position.column] = value
     }
 
-    operator fun get(row: Int): Row {
+    operator fun get(row: Int): Row = getRow(row)
+
+    fun getRow(row: Int): Row {
         return if (isRowField(row)) {
             rows[row]
         } else {
