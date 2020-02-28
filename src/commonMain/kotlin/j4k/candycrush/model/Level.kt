@@ -5,12 +5,18 @@ import j4k.candycrush.GameMechanics
 /**
  * A level containing the initial [GameField] and an optinal tile reserve.
  */
-class Level(levelData: String, reserveData: String? = null) {
+class Level(levelData: String,
+        reserveData: String? = null,
+        val minScore: Int? = null,
+        val maxMoves: Int? = null,
+        val maxTime: TimeObjective? = null,
+        val tileObjectives: List<TileObjective> = emptyList()) {
 
     val field: GameField = GameField.fromString(levelData)
     val reserve: GameMechanics? = reserveData?.let { GameMechanics(GameField.fromString(it)) }
 
-    class Objective(val type: String)
+    data class TileObjective(val tile: Tile, val goal: Int)
+    data class TimeObjective(val minutes: Int = 0, val seconds: Int = 0)
 
     fun getNextTile(column: Int): Tile {
         if (reserve != null) {

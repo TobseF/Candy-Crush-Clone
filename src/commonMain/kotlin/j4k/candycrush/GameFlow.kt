@@ -5,6 +5,7 @@ import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.audio.SoundMachine
 import j4k.candycrush.input.IDragTileListener
+import j4k.candycrush.input.SwapTileListener
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.Level
 import j4k.candycrush.model.TileCell
@@ -14,12 +15,14 @@ import j4k.candycrush.renderer.animation.TileAnimator
  * Global game cycle which reacts on swapped tiles [onDragTileEvent].
  */
 class GameFlow(private val level: Level,
-               private val mechanics: GameMechanics,
-               private val animator: TileAnimator,
-               private val soundMachine: SoundMachine,
-               private val deletionListener: TileDeletionListener) : IDragTileListener {
+        private val mechanics: GameMechanics,
+        private val animator: TileAnimator,
+        private val soundMachine: SoundMachine) : IDragTileListener {
 
     private val field = level.field
+
+    var deletionListener = mutableListOf<TileDeletionListener>()
+    var swapTileListener = mutableListOf<SwapTileListener>()
 
     companion object {
         val log = Logger("GameFlow")
@@ -48,6 +51,7 @@ class GameFlow(private val level: Level,
      * Swaps two tiles and triggers the removal of and refill of connected tiles. A illegal swap, will be swapped back.
      */
     private fun swapTiles(posA: Position, posB: Position) {
+        onTileSwapTileEvent(posA, posB)
         rush = 1
         mechanics.swapTiles(posA, posB)
         val tilesToRemove: List<TileCell> = getConnectedTiles(posA, posB)
@@ -57,7 +61,7 @@ class GameFlow(private val level: Level,
         animator.animateSwap(posA, posB).invokeOnCompletion {
             soundMachine.playClear()
             animator.animateRemoveTiles(tilesToRemove)
-            deletionListener.onTilesDeletion(rush, tilesToRemove)
+            onTilesDeletion(tilesToRemove)
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
             animator.animateInsert(newTileMoves).invokeOnCompletion {
@@ -91,7 +95,7 @@ class GameFlow(private val level: Level,
             soundMachine.playMulti(rush)
             mechanics.removeTileCells(tilesToRemove)
             animator.animateRemoveTiles(tilesToRemove)
-            deletionListener.onTilesDeletion(rush, tilesToRemove)
+            onTilesDeletion(tilesToRemove)
             val nextMoves: List<Move> = mechanics.dropAllToGround()
             val newTileMoves: List<InsertMove> = getNewTileMoves()
             animator.animateMoves(nextMoves)
@@ -113,5 +117,18 @@ class GameFlow(private val level: Level,
     fun reset() {
         rush = 1
     }
+
+    fun checkGame() {
+
+    }
+
+    fun onTilesDeletion(tiles: List<TileCell>) {
+        deletionListener.forEach { it.onTilesDeletion(rush, tiles) }
+    }
+
+    fun onTileSwapTileEvent(posA: Position, posB: Position) {
+        swapTileListener.forEach { it.onTileSwapTileEvent(posA, posB) }
+    }
+
 
 }
