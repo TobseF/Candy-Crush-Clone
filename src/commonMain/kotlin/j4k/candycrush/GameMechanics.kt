@@ -182,8 +182,12 @@ class GameMechanics(val field: GameField) {
         return field.listAllCells().filter { it.tile.isHole() }.map { it.position }
     }
 
+    /**
+     * @return moves which fill empty fields with new tiles. Ordered by row to fill lower tiles first.
+     */
     fun getNewTileMoves(tileStore: (Int) -> Tile): List<InsertMove> {
-        return listEmptyCells().map { cell -> InsertMove(cell, tileStore.invoke(cell.column)) }.sorted()
+        return listEmptyCells().sortedByDescending { it.row }
+                .map { cell -> InsertMove(cell, tileStore.invoke(cell.column)) }
     }
 
     data class InsertMove(val target: Position, val tile: Tile) : Comparable<InsertMove> {

@@ -43,7 +43,7 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     fun getTileCell(position: Position) = TileCell(get(position), position)
 
-    fun getTileCell(column: Int, row: Int) = TileCell(get(column, row), Position(column, row))
+    fun getTileCell(column: Int = 0, row: Int = 0) = TileCell(get(column, row), Position(column, row))
 
     fun getTileCellOnGround(column: Int) = getTileCell(column, rowSize - 1)
 
