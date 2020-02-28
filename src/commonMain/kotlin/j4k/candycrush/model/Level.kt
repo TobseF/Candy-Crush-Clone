@@ -2,6 +2,9 @@ package j4k.candycrush.model
 
 import j4k.candycrush.GameMechanics
 
+/**
+ * A level containing the initial [GameField] and an optinal tile reserve.
+ */
 class Level(levelData: String, reserveData: String? = null) {
 
     val field: GameField = GameField.fromString(levelData)

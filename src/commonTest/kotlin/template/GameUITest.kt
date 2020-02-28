@@ -1,3 +1,5 @@
+package template
+
 import com.soywiz.klock.seconds
 import com.soywiz.korge.input.onClick
 import com.soywiz.korge.tests.ViewsForTesting
@@ -9,6 +11,9 @@ import com.soywiz.korma.geom.Rectangle
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+/**
+ * Only a dummy which shows testing the UI
+ */
 class MyUITest : ViewsForTesting() {
     @Test
     fun test() = viewsTest {

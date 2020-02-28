@@ -1,11 +1,23 @@
 package j4k.candycrush.model
 
 /**
- * Single tile.
+ * A single tile which can be placed on the [GameField].
  */
 enum class Tile {
 
-    A, B, C, D, E, Wall, Hole, OutOfSpace;
+    A, B, C, D, E,
+    /**
+     * A wall which blocks falling stones. Not used.
+     */
+    Wall,
+    /**
+     * An empty field.
+     */
+    Hole,
+    /**
+     * The Tile is not present. Happens if Tile coordinates are out of the [GameField].
+     */
+    OutOfSpace;
 
     val index = ordinal
 

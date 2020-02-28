@@ -3,18 +3,21 @@ package j4k.candycrush
 import com.soywiz.klogger.Logger
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
+import j4k.candycrush.audio.SoundMachine
+import j4k.candycrush.input.IDragTileListener
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.Level
 import j4k.candycrush.model.TileCell
+import j4k.candycrush.renderer.animation.TileAnimator
 
 /**
- * Game cycle which reacts on swapped tiles [onDragTileEvent].
+ * Global game cycle which reacts on swapped tiles [onDragTileEvent].
  */
-class GameFlow(val level: Level,
-        private val mechanics: GameMechanics,
-        private val animator: TileAnimator,
-        private val soundMachine: SoundMachine,
-        private val deletionListener: TileDeletionListener) : DragTileListener {
+class GameFlow(private val level: Level,
+               private val mechanics: GameMechanics,
+               private val animator: TileAnimator,
+               private val soundMachine: SoundMachine,
+               private val deletionListener: TileDeletionListener) : IDragTileListener {
 
     private val field = level.field
 
@@ -22,6 +25,10 @@ class GameFlow(val level: Level,
         val log = Logger("GameFlow")
     }
 
+    /**
+     * A rush is the phase from deleting tiles -> let tiles fall to ground -> refill empty files.
+     * The rush counts the refills after an intial tile swap. This is useful to give a score bonus for multiple rushed.
+     */
     private var rush = 1
 
     override fun onDragTileEvent(posA: Position, posB: Position) {

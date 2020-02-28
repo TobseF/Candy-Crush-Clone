@@ -6,36 +6,35 @@ import com.soywiz.korge.input.onKeyDown
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.font.readBitmapFont
 import com.soywiz.korio.file.std.resourcesVfs
-import j4k.candycrush.*
+import j4k.candycrush.GameFlow
+import j4k.candycrush.GameMechanics
+import j4k.candycrush.Scoring
+import j4k.candycrush.audio.JukeBox
+import j4k.candycrush.audio.SoundMachine
 import j4k.candycrush.config.fruits
 import j4k.candycrush.config.testTiles
-import j4k.candycrush.model.Level
+import j4k.candycrush.input.MoveTileObserver
+import j4k.candycrush.level.LevelFactory
+import j4k.candycrush.lib.Resolution
+import j4k.candycrush.renderer.GameFieldRenderer
+import j4k.candycrush.renderer.ScoringRenderer
+import j4k.candycrush.renderer.animation.TileAnimator
 
-val log = Logger("main")
+
+/**
+ *  Main entry point for the game. To start it, run the gradle tasks:
+ * `runJVM` - to run it with JAVA.
+ * `runJS` - to run it as HTML Web App.
+ * `runAndroidDebug` - to install and start it on an Android device.
+ */
 
 const val debug = false
-
-const val useTestTiles = false
 
 val resolution = Resolution(width = 1280, height = 1024)
 
 val playBackgroundMusic = false
 
-
-val reserveData = """
-            |[E,C,B,A,D,D,C,C]
-            |[D,A,E,C,B,E,D,B]
-            """.trimMargin()
-
-val levelData = """
-            |[A,B,C,D,E,B,D,A]
-            |[B,B,C,A,D,D,B,C]
-            |[A,C,B,E,E,B,D,C]
-            |[D,E,E,B,A,E,C,A]
-            |[E,D,A,E,C,C,D,B]
-            |[E,A,D,C,B,A,A,E]
-            """.trimMargin()
-
+val level = LevelFactory().createLevel(1)
 
 suspend fun main() = Korge(width = resolution.width,
         height = resolution.height,
@@ -46,8 +45,7 @@ suspend fun main() = Korge(width = resolution.width,
 
     val log = Logger("main")
 
-    val level1 = Level(levelData, reserveData)
-    val gameMechanics = GameMechanics(level1.field)
+    val gameMechanics = GameMechanics(level.field)
 
     JukeBox(this).apply {
         activated = playBackgroundMusic
@@ -56,7 +54,7 @@ suspend fun main() = Korge(width = resolution.width,
     }
     val soundMachine = SoundMachine(this).apply { load() }
 
-    val fieldRenderer = GameFieldRenderer(level1.field, resolution.width, resolution.height, fruits(), testTiles())
+    val fieldRenderer = GameFieldRenderer(level.field, resolution, fruits(), testTiles())
     addChild(fieldRenderer)
 
     val candyFont = resourcesVfs["fonts/candy.fnt"].readBitmapFont()
@@ -65,15 +63,15 @@ suspend fun main() = Korge(width = resolution.width,
     val scoring = Scoring(scoringRenderer)
     val animator = TileAnimator(this, fieldRenderer)
 
-    val gameFlow = GameFlow(level1, gameMechanics, animator, soundMachine, scoring)
+    val gameFlow = GameFlow(level, gameMechanics, animator, soundMachine, scoring)
     addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
 
-    onClick { } // Needed to activate debugging
+    onClick { } // Needed to activate debugging with F7
 
     onKeyDown {
         if (it.key == Key.P) {
             log.debug { "Print Field Data" }
-            println(level1.field)
+            println(level.field)
         }
         if (it.key == Key.D) {
             log.debug { "Show Debug Letters" }
@@ -82,19 +80,15 @@ suspend fun main() = Korge(width = resolution.width,
         if (it.key == Key.I) {
             log.debug { "Print Image Data" }
             println(fieldRenderer)
-            println("Renderer data is equal to field data: " + (fieldRenderer.toString() == level1.field.toString()))
+            println("Renderer data is equal to field data: " + (fieldRenderer.toString() == level.field.toString()))
         }
         if (it.key == Key.S) {
             log.debug { "Shuffle & Reset" }
-            scoring.reset()
             scoringRenderer.reset()
             gameFlow.reset()
-            level1.field.shuffle()
+            level.field.shuffle()
             fieldRenderer.updateImagesFromField()
             gameFlow.checkNewField()
         }
     }
 }
-
-
-class Resolution(val width: Int, val height: Int)

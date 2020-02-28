@@ -1,6 +1,5 @@
-package j4k.candycrush
+package j4k.candycrush.renderer
 
-import Resolution
 import com.soywiz.klock.milliseconds
 import com.soywiz.klogger.Logger
 import com.soywiz.korge.tween.hide
@@ -11,18 +10,22 @@ import com.soywiz.korge.view.text
 import com.soywiz.korim.font.BitmapFont
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.interpolation.Easing
+import j4k.candycrush.ScoreListener
+import j4k.candycrush.lib.Resolution
 import j4k.candycrush.math.PositionGrid
+import j4k.candycrush.renderer.animation.AnimationSettings
+import j4k.candycrush.renderer.animation.move
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-interface ScoreListener {
-    fun onScore(score: Int, multiplicator: Int = 1, pos: PositionGrid.Position)
-}
 
+/**
+ * Counts and displays the current high score.
+ */
 class ScoringRenderer(val view: Stage,
-        val resolution: Resolution,
-        val positionGrid: PositionGrid,
-        val candyFont: BitmapFont) : ScoreListener {
+                      val resolution: Resolution,
+                      val positionGrid: PositionGrid,
+                      val candyFont: BitmapFont) : ScoreListener {
 
     companion object {
         val log = Logger("ScoringRenderer")

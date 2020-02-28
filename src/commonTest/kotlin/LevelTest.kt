@@ -3,6 +3,9 @@ import j4k.candycrush.model.Tile
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+/**
+ * Tests for the [Level]
+ */
 class LevelTest {
 
     @Test

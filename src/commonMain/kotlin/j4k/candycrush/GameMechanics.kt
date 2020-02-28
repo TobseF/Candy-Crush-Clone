@@ -39,10 +39,6 @@ class GameMechanics(val field: GameField) {
         return getVerticalConnectedOrEmpty(pos) + getHorizontalConnectedOrEmpty(pos)
     }
 
-    fun getConnectedTiles(a: Position, b: Position): List<TileCell> {
-        return getConnectedTiles(a) + getConnectedTiles(b)
-    }
-
     fun removeTile(position: Position) {
         field[position] = Tile.Hole
     }
@@ -135,10 +131,6 @@ class GameMechanics(val field: GameField) {
         return getVerticalConnectedOrEmpty(pos).isNotEmpty()
     }
 
-    override fun toString(): String {
-        return field.toString()
-    }
-
     /**
      * Drops all tiles to ground level. After that, empty cells are only over tiles.
      * @return a list of the moves which were triggered by this drop
@@ -210,5 +202,9 @@ class GameMechanics(val field: GameField) {
     }
 
     private fun Position.isTile() = field[this].isTile()
+
+    override fun toString(): String {
+        return field.toString()
+    }
 
 }

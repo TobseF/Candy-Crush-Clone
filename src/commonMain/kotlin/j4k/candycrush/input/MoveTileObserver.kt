@@ -1,4 +1,4 @@
-package j4k.candycrush
+package j4k.candycrush.input
 
 import com.soywiz.korev.MouseButton
 import com.soywiz.korev.MouseEvent
@@ -9,11 +9,11 @@ import com.soywiz.korge.view.View
 import com.soywiz.korge.view.Views
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.distanceTo
-import j4k.candycrush.DragListener.DragEvent
+import j4k.candycrush.input.DragListener.DragEvent
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 
-class MoveTileObserver(override val view: View, private val grid: PositionGrid, private val moveTileListener: DragTileListener) :
+class MoveTileObserver(override val view: View, private val grid: PositionGrid, private val moveTileListener: IDragTileListener) :
         DragListener.DragEventListener,
         TouchComponent,
         MouseComponent {

@@ -1,4 +1,4 @@
-package j4k.candycrush
+package j4k.candycrush.audio
 
 import com.soywiz.klock.seconds
 import com.soywiz.korau.sound.NativeSound
@@ -10,6 +10,9 @@ import com.soywiz.korio.async.launch
 import com.soywiz.korio.file.std.resourcesVfs
 import j4k.candycrush.lib.Loadable
 
+/**
+ * Jukebox which plays background music in a random order.
+ */
 class JukeBox(override val stage: Stage) : Loadable {
 
     private var playing: NativeSoundChannel? = null

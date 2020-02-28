@@ -1,4 +1,4 @@
-package j4k.candycrush
+package j4k.candycrush.renderer.animation
 
 import com.soywiz.klock.TimeSpan
 import com.soywiz.korge.tween.get

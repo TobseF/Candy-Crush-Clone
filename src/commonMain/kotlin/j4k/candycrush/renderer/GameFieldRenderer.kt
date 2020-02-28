@@ -1,48 +1,61 @@
-package j4k.candycrush
+package j4k.candycrush.renderer
 
-import com.soywiz.korge.view.*
-import com.soywiz.korim.bitmap.BmpSlice
-import com.soywiz.korma.geom.Point
+import com.soywiz.korge.view.Container
+import j4k.candycrush.GameMechanics
+import j4k.candycrush.lib.Resolution
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
 import j4k.candycrush.model.Row
 import j4k.candycrush.model.Tile
-import j4k.candycrush.model.TileCell
 import kotlin.math.min
 
+/**
+ * Displays the tiles of a [GameField] with images out of [CandySprites].
+ */
 class GameFieldRenderer(private val gameField: GameField,
-        private val widthMax: Int,
-        heightMax: Int,
-        private val candies: CandySprites,
-        private val debgLetters: CandySprites) : Container() {
+                        private val max: Resolution,
+                        private val candies: CandySprites,
+                        private val debugLetters: CandySprites) : Container() {
+
+    /**
+     * Maps the [GameField] [Position]s to screen coordinates.
+     */
+    val positionGrid: PositionGrid
 
     private val sizeFix = 10
     private val paddingFix = -10
+
+    /**
+     * If `true` the renderer displays the [debugLetters] instead of the [candies]-images.
+     */
     private var debug = false
 
-    val positionGrid: PositionGrid
     /**
-     * Distance in PX from top
+     * Distance in px from top
      */
     private val top = 160
     /**
-     * Left and Right spacings in PX
+     * Left and Right spacings in px
      */
     private val padding = 20
 
     private val paddings = padding * 2
-    private val maxHorizontal = (widthMax - paddings) / gameField.columnsSize
-    private val maxVertical = (heightMax - top - paddings) / gameField.rowSize
+    private val maxHorizontal = (max.width - paddings) / gameField.columnsSize
+    private val maxVertical = (max.height - top - paddings) / gameField.rowSize
+    /**
+     * The size of one tile in px
+     */
     private val tileSize = getMaxTileSize() - sizeFix
+    /**
+     * Left padding which moves the field to the horizontal center
+     */
     private val centerPadding = calculateCenterPadding()
     /**
      * Percentage up or downsizing of the tiles.
      * `1` means no scaling. `0.8` means `80%` image sizes, which creates `20%` padding.
      */
     private val tileScale = 0.85
-
-    private val tileMap = mapOf(0 to 0, 1 to 1, 2 to 2, 3 to 6, 4 to 10)
 
     private val tiles = Array(gameField.rowSize) {
         Array<CandyImage?>(gameField.columnsSize) { null }
@@ -62,7 +75,7 @@ class GameFieldRenderer(private val gameField: GameField,
 
     private fun calculateCenterPadding(): Int {
         val tilesWidth = tileSize * gameField.columnsSize
-        return (widthMax - tilesWidth) / 2
+        return (max.width - tilesWidth) / 2
     }
 
     init {
@@ -91,8 +104,8 @@ class GameFieldRenderer(private val gameField: GameField,
 
     private fun addTile(columnIndex: Int, rowIndex: Int, tile: Tile): CandyImage {
         val pos = positionGrid.getCenterPosition(column = columnIndex, row = rowIndex)
-        val bitmap = getTile(tile.index)
-        val debugLetter = getDebugTile(tile.index)
+        val bitmap = candies.getTile(tile)
+        val debugLetter = debugLetters.getTile(tile)
         val tileSize = tileSize * tileScale
         val image = CandyImage(tileSize, pos, bitmap, debugLetter, tile)
         if (debug) {
@@ -108,30 +121,6 @@ class GameFieldRenderer(private val gameField: GameField,
         tiles[rowIndex][columnIndex] = image
         addChild(image)
         return image
-    }
-
-    class CandyImage(tileSize: Number,
-            position: Point,
-            val candy: BmpSlice,
-            val debugLetter: BmpSlice,
-            val tile: Tile) : Image(candy) {
-        init {
-            anchor(0.5, 0.5)
-            size(tileSize, tileSize)
-            position(position)
-        }
-
-        fun debug() {
-            bitmap = debugLetter
-        }
-
-        fun disableDebug() {
-            bitmap = candy
-        }
-
-        override fun toString(): String {
-            return "\n\n $tile: ($x,$y)"
-        }
     }
 
     fun toggleDebug() {
@@ -150,10 +139,6 @@ class GameFieldRenderer(private val gameField: GameField,
     fun disableDebug() {
         gameField.listAllPositions().forEach { tiles[it.row][it.column]?.disableDebug() }
     }
-
-    private fun getTile(index: Int) = candies.getTile(index)
-
-    private fun getDebugTile(index: Int) = debgLetters.getTile(index)
 
     private fun getTile(column: Int, row: Int): CandyImage {
         return tiles[row][column]
@@ -176,25 +161,8 @@ class GameFieldRenderer(private val gameField: GameField,
         tiles[position.row][position.column] = tile
     }
 
-    private fun removeTile(position: Position) {
-        removeImage(position)
-        removeTileFromGrid(position)
-    }
-
-    private fun removeImage(position: Position) {
-        removeChild(getTile(position))
-    }
-
     fun removeTileFromGrid(position: Position) {
         setTile(null, position)
-    }
-
-    private fun removeTiles(positions: List<Position>) {
-        positions.forEach(this::removeTile)
-    }
-
-    fun removeTilesCells(positions: List<TileCell>) {
-        removeTiles(positions.map { it.position })
     }
 
     fun swapTiles(a: Position, b: Position) {

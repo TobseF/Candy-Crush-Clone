@@ -1,4 +1,4 @@
-package j4k.candycrush
+package j4k.candycrush.renderer.animation
 
 import com.soywiz.klock.milliseconds
 import com.soywiz.klock.seconds
@@ -12,14 +12,17 @@ import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
-import j4k.candycrush.GameFieldRenderer.CandyImage
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.TileCell
+import j4k.candycrush.renderer.CandyImage
+import j4k.candycrush.renderer.GameFieldRenderer
 import kotlinx.coroutines.*
 
-
+/**
+ * Provides animation for tiles in a [GameFieldRenderer].
+ */
 class TileAnimator(override val view: Stage, private val renderer: GameFieldRenderer) : UpdateComponent {
 
     companion object {

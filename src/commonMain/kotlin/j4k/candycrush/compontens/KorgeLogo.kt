@@ -9,6 +9,9 @@ import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
 
+/**
+ * Displays a wiggling korge engine logo on the screen.
+ */
 class KorgeLogo(private val view: Stage) {
 
     private val minDegrees = (-16).degrees
