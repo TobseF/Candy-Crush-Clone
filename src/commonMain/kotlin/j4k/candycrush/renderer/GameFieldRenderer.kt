@@ -34,11 +34,11 @@ class GameFieldRenderer(private val gameField: GameField,
     /**
      * Distance in px from top
      */
-    private val top = 160
+    private val top = 250
     /**
      * Left and Right spacings in px
      */
-    private val padding = 20
+    private val padding = 0
 
     private val paddings = padding * 2
     private val maxHorizontal = (max.width - paddings) / gameField.columnsSize

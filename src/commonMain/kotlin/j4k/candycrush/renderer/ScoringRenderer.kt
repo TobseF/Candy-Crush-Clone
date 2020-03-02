@@ -31,6 +31,10 @@ class ScoringRenderer(val view: Stage,
         val log = Logger("ScoringRenderer")
     }
 
+    private val scoreSize = 90
+    private val multiplicatorSize = 120
+    private val paddingTop = 65
+
     private val scoreText: Text
     private val multiplicatorText: Text
     private var score = 0
@@ -40,9 +44,9 @@ class ScoringRenderer(val view: Stage,
     private val hideMultiplcator = AnimationSettings(1600.milliseconds, Easing.EASE_IN)
 
     init {
-        scoreText = view.text(score.toString(), textSize = 120.0, font = candyFont)
-        multiplicatorText = view.text(score.toString(), textSize = 150.0, font = candyFont) {
-            position(resolution.width - width - 550, 15)
+        scoreText = view.text(score.toString(), textSize = scoreSize.toDouble(), font = candyFont)
+        multiplicatorText = view.text(score.toString(), textSize = multiplicatorSize.toDouble(), font = candyFont) {
+            position(resolution.width - width - 185, paddingTop + 70)
             alpha = 0.0
         }
         multiplicatorText.text = "x2"
@@ -72,7 +76,7 @@ class ScoringRenderer(val view: Stage,
 
     private fun updateScorePosition() {
         scoreText.apply {
-            position(resolution.width - width - 160, 32)
+            position(resolution.width - width - 130, paddingTop)
         }
     }
 
@@ -80,18 +84,18 @@ class ScoringRenderer(val view: Stage,
         score(score)
         multiplicator(multiplicator)
         val coordinates = positionGrid.getPosition(pos)
-        val text = view.text(score.toString(), textSize = 120.0, font = candyFont) {
+        val scoreText = view.text(score.toString(), textSize = scoreSize.toDouble(), font = candyFont) {
             position(coordinates)
         }
         view.launch {
             launch {
-                text.hide(hideScore.time, hideScore.easing)
+                scoreText.hide(hideScore.time, hideScore.easing)
             }
             launch {
-                text.move(coordinates.add(Point(0, -60)), hideScore)
+                scoreText.move(coordinates.add(Point(0, -60)), hideScore)
             }
         }.invokeOnCompletion {
-            view.removeChild(text)
+            view.removeChild(scoreText)
         }
     }
 

@@ -4,19 +4,18 @@ import com.soywiz.korge.Korge
 import com.soywiz.korge.input.onClick
 import com.soywiz.korge.input.onKeyDown
 import com.soywiz.korim.color.Colors
-import com.soywiz.korim.font.readBitmapFont
-import com.soywiz.korio.file.std.resourcesVfs
 import j4k.candycrush.GameFlow
 import j4k.candycrush.GameMechanics
 import j4k.candycrush.LevelCheck
 import j4k.candycrush.Scoring
 import j4k.candycrush.audio.JukeBox
 import j4k.candycrush.audio.SoundMachine
-import j4k.candycrush.config.fruits
+import j4k.candycrush.config.donuts
 import j4k.candycrush.config.testTiles
 import j4k.candycrush.input.MoveTileObserver
 import j4k.candycrush.level.LevelFactory
 import j4k.candycrush.lib.Resolution
+import j4k.candycrush.lib.loadFont
 import j4k.candycrush.renderer.GameFieldRenderer
 import j4k.candycrush.renderer.LevelCheckRenderer
 import j4k.candycrush.renderer.ScoringRenderer
@@ -32,7 +31,8 @@ import j4k.candycrush.renderer.animation.TileAnimator
 
 const val debug = false
 
-val resolution = Resolution(width = 1280, height = 1024)
+val resolutionssSmall = Resolution(width = 540, height = 960)
+val resolution = Resolution(width = 810, height = 1440)
 
 val playBackgroundMusic = false
 
@@ -44,7 +44,7 @@ suspend fun main() = Korge(
     Logger.defaultLevel = Logger.Level.DEBUG
 
     val log = Logger("main")
-    val fruits = fruits()
+    val fruits = donuts()
 
     val gameMechanics = GameMechanics(level.field)
 
@@ -58,7 +58,7 @@ suspend fun main() = Korge(
     val fieldRenderer = GameFieldRenderer(level.field, resolution, fruits, testTiles())
     addChild(fieldRenderer)
 
-    val candyFont = resourcesVfs["fonts/candy.fnt"].readBitmapFont()
+    val candyFont = loadFont("candy.fnt")
 
     val levelCheck = LevelCheck(level)
     val levelRenderer = LevelCheckRenderer(this, levelCheck, fruits).apply { load() }
@@ -72,6 +72,7 @@ suspend fun main() = Korge(
 
     val gameFlow = GameFlow(level, gameMechanics, animator, soundMachine)
     gameFlow.swapTileListener.add(levelCheck)
+    gameFlow.deletionListener.add(levelCheck)
     gameFlow.deletionListener.add(scoring)
     addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
 

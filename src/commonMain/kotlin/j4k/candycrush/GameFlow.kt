@@ -119,7 +119,6 @@ class GameFlow(private val level: Level,
     }
 
     fun checkGame() {
-
     }
 
     fun onTilesDeletion(tiles: List<TileCell>) {

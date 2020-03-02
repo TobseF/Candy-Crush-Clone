@@ -18,6 +18,8 @@ class LevelCheck(val level: Level) : TileDeletionListener, SwapTileListener, Sco
         countTiles(tiles)
     }
 
+    val remaining: Int get() = ((level.maxMoves ?: 0) - moves).coerceAtLeast(0)
+
     fun failed(): Boolean {
         if (level.maxMoves != null && moves > level.maxMoves) {
             return true
@@ -34,17 +36,19 @@ class LevelCheck(val level: Level) : TileDeletionListener, SwapTileListener, Sco
         return if (goal == null) {
             false
         } else {
-            this.getCount() > goal
+            getCount(this) > goal
         }
     }
 
     private fun countTiles(tiles: List<TileCell>) {
         tiles.map { it.tile }.forEach { tile ->
-            tileCounters[tile] = tile.getCount() + 1
+            tileCounters[tile] = getCount(tile) + 1
         }
     }
 
-    private fun Tile.getCount(): Int = tileCounters.getOrElse(this) { 0 }
+    fun getCount(tile: Tile) = tileCounters.getOrElse(tile) { 0 }
+
+    fun getRemainingCount(tile: Tile) = ((tileGoals[tile] ?: 0) - getCount(tile)).coerceAtLeast(0)
 
     override fun onScore(score: Int, multiplicator: Int, pos: PositionGrid.Position) {
         totalScore += score

@@ -4,10 +4,9 @@ import com.soywiz.klock.seconds
 import com.soywiz.korge.tween.get
 import com.soywiz.korge.tween.tween
 import com.soywiz.korge.view.*
-import com.soywiz.korim.format.readBitmap
-import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.degrees
 import com.soywiz.korma.interpolation.Easing
+import j4k.candycrush.lib.loadImage
 
 /**
  * Displays a wiggling korge engine logo on the screen.
@@ -18,7 +17,7 @@ class KorgeLogo(private val view: Stage) {
     private val maxDegrees = (+16).degrees
 
     suspend fun addLogo() {
-        val korgeBitmap = resourcesVfs["korge.png"].readBitmap()
+        val korgeBitmap = loadImage("korge.png")
 
         val image = view.image(korgeBitmap) {
             rotation = maxDegrees
