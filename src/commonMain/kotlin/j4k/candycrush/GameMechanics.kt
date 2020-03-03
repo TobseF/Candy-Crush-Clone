@@ -39,6 +39,24 @@ class GameMechanics(val field: GameField) {
         return getVerticalConnectedOrEmpty(pos) + getHorizontalConnectedOrEmpty(pos)
     }
 
+    /**
+     * @return list of lines (`List<TileCell>`) which are at least with 3 equal [Tile]s in
+     * a horizontal or vertical connected line with the tile on the provided [Position].
+     * A line contains at least 3 [Tile]s.
+     * */
+    fun getConnectedLines(pos: Position): List<List<TileCell>> {
+        return listOf(getVerticalConnectedOrEmpty(pos), getHorizontalConnectedOrEmpty(pos)).filter { it.isNotEmpty() }
+    }
+
+    /**
+     * @return list of lines (`List<TileCell>`) which are at least with 3 equal [Tile]s in
+     * a horizontal or vertical connected line with the tile on the provided [Position]s.
+     * A line contains at least 3 [Tile]s. The result can contain a maximum of 4 lines.
+     */
+    fun getConnectedLines(a: Position, b: Position): List<List<TileCell>> {
+        return (getConnectedLines(a) + getConnectedLines(b)).filter { it.isNotEmpty() }
+    }
+
     fun removeTile(position: Position) {
         field[position] = Tile.Hole
     }

@@ -30,7 +30,7 @@ class GameFlow(private val level: Level,
 
     /**
      * A rush is the phase from deleting tiles -> let tiles fall to ground -> refill empty files.
-     * The rush counts the refills after an intial tile swap. This is useful to give a score bonus for multiple rushed.
+     * The rush counts the refills after an initial tile swap. This is useful to give a score bonus for multiple rushed.
      */
     private var rush = 1
 
@@ -48,7 +48,7 @@ class GameFlow(private val level: Level,
     }
 
     /**
-     * Swaps two tiles and triggers the removal of and refill of connected tiles. A illegal swap, will be swapped back.
+     * Swaps two tiles and triggers the removal of and refill of connected tiles. An illegal swap, will be swapped back.
      */
     private fun swapTiles(posA: Position, posB: Position) {
         onTileSwapTileEvent(posA, posB)
@@ -70,13 +70,15 @@ class GameFlow(private val level: Level,
         }
     }
 
-    fun getConnectedTiles(posA: Position, posB: Position): List<TileCell> {
-        val connectedA = mechanics.getConnectedTiles(posA)
-        val connectedB = mechanics.getConnectedTiles(posB)
-        if (connectedA.isNotEmpty() && connectedB.isNotEmpty()) {
+    /**
+     * @return all [TileCell]s which are least with 3 equal [Tile]s in a horizontal or vertical connected line.
+     */
+    private fun getConnectedTiles(posA: Position, posB: Position): List<TileCell> {
+        val lines = mechanics.getConnectedLines(posA, posB)
+        if (lines.size > 1) {
             rush += 1
         }
-        return connectedA + connectedB
+        return lines.flatten()
     }
 
 
@@ -118,9 +120,6 @@ class GameFlow(private val level: Level,
         rush = 1
     }
 
-    fun checkGame() {
-    }
-
     fun onTilesDeletion(tiles: List<TileCell>) {
         deletionListener.forEach { it.onTilesDeletion(rush, tiles) }
     }
@@ -128,6 +127,5 @@ class GameFlow(private val level: Level,
     fun onTileSwapTileEvent(posA: Position, posB: Position) {
         swapTileListener.forEach { it.onTileSwapTileEvent(posA, posB) }
     }
-
 
 }
