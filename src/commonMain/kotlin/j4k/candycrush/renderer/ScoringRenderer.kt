@@ -10,7 +10,8 @@ import com.soywiz.korge.view.text
 import com.soywiz.korim.font.BitmapFont
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.interpolation.Easing
-import j4k.candycrush.ScoreListener
+import j4k.candycrush.NewScoreEvent
+import j4k.candycrush.lib.EventBus
 import j4k.candycrush.lib.Resolution
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.renderer.animation.AnimationSettings
@@ -23,9 +24,10 @@ import kotlinx.coroutines.launch
  * Counts and displays the current high score.
  */
 class ScoringRenderer(val view: Stage,
-                      val resolution: Resolution,
-                      val positionGrid: PositionGrid,
-                      val candyFont: BitmapFont) : ScoreListener {
+        bus: EventBus,
+        val resolution: Resolution,
+        val positionGrid: PositionGrid,
+        val candyFont: BitmapFont) {
 
     companion object {
         val log = Logger("ScoringRenderer")
@@ -51,6 +53,7 @@ class ScoringRenderer(val view: Stage,
         }
         multiplicatorText.text = "x2"
         updateScorePosition()
+        bus.register<NewScoreEvent> { onScore(it) }
     }
 
 
@@ -80,11 +83,11 @@ class ScoringRenderer(val view: Stage,
         }
     }
 
-    override fun onScore(score: Int, multiplicator: Int, pos: PositionGrid.Position) {
-        score(score)
-        multiplicator(multiplicator)
-        val coordinates = positionGrid.getPosition(pos)
-        val scoreText = view.text(score.toString(), textSize = scoreSize.toDouble(), font = candyFont) {
+    private fun onScore(scoreEvent: NewScoreEvent) {
+        score(scoreEvent.score)
+        multiplicator(scoreEvent.multiplicator)
+        val coordinates = positionGrid.getPosition(scoreEvent.pos)
+        val scoreText = view.text(scoreEvent.score.toString(), textSize = scoreSize.toDouble(), font = candyFont) {
             position(coordinates)
         }
         view.launch {

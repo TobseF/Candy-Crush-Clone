@@ -9,20 +9,15 @@ import com.soywiz.korge.view.View
 import com.soywiz.korge.view.Views
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.distanceTo
+import j4k.candycrush.DragTileEvent
 import j4k.candycrush.input.DragListener.DragEvent
+import j4k.candycrush.lib.EventBus
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 
-class MoveTileObserver(override val view: View, private val grid: PositionGrid, private val moveTileListener: IDragTileListener) :
-        DragListener.DragEventListener,
-        TouchComponent,
-        MouseComponent {
-
-    data class MoveTileEvent(val start: Position, val end: Position)
-
-    interface MoveTileListener {
-        fun onMoveTileEvent(moveTileEvent: MoveTileEvent, runAfterMove: () -> Unit)
-    }
+class MoveTileObserver(override val view: View,
+        val bus: EventBus,
+        private val grid: PositionGrid) : DragListener.DragEventListener, TouchComponent, MouseComponent {
 
     private val dragListener = DragListener(view, grid.tileSize, this)
 
@@ -50,7 +45,7 @@ class MoveTileObserver(override val view: View, private val grid: PositionGrid, 
         val distance = start.distanceTo(end)
 
         if (distance == 1.0 && grid.isOnGrid(start) && grid.isOnGrid(end)) {
-            moveTileListener.onDragTileEvent(start, end)
+            bus.send(DragTileEvent(start, end))
         }
     }
 

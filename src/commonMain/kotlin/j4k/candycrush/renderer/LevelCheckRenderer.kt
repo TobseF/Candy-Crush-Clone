@@ -4,15 +4,17 @@ import com.soywiz.korge.view.*
 import com.soywiz.korim.bitmap.Bitmap
 import com.soywiz.korim.font.BitmapFont
 import j4k.candycrush.LevelCheck
-import j4k.candycrush.ScoreListener
+import j4k.candycrush.NewScoreEvent
+import j4k.candycrush.lib.EventBus
 import j4k.candycrush.lib.Loadable
 import j4k.candycrush.lib.loadFont
 import j4k.candycrush.lib.loadImage
-import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.model.Tile
 
-class LevelCheckRenderer(override val stage: Stage, val levelCheck: LevelCheck, val candies: CandySprites) : Loadable,
-        ScoreListener {
+class LevelCheckRenderer(override val stage: Stage,
+        bus: EventBus,
+        val levelCheck: LevelCheck,
+        val candies: CandySprites) : Loadable {
 
     private val paddingLeft = 120
     private val paddingTop = 80
@@ -25,6 +27,10 @@ class LevelCheckRenderer(override val stage: Stage, val levelCheck: LevelCheck, 
     private var tileCounter = mutableListOf<TileCounter>()
 
     private class TileCounter(val tile: Tile, val count: Text)
+
+    init {
+        bus.register<NewScoreEvent> { onScore() }
+    }
 
     override suspend fun load() {
         font = loadFont("candy-small.fnt")
@@ -72,7 +78,7 @@ class LevelCheckRenderer(override val stage: Stage, val levelCheck: LevelCheck, 
         }
     }
 
-    override fun onScore(score: Int, multiplicator: Int, pos: PositionGrid.Position) {
+    private fun onScore() {
         updateMoves()
         updateCounters()
     }

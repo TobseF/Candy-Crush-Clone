@@ -1,21 +1,22 @@
 package j4k.candycrush
 
-import j4k.candycrush.input.SwapTileListener
-import j4k.candycrush.math.PositionGrid
+import j4k.candycrush.lib.EventBus
 import j4k.candycrush.model.Level
 import j4k.candycrush.model.Tile
 import j4k.candycrush.model.TileCell
 
-class LevelCheck(val level: Level) : TileDeletionListener, SwapTileListener, ScoreListener {
+class LevelCheck(val level: Level, bus: EventBus) {
 
     private var totalScore = 0
-    var moves = 0
+    private var moves = 0
 
     private val tileCounters: MutableMap<Tile, Int> = mutableMapOf()
     private val tileGoals: Map<Tile, Int> = level.tileObjectives.map { it.tile to it.goal }.toMap()
 
-    override fun onTilesDeletion(rush: Int, tiles: List<TileCell>) {
-        countTiles(tiles)
+    init {
+        bus.register<NewScoreEvent> { onScore(it) }
+        bus.register<TileDeletionEvent> { countTiles(it.tiles) }
+        bus.register<SwapTileEvent> { onTileSwapTileEvent() }
     }
 
     val remaining: Int get() = ((level.maxMoves ?: 0) - moves).coerceAtLeast(0)
@@ -50,11 +51,11 @@ class LevelCheck(val level: Level) : TileDeletionListener, SwapTileListener, Sco
 
     fun getRemainingCount(tile: Tile) = ((tileGoals[tile] ?: 0) - getCount(tile)).coerceAtLeast(0)
 
-    override fun onScore(score: Int, multiplicator: Int, pos: PositionGrid.Position) {
-        totalScore += score
+    fun onScore(score: NewScoreEvent) {
+        totalScore += score.score
     }
 
-    override fun onTileSwapTileEvent(posA: PositionGrid.Position, posB: PositionGrid.Position) {
+    fun onTileSwapTileEvent() {
         moves++
     }
 

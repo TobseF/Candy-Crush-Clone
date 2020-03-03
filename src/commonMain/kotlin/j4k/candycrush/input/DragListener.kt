@@ -9,11 +9,6 @@ import com.soywiz.korge.view.Views
 import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.distanceTo
-import j4k.candycrush.math.PositionGrid.Position
-
-interface IDragTileListener {
-    fun onDragTileEvent(posA: Position, posB: Position)
-}
 
 class DragListener(override val view: View,
                    private val maximumDragDistance: Int,

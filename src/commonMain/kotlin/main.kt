@@ -14,6 +14,7 @@ import j4k.candycrush.config.donuts
 import j4k.candycrush.config.testTiles
 import j4k.candycrush.input.MoveTileObserver
 import j4k.candycrush.level.LevelFactory
+import j4k.candycrush.lib.EventBus
 import j4k.candycrush.lib.Resolution
 import j4k.candycrush.lib.loadFont
 import j4k.candycrush.renderer.GameFieldRenderer
@@ -31,7 +32,7 @@ import j4k.candycrush.renderer.animation.TileAnimator
 
 const val debug = false
 
-val resolutionssSmall = Resolution(width = 540, height = 960)
+val resolutionsSmall = Resolution(width = 540, height = 960)
 val resolution = Resolution(width = 810, height = 1440)
 
 val playBackgroundMusic = false
@@ -44,7 +45,8 @@ suspend fun main() = Korge(
     Logger.defaultLevel = Logger.Level.DEBUG
 
     val log = Logger("main")
-    val fruits = donuts()
+    val candies = donuts()
+    val bus = EventBus(this)
 
     val gameMechanics = GameMechanics(level.field)
 
@@ -55,26 +57,20 @@ suspend fun main() = Korge(
     }
     val soundMachine = SoundMachine(this).apply { load() }
 
-    val fieldRenderer = GameFieldRenderer(level.field, resolution, fruits, testTiles())
+    val fieldRenderer = GameFieldRenderer(level.field, resolution, candies, testTiles())
     addChild(fieldRenderer)
 
-    val candyFont = loadFont("candy.fnt")
+    val levelCheck = LevelCheck(level, bus)
+    LevelCheckRenderer(this, bus, levelCheck, candies).apply { load() }
+    Scoring(bus)
 
-    val levelCheck = LevelCheck(level)
-    val levelRenderer = LevelCheckRenderer(this, levelCheck, fruits).apply { load() }
-    val scoringRenderer = ScoringRenderer(this, resolution, fieldRenderer.positionGrid, candyFont)
-    val scoring = Scoring()
-    scoring.scoreListener.add(scoringRenderer)
-    scoring.scoreListener.add(levelCheck)
-    scoring.scoreListener.add(levelRenderer)
+    val candyFont = loadFont("candy.fnt")
+    val scoringRenderer = ScoringRenderer(this, bus, resolution, fieldRenderer.positionGrid, candyFont)
 
     val animator = TileAnimator(this, fieldRenderer)
 
-    val gameFlow = GameFlow(level, gameMechanics, animator, soundMachine)
-    gameFlow.swapTileListener.add(levelCheck)
-    gameFlow.deletionListener.add(levelCheck)
-    gameFlow.deletionListener.add(scoring)
-    addComponent(MoveTileObserver(this, fieldRenderer.positionGrid, gameFlow))
+    val gameFlow = GameFlow(level, bus, gameMechanics, animator, soundMachine)
+    addComponent(MoveTileObserver(this, bus, fieldRenderer.positionGrid))
 
     onClick { } // Needed to activate debugging with F7
 

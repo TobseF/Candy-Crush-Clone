@@ -1,39 +1,22 @@
 package j4k.candycrush
 
-import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.TileCell
-
-interface TileDeletionListener {
-    /**
-     * Triggered after the deletion of tiles
-     */
-    fun onTilesDeletion(rush: Int, tiles: List<TileCell>)
-}
-
-interface ScoreListener {
-    /**
-     * Triggered on a new score
-     */
-    fun onScore(score: Int, multiplicator: Int = 1, pos: Position)
-}
+import j4k.candycrush.lib.EventBus
 
 /**
- * Gives score points for [onTilesDeletion] events. Informs a [ScoreListener] for new additional score value.
+ * Gives score points for [onTilesDeletion] events. Sends a [NewScoreEvent] for every new additional score value.
  */
-class Scoring : TileDeletionListener {
+class Scoring(val bus: EventBus) {
 
     private val scorePerTile = 20
 
-    val scoreListener = mutableListOf<ScoreListener>()
-
-    override fun onTilesDeletion(rush: Int, tiles: List<TileCell>) {
-        val newScore = calculateScore(tiles.size, rush)
-        val center = tiles[tiles.size / 2]
-        onNewScore(newScore, rush, center.position)
+    init {
+        bus.register<TileDeletionEvent> { it.onTilesDeletion() }
     }
 
-    private fun onNewScore(score: Int, multiplicator: Int = 1, pos: Position) {
-        scoreListener.forEach { it.onScore(score, multiplicator, pos) }
+    private fun TileDeletionEvent.onTilesDeletion() {
+        val newScore = calculateScore(tiles.size, rush)
+        val center = tiles[tiles.size / 2]
+        bus.send(NewScoreEvent(newScore, rush, center.position))
     }
 
     fun calculateScore(numberOfBalls: Int, rush: Int): Int {

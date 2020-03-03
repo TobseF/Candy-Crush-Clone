@@ -4,8 +4,7 @@ import com.soywiz.klogger.Logger
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.audio.SoundMachine
-import j4k.candycrush.input.IDragTileListener
-import j4k.candycrush.input.SwapTileListener
+import j4k.candycrush.lib.EventBus
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.Level
 import j4k.candycrush.model.TileCell
@@ -15,14 +14,16 @@ import j4k.candycrush.renderer.animation.TileAnimator
  * Global game cycle which reacts on swapped tiles [onDragTileEvent].
  */
 class GameFlow(private val level: Level,
+        val bus: EventBus,
         private val mechanics: GameMechanics,
         private val animator: TileAnimator,
-        private val soundMachine: SoundMachine) : IDragTileListener {
+        private val soundMachine: SoundMachine) {
 
     private val field = level.field
 
-    var deletionListener = mutableListOf<TileDeletionListener>()
-    var swapTileListener = mutableListOf<SwapTileListener>()
+    init {
+        bus.register<DragTileEvent> { it.onDragTileEvent() }
+    }
 
     companion object {
         val log = Logger("GameFlow")
@@ -34,7 +35,7 @@ class GameFlow(private val level: Level,
      */
     private var rush = 1
 
-    override fun onDragTileEvent(posA: Position, posB: Position) {
+    private fun DragTileEvent.onDragTileEvent() {
         if (animator.isAnimationRunning()) {
             log.debug { "Skipping drag event because of moving tiles ($posA. $posB)" }
         } else if (field[posA].isNotTile() || field[posB].isNotTile()) {
@@ -51,7 +52,7 @@ class GameFlow(private val level: Level,
      * Swaps two tiles and triggers the removal of and refill of connected tiles. An illegal swap, will be swapped back.
      */
     private fun swapTiles(posA: Position, posB: Position) {
-        onTileSwapTileEvent(posA, posB)
+        bus.send(SwapTileEvent(posA, posB))
         rush = 1
         mechanics.swapTiles(posA, posB)
         val tilesToRemove: List<TileCell> = getConnectedTiles(posA, posB)
@@ -61,7 +62,7 @@ class GameFlow(private val level: Level,
         animator.animateSwap(posA, posB).invokeOnCompletion {
             soundMachine.playClear()
             animator.animateRemoveTiles(tilesToRemove)
-            onTilesDeletion(tilesToRemove)
+            bus.send(TileDeletionEvent(rush, (tilesToRemove)))
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
             animator.animateInsert(newTileMoves).invokeOnCompletion {
@@ -97,7 +98,7 @@ class GameFlow(private val level: Level,
             soundMachine.playMulti(rush)
             mechanics.removeTileCells(tilesToRemove)
             animator.animateRemoveTiles(tilesToRemove)
-            onTilesDeletion(tilesToRemove)
+            bus.send(TileDeletionEvent(rush, tilesToRemove))
             val nextMoves: List<Move> = mechanics.dropAllToGround()
             val newTileMoves: List<InsertMove> = getNewTileMoves()
             animator.animateMoves(nextMoves)
@@ -110,7 +111,6 @@ class GameFlow(private val level: Level,
         }
     }
 
-
     /**
      * @return new random tiles for each empty cell
      */
@@ -118,14 +118,6 @@ class GameFlow(private val level: Level,
 
     fun reset() {
         rush = 1
-    }
-
-    fun onTilesDeletion(tiles: List<TileCell>) {
-        deletionListener.forEach { it.onTilesDeletion(rush, tiles) }
-    }
-
-    fun onTileSwapTileEvent(posA: Position, posB: Position) {
-        swapTileListener.forEach { it.onTileSwapTileEvent(posA, posB) }
     }
 
 }
