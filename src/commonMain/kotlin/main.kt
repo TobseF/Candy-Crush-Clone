@@ -31,16 +31,23 @@ import j4k.candycrush.renderer.animation.TileAnimator
  */
 
 const val debug = false
+const val playBackgroundMusic = false
 
-val resolutionsSmall = Resolution(width = 540, height = 960)
-val resolution = Resolution(width = 810, height = 1440)
-
-val playBackgroundMusic = false
+/**
+ * Actual window size
+ */
+val resolution = Resolution(width = 540, height = 960)
+/**
+ * Virtual size which gets projected onto the [resolution]
+ */
+val virtualResolution = Resolution(width = 810, height = 1440)
+val backgroundColor = Colors["#2b2b2b"]
 
 val level = LevelFactory().createLevel(1)
 
 suspend fun main() = Korge(
-        width = resolution.width, height = resolution.height, bgcolor = Colors["#2b2b2b"], debug = debug) {
+        virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
+        width = resolution.width, height = resolution.height, bgcolor = backgroundColor, debug = debug) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
 
@@ -57,7 +64,7 @@ suspend fun main() = Korge(
     }
     val soundMachine = SoundMachine(this).apply { load() }
 
-    val fieldRenderer = GameFieldRenderer(level.field, resolution, candies, testTiles())
+    val fieldRenderer = GameFieldRenderer(level.field, virtualResolution, candies, testTiles())
     addChild(fieldRenderer)
 
     val levelCheck = LevelCheck(level, bus)
@@ -65,7 +72,7 @@ suspend fun main() = Korge(
     Scoring(bus)
 
     val candyFont = loadFont("candy.fnt")
-    val scoringRenderer = ScoringRenderer(this, bus, resolution, fieldRenderer.positionGrid, candyFont)
+    val scoringRenderer = ScoringRenderer(this, bus, virtualResolution, fieldRenderer.positionGrid, candyFont)
 
     val animator = TileAnimator(this, fieldRenderer)
 
