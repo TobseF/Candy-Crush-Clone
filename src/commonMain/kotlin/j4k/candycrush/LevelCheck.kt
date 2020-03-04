@@ -59,4 +59,10 @@ class LevelCheck(val level: Level, bus: EventBus) {
         moves++
     }
 
+    fun reset() {
+        moves = 0
+        totalScore = 0
+        tileCounters.clear()
+    }
+
 }

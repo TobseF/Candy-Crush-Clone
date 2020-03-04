@@ -4,6 +4,15 @@ This is a **🚧 WIP** match 3 game for a workshop with children on the [JavaLan
 
 ### [🎮 Run the game as WebApp](https://tobsef.github.io/Candy-Crush-Clone/)
 
+## ⌨ Controls
+
+* <kbd>H7</kbd> Switch to debug mode.
+* <kbd>P</kbd> **P**rint game field data. 
+* <kbd>D</kbd> Toggle tiles with **d**ebug letters.
+* <kbd>S</kbd> **S**huffle game field.
+* <kbd>R</kbd> **R**eload level.
+* <kbd>I</kbd> Print **I**mage data.
+
 ---
 
 You can open this project in IntelliJ IDEA by opening the folder or the build.gradle.kts file.

@@ -53,8 +53,7 @@ class LevelCheckRenderer(override val stage: Stage,
             }
             tileCounter.add(TileCounter(objective.tile, counter))
         }
-        updateMoves()
-        updateCounters()
+        update()
     }
 
     private fun updateCounters() {
@@ -79,6 +78,10 @@ class LevelCheckRenderer(override val stage: Stage,
     }
 
     private fun onScore() {
+        update()
+    }
+
+    fun update() {
         updateMoves()
         updateCounters()
     }

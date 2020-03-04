@@ -68,7 +68,7 @@ suspend fun main() = Korge(
     addChild(fieldRenderer)
 
     val levelCheck = LevelCheck(level, bus)
-    LevelCheckRenderer(this, bus, levelCheck, candies).apply { load() }
+    val checkRenderer = LevelCheckRenderer(this, bus, levelCheck, candies).apply { load() }
     Scoring(bus)
 
     val candyFont = loadFont("candy.fnt")
@@ -81,6 +81,15 @@ suspend fun main() = Korge(
 
     onClick { } // Needed to activate debugging with F7
 
+    fun resetState() {
+        scoringRenderer.reset()
+        gameFlow.reset()
+        levelCheck.reset()
+        fieldRenderer.updateImagesFromField()
+        gameFlow.checkNewField()
+        checkRenderer.update()
+    }
+
     onKeyDown {
         if (it.key == Key.P) {
             log.debug { "Print Field Data" }
@@ -90,18 +99,20 @@ suspend fun main() = Korge(
             log.debug { "Show Debug Letters" }
             fieldRenderer.toggleDebug()
         }
+        if (it.key == Key.S) {
+            log.debug { "Shuffle & Reset" }
+            resetState()
+            level.field.shuffle()
+        }
+        if (it.key == Key.R) {
+            log.debug { "Reload level" }
+            resetState()
+            level.reset()
+        }
         if (it.key == Key.I) {
             log.debug { "Print Image Data" }
             println(fieldRenderer)
             println("Renderer data is equal to field data: " + (fieldRenderer.toString() == level.field.toString()))
-        }
-        if (it.key == Key.S) {
-            log.debug { "Shuffle & Reset" }
-            scoringRenderer.reset()
-            gameFlow.reset()
-            level.field.shuffle()
-            fieldRenderer.updateImagesFromField()
-            gameFlow.checkNewField()
         }
     }
 }

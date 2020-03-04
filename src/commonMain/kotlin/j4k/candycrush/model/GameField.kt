@@ -98,6 +98,10 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         rows[position.row][position.column] = value
     }
 
+    fun set(tileCell: TileCell) {
+        set(tileCell.position, tileCell.tile)
+    }
+
     operator fun get(row: Int): Row = getRow(row)
 
     fun getRow(row: Int): Row {
@@ -106,10 +110,6 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         } else {
             Row.outOfSpace()
         }
-    }
-
-    override fun toString(): String {
-        return rows.joinToString("\n") { it.toString() }
     }
 
     override fun iterator(): Iterator<Row> = rows.iterator()
@@ -126,6 +126,14 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     fun shuffle() {
         listAllPositions().forEach { position -> set(position, Tile.randomTile()) }
+    }
+
+    fun reload(levelData: String) {
+        fromString(levelData).listAllCells().forEach(this::set)
+    }
+
+    override fun toString(): String {
+        return rows.joinToString("\n") { it.toString() }
     }
 }
 
