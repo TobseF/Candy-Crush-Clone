@@ -13,7 +13,7 @@ import kotlin.test.assertTrue
 class GameMechanicsTest {
 
     @Test
-    fun testGetRowField() {
+    fun testSwapTiles() {
         val field = GameField.fromString(
                 """
                 |[H, H, H, H]
@@ -29,6 +29,22 @@ class GameMechanicsTest {
                 |[H, H, H, H]
                 |[H, B, A, H]
                 |[H, H, H, H]
+                """.trimMargin(), field.toString())
+    }
+
+    @Test
+    fun removeTilesTest() {
+        val field = GameField.fromString(
+                """
+                |[A, A]
+                |[A, A]
+                """.trimMargin())
+        val mechanics = GameMechanics(field)
+        mechanics.removeTile(Position(0, 0))
+        mechanics.removeTile(Position(1, 1))
+        assertEquals("""
+                |[H, A]
+                |[A, H]
                 """.trimMargin(), field.toString())
     }
 
@@ -248,7 +264,7 @@ class GameMechanicsTest {
                 |[H, H, A, A]
                 |[H, H, H, H]
                 |[A, A, A, H]
-                """.trimMargin(), mechanics.toString())
+                """.trimMargin(), mechanics.field.toString())
         mechanics.dropToGround(1)
         assertEquals(
                 """
@@ -257,7 +273,7 @@ class GameMechanicsTest {
                 |[H, A, A, A]
                 |[H, A, H, H]
                 |[A, A, A, H]
-                """.trimMargin(), mechanics.toString())
+                """.trimMargin(), mechanics.field.toString())
         mechanics.dropToGround(2)
         assertEquals(
                 """
@@ -266,7 +282,7 @@ class GameMechanicsTest {
                 |[H, A, A, A]
                 |[H, A, A, H]
                 |[A, A, A, H]
-                """.trimMargin(), mechanics.toString())
+                """.trimMargin(), mechanics.field.toString())
         mechanics.dropToGround(3)
         assertEquals(
                 """
@@ -275,7 +291,7 @@ class GameMechanicsTest {
                 |[H, A, A, A]
                 |[H, A, A, A]
                 |[A, A, A, A]
-                """.trimMargin(), mechanics.toString())
+                """.trimMargin(), mechanics.field.toString())
 
     }
 

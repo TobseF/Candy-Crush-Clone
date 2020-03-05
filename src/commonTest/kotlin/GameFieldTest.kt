@@ -26,6 +26,11 @@ class GameFieldTest {
                         |[H, C, H, H]
                         """.trimMargin())
 
+
+        assertEquals(Tile.A, field.get(column = 1, row = 0))
+        assertEquals(Tile.B, field.get(column = 1, row = 1))
+        assertEquals(Tile.C, field.get(column = 1, row = 2))
+
         assertEquals(Tile.A, field[0][1])
         assertEquals(Tile.B, field[1][1])
         assertEquals(Tile.C, field[2][1])
