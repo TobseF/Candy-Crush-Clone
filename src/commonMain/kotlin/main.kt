@@ -3,6 +3,7 @@ import com.soywiz.korev.Key
 import com.soywiz.korge.Korge
 import com.soywiz.korge.input.onClick
 import com.soywiz.korge.input.onKeyDown
+import com.soywiz.korgw.GameWindow
 import com.soywiz.korim.color.Colors
 import j4k.candycrush.GameFlow
 import j4k.candycrush.GameMechanics
@@ -10,6 +11,7 @@ import j4k.candycrush.LevelCheck
 import j4k.candycrush.Scoring
 import j4k.candycrush.audio.JukeBox
 import j4k.candycrush.audio.SoundMachine
+import j4k.candycrush.compontens.Background
 import j4k.candycrush.config.donuts
 import j4k.candycrush.config.testTiles
 import j4k.candycrush.input.MoveTileObserver
@@ -46,14 +48,16 @@ val backgroundColor = Colors["#2b2b2b"]
 val level = LevelFactory().createLevel(1)
 
 suspend fun main() = Korge(
-        virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
-        width = resolution.width, height = resolution.height, bgcolor = backgroundColor, debug = debug) {
+        quality = GameWindow.Quality.QUALITY, virtualHeight = virtualResolution.height,
+        virtualWidth = virtualResolution.width, width = resolution.width, height = resolution.height,
+        bgcolor = backgroundColor, debug = debug) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
 
     val log = Logger("main")
     val candies = donuts()
     val bus = EventBus(this)
+    addComponent(Background(this).load())
 
     val gameMechanics = GameMechanics(level.field)
 
