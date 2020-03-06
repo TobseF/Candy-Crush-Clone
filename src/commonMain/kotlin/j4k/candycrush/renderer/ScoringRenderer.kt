@@ -7,12 +7,12 @@ import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.Text
 import com.soywiz.korge.view.position
 import com.soywiz.korge.view.text
-import com.soywiz.korim.font.BitmapFont
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.interpolation.Easing
 import j4k.candycrush.NewScoreEvent
 import j4k.candycrush.lib.EventBus
 import j4k.candycrush.lib.Resolution
+import j4k.candycrush.lib.Ressources
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.renderer.animation.AnimationSettings
 import j4k.candycrush.renderer.animation.move
@@ -27,7 +27,7 @@ class ScoringRenderer(val view: Stage,
         bus: EventBus,
         val resolution: Resolution,
         val positionGrid: PositionGrid,
-        val candyFont: BitmapFont) {
+        res: Ressources) {
 
     companion object {
         val log = Logger("ScoringRenderer")
@@ -45,9 +45,11 @@ class ScoringRenderer(val view: Stage,
     private val hideScore = AnimationSettings(1100.milliseconds, Easing.EASE_IN)
     private val hideMultiplcator = AnimationSettings(1600.milliseconds, Easing.EASE_IN)
 
+    private val font = res.fontCandy
+
     init {
-        scoreText = view.text(score.toString(), textSize = scoreSize.toDouble(), font = candyFont)
-        multiplicatorText = view.text(score.toString(), textSize = multiplicatorSize.toDouble(), font = candyFont) {
+        scoreText = view.text(score.toString(), textSize = scoreSize.toDouble(), font = font)
+        multiplicatorText = view.text(score.toString(), textSize = multiplicatorSize.toDouble(), font = font) {
             position(resolution.width - width - 185, paddingTop + 70)
             alpha = 0.0
         }
@@ -87,7 +89,7 @@ class ScoringRenderer(val view: Stage,
         score(scoreEvent.score)
         multiplicator(scoreEvent.multiplicator)
         val coordinates = positionGrid.getPosition(scoreEvent.pos)
-        val scoreText = view.text(scoreEvent.score.toString(), textSize = scoreSize.toDouble(), font = candyFont) {
+        val scoreText = view.text(scoreEvent.score.toString(), textSize = scoreSize.toDouble(), font = font) {
             position(coordinates)
         }
         view.launch {

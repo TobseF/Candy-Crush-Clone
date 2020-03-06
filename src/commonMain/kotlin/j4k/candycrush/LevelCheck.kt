@@ -5,7 +5,7 @@ import j4k.candycrush.model.Level
 import j4k.candycrush.model.Tile
 import j4k.candycrush.model.TileCell
 
-class LevelCheck(val level: Level, bus: EventBus) {
+class LevelCheck(val level: Level, val bus: EventBus) {
 
     private var totalScore = 0
     private var moves = 0
@@ -53,6 +53,9 @@ class LevelCheck(val level: Level, bus: EventBus) {
 
     fun onScore(score: NewScoreEvent) {
         totalScore += score.score
+        if (failed() || reachedGoals()) {
+            bus.send(GameOverEvent())
+        }
     }
 
     fun onTileSwapTileEvent() {

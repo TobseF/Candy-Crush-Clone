@@ -180,4 +180,11 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         image.move(target, fallingAnimation(move.target.row))
     }
 
+    fun reset() {
+        jobs.forEach {
+            it.cancel()
+        }
+        jobs.clear()
+    }
+
 }

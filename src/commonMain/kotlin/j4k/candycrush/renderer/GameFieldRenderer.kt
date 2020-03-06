@@ -1,5 +1,6 @@
 package j4k.candycrush.renderer
 
+import com.soywiz.klogger.Logger
 import com.soywiz.korge.view.Container
 import j4k.candycrush.GameMechanics
 import j4k.candycrush.lib.Resolution
@@ -14,9 +15,9 @@ import kotlin.math.min
  * Displays the tiles of a [GameField] with images out of [CandySprites].
  */
 class GameFieldRenderer(private val gameField: GameField,
-                        private val max: Resolution,
-                        private val candies: CandySprites,
-                        private val debugLetters: CandySprites) : Container() {
+        private val max: Resolution,
+        private val candies: CandySprites,
+        private val debugLetters: CandySprites) : Container() {
 
     /**
      * Maps the [GameField] [Position]s to screen coordinates.
@@ -35,6 +36,7 @@ class GameFieldRenderer(private val gameField: GameField,
      * Distance in px from top
      */
     private val top = 250
+
     /**
      * Left and Right spacings in px
      */
@@ -43,14 +45,17 @@ class GameFieldRenderer(private val gameField: GameField,
     private val paddings = padding * 2
     private val maxHorizontal = (max.width - paddings) / gameField.columnsSize
     private val maxVertical = (max.height - top - paddings) / gameField.rowSize
+
     /**
      * The size of one tile in px
      */
     private val tileSize = getMaxTileSize() - sizeFix
+
     /**
      * Left padding which moves the field to the horizontal center
      */
     private val centerPadding = calculateCenterPadding()
+
     /**
      * Percentage up or downsizing of the tiles.
      * `1` means no scaling. `0.8` means `80%` image sizes, which creates `20%` padding.
@@ -61,11 +66,13 @@ class GameFieldRenderer(private val gameField: GameField,
         Array<CandyImage?>(gameField.columnsSize) { null }
     }
 
+    companion object {
+        val log = Logger("GameFieldRenderer")
+    }
+
     init {
-        positionGrid = PositionGrid(x = centerPadding + paddingFix,
-                y = top,
-                columns = gameField.columnsSize,
-                rows = gameField.rowSize,
+        positionGrid = PositionGrid(
+                x = centerPadding + paddingFix, y = top, columns = gameField.columnsSize, rows = gameField.rowSize,
                 tileSize = tileSize)
     }
 
@@ -112,11 +119,12 @@ class GameFieldRenderer(private val gameField: GameField,
             image.debug()
         }
         if (gameField.isNotOnField(columnIndex, rowIndex)) {
-            throw IllegalArgumentException("Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
+            throw IllegalArgumentException(
+                    "Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
         }
         val oldTile = tiles[rowIndex][columnIndex]?.tile
         if (oldTile?.isTile() == true) {
-            throw IllegalArgumentException("Tried to overwrite tile $oldTile with $tile:  $columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
+            log.info { "Adding tile on non empty cell:  $oldTile with $tile:  $columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize}) " }
         }
         tiles[rowIndex][columnIndex] = image
         addChild(image)
@@ -141,8 +149,8 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     private fun getTile(column: Int, row: Int): CandyImage {
-        return tiles[row][column]
-                ?: throw IllegalArgumentException("No tile image for: $column,$row\n${getLogDebugData()}")
+        return tiles[row][column] ?: throw IllegalArgumentException(
+                "No tile image for: $column,$row\n${getLogDebugData()}")
     }
 
     private fun hasTile(column: Int, row: Int): Boolean = tiles[row][column] != null

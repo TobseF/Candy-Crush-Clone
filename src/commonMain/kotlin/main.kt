@@ -4,10 +4,7 @@ import com.soywiz.korge.Korge
 import com.soywiz.korge.input.onClick
 import com.soywiz.korge.input.onKeyDown
 import com.soywiz.korim.color.Colors
-import j4k.candycrush.GameFlow
-import j4k.candycrush.GameMechanics
-import j4k.candycrush.LevelCheck
-import j4k.candycrush.Scoring
+import j4k.candycrush.*
 import j4k.candycrush.audio.JukeBox
 import j4k.candycrush.audio.SoundMachine
 import j4k.candycrush.config.donuts
@@ -16,7 +13,7 @@ import j4k.candycrush.input.MoveTileObserver
 import j4k.candycrush.level.LevelFactory
 import j4k.candycrush.lib.EventBus
 import j4k.candycrush.lib.Resolution
-import j4k.candycrush.lib.loadFont
+import j4k.candycrush.lib.Ressources
 import j4k.candycrush.renderer.GameFieldRenderer
 import j4k.candycrush.renderer.LevelCheckRenderer
 import j4k.candycrush.renderer.ScoringRenderer
@@ -34,26 +31,30 @@ const val debug = false
 const val playBackgroundMusic = false
 
 /**
- * Actual window size
- */
-val resolution = Resolution(width = 540, height = 960)
-/**
- * Virtual size which gets projected onto the [resolution]
+ * Virtual size which gets projected onto the [windowResolution]
  */
 val virtualResolution = Resolution(width = 810, height = 1440)
+
+/**
+ * Actual window size
+ */
+val windowResolution = Resolution(width = 540, height = 960)
+
 val backgroundColor = Colors["#2b2b2b"]
 
 val level = LevelFactory().createLevel(1)
 
 suspend fun main() = Korge(
         virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
-        width = resolution.width, height = resolution.height, bgcolor = backgroundColor, debug = debug) {
+        width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
 
     val log = Logger("main")
     val candies = donuts()
     val bus = EventBus(this)
+
+    val res = Ressources().load()
 
     val gameMechanics = GameMechanics(level.field)
 
@@ -68,27 +69,44 @@ suspend fun main() = Korge(
     addChild(fieldRenderer)
 
     val levelCheck = LevelCheck(level, bus)
-    val checkRenderer = LevelCheckRenderer(this, bus, levelCheck, candies).apply { load() }
+    val checkRenderer = LevelCheckRenderer(this, bus, levelCheck, candies, res).apply { load() }
     Scoring(bus)
 
-    val candyFont = loadFont("candy.fnt")
-    val scoringRenderer = ScoringRenderer(this, bus, virtualResolution, fieldRenderer.positionGrid, candyFont)
+    val scoringRenderer = ScoringRenderer(this, bus, virtualResolution, fieldRenderer.positionGrid, res)
 
     val animator = TileAnimator(this, fieldRenderer)
 
     val gameFlow = GameFlow(level, bus, gameMechanics, animator, soundMachine)
     addComponent(MoveTileObserver(this, bus, fieldRenderer.positionGrid))
+    addChild(GameOverComponent(bus, res, virtualResolution))
 
     onClick { } // Needed to activate debugging with F7
 
     fun resetState() {
+        animator.reset()
         scoringRenderer.reset()
         gameFlow.reset()
         levelCheck.reset()
-        fieldRenderer.updateImagesFromField()
         gameFlow.checkNewField()
         checkRenderer.update()
     }
+
+    fun shuffe() {
+        log.debug { "Shuffle & Reset" }
+        resetState()
+        level.field.shuffle()
+        fieldRenderer.updateImagesFromField()
+    }
+
+    fun reloadLevel() {
+        log.debug { "Reload level" }
+        resetState()
+        level.reset()
+        fieldRenderer.updateImagesFromField()
+    }
+
+    bus.register<ResetGameEvent> { reloadLevel() }
+    bus.register<NextLevelEvent> { shuffe() }
 
     onKeyDown {
         if (it.key == Key.P) {
@@ -100,14 +118,10 @@ suspend fun main() = Korge(
             fieldRenderer.toggleDebug()
         }
         if (it.key == Key.S) {
-            log.debug { "Shuffle & Reset" }
-            resetState()
-            level.field.shuffle()
+            shuffe()
         }
         if (it.key == Key.R) {
-            log.debug { "Reload level" }
-            resetState()
-            level.reset()
+            reloadLevel()
         }
         if (it.key == Key.I) {
             log.debug { "Print Image Data" }

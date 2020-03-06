@@ -22,3 +22,9 @@ data class SwapTileEvent(val posA: Position, val posB: Position)
  * Triggered after the user drags a tile
  */
 data class DragTileEvent(val posA: Position, val posB: Position)
+
+class GameOverEvent
+
+class ResetGameEvent
+
+class NextLevelEvent

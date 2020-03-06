@@ -2,19 +2,19 @@ package j4k.candycrush.renderer
 
 import com.soywiz.korge.view.*
 import com.soywiz.korim.bitmap.Bitmap
-import com.soywiz.korim.font.BitmapFont
 import j4k.candycrush.LevelCheck
 import j4k.candycrush.NewScoreEvent
 import j4k.candycrush.lib.EventBus
 import j4k.candycrush.lib.Loadable
-import j4k.candycrush.lib.loadFont
+import j4k.candycrush.lib.Ressources
 import j4k.candycrush.lib.loadImage
 import j4k.candycrush.model.Tile
 
 class LevelCheckRenderer(override val stage: Stage,
         bus: EventBus,
         val levelCheck: LevelCheck,
-        val candies: CandySprites) : Loadable {
+        val candies: CandySprites,
+        val res: Ressources) : Loadable {
 
     private val paddingLeft = 120
     private val paddingTop = 80
@@ -22,7 +22,6 @@ class LevelCheckRenderer(override val stage: Stage,
 
     private val level = levelCheck.level
     private var moves: Text? = null
-    private lateinit var font: BitmapFont
     private lateinit var moveArrow: Bitmap
     private var tileCounter = mutableListOf<TileCounter>()
 
@@ -33,7 +32,6 @@ class LevelCheckRenderer(override val stage: Stage,
     }
 
     override suspend fun load() {
-        font = loadFont("candy-small.fnt")
         moveArrow = loadImage("text_arrows_move.png")
 
         stage.image(moveArrow) {
@@ -48,7 +46,7 @@ class LevelCheckRenderer(override val stage: Stage,
                 height = 64.0
                 width = 64.0
             }
-            val counter = stage.text(text = "88", textSize = 64.0, font = font) {
+            val counter = stage.text(text = "88", textSize = 64.0, font = res.fontSmall) {
                 position(x, paddingText)
             }
             tileCounter.add(TileCounter(objective.tile, counter))
@@ -68,7 +66,7 @@ class LevelCheckRenderer(override val stage: Stage,
         if (level.maxMoves != null) {
             val moves = this.moves
             if (moves == null) {
-                this.moves = stage.text(text = remainingMoves, textSize = 64.0, font = font) {
+                this.moves = stage.text(text = remainingMoves, textSize = 64.0, font = res.fontSmall) {
                     position(paddingLeft, paddingText)
                 }
             } else {
