@@ -19,12 +19,16 @@ class Ressources {
     lateinit var fontCandy: BitmapFont
     lateinit var fontSmall: BitmapFont
     lateinit var imageButton: Bitmap
+    lateinit var imageBackground: Bitmap
     lateinit var messageBox: NinePatchBitmap32
 
     suspend fun load(): Ressources {
+        imageButton = loadImage("button.png")
+        imageBackground = loadImage("background.png")
+
         fontCandy = loadFont("candy.fnt")
         fontSmall = loadFont("candy-small.fnt")
-        imageButton = loadImage("button.png")
+
         messageBox = loadNinePatch("message_box.9.png")
         return this
     }

@@ -7,6 +7,7 @@ import com.soywiz.korim.color.Colors
 import j4k.candycrush.*
 import j4k.candycrush.audio.JukeBox
 import j4k.candycrush.audio.SoundMachine
+import j4k.candycrush.compontens.Background
 import j4k.candycrush.config.donuts
 import j4k.candycrush.config.testTiles
 import j4k.candycrush.input.MoveTileObserver
@@ -63,6 +64,9 @@ suspend fun main() = Korge(
         load()
         play()
     }
+
+    addComponent(Background(this, res))
+
     val soundMachine = SoundMachine(this).apply { load() }
 
     val fieldRenderer = GameFieldRenderer(level.field, virtualResolution, candies, testTiles())
