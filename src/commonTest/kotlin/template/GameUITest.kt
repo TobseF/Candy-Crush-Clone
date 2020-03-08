@@ -22,7 +22,7 @@ class MyUITest : ViewsForTesting() {
         rect.onClick {
             log += "clicked"
         }
-        assertEquals(1, views.stage.children.size)
+        assertEquals(1, views.stage.numChildren)
         rect.simulateClick()
         assertEquals(true, rect.isVisibleToUser())
         tween(rect::x[-102], time = 10.seconds)
