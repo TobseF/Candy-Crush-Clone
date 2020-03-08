@@ -3,7 +3,7 @@ import com.soywiz.korge.gradle.korge
 
 buildscript {
 
-    val korgePluginVersion = "1.5.7.0"
+    val korgePluginVersion = "1.10.0.0"
 
     repositories {
         mavenLocal()
@@ -22,6 +22,4 @@ korge {
     id = "j4k.candycrush"
     name = "Candy Crush"
     gameCategory = GameCategory.ARCADE
-
-    //dependencyMulti("com.soywiz:korau-mp3:0.19.1")
 }

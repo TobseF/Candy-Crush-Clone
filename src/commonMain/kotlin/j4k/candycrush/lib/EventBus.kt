@@ -10,9 +10,7 @@ import kotlin.reflect.KClass
  */
 class EventBus(private val scope: CoroutineScope) {
 
-    companion object {
-        val globalBus = GlobalBus()
-    }
+    private val globalBus = GlobalBus()
 
     fun send(message: Any) {
         scope.launchImmediately {
