@@ -194,4 +194,6 @@ class GameFieldRenderer(private val gameField: GameField,
         setTile(null, move.tile)
     }
 
+    fun isEqualWithField() = toString() == gameField.toString()
+
 }

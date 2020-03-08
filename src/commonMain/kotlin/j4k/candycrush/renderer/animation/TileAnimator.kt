@@ -3,7 +3,6 @@ package j4k.candycrush.renderer.animation
 import com.soywiz.klock.milliseconds
 import com.soywiz.klock.seconds
 import com.soywiz.klogger.Logger
-import com.soywiz.korge.component.UpdateComponent
 import com.soywiz.korge.tween.*
 import com.soywiz.korge.view.Image
 import com.soywiz.korge.view.Stage
@@ -23,10 +22,14 @@ import kotlinx.coroutines.*
 /**
  * Provides animation for tiles in a [GameFieldRenderer].
  */
-class TileAnimator(override val view: Stage, private val renderer: GameFieldRenderer) : UpdateComponent {
+class TileAnimator(val view: Stage, private val renderer: GameFieldRenderer) {
 
     companion object {
         val log = Logger("TileAnimator")
+    }
+
+    data class ImagePosition(val image: Image, val point: IPoint) {
+        override fun toString() = point.toString()
     }
 
     private val jobs = mutableListOf<Job>()
@@ -35,8 +38,6 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
     private val moveForward = AnimationSettings(1.seconds, Easing.EASE_IN_OUT_ELASTIC)
     private val moveBackward = AnimationSettings(550.milliseconds, Easing.EASE_IN_OUT_ELASTIC)
     private val hide = AnimationSettings(200.milliseconds, Easing.EASE_IN)
-
-    override fun update(ms: Double) {}
 
     private fun fallingAnimation(rows: Int) = AnimationSettings((500 * rows).milliseconds, easing = Easing.EASE_IN)
 
@@ -55,16 +56,16 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
 
     private fun animateRemoveTile(image: Image) {
 
-        addJob(view.launch {
+        launch {
             image.hide(hide.time, hide.easing)
-        })
-        addJob(view.launch {
+        }
+        launch {
             val scale = 1.4
             image.scaleTo(scale, scale, hide.time, hide.easing)
-        })
-        addJob(view.launch {
+        }
+        launch {
             image.rotateTo(180.degrees, hide.time, hide.easing)
-        })
+        }
     }
 
     fun animateRemoveTiles(positions: List<TileCell>) {
@@ -74,25 +75,20 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
     fun animateMoves(moves: List<Move>): Job {
         val imageMoves = moves.map { it.prepare() }
         imageMoves.forEach { renderer.move(it.move) }
-        return addJob(view.launch {
+        return launch {
             imageMoves.forEach {
                 launch {
                     animateMove(it)
                 }
             }
-        })
-    }
-
-    fun addJob(job: Job): Job {
-        jobs.add(job)
-        return job
+        }
     }
 
     private fun Move.prepare(): ImageMove {
         return ImageMove(this, this.tile.getImagePosition(), positionGrid.getCenterPosition(this.target))
     }
 
-    suspend fun animateMove(move: ImageMove) {
+    private suspend fun animateMove(move: ImageMove) {
         move.tile.image.move(move.target, fallingAnimation(move.distance().toInt()))
     }
 
@@ -105,19 +101,19 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         val endPos: ImagePosition = end.getImagePosition()
         log.debug { "Animate tile swap: $start-$end: $startPos - $endPos" }
         renderer.swapTiles(start, end)
-        addJob(view.launch {
+        launch {
             startPos.image.move(endPos.point, moveForward)
-        })
-        return addJob(view.async {
+        }
+        return async {
             endPos.image.move(startPos.point, moveForward)
-        })
+        }
     }
 
     fun animateIllegalSwap(start: Position, end: Position): Job {
         val startPos: ImagePosition = start.getImagePosition()
         val endPos: ImagePosition = end.getImagePosition()
         log.debug { "Animate illegal swap: $start-$end: $startPos - $endPos" }
-        return addJob(view.async {
+        return async {
             launch {
                 startPos.image.move(endPos.point, moveForward)
                 startPos.image.move(startPos.point, moveBackward)
@@ -126,28 +122,13 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
                 endPos.image.move(startPos.point, moveForward)
                 endPos.image.move(endPos.point, moveBackward)
             }
-        })
+        }
     }
 
-
-    fun Position.getImagePosition(): ImagePosition {
-        return ImagePosition(getImage(), this.getImagePoint())
-    }
-
-    fun Position.getImagePoint(): Point {
-        return positionGrid.getCenterPosition(this)
-    }
-
-    private fun Position.getImage(): CandyImage = renderer.getTile(this)
-    private fun Position.hasImage(): Boolean = renderer.hasTile(this)
-
-    data class ImagePosition(val image: Image, val point: IPoint) {
-        override fun toString() = point.toString()
-    }
 
     fun animateInsert(moves: List<InsertMove>): Job {
         val moveByColumn: Map<Int, List<InsertMove>> = moves.groupBy { it.target.column }
-        return addJob(view.launch {
+        return launch {
             moveByColumn.keys.forEach { column ->
                 val columnMoves = moveByColumn[column]?.sorted()
                 columnMoves?.forEachIndexed { row, move ->
@@ -156,7 +137,7 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
                     }
                 }
             }
-        })
+        }
     }
 
     fun isAnimationRunning(): Boolean {
@@ -167,7 +148,7 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
         return active
     }
 
-    suspend fun animateInsert(move: InsertMove, delay: Long, scope: CoroutineScope) {
+    private suspend fun animateInsert(move: InsertMove, delay: Long, scope: CoroutineScope) {
         val image = renderer.addTile(move.target, move.tile)
         image.alpha = 0.0
         val target = move.target.getImagePoint()
@@ -185,6 +166,27 @@ class TileAnimator(override val view: Stage, private val renderer: GameFieldRend
             it.cancel()
         }
         jobs.clear()
+    }
+
+    private fun launch(block: suspend CoroutineScope.() -> Unit): Job {
+        return addJob(view.launch(block = block))
+    }
+
+    private fun async(block: suspend CoroutineScope.() -> Unit): Job {
+        return addJob(view.async(block = block))
+    }
+
+    private fun addJob(job: Job) = job.also { jobs.add(it) }
+
+    private fun Position.getImage(): CandyImage = renderer.getTile(this)
+    private fun Position.hasImage(): Boolean = renderer.hasTile(this)
+
+    private fun Position.getImagePosition(): ImagePosition {
+        return ImagePosition(getImage(), this.getImagePoint())
+    }
+
+    private fun Position.getImagePoint(): Point {
+        return positionGrid.getCenterPosition(this)
     }
 
 }

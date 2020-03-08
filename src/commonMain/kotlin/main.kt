@@ -95,7 +95,7 @@ suspend fun main() = Korge(
         checkRenderer.update()
     }
 
-    fun shuffe() {
+    fun shuffle() {
         log.debug { "Shuffle & Reset" }
         resetState()
         level.field.shuffle()
@@ -110,27 +110,33 @@ suspend fun main() = Korge(
     }
 
     bus.register<ResetGameEvent> { reloadLevel() }
-    bus.register<NextLevelEvent> { shuffe() }
+    bus.register<NextLevelEvent> { shuffle() }
 
     onKeyDown {
-        if (it.key == Key.P) {
-            log.debug { "Print Field Data" }
-            println(level.field)
-        }
-        if (it.key == Key.D) {
-            log.debug { "Show Debug Letters" }
-            fieldRenderer.toggleDebug()
-        }
-        if (it.key == Key.S) {
-            shuffe()
-        }
-        if (it.key == Key.R) {
-            reloadLevel()
-        }
-        if (it.key == Key.I) {
-            log.debug { "Print Image Data" }
-            println(fieldRenderer)
-            println("Renderer data is equal to field data: " + (fieldRenderer.toString() == level.field.toString()))
+        when (it.key) {
+            Key.P -> {
+                log.debug { "Print Field Data" }
+                println(level.field)
+            }
+            Key.D -> {
+                log.debug { "Show Debug Letters" }
+                fieldRenderer.toggleDebug()
+            }
+            Key.S -> {
+                shuffle()
+            }
+            Key.R -> {
+                reloadLevel()
+            }
+            Key.I -> {
+                log.debug { "Print Image Data" }
+                println(fieldRenderer)
+                println("Renderer data is equal to field data: " + fieldRenderer.isEqualWithField())
+            }
+            else -> {
+                log.debug { "Pressed unmapped key: $it" }
+            }
+
         }
     }
 }
