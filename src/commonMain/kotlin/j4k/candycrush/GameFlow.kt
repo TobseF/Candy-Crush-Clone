@@ -1,6 +1,7 @@
 package j4k.candycrush
 
 import com.soywiz.klogger.Logger
+import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.audio.SoundMachine
@@ -27,6 +28,14 @@ class GameFlow(private val level: Level,
 
     companion object {
         val log = Logger("GameFlow")
+
+        suspend operator fun invoke(injector: AsyncInjector): GameFlow {
+            injector.run {
+                return GameFlow(get(), get(), get(), get(), get()).apply {
+                    injector.mapInstance(this)
+                }
+            }
+        }
     }
 
     /**

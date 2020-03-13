@@ -1,11 +1,20 @@
 package j4k.candycrush
 
+import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.lib.EventBus
 
 /**
  * Gives score points for [onTilesDeletion] events. Sends a [NewScoreEvent] for every new additional score value.
  */
 class Scoring(val bus: EventBus) {
+
+    companion object {
+        suspend operator fun invoke(injector: AsyncInjector): Scoring {
+            injector.run {
+                return Scoring(get())
+            }
+        }
+    }
 
     private val scorePerTile = 20
 

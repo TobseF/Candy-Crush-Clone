@@ -4,6 +4,7 @@ import com.soywiz.korge.view.image
 import com.soywiz.korge.view.ninePatch
 import com.soywiz.korge.view.position
 import com.soywiz.korim.bitmap.NinePatchBitmap32
+import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.Point
 import j4k.candycrush.GameOverEvent
 import j4k.candycrush.NextLevelEvent
@@ -26,6 +27,14 @@ class GameOverComponent(bus: EventBus, res: Ressources, resolution: Resolution) 
 
         addChild(CandyButton("Restart", ResetGameEvent(), bus, res, textPos.top(200), this::hide))
         addChild(CandyButton("Next", NextLevelEvent(), bus, res, textPos.top(310), this::hide))
+    }
+
+    companion object {
+        suspend operator fun invoke(injector: AsyncInjector): GameOverComponent {
+            injector.run {
+                return GameOverComponent(get(), get(), get())
+            }
+        }
     }
 
     fun hide() {

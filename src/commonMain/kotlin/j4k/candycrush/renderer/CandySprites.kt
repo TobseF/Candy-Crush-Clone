@@ -8,7 +8,7 @@ import j4k.candycrush.model.Tile
 /**
  * A [SpriteBatch] with images for all [Tile]s.
  */
-class CandySprites(x: Int = 0, y: Int = 0, spriteSize: Int = 16, columns: Int, rows: Int, bitmap: Bitmap) {
+open class CandySprites(x: Int = 0, y: Int = 0, spriteSize: Int = 16, columns: Int, rows: Int, bitmap: Bitmap) {
 
     private val sprites = SpriteBatch(x, y, spriteSize, columns, rows, bitmap)
 

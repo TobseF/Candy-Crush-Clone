@@ -1,11 +1,20 @@
 package j4k.candycrush
 
+import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.lib.EventBus
 import j4k.candycrush.model.Level
 import j4k.candycrush.model.Tile
 import j4k.candycrush.model.TileCell
 
 class LevelCheck(val level: Level, val bus: EventBus) {
+
+    companion object {
+        suspend operator fun invoke(injector: AsyncInjector): LevelCheck {
+            injector.run {
+                return LevelCheck(get(), get()).apply { injector.mapInstance(this) }
+            }
+        }
+    }
 
     private var totalScore = 0
     private var moves = 0

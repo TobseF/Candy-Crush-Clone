@@ -7,6 +7,7 @@ import com.soywiz.korge.tween.*
 import com.soywiz.korge.view.Image
 import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.position
+import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.degrees
@@ -26,6 +27,9 @@ class TileAnimator(val view: Stage, private val renderer: GameFieldRenderer) {
 
     companion object {
         val log = Logger("TileAnimator")
+        suspend operator fun invoke(injector: AsyncInjector) {
+            injector.mapSingleton { TileAnimator(get(), get()) }
+        }
     }
 
     data class ImagePosition(val image: Image, val point: IPoint) {
@@ -40,7 +44,6 @@ class TileAnimator(val view: Stage, private val renderer: GameFieldRenderer) {
     private val hide = AnimationSettings(200.milliseconds, Easing.EASE_IN)
 
     private fun fallingAnimation(rows: Int) = AnimationSettings((500 * rows).milliseconds, easing = Easing.EASE_IN)
-
 
     private fun animateRemoveTiles(tile: TileCell) = animateRemoveTiles(tile.position)
 

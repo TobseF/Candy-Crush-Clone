@@ -7,6 +7,7 @@ import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.Text
 import com.soywiz.korge.view.position
 import com.soywiz.korge.view.text
+import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.interpolation.Easing
 import j4k.candycrush.NewScoreEvent
@@ -31,6 +32,11 @@ class ScoringRenderer(val view: Stage,
 
     companion object {
         val log = Logger("ScoringRenderer")
+        suspend operator fun invoke(injector: AsyncInjector) {
+            injector.mapSingleton {
+                ScoringRenderer(get(), get(), get(), get(), get())
+            }
+        }
     }
 
     private val scoreSize = 90

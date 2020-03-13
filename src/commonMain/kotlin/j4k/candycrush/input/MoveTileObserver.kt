@@ -5,8 +5,9 @@ import com.soywiz.korev.MouseEvent
 import com.soywiz.korev.TouchEvent
 import com.soywiz.korge.component.MouseComponent
 import com.soywiz.korge.component.TouchComponent
-import com.soywiz.korge.view.View
+import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.Views
+import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.geom.distanceTo
 import j4k.candycrush.DragTileEvent
@@ -15,9 +16,17 @@ import j4k.candycrush.lib.EventBus
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 
-class MoveTileObserver(override val view: View,
+class MoveTileObserver(override val view: Stage,
         val bus: EventBus,
         private val grid: PositionGrid) : DragListener.DragEventListener, TouchComponent, MouseComponent {
+
+    companion object {
+        suspend operator fun invoke(injector: AsyncInjector): MoveTileObserver {
+            injector.run {
+                return MoveTileObserver(get(), get(), get())
+            }
+        }
+    }
 
     private val dragListener = DragListener(view, grid.tileSize, this)
 

@@ -33,6 +33,8 @@ enum class Tile {
 
     fun isOutOfSpace() = this == OutOfSpace
 
+    fun isEmpty() = !isHole()
+
     companion object {
 
         private val toTile = mutableMapOf<String, Tile>()

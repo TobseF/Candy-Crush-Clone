@@ -2,6 +2,7 @@ package j4k.candycrush.renderer
 
 import com.soywiz.klogger.Logger
 import com.soywiz.korge.view.Container
+import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.GameMechanics
 import j4k.candycrush.lib.Resolution
 import j4k.candycrush.math.PositionGrid
@@ -68,6 +69,15 @@ class GameFieldRenderer(private val gameField: GameField,
 
     companion object {
         val log = Logger("GameFieldRenderer")
+
+        suspend operator fun invoke(injector: AsyncInjector): GameFieldRenderer {
+            injector.run {
+                val renderer = GameFieldRenderer(get(), get(), get(), get())
+                mapInstance(renderer)
+                mapInstance(renderer.positionGrid)
+                return renderer
+            }
+        }
     }
 
     init {
@@ -122,9 +132,10 @@ class GameFieldRenderer(private val gameField: GameField,
             throw IllegalArgumentException(
                     "Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
         }
-        val oldTile = tiles[rowIndex][columnIndex]?.tile
-        if (oldTile?.isTile() == true) {
-            log.info { "Adding tile on non empty cell:  $oldTile with $tile:  $columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize}) " }
+        val candyImage = tiles[rowIndex][columnIndex]
+        if (candyImage != null && candyImage.tile.isTile()) {
+            log.info { "Adding tile on non empty cell:  ${candyImage.tile} with $tile:  $columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize}) " }
+            removeChild(candyImage)
         }
         tiles[rowIndex][columnIndex] = image
         addChild(image)
