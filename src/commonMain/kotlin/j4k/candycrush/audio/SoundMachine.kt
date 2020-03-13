@@ -2,24 +2,25 @@ package j4k.candycrush.audio
 
 import com.soywiz.korau.sound.NativeSound
 import com.soywiz.korau.sound.readNativeSound
-import com.soywiz.korge.view.Stage
+import com.soywiz.korinject.AsyncDependency
 import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korio.file.std.resourcesVfs
-import j4k.candycrush.lib.Loadable
 
 /**
  * Plays game sounds.
  */
-class SoundMachine(override val stage: Stage) : Loadable {
+class SoundMachine : AsyncDependency {
 
     /**
      * Removing tiles from the field
      */
     private var clear: NativeSound? = null
+
     /**
      * Wrong tile move, which will be toggled back
      */
     private var wrongMove: NativeSound? = null
+
     /**
      * Tile git's the ground. Used for now.
      */
@@ -37,18 +38,14 @@ class SoundMachine(override val stage: Stage) : Loadable {
     val playSounds = true
 
     companion object {
-        suspend operator fun invoke(injector: AsyncInjector) {
-            injector.mapSingleton {
-                SoundMachine(get()).apply {
-                    load()
-                }
-            }
+        operator fun invoke(injector: AsyncInjector) {
+            injector.mapSingleton { SoundMachine() }
         }
     }
 
     private suspend fun newSound(fileName: String) = resourcesVfs["sounds/$fileName"].readNativeSound()
 
-    override suspend fun load() {
+    override suspend fun init() {
         if (playSounds) {
             clear = newSound("clear.mp3")
             multi2 = newSound("multi_2.mp3")

@@ -6,6 +6,7 @@ import com.soywiz.korim.bitmap.readNinePatch
 import com.soywiz.korim.font.BitmapFont
 import com.soywiz.korim.font.readBitmapFont
 import com.soywiz.korim.format.readBitmap
+import com.soywiz.korinject.AsyncDependency
 import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korio.file.std.resourcesVfs
 
@@ -15,15 +16,11 @@ suspend fun loadFont(fileName: String): BitmapFont = resourcesVfs["fonts/$fileNa
 
 suspend fun loadNinePatch(fileName: String): NinePatchBitmap32 = resourcesVfs["images/$fileName"].readNinePatch()
 
-class Ressources {
+class Ressources : AsyncDependency {
 
     companion object {
-        suspend operator fun invoke(injector: AsyncInjector) {
-            injector.mapSingleton {
-                Ressources().apply {
-                    load()
-                }
-            }
+        operator fun invoke(injector: AsyncInjector) {
+            injector.mapSingleton { Ressources() }
         }
     }
 
@@ -33,7 +30,7 @@ class Ressources {
     lateinit var imageBackground: Bitmap
     lateinit var messageBox: NinePatchBitmap32
 
-    suspend fun load(): Ressources {
+    override suspend fun init() {
         imageButton = loadImage("button.png")
         imageBackground = loadImage("background.png")
 
@@ -41,8 +38,6 @@ class Ressources {
         fontSmall = loadFont("candy-small.fnt")
 
         messageBox = loadNinePatch("message_box.9.png")
-        return this
     }
-
 
 }

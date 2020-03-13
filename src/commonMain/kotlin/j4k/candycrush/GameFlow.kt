@@ -15,7 +15,7 @@ import j4k.candycrush.renderer.animation.TileAnimator
  * Global game cycle which reacts on swapped tiles [onDragTileEvent].
  */
 class GameFlow(private val level: Level,
-        val bus: EventBus,
+        private val bus: EventBus,
         private val mechanics: GameMechanics,
         private val animator: TileAnimator,
         private val soundMachine: SoundMachine) {
@@ -30,11 +30,10 @@ class GameFlow(private val level: Level,
         val log = Logger("GameFlow")
 
         suspend operator fun invoke(injector: AsyncInjector): GameFlow {
-            injector.run {
-                return GameFlow(get(), get(), get(), get(), get()).apply {
-                    injector.mapInstance(this)
-                }
+            injector.mapSingleton {
+                GameFlow(get(), get(), get(), get(), get())
             }
+            return injector.get()
         }
     }
 

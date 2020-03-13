@@ -4,6 +4,7 @@ import com.soywiz.klogger.Logger
 import com.soywiz.korev.Key
 import com.soywiz.korge.input.onKeyDown
 import com.soywiz.korge.view.Stage
+import com.soywiz.korinject.AsyncDependency
 import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.lib.EventBus
 import j4k.candycrush.model.Level
@@ -12,37 +13,41 @@ import j4k.candycrush.renderer.LevelCheckRenderer
 import j4k.candycrush.renderer.ScoringRenderer
 import j4k.candycrush.renderer.animation.TileAnimator
 
-class KeyBindings(val stage: Stage,
-        val bus: EventBus,
-        val animator: TileAnimator,
-        val scoringRenderer: ScoringRenderer,
-        val gameFlow: GameFlow,
-        val levelCheck: LevelCheck,
-        val checkRenderer: LevelCheckRenderer,
-        val level: Level,
-        val fieldRenderer: GameFieldRenderer) {
+class KeyBindings(private val stage: Stage,
+        private val bus: EventBus,
+        private val animator: TileAnimator,
+        private val scoringRenderer: ScoringRenderer,
+        private val gameFlow: GameFlow,
+        private val levelCheck: LevelCheck,
+        private val checkRenderer: LevelCheckRenderer,
+        private val level: Level,
+        private val fieldRenderer: GameFieldRenderer) : AsyncDependency {
 
 
     companion object {
         val log = Logger("KeyBindings")
 
         suspend operator fun invoke(injector: AsyncInjector): KeyBindings {
-            injector.run {
-                return KeyBindings(get(), get(), get(), get(), get(), get(), get(), get(), get()).apply {
-                    bindKeys()
-                }
+            injector.mapSingleton {
+                KeyBindings(get(), get(), get(), get(), get(), get(), get(), get(), get())
             }
+            return injector.get()
         }
     }
 
-    private suspend fun bindKeys() {
+    override suspend fun init() {
+        bindKeys()
+        bus.register<ResetGameEvent> { reloadLevel() }
+        bus.register<NextLevelEvent> { shuffle() }
+    }
+
+    private fun bindKeys() {
         stage.onKeyDown {
             onKeyDown(it.key)
         }
-
     }
 
-    suspend fun resetState() {
+    private fun resetState() {
         animator.reset()
         scoringRenderer.reset()
         gameFlow.reset()
@@ -51,25 +56,21 @@ class KeyBindings(val stage: Stage,
         checkRenderer.update()
     }
 
-    suspend fun shuffle() {
+    private fun shuffle() {
         log.debug { "Shuffle & Reset" }
         resetState()
         level.field.shuffle()
         fieldRenderer.updateImagesFromField()
     }
 
-    suspend fun reloadLevel() {
+    private fun reloadLevel() {
         log.debug { "Reload level" }
         resetState()
         level.reset()
         fieldRenderer.updateImagesFromField()
     }
 
-    suspend fun onKeyDown(key: Key) {
-
-        bus.register<ResetGameEvent> { reloadLevel() }
-        bus.register<NextLevelEvent> { shuffle() }
-
+    private fun onKeyDown(key: Key) {
         when (key) {
             Key.P -> {
                 log.debug { "Print Field Data" }
@@ -93,8 +94,8 @@ class KeyBindings(val stage: Stage,
             else -> {
                 log.debug { "Pressed unmapped key: $key" }
             }
-
         }
     }
+
 
 }

@@ -49,26 +49,22 @@ suspend fun main() = Korge(
         width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
-    val injector = AsyncInjector()
     val candies = donuts()
 
-    injector.mapInstance(EventBus(this))
-    injector.mapInstance(candies)
-    injector.mapInstance(testTiles())
-    injector.mapInstance(this)
-    injector.mapInstance(level)
-    injector.mapInstance(level.field)
-    injector.mapInstance(virtualResolution)
-
-    Ressources(injector)
+    val injector = AsyncInjector().also {
+        it.mapInstance(EventBus(this))
+        it.mapInstance(candies)
+        it.mapInstance(testTiles())
+        it.mapInstance(this)
+        it.mapInstance(level)
+        it.mapInstance(level.field)
+        it.mapInstance(virtualResolution)
+    }
 
     GameMechanics(injector)
+    Ressources(injector)
 
-    JukeBox(this).apply {
-        activated = playBackgroundMusic
-        load()
-        play()
-    }
+    JukeBox(injector) { activated = playBackgroundMusic }.play()
 
     addComponent(Background(injector))
     SoundMachine(injector)
