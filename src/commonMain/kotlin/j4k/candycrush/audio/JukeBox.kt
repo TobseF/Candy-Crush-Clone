@@ -5,22 +5,34 @@ import com.soywiz.korau.sound.NativeSound
 import com.soywiz.korau.sound.NativeSoundChannel
 import com.soywiz.korau.sound.readNativeSound
 import com.soywiz.korge.view.Stage
+import com.soywiz.korinject.AsyncDependency
+import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korio.async.delay
 import com.soywiz.korio.async.launch
 import com.soywiz.korio.file.std.resourcesVfs
-import j4k.candycrush.lib.Loadable
 
 /**
  * Jukebox which plays background music in a random order.
  */
-class JukeBox(override val stage: Stage) : Loadable {
+class JukeBox(val stage: Stage) : AsyncDependency {
 
     private var playing: NativeSoundChannel? = null
     private val playList = mutableListOf<NativeSound>()
     private var started = false
     var activated = true
 
-    override suspend fun load() {
+    companion object {
+        suspend operator fun invoke(injector: AsyncInjector, receiver: JukeBox.() -> Unit): JukeBox {
+            injector.mapSingleton {
+                JukeBox(get()).apply {
+                    receiver.invoke(this)
+                }
+            }
+            return injector.get()
+        }
+    }
+
+    override suspend fun init() {
         if (activated) {
             playList += newMusic("monkey_drama.mp3")
             playList += newMusic("monkey_island_puzzler.mp3")
@@ -50,6 +62,8 @@ class JukeBox(override val stage: Stage) : Loadable {
         started = false
     }
 
+
 }
 
-private suspend fun newMusic(fileName: String): NativeSound = resourcesVfs["music/$fileName"].readNativeSound(streaming = true)
+private suspend fun newMusic(fileName: String): NativeSound = resourcesVfs["music/$fileName"].readNativeSound(
+        streaming = true)

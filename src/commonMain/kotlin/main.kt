@@ -1,9 +1,8 @@
 import com.soywiz.klogger.Logger
-import com.soywiz.korev.Key
 import com.soywiz.korge.Korge
 import com.soywiz.korge.input.onClick
-import com.soywiz.korge.input.onKeyDown
 import com.soywiz.korim.color.Colors
+import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.*
 import j4k.candycrush.audio.JukeBox
 import j4k.candycrush.audio.SoundMachine
@@ -50,93 +49,41 @@ suspend fun main() = Korge(
         width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
-
-    val log = Logger("main")
     val candies = donuts()
-    val bus = EventBus(this)
 
-    val res = Ressources().load()
-
-    val gameMechanics = GameMechanics(level.field)
-
-    JukeBox(this).apply {
-        activated = playBackgroundMusic
-        load()
-        play()
+    val injector = AsyncInjector().also {
+        it.mapInstance(this)
+        it.mapInstance(EventBus(this))
+        it.mapInstance(candies)
+        it.mapInstance(testTiles())
+        it.mapInstance(level)
+        it.mapInstance(level.field)
+        it.mapInstance(virtualResolution)
     }
 
-    addComponent(Background(this, res))
+    GameMechanics(injector)
+    Ressources(injector)
 
-    val soundMachine = SoundMachine(this).apply { load() }
+    JukeBox(injector) { activated = playBackgroundMusic }.play()
 
-    val fieldRenderer = GameFieldRenderer(level.field, virtualResolution, candies, testTiles())
-    addChild(fieldRenderer)
+    addComponent(Background(injector))
+    SoundMachine(injector)
 
-    val levelCheck = LevelCheck(level, bus)
-    val checkRenderer = LevelCheckRenderer(this, bus, levelCheck, candies, res).apply { load() }
-    Scoring(bus)
+    addChild(GameFieldRenderer(injector))
 
-    val scoringRenderer = ScoringRenderer(this, bus, virtualResolution, fieldRenderer.positionGrid, res)
+    LevelCheck(injector)
+    LevelCheckRenderer(injector)
+    Scoring(injector)
 
-    val animator = TileAnimator(this, fieldRenderer)
+    ScoringRenderer(injector)
 
-    val gameFlow = GameFlow(level, bus, gameMechanics, animator, soundMachine)
-    addComponent(MoveTileObserver(this, bus, fieldRenderer.positionGrid))
-    addChild(GameOverComponent(bus, res, virtualResolution))
+    TileAnimator(injector)
+
+    GameFlow(injector)
+    addComponent(MoveTileObserver(injector))
+    addChild(GameOverComponent(injector))
 
     onClick { } // Needed to activate debugging with F7
 
-    fun resetState() {
-        animator.reset()
-        scoringRenderer.reset()
-        gameFlow.reset()
-        levelCheck.reset()
-        gameFlow.checkNewField()
-        checkRenderer.update()
-    }
-
-    fun shuffle() {
-        log.debug { "Shuffle & Reset" }
-        resetState()
-        level.field.shuffle()
-        fieldRenderer.updateImagesFromField()
-    }
-
-    fun reloadLevel() {
-        log.debug { "Reload level" }
-        resetState()
-        level.reset()
-        fieldRenderer.updateImagesFromField()
-    }
-
-    bus.register<ResetGameEvent> { reloadLevel() }
-    bus.register<NextLevelEvent> { shuffle() }
-
-    onKeyDown {
-        when (it.key) {
-            Key.P -> {
-                log.debug { "Print Field Data" }
-                println(level.field)
-            }
-            Key.D -> {
-                log.debug { "Show Debug Letters" }
-                fieldRenderer.toggleDebug()
-            }
-            Key.S -> {
-                shuffle()
-            }
-            Key.R -> {
-                reloadLevel()
-            }
-            Key.I -> {
-                log.debug { "Print Image Data" }
-                println(fieldRenderer)
-                println("Renderer data is equal to field data: " + fieldRenderer.isEqualWithField())
-            }
-            else -> {
-                log.debug { "Pressed unmapped key: $it" }
-            }
-
-        }
-    }
+    KeyBindings(injector)
 }

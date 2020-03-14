@@ -1,6 +1,7 @@
 package j4k.candycrush
 
 import com.soywiz.klogger.Logger
+import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.distanceTo
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.GameField
@@ -14,6 +15,14 @@ class GameMechanics(val field: GameField) {
 
     companion object {
         val log = Logger("GameMechanics")
+
+        suspend operator fun invoke(injector: AsyncInjector): GameMechanics {
+            injector.run {
+                return GameMechanics(get()).apply {
+                    injector.mapInstance(this)
+                }
+            }
+        }
     }
 
     fun swapTiles(a: Position, b: Position) {

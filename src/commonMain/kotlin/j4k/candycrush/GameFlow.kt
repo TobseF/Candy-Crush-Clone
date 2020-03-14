@@ -1,12 +1,14 @@
 package j4k.candycrush
 
 import com.soywiz.klogger.Logger
+import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.audio.SoundMachine
 import j4k.candycrush.lib.EventBus
 import j4k.candycrush.math.PositionGrid.Position
 import j4k.candycrush.model.Level
+import j4k.candycrush.model.Tile
 import j4k.candycrush.model.TileCell
 import j4k.candycrush.renderer.animation.TileAnimator
 
@@ -14,7 +16,7 @@ import j4k.candycrush.renderer.animation.TileAnimator
  * Global game cycle which reacts on swapped tiles [onDragTileEvent].
  */
 class GameFlow(private val level: Level,
-        val bus: EventBus,
+        private val bus: EventBus,
         private val mechanics: GameMechanics,
         private val animator: TileAnimator,
         private val soundMachine: SoundMachine) {
@@ -27,6 +29,13 @@ class GameFlow(private val level: Level,
 
     companion object {
         val log = Logger("GameFlow")
+
+        suspend operator fun invoke(injector: AsyncInjector): GameFlow {
+            injector.mapSingleton {
+                GameFlow(get(), get(), get(), get(), get())
+            }
+            return injector.get()
+        }
     }
 
     /**
