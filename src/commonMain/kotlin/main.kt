@@ -28,7 +28,7 @@ import j4k.candycrush.renderer.animation.TileAnimator
  */
 
 const val debug = false
-const val playBackgroundMusic = false
+const val playBackgroundMusic = true
 
 /**
  * Virtual size which gets projected onto the [windowResolution]
@@ -64,7 +64,7 @@ suspend fun main() = Korge(
     GameMechanics(injector)
     Ressources(injector)
 
-    JukeBox(injector) { activated = playBackgroundMusic }.play()
+    JukeBox(injector)
 
     addComponent(Background(injector))
     SoundMachine(injector)

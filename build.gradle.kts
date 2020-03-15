@@ -3,7 +3,7 @@ import com.soywiz.korge.gradle.korge
 
 buildscript {
 
-    val korgePluginVersion = "1.10.2.0"
+    val korgePluginVersion = "1.11.1.0"
 
     repositories {
         mavenLocal()
