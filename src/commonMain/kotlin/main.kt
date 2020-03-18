@@ -1,6 +1,7 @@
 import com.soywiz.klogger.Logger
 import com.soywiz.korge.Korge
 import com.soywiz.korge.input.onClick
+import com.soywiz.korgw.GameWindow
 import com.soywiz.korim.color.Colors
 import com.soywiz.korinject.AsyncInjector
 import j4k.candycrush.*
@@ -46,7 +47,8 @@ val level = LevelFactory().createLevel(1)
 
 suspend fun main() = Korge(
         virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
-        width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug) {
+        width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug,
+        quality = GameWindow.Quality.QUALITY) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
     val candies = donuts()
