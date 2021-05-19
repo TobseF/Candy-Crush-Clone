@@ -2,11 +2,11 @@ package j4k.candycrush.renderer
 
 import com.soywiz.klock.milliseconds
 import com.soywiz.klogger.Logger
-import com.soywiz.korge.tween.hide
 import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.Text
 import com.soywiz.korge.view.position
 import com.soywiz.korge.view.text
+import com.soywiz.korge.view.tween.hide
 import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.Point
 import com.soywiz.korma.interpolation.Easing
@@ -56,7 +56,7 @@ class ScoringRenderer(val view: Stage,
     init {
         scoreText = view.text(score.toString(), textSize = scoreSize.toDouble(), font = font)
         multiplicatorText = view.text(score.toString(), textSize = multiplicatorSize.toDouble(), font = font) {
-            position(resolution.width - width - 185, paddingTop + 70)
+            position(resolution.width - width - 185, paddingTop + 70.0)
             alpha = 0.0
         }
         multiplicatorText.text = "x2"
@@ -87,7 +87,7 @@ class ScoringRenderer(val view: Stage,
 
     private fun updateScorePosition() {
         scoreText.apply {
-            position(resolution.width - width - 130, paddingTop)
+            position(resolution.width - width - 130, paddingTop.toDouble())
         }
     }
 

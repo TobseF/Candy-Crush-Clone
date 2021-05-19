@@ -3,7 +3,7 @@ package j4k.candycrush.model
 import j4k.candycrush.GameMechanics
 
 /**
- * A level containing the initial [GameField] and an optinal tile reserve.
+ * A level containing the initial [GameField] and an optional tile reserve.
  */
 data class Level(val levelData: String,
                  val reserveData: String? = null,

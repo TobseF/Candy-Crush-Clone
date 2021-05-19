@@ -1,13 +1,10 @@
 package j4k.candycrush.audio
 
-import com.soywiz.klock.seconds
-import com.soywiz.korau.sound.NativeSound
-import com.soywiz.korau.sound.NativeSoundChannel
-import com.soywiz.korau.sound.readNativeSound
+import com.soywiz.korau.sound.Sound
+import com.soywiz.korau.sound.readMusic
 import com.soywiz.korge.view.Stage
 import com.soywiz.korinject.AsyncDependency
 import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korio.async.delay
 import com.soywiz.korio.async.launch
 import com.soywiz.korio.file.std.resourcesVfs
 
@@ -16,8 +13,7 @@ import com.soywiz.korio.file.std.resourcesVfs
  */
 class JukeBox(val stage: Stage) : AsyncDependency {
 
-    private var playing: NativeSoundChannel? = null
-    private val playList = mutableListOf<NativeSound>()
+    private val playList = mutableListOf<Sound>()
     private var started = false
     var activated = true
 
@@ -50,20 +46,16 @@ class JukeBox(val stage: Stage) : AsyncDependency {
     private suspend fun loopMusicPlaylist() {
         started = true
         while (started) {
-            val nextSong: NativeSound = playList.random()
-            playing = nextSong.play()
-            delay(nextSong.length.coerceAtLeast(2.seconds))
-            playing?.stop()
+            val nextSong: Sound = playList.random()
+            nextSong.playAndWait()
         }
     }
 
     fun stop() {
-        playing?.stop()
         started = false
     }
 
 
 }
 
-private suspend fun newMusic(fileName: String): NativeSound = resourcesVfs["music/$fileName"].readNativeSound(
-        streaming = true)
+private suspend fun newMusic(fileName: String): Sound = resourcesVfs["music/$fileName"].readMusic()

@@ -2,9 +2,7 @@ package j4k.candycrush.input
 
 import com.soywiz.korev.MouseButton
 import com.soywiz.korev.MouseEvent
-import com.soywiz.korev.TouchEvent
 import com.soywiz.korge.component.MouseComponent
-import com.soywiz.korge.component.TouchComponent
 import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.Views
 import com.soywiz.korinject.AsyncInjector
@@ -16,9 +14,11 @@ import j4k.candycrush.lib.EventBus
 import j4k.candycrush.math.PositionGrid
 import j4k.candycrush.math.PositionGrid.Position
 
-class MoveTileObserver(override val view: Stage,
-        val bus: EventBus,
-        private val grid: PositionGrid) : DragListener.DragEventListener, TouchComponent, MouseComponent {
+class MoveTileObserver(
+    override val view: Stage,
+    val bus: EventBus,
+    private val grid: PositionGrid
+) : DragListener.DragEventListener, MouseComponent {
 
     companion object {
         suspend operator fun invoke(injector: AsyncInjector): MoveTileObserver {
@@ -29,10 +29,6 @@ class MoveTileObserver(override val view: Stage,
     }
 
     private val dragListener = DragListener(view, grid.tileSize, this)
-
-    override fun onTouchEvent(views: Views, e: TouchEvent) {
-        dragListener.onTouchEvent(views, e)
-    }
 
     override fun onMouseEvent(views: Views, event: MouseEvent) {
         dragListener.onMouseEvent(views, event)

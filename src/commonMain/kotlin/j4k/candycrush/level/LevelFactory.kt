@@ -6,7 +6,7 @@ import j4k.candycrush.model.Tile
 
 class LevelFactory {
 
-    fun createLevel(level: Int): Level {
+    fun createLevel(): Level {
 
         val reserveData = """
             |[E,C,B,A,D]

@@ -3,10 +3,14 @@ package j4k.candycrush.renderer.animation
 import com.soywiz.klock.milliseconds
 import com.soywiz.klock.seconds
 import com.soywiz.klogger.Logger
-import com.soywiz.korge.tween.*
-import com.soywiz.korge.view.Image
+import com.soywiz.korge.tween.get
+import com.soywiz.korge.tween.tween
+import com.soywiz.korge.view.BaseImage
 import com.soywiz.korge.view.Stage
 import com.soywiz.korge.view.position
+import com.soywiz.korge.view.tween.hide
+import com.soywiz.korge.view.tween.rotateTo
+import com.soywiz.korge.view.tween.scaleTo
 import com.soywiz.korinject.AsyncInjector
 import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
@@ -32,7 +36,7 @@ class TileAnimator(val view: Stage, private val renderer: GameFieldRenderer) {
         }
     }
 
-    data class ImagePosition(val image: Image, val point: IPoint) {
+    data class ImagePosition(val image: BaseImage, val point: IPoint) {
         override fun toString() = point.toString()
     }
 
@@ -57,7 +61,7 @@ class TileAnimator(val view: Stage, private val renderer: GameFieldRenderer) {
         }
     }
 
-    private fun animateRemoveTile(image: Image) {
+    private fun animateRemoveTile(image: BaseImage) {
 
         launch {
             image.hide(hide.time, hide.easing)

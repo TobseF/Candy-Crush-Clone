@@ -50,8 +50,8 @@ class LevelCheckRenderer(private val stage: Stage,
             val y = paddingTop
             stage.image(candies.getTile(objective.tile)) {
                 position(x + 8, y)
-                height = 64.0
-                width = 64.0
+                scaledHeight = 64.0
+                scaledWidth = 64.0
             }
             val counter = stage.text(text = "88", textSize = 64.0, font = res.fontSmall) {
                 position(x, paddingText)

@@ -1,5 +1,6 @@
 import com.soywiz.klogger.Logger
 import com.soywiz.korge.Korge
+import com.soywiz.korge.component.Component
 import com.soywiz.korge.input.onClick
 import com.soywiz.korgw.GameWindow
 import com.soywiz.korim.color.Colors
@@ -41,9 +42,9 @@ val virtualResolution = Resolution(width = 810, height = 1440)
  */
 val windowResolution = Resolution(width = 540, height = 960)
 
-val backgroundColor = Colors["#2b2b2b"]
+val backgroundColor = Colors.DIMGRAY
 
-val level = LevelFactory().createLevel(1)
+val level = LevelFactory().createLevel()
 
 suspend fun main() = Korge(
         virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
@@ -59,6 +60,7 @@ suspend fun main() = Korge(
         it.mapInstance(candies)
         it.mapInstance(testTiles())
         it.mapInstance(level)
+        it.mapInstance(views)
         it.mapInstance(level.field)
         it.mapInstance(virtualResolution)
     }
@@ -82,7 +84,7 @@ suspend fun main() = Korge(
     TileAnimator(injector)
 
     GameFlow(injector)
-    addComponent(MoveTileObserver(injector))
+    addComponent(MoveTileObserver(injector) as Component)
     addChild(GameOverComponent(injector))
 
     onClick { } // Needed to activate debugging with F7

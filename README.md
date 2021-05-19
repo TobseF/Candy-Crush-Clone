@@ -1,6 +1,6 @@
 # 🍭 Candy Crush Clone
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.3.70-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
-[![Korge](https://img.shields.io/badge/Korge-1.10.2.0-836DAC.svg)](https://korge.soywiz.com/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.5.0-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
+[![KorGE](https://img.shields.io/badge/KorGE-2.1.1.1-836DAC.svg)](https://korge.soywiz.com/)
 
 ![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
 
@@ -30,6 +30,7 @@ You can find this template at GitHub: <https://github.com/korlibs/korge-hello-wo
 For Windows, change all the `./gradlew` for `gradlew.bat`.
 
 You should use Gradle 5.5 or greater and Java 8 or greater.
+
 
 ## Compiling for the JVM (Desktop)
 
@@ -70,9 +71,9 @@ You can run your tests using Node.JS by calling `jsTest` or in a headless chrome
 Using gradle tasks on the terminal:
 
 ```bash
-./gradlew linkMainDebugExecutableMacosX64         # Outputs to /build/bin/macosX64/mainDebugExecutable/main.kexe
-./gradlew linkMainDebugExecutableLinuxX64         # Outputs to /build/bin/linuxX64/mainDebugExecutable/main.kexe
-./gradlew linkMainDebugExecutableMingwX64         # Outputs to /build/bin/mingwX64/mainDebugExecutable/main.exe
+./gradlew linkDebugExecutableMacosX64         # Outputs to /build/bin/macosX64/mainDebugExecutable/main.kexe
+./gradlew linkDebugExecutableLinuxX64         # Outputs to /build/bin/linuxX64/mainDebugExecutable/main.kexe
+./gradlew linkDebugExecutableMingwX64         # Outputs to /build/bin/mingwX64/mainDebugExecutable/main.exe
 ```
 
 Note that windows executables doesn't have icons bundled.
@@ -85,8 +86,8 @@ If you have docker installed, you can generate native executables for linux and 
 using the cross-compiling gradle wrappers:
 
 ```bash
-./gradlew_linux linkMainDebugExecutableLinuxX64   # Outputs to /build/web
-./gradlew_win   linkMainDebugExecutableMingwX64   # Outputs to /build/web
+./gradlew_linux linkDebugExecutableLinuxX64   # Outputs to /build/web
+./gradlew_win   linkDebugExecutableMingwX64   # Outputs to /build/web
 ```
 
 ### Generating MacOS `.app`
@@ -168,4 +169,12 @@ and [ios-deploy](https://github.com/ios-control/ios-deploy) for deploying to rea
 ./gradlew runCordovaIos                   # Runs the application (dce'd, minimized and webpacked) in an iOS device
 ./gradlew runCordovaIosNoMinimized        # Runs the application in iOS without minimizing (so you can use Safari on macOS to debug the application easier)
 ```
+
+## JS-game deployment to GitHub Pages
+
+- Go to [settings page](../../settings) and enable GitHub Pages
+- Choose branch `github-pages` and select folder `/ (root)`
+- After that you can use link:  
+  [link to JS-game](../../deployments/activity_log?environment=github-pages), click "View Deployment"
+- When you push to main or master branch, - deployment process will start again with GitHub Actions.  
 

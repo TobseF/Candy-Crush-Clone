@@ -2,7 +2,7 @@ package j4k.candycrush
 
 import com.soywiz.klogger.Logger
 import com.soywiz.korev.Key
-import com.soywiz.korge.input.onKeyDown
+import com.soywiz.korge.input.keys
 import com.soywiz.korge.view.Stage
 import com.soywiz.korinject.AsyncDependency
 import com.soywiz.korinject.AsyncInjector
@@ -13,15 +13,17 @@ import j4k.candycrush.renderer.LevelCheckRenderer
 import j4k.candycrush.renderer.ScoringRenderer
 import j4k.candycrush.renderer.animation.TileAnimator
 
-class KeyBindings(private val stage: Stage,
-        private val bus: EventBus,
-        private val animator: TileAnimator,
-        private val scoringRenderer: ScoringRenderer,
-        private val gameFlow: GameFlow,
-        private val levelCheck: LevelCheck,
-        private val checkRenderer: LevelCheckRenderer,
-        private val level: Level,
-        private val fieldRenderer: GameFieldRenderer) : AsyncDependency {
+class KeyBindings(
+    private val stage: Stage,
+    private val bus: EventBus,
+    private val animator: TileAnimator,
+    private val scoringRenderer: ScoringRenderer,
+    private val gameFlow: GameFlow,
+    private val levelCheck: LevelCheck,
+    private val checkRenderer: LevelCheckRenderer,
+    private val level: Level,
+    private val fieldRenderer: GameFieldRenderer
+) : AsyncDependency {
 
 
     companion object {
@@ -42,8 +44,10 @@ class KeyBindings(private val stage: Stage,
     }
 
     private fun bindKeys() {
-        stage.onKeyDown {
-            onKeyDown(it.key)
+        stage.keys {
+            down {
+                onKeyDown(it.key)
+            }
         }
     }
 
