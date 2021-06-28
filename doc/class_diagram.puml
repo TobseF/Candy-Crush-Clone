@@ -1,0 +1,49 @@
+@startuml
+!include https://raw.githubusercontent.com/future-architect/puml-themes/master/themes/puml-theme-toy.puml
+
+class GameFlow{
+// Executes the
+// main game loop.
+}
+class GameMechanics{
+// Check- and edit-operations
+// for the provided [GameField].
+}
+together {
+    class GameField{
+    // Stores the data of the
+    // game field.
+    }
+
+    class Row{
+    // A horizontal row of [Tile]s.
+    }
+
+    class Tile{
+    // A single tile which can
+    // be placed on the [GameField].
+    }
+}
+
+class TileAnimator{
+// Plays asynchronous
+// animations of moving tiles.
+}
+
+class GameFieldRenderer{
+// Renders the [GameField].
+}
+
+class SoundMachine{
+// Plays sound effects.
+}
+
+GameFlow -down-> GameMechanics
+GameFlow -down-> TileAnimator
+GameFlow -down-> SoundMachine
+GameField -> Row
+Row -> Tile
+GameMechanics -down-> GameField
+GameFieldRenderer -up-> GameField
+
+@enduml

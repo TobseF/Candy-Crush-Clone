@@ -1,0 +1,33 @@
+@startuml
+!include https://raw.githubusercontent.com/future-architect/puml-themes/master/themes/puml-theme-toy.puml
+
+MoveTileObserver -> GameFlow: onDragTile(a:Pos, b:Pos)
+GameFlow -> TileAnimator: isAnimationActive()
+GameFlow <-- TileAnimator: false
+group GameMechanics
+GameFlow -> GameMechanics: isSwapAllowed(a:Pos, b:Pos)
+GameMechanics -> GameField: swapTiles(a:Pos, b:Pos)
+GameMechanics -> GameMechanics: isInRowWithThree(a:Pos)
+GameMechanics -> GameMechanics: isHorizontalConnected(a:Pos)
+GameMechanics -> GameMechanics: isVerticalConnected(a:Pos)
+GameMechanics -> GameField: swapTiles(a:Pos, b:Pos)
+GameFlow <-- GameMechanics: true
+end
+group TileAnimator
+GameFlow -> TileAnimator: animateSwap(a:Pos, b:Pos)
+GameFlow -> GameMechanics: getConnectedTiles()
+GameFlow <-- GameMechanics: connectedTiles: List<TilePos>
+GameFlow ->  GameField: removeTiles(tiles:List<TilePos>)
+GameFlow ->  TileAnimator: animateRemoveTiles(tiles:List<TilePos>)
+
+GameFlow -> GameMechanics: dropAllToGround()
+GameFlow <-- GameMechanics: nextMoves: List<Move>
+GameFlow -> TileAnimator: animateMoves(nextMoves: List<Move>)
+
+GameFlow -> GameMechanics: getNewTileMoves()
+GameFlow <-- GameMechanics: newTileMoves: List<InsertMove>
+GameFlow -> TileAnimator: animateInsert(newTileMoves: List<InsertMove>)
+GameFlow -> GameMechanics: insert(newTileMoves)
+end
+GameFlow -> GameFlow: checkNewField()
+@enduml

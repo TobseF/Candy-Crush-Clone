@@ -1,12 +1,20 @@
 # 🍭 Candy Crush Clone
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.5.0-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
 [![KorGE](https://img.shields.io/badge/KorGE-2.2.0.1-836DAC.svg)](https://korge.soywiz.com/)
+[![Gradle](https://img.shields.io/badge/Gradle-7.0.2-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
 
 ![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
 
 This is a **🚧 WIP** match 3 game for a workshop with children on the [JavaLand4Kids](https://www.javaland.eu/de/javaland-2018/javaland4kids/).
 
 ### [🎮 Run the game as WebApp](https://tobsef.github.io/Candy-Crush-Clone/)
+
+## ⭐ Features
+⭐ Cross-platform  
+⭐ Touch controls  
+⭐ Support for custom skins  
+⭐ Tested and documented  
+⭐ Build to teach
 
 ## ⌨ Controls
 
@@ -23,13 +31,41 @@ Keys controls are only for debugging purpose:
 
 ---
 
-You can open this project in IntelliJ IDEA by opening the folder or the build.gradle.kts file.
+## 👨‍🏫 Workshop
+If you want to do the workshop check out the branch `Lavaland4Kids`.
+In this state the game logic is missing and needs to be implemented.
+Therefore, the tests are separated in 8 easy steps (`step1` - `step8`).
+Each step contains several tests. Code until a step is running green:
+```bash
+./gradlew  jvmTest
+```
+After every step, you can run the game to check your progress. 
+```bash
+./gradlew  runJvm
+```
 
-You can find this template at GitHub: <https://github.com/korlibs/korge-hello-world>
+## 🧭 Overview
+The game runs in a game loop in the `GameFlow`.
+The game logic and the model are separated from the rendering.
+This allows to test the game without a UI.
+A `EventBus` helps to decouple the components.
+For easy dependency injection the `AsyncInjector` is used.
+
+### Class Diagram
+![Class Diagram](doc/class_diagram.png)
+### Game Flow
+![Sequence Diagram](doc/game_flow.png)
+
+### 
+
+## 🛠 Setup
+
+You can open this project in IntelliJ IDEA by opening the folder or the `build.gradle.kts` file.
+
 
 For Windows, change all the `./gradlew` for `gradlew.bat`.
 
-You should use Gradle 5.5 or greater and Java 8 or greater.
+You should use Gradle 7.0 or greater and Java 8 or greater.
 
 
 ## Compiling for the JVM (Desktop)
