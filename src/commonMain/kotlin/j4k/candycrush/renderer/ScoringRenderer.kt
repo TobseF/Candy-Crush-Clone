@@ -31,7 +31,8 @@ class ScoringRenderer(val view: Stage,
         res: Ressources) {
 
     companion object {
-        val log = Logger("ScoringRenderer")
+        val log = Logger<ScoringRenderer>()
+
         suspend operator fun invoke(injector: AsyncInjector) {
             injector.mapSingleton {
                 ScoringRenderer(get(), get(), get(), get(), get())

@@ -27,7 +27,7 @@ class KeyBindings(
 
 
     companion object {
-        val log = Logger("KeyBindings")
+        val log = Logger<KeyBindings>()
 
         suspend operator fun invoke(injector: AsyncInjector): KeyBindings {
             injector.mapSingleton {

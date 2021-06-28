@@ -28,7 +28,7 @@ class GameFlow(private val level: Level,
     }
 
     companion object {
-        val log = Logger("GameFlow")
+        val log = Logger<GameFlow>()
 
         suspend operator fun invoke(injector: AsyncInjector): GameFlow {
             injector.mapSingleton {

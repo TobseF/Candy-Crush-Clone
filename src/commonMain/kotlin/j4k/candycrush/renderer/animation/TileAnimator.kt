@@ -30,7 +30,8 @@ import kotlinx.coroutines.*
 class TileAnimator(val view: Stage, private val renderer: GameFieldRenderer) {
 
     companion object {
-        val log = Logger("TileAnimator")
+        val log = Logger<TileAnimator>()
+
         suspend operator fun invoke(injector: AsyncInjector) {
             injector.mapSingleton { TileAnimator(get(), get()) }
         }

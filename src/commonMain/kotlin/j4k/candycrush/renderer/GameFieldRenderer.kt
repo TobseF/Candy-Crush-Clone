@@ -68,7 +68,7 @@ class GameFieldRenderer(private val gameField: GameField,
     }
 
     companion object {
-        val log = Logger("GameFieldRenderer")
+        val log = Logger<GameFieldRenderer>()
 
         suspend operator fun invoke(injector: AsyncInjector): GameFieldRenderer {
             injector.run {

@@ -14,7 +14,7 @@ import j4k.candycrush.model.TileCell
 class GameMechanics(val field: GameField) {
 
     companion object {
-        val log = Logger("GameMechanics")
+        val log = Logger<GameMechanics>()
 
         suspend operator fun invoke(injector: AsyncInjector): GameMechanics {
             injector.run {
