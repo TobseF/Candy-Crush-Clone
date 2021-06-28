@@ -1,6 +1,6 @@
 # 🍭 Candy Crush Clone
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.5.0-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
-[![KorGE](https://img.shields.io/badge/KorGE-2.1.1.1-836DAC.svg)](https://korge.soywiz.com/)
+[![KorGE](https://img.shields.io/badge/KorGE-2.2.0.1-836DAC.svg)](https://korge.soywiz.com/)
 
 ![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
 

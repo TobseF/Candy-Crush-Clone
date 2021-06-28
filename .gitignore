@@ -1,6 +1,7 @@
 /.gradle
 /.idea
 /build
+/bundles
 *.iml
 *.hprof
 *.log
