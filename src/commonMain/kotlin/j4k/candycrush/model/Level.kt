@@ -13,9 +13,20 @@ data class Level(val levelData: String,
                  val tileObjectives: List<TileObjective> = emptyList()) {
 
     val field: GameField = GameField.fromString(levelData)
+
+    /**
+     * Optional stack of specific [Tile]s which come next.
+     */
     var reserve: GameMechanics? = loadReserve()
 
+    /**
+     * Objective which should be reached in this level: Collect a specific number of this [Tile]
+     */
     data class TileObjective(val tile: Tile, val goal: Int)
+
+    /**
+     * Objective which should be reached in this level: Finish the game before this timer runs out.
+     */
     data class TimeObjective(val minutes: Int = 0, val seconds: Int = 0)
 
     fun getNextTile(column: Int): Tile {

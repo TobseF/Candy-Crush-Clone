@@ -12,7 +12,7 @@ import kotlin.test.assertTrue
 class PositionGridTest {
 
     @Test
-    fun testGetPositionOnGrid() {
+    fun `test getPosition(column, row) on grid`() {
         val positionGrid = PositionGrid(0, 0, 3, 3, 20)
         assertEquals(Point(0, 0), positionGrid.getPosition(0, 0))
         assertEquals(Point(20, 0), positionGrid.getPosition(1, 0))
@@ -23,7 +23,7 @@ class PositionGridTest {
     }
 
     @Test
-    fun testGetPositionOnShiftedGrid() {
+    fun `test getPosition(column, row) on shifted grid`() {
         val positionGrid = PositionGrid(100, 100, 3, 3, 20)
         assertEquals(Point(100, 100), positionGrid.getPosition(0, 0))
         assertEquals(Point(120, 100), positionGrid.getPosition(1, 0))
@@ -41,7 +41,7 @@ class PositionGridTest {
     }
 
     @Test
-    fun testIsOnGrid() {
+    fun `test isOnGrid(pos)`() {
         val positionGrid = PositionGrid(0, 0, 2, 2, 20)
         assertTrue(positionGrid.isOnGrid(Position(0, 0)))
         assertTrue(positionGrid.isOnGrid(Position(1, 0)))

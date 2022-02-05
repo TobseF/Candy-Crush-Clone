@@ -25,8 +25,8 @@ class Row(rowSize: Int) : Iterable<Tile> {
         }
     }
 
-    fun isInRow(row: Int): Boolean {
-        return row in tiles.indices
+    fun isInRow(column: Int): Boolean {
+        return column in tiles.indices
     }
 
     override fun toString(): String {
@@ -35,16 +35,16 @@ class Row(rowSize: Int) : Iterable<Tile> {
 
     fun size() = tiles.size
 
-    operator fun set(row: Int, tileNumber: Int) {
-        tiles[row] = Tile.getTile(tileNumber)
+    operator fun set(column: Int, tileNumber: Int) {
+        tiles[column] = Tile.getTile(tileNumber)
     }
 
-    operator fun set(row: Int, tile: Tile) {
-        tiles[row] = tile
+    operator fun set(column: Int, tile: Tile) {
+        tiles[column] = tile
     }
 
-    operator fun set(row: Int, tileShortName: String) {
-        tiles[row] = Tile.getTile(tileShortName)
+    operator fun set(column: Int, tileShortName: String) {
+        tiles[column] = Tile.getTile(tileShortName)
     }
 
     override fun iterator(): Iterator<Tile> = tiles.iterator()

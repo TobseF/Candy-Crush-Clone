@@ -10,52 +10,61 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
+/**
+ * Test for the [GameMechanics] which performs actions on the [GameField].
+ */
 class GameMechanicsTest {
 
     @Test
-    fun testSwapTiles() {
+    fun `test swapTiles(pos)`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, H, H, H]
                 |[H, A, B, H]
                 |[H, H, H, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
 
         val mechanics = GameMechanics(field)
         mechanics.swapTiles(Position(1, 1), Position(2, 1))
 
         assertEquals(
-                """
+            """
                 |[H, H, H, H]
                 |[H, B, A, H]
                 |[H, H, H, H]
-                """.trimMargin(), field.toString())
+                """.trimMargin(), field.toString()
+        )
     }
 
     @Test
-    fun removeTilesTest() {
+    fun `test removeTiles(pos)`() {
         val field = GameField.fromString(
-                """
+            """
                 |[A, A]
                 |[A, A]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
         mechanics.removeTile(Position(0, 0))
         mechanics.removeTile(Position(1, 1))
-        assertEquals("""
+        assertEquals(
+            """
                 |[H, A]
                 |[A, H]
-                """.trimMargin(), field.toString())
+                """.trimMargin(), field.toString()
+        )
     }
 
     @Test
-    fun testIsInRowWithThree() {
+    fun `test isInRowWithThree(pos)`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, H, H]
                 |[H, A, A, A]
                 |[H, A, H, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         // Horizontal
@@ -67,91 +76,95 @@ class GameMechanicsTest {
         assertTrue(mechanics.isInRowWithThree(Position(2, 1)))
         assertTrue(mechanics.isInRowWithThree(Position(3, 1)))
 
-        // Dont't match holes!
+        // Don't match holes!
         assertFalse(mechanics.isInRowWithThree(Position(0, 1)))
     }
 
     @Test
-    fun testIsNotInRowWithThreeIfEmpty() {
+    fun `test not isInRowWithThree(pos)`() {
         val field = GameField.fromString(
-                """
-                |[H, A, H, H]
-                |[H, A, A, A]
-                |[H, A, H, H]
-                """.trimMargin())
+            """
+                |[H, A, A, H]
+                |[A, A, H, H]
+                |[H, H, A, A]
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
-        // Horizontal
-        assertTrue(mechanics.isInRowWithThree(Position(1, 0)))
-        assertTrue(mechanics.isInRowWithThree(Position(1, 1)))
-        assertTrue(mechanics.isInRowWithThree(Position(1, 2)))
-        // Vertica)
-        assertTrue(mechanics.isInRowWithThree(Position(2, 1)))
-        assertTrue(mechanics.isInRowWithThree(Position(3, 1)))
-        // Dont't match holes)
-        assertFalse(mechanics.isInRowWithThree(Position(0, 1)))
+        assertFalse(mechanics.isInRowWithThree(Position(1, 0)))
+        assertFalse(mechanics.isInRowWithThree(Position(1, 1)))
+        assertFalse(mechanics.isInRowWithThree(Position(2, 2)))
     }
 
     @Test
-    fun testGetConnectedTiles() {
+    fun `test getConnectedTiles(pos)`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, H, H]
                 |[H, A, A, A]
                 |[H, A, H, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         val vertical: List<TileCell> = listOf(
-                field.getTileCell(1, 0), field.getTileCell(1, 1), field.getTileCell(1, 2))
+            field.getTileCell(1, 0), field.getTileCell(1, 1), field.getTileCell(1, 2)
+        )
 
         assertEquals(vertical, mechanics.getConnectedTiles(Position(1, 0)))
         assertEquals(vertical, mechanics.getConnectedTiles(Position(1, 2)))
 
         val horizontal: List<TileCell> = listOf(
-                field.getTileCell(1, 1), field.getTileCell(2, 1), field.getTileCell(3, 1))
+            field.getTileCell(1, 1), field.getTileCell(2, 1), field.getTileCell(3, 1)
+        )
 
         assertEquals(horizontal, mechanics.getConnectedTiles(Position(2, 1)))
         assertEquals(horizontal, mechanics.getConnectedTiles(Position(3, 1)))
 
         assertEquals(vertical + horizontal, mechanics.getConnectedTiles(Position(1, 1)))
 
-        // Dont't match holes!
+        // Don't match holes!
         assertEquals(emptyList(), mechanics.getConnectedTiles(Position(0, 0)))
         assertEquals(emptyList(), mechanics.getConnectedTiles(Position(0, 1)))
         assertEquals(emptyList(), mechanics.getConnectedTiles(Position(0, 2)))
     }
 
     @Test
-    fun testGetVerticalConnectedThree() {
+    fun `test getVerticalSurroundings(pos) with three tiles in a vertical`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, H, H]
                 |[H, A, A, A]
                 |[H, A, H, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         // Vertical
         val vertical: List<TileCell> = listOf(
-                field.getTileCell(1, 0), field.getTileCell(1, 1), field.getTileCell(1, 2))
+            field.getTileCell(1, 0),
+            field.getTileCell(1, 1),
+            field.getTileCell(1, 2)
+        )
         assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 0)))
         assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 1)))
         assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 2)))
     }
 
     @Test
-    fun testGetHorizontalConnectedThree() {
+    fun `test getHorizontalSurroundings(pos) with three tiles in a horizontal line`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, H, H]
                 |[H, A, A, A]
                 |[H, A, H, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         val horizontal: List<TileCell> = listOf(
-                field.getTileCell(1, 1), field.getTileCell(2, 1), field.getTileCell(3, 1))
+            field.getTileCell(1, 1), field.getTileCell(2, 1), field.getTileCell(3, 1)
+        )
 
         assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(2, 1)))
         assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(1, 1)))
@@ -159,11 +172,12 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun testGetHorizontalConnectedSix() {
+    fun `test getHorizontalSurroundings(pos) with six tiles in a horizontal line`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, A, A, A, A, A, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         val horizontal: List<TileCell> = listOf(1, 2, 3, 4, 5, 6).map { field.getTileCell(column = it) }
@@ -177,9 +191,9 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun testGetVerticalConnectedSix() {
+    fun `test getVerticalSurroundings(pos) with six tiles in a vertical line`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H]
                 |[A]
                 |[A]
@@ -188,7 +202,8 @@ class GameMechanicsTest {
                 |[A]
                 |[A]
                 |[H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         val vertical: List<TileCell> = listOf(1, 2, 3, 4, 5, 6).map { field.getTileCell(row = it) }
@@ -203,16 +218,17 @@ class GameMechanicsTest {
 
 
     @Test
-    fun testGetDisconnectedHoles() {
+    fun `test disconnected surroundings`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, H, H]
                 |[H, A, A, A]
                 |[H, A, H, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
-        // Dont't match holes!
+        // Don`t match holes!
 
         val hole1: List<TileCell> = listOf(field.getTileCell(0, 0))
         assertEquals(hole1, mechanics.getHorizontalSurroundings(Position(0, 0)))
@@ -229,14 +245,15 @@ class GameMechanicsTest {
 
 
     @Test
-    fun testGetNextMove() {
+    fun `test getNextMove(column)`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, H, A, H]
                 |[A, A, H, A]
                 |[H, H, H, H]
                 |[H, A, A, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         assertEquals(Move(Position(0, 3), Position(0, 1)), mechanics.getNextMove(0))
@@ -246,64 +263,70 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun testDropToGround() {
+    fun `test dropToGround(field)`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, A, A, A]
                 |[H, A, H, A]
                 |[A, H, A, A]
                 |[H, H, H, H]
                 |[H, A, A, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
         mechanics.dropToGround(0)
         assertEquals(
-                """
+            """
                 |[H, A, A, A]
                 |[H, A, H, A]
                 |[H, H, A, A]
                 |[H, H, H, H]
                 |[A, A, A, H]
-                """.trimMargin(), mechanics.field.toString())
+                """.trimMargin(), mechanics.field.toString()
+        )
         mechanics.dropToGround(1)
         assertEquals(
-                """
+            """
                 |[H, H, A, A]
                 |[H, H, H, A]
                 |[H, A, A, A]
                 |[H, A, H, H]
                 |[A, A, A, H]
-                """.trimMargin(), mechanics.field.toString())
+                """.trimMargin(), mechanics.field.toString()
+        )
         mechanics.dropToGround(2)
         assertEquals(
-                """
+            """
                 |[H, H, H, A]
                 |[H, H, H, A]
                 |[H, A, A, A]
                 |[H, A, A, H]
                 |[A, A, A, H]
-                """.trimMargin(), mechanics.field.toString())
+                """.trimMargin(), mechanics.field.toString()
+        )
         mechanics.dropToGround(3)
         assertEquals(
-                """
+            """
                 |[H, H, H, H]
                 |[H, H, H, H]
                 |[H, A, A, A]
                 |[H, A, A, A]
                 |[A, A, A, A]
-                """.trimMargin(), mechanics.field.toString())
+                """.trimMargin(), mechanics.field.toString()
+        )
 
     }
 
     @Test
-    fun testMove() {
+    fun `test a move from position-A to position-B`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H, H, A, H]
                 |[A, A, H, A]
                 |[H, H, H, H]
                 |[H, A, A, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         mechanics.move(Move(Position(0, 3), Position(0, 1)))
@@ -312,51 +335,55 @@ class GameMechanicsTest {
         mechanics.move(Move(Position(3, 3), Position(3, 1)))
 
         assertEquals(
-                """
+            """
                 |[H, H, H, H]
                 |[H, H, H, H]
                 |[H, A, A, H]
                 |[A, A, A, A]
-                """.trimMargin(), mechanics.toString())
+                """.trimMargin(), mechanics.toString()
+        )
     }
 
 
     @Test
-    fun testOrderOfListEmptyCells() {
+    fun `test order of tiles in a move of empty cells`() {
         val field = GameField.fromString(
-                """
+            """
                 |[H]
                 |[H]
                 |[H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val newTileMoves: List<InsertMove> = GameMechanics(field).getNewTileMoves { Tile.A }
         val rows: List<Int> = newTileMoves.map { it.target }.map { it.row }
         assertEquals(listOf(2, 1, 0), rows)
     }
 
     @Test
-    fun testListEmptyCells() {
+    fun `test list empty cells`() {
         val field = GameField.fromString(
-                """
+            """
                 |[A, H, H, H]
                 |[A, A, H, H]
                 |[A, A, A, H]
-                """.trimMargin())
+                """.trimMargin()
+        )
         val mechanics = GameMechanics(field)
 
         val nextMoves: List<InsertMove> = mechanics.getNewTileMoves { Tile.B }
         mechanics.insert(nextMoves)
 
         assertEquals(
-                """
+            """
                 |[A, B, B, B]
                 |[A, A, B, B]
                 |[A, A, A, B]
-                """.trimMargin(), mechanics.toString())
+                """.trimMargin(), mechanics.toString()
+        )
     }
 
     @Test
-    fun testSortInsertMoves() {
+    fun `test sorting of InsertMoves`() {
         val moves: List<InsertMove> = listOf(1, 2, 0).map { mockInsertMove(it) }
         val sorted: List<InsertMove> = moves.sorted()
         assertEquals(listOf(2, 1, 0).map { mockInsertMove(it) }, sorted)

@@ -3,7 +3,11 @@ package j4k.candycrush.model
 import j4k.candycrush.math.PositionGrid.Position
 
 /**
- * Field with [rows] of [Tile]s.
+ * Field with [rows] (horizontal) of [Tile]s.
+ * ```
+ * GameField[0] // Top Row
+ * GameField[0][0] // Upper left Tile
+ * ```
  */
 data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
@@ -11,6 +15,12 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     companion object {
 
+        /**
+         * Reads a GameField formatted as String.
+         *
+         * Sample row, with a Hole and the Tiles A,B,C: `H, A, B, C`.
+         * Mappings: Tiles: `A-E`, Hole: `H`
+         */
         fun fromString(string: String): GameField {
             val values = string.split("[").filter { it.isNotBlank() }
             val rows = values.map { parseRow(it) }
@@ -23,9 +33,15 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
             return field
         }
 
+        /**
+         * Parses a single text formatted row.
+         *
+         * Sample row, with a Hole and the Tiles A,B,C: `H, A, B, C`.
+         * Mappings: Tiles: `A-E`, Hole: `H`
+         */
         private fun parseRow(line: String): Row {
-            val values = line.trim().removePrefix("[").removeSuffix("]").trim().split(",").filter { it.isNotBlank() }
-                    .map { it.trim() }
+            val values = line.trim().removePrefix("[").removeSuffix("]").trim()
+                .split(",").filter { it.isNotBlank() }.map { it.trim() }
             val tiles = values.map { Tile.getTile(it) }
             val row = Row(tiles.size)
             tiles.forEachIndexed { index, tile -> row[index] = tile }

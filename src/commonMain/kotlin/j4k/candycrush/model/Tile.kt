@@ -2,16 +2,17 @@ package j4k.candycrush.model
 
 /**
  * A single tile which can be placed on the [GameField].
+ * Each tile has a one letter short form. This helps during testing and debugging.
  */
 enum class Tile {
 
     A, B, C, D, E,
     /**
-     * A wall which blocks falling stones. Not used.
+     * A wall which blocks falling stones. Not used.  Short form: (`W`).
      */
     Wall,
     /**
-     * An empty field.
+     * An empty field. Short form: (`H`).
      */
     Hole,
     /**

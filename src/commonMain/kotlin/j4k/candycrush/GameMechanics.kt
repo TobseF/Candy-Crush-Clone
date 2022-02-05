@@ -9,7 +9,7 @@ import j4k.candycrush.model.Tile
 import j4k.candycrush.model.TileCell
 
 /**
- * Actions and checks for the provided [GameField]
+ * Performs actions and checks on the provided [GameField].
  */
 class GameMechanics(val field: GameField) {
 
@@ -25,6 +25,9 @@ class GameMechanics(val field: GameField) {
         }
     }
 
+    /**
+     * Swaps the two tiles on the given positions
+     */
     fun swapTiles(a: Position, b: Position) {
         val tileA = field[a]
         val tileB = field[b]
@@ -32,6 +35,10 @@ class GameMechanics(val field: GameField) {
         field[b] = tileA
     }
 
+    /**
+     * Returns `true` if swapping of two tiles is allowed.
+     * Swapping is allowed, if the swapped tiles create a horizontal or vertical row of at least three [Tile]s.
+     */
     fun isSwapAllowed(a: Position, b: Position): Boolean {
         swapTiles(a, b)
         val isSwapAllowed = isInRowWithThree(a) || isInRowWithThree(b)
@@ -40,10 +47,18 @@ class GameMechanics(val field: GameField) {
         return bothAreTiles && isSwapAllowed
     }
 
+    /**
+     * Returns `true` if the [Tile] on this position is connected with two (or more) other tiles of the same type.
+     */
     fun isInRowWithThree(pos: Position): Boolean {
         return isHorizontalConnected(pos) || isVerticalConnected(pos)
     }
 
+    /**
+     * Returns a list of [Tile]s of the same type which are connected to the tile on this position (horizontal and vertical).
+     * The tile on this pos will be included. If the tile is not connected to at least two others of the same type,
+     * it will return an empty list.
+     */
     fun getConnectedTiles(pos: Position): List<TileCell> {
         return getVerticalConnectedOrEmpty(pos) + getHorizontalConnectedOrEmpty(pos)
     }

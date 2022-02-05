@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 class LevelTest {
 
     @Test
-    fun testGetNextLevelTile() {
+    fun `test getNextTile(column) for level`() {
         val reserve = """
                         |[B, D, E, A]
                         |[A, B, D, E]
