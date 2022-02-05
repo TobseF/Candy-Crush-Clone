@@ -47,6 +47,7 @@ val backgroundColor = Colors.DIMGRAY
 val level = LevelFactory().createLevel()
 
 suspend fun main() = Korge(
+        title = "Candy Crush",
         virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
         width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug,
         quality = GameWindow.Quality.QUALITY) {
