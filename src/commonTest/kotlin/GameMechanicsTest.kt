@@ -377,7 +377,7 @@ class GameMechanicsTest {
 
 
     @Test
-    fun `test order of tiles in a move of empty cells`() {
+    fun `test top down order of insert moves`() {
         val field = GameField.fromString(
             """
                 |[H]
@@ -391,7 +391,24 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun `test list empty cells`() {
+    fun `test listEmptyCells()`() {
+        val field = GameField.fromString(
+            """
+                |[H, H, H]
+                |[H, A, H]
+                """.trimMargin()
+        )
+        val mechanics = GameMechanics(field)
+        val listEmptyCells: Set<Position> = mechanics.listEmptyCells().toSet()
+        val holes = setOf(
+            Position(0, 0), Position(1, 0), Position(2, 0),
+            Position(0, 1), Position(2, 1)
+        )
+        assertEquals(holes, listEmptyCells)
+    }
+
+    @Test
+    fun `test getNewTileMoves(tile) and inserting them`() {
         val field = GameField.fromString(
             """
                 |[A, H, H, H]
@@ -414,7 +431,7 @@ class GameMechanicsTest {
     }
 
     @Test
-    fun `test sorting of InsertMoves`() {
+    fun `test top down sort of InsertMoves`() {
         val moves: List<InsertMove> = listOf(1, 2, 0).map { mockInsertMove(it) }
         val sorted: List<InsertMove> = moves.sorted()
         assertEquals(listOf(2, 1, 0).map { mockInsertMove(it) }, sorted)
