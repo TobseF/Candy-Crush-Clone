@@ -32,10 +32,9 @@ Keys controls are only for debugging purpose:
 ---
 
 ## 👨‍🏫 Workshop
-If you want to do the workshop check out the branch `Lavaland4Kids`.
-In this state the game logic is missing and needs to be implemented.
-Therefore, the tests are separated in 8 easy steps (`step1` - `step8`).
-Each step contains several tests. Code until a step is running green:
+If you want to do the workshop check out the branch `Javaland4Kids`. In this state the game logic is missing and needs
+to be implemented. Therefore, the tests are separated into 8 easy steps (`step1` - `step8`). Each step contains several
+tests. Code until a step is running green:
 ```bash
 ./gradlew  jvmTest
 ```

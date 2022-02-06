@@ -172,6 +172,22 @@ class GameMechanicsTest {
     }
 
     @Test
+    fun `test that getHorizontalSurroundings(pos) dont match holes`() {
+        val field = GameField.fromString(
+            """
+                |[H, H, H]
+                |[H, H, H]
+                |[H, H, H]
+                """.trimMargin()
+        )
+        val mechanics = GameMechanics(field)
+
+        assertEquals(listOf(field.getTileCell(1, 0)), mechanics.getHorizontalSurroundings(Position(1, 0)))
+        assertEquals(listOf(field.getTileCell(1, 1)), mechanics.getHorizontalSurroundings(Position(1, 1)))
+        assertEquals(listOf(field.getTileCell(1, 2)), mechanics.getHorizontalSurroundings(Position(1, 2)))
+    }
+
+    @Test
     fun `test getHorizontalSurroundings(pos) with six tiles in a horizontal line`() {
         val field = GameField.fromString(
             """
@@ -216,6 +232,21 @@ class GameMechanicsTest {
         assertEquals(vertical, mechanics.getVerticalSurroundings(Position(row = 6)))
     }
 
+    @Test
+    fun `test that getVerticalSurroundings(pos) dont match holes`() {
+        val field = GameField.fromString(
+            """
+                |[H, H, H]
+                |[H, H, H]
+                |[H, H, H]
+                """.trimMargin()
+        )
+        val mechanics = GameMechanics(field)
+
+        assertEquals(listOf(field.getTileCell(1, 0)), mechanics.getVerticalSurroundings(Position(1, 0)))
+        assertEquals(listOf(field.getTileCell(1, 1)), mechanics.getVerticalSurroundings(Position(1, 1)))
+        assertEquals(listOf(field.getTileCell(1, 2)), mechanics.getVerticalSurroundings(Position(1, 2)))
+    }
 
     @Test
     fun `test disconnected surroundings`() {
@@ -245,7 +276,7 @@ class GameMechanicsTest {
 
 
     @Test
-    fun `test getNextMove(column)`() {
+    fun `test getNextDropMove(column)`() {
         val field = GameField.fromString(
             """
                 |[H, H, A, H]
@@ -256,10 +287,10 @@ class GameMechanicsTest {
         )
         val mechanics = GameMechanics(field)
 
-        assertEquals(Move(Position(0, 3), Position(0, 1)), mechanics.getNextMove(0))
-        assertEquals(Move(Position(1, 2), Position(1, 1)), mechanics.getNextMove(1))
-        assertEquals(Move(Position(2, 2), Position(2, 0)), mechanics.getNextMove(2))
-        assertEquals(Move(Position(3, 3), Position(3, 1)), mechanics.getNextMove(3))
+        assertEquals(Move(Position(0, 3), Position(0, 1)), mechanics.getNextDropMove(0))
+        assertEquals(Move(Position(1, 2), Position(1, 1)), mechanics.getNextDropMove(1))
+        assertEquals(Move(Position(2, 2), Position(2, 0)), mechanics.getNextDropMove(2))
+        assertEquals(Move(Position(3, 3), Position(3, 1)), mechanics.getNextDropMove(3))
     }
 
     @Test
