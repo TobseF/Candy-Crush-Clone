@@ -1,11 +1,13 @@
 # 🍭 Candy Crush Clone
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.6.10-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
-[![KorGE](https://img.shields.io/badge/KorGE-2.4.10-836DAC.svg)](https://korge.soywiz.com/)
+[![KorGE](https://img.shields.io/badge/KorGE-2.4.10-836DAC.svg)](https://korge.org)
 [![Gradle](https://img.shields.io/badge/Gradle-7.0.2-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
 
 ![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
 
-This is a **🚧 WIP** match 3 game for a workshop with children on the [JavaLand4Kids](https://www.javaland.eu/de/javaland-2018/javaland4kids/).
+> 🚧 This is a *work in progress* match 3 game. It's ready to play but also a clean and simple example for Kotlin multiplatform game development with 
+> [KorGE](https://korge.org). In addition, it includes a test driven step-by-step guide for learning the game mechanics. Originally designed for a workshop on the 
+> [JavaLand4Kids](https://www.javaland.eu/de/javaland-2018/javaland4kids/).
 
 ### [🎮 Run the game as WebApp](https://tobsef.github.io/Candy-Crush-Clone/)
 
@@ -15,6 +17,14 @@ This is a **🚧 WIP** match 3 game for a workshop with children on the [JavaLan
 ⭐ Support for custom skins  
 ⭐ Tested and documented  
 ⭐ Build to teach
+
+## 💿 Downloads
+
+### 📦 [Candy-Crush-Clone-1.0.0-Win.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8178705/Candy-Crush-Clone-1.0.0-Win.zip) `4.14 MB` [Windows]
+> 💡 Native one-click exe - No Java required.
+
+###📦 [Candy-Crush-Clone-1.0.0.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8177832/Candy-Crush-Clone-1.0.0.zip) `17.2 MB` [Platform independent]
+>💡  Requires an installed [Java JRE](https://java.com/en/download/). Runs on Windows, Linux & Mac.
 
 ## ⌨ Controls
 
