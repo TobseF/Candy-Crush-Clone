@@ -23,8 +23,8 @@
 ### 📦 [Candy-Crush-Clone-1.0.0-Win.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8178705/Candy-Crush-Clone-1.0.0-Win.zip) `4.14 MB` [Windows]
 > 💡 Native one-click exe - No Java required.
 
-###📦 [Candy-Crush-Clone-1.0.0.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8177832/Candy-Crush-Clone-1.0.0.zip) `17.2 MB` [Platform independent]
->💡  Requires an installed [Java JRE](https://java.com/en/download/). Runs on Windows, Linux & Mac.
+### 📦 [Candy-Crush-Clone-1.0.0.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8177832/Candy-Crush-Clone-1.0.0.zip) `17.2 MB` [Platform independent]
+> 💡  Requires an installed [Java JRE](https://java.com/en/download/). Runs on Windows, Linux & Mac.
 
 ## ⌨ Controls
 
