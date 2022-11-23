@@ -1,7 +1,7 @@
 # 🍭 Candy Crush Clone
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.6.10-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
-[![KorGE](https://img.shields.io/badge/KorGE-2.4.10-836DAC.svg)](https://korge.org)
-[![Gradle](https://img.shields.io/badge/Gradle-7.0.2-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.7.20-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
+[![KorGE](https://img.shields.io/badge/KorGE-3.0.0-836DAC.svg)](https://korge.org)
+[![Gradle](https://img.shields.io/badge/Gradle-7.5-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
 
 ![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
 

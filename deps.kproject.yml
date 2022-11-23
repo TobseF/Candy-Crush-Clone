@@ -1,0 +1,9 @@
+# KProject: https://github.com/korlibs/kproject
+dependencies:
+  #- git::korge-fleks::korlibs/korge-fleks::/korge-fleks::94908e913118b229812b0d447ffc161f6f8f5f78
+  #- git::korge-ldtk::korlibs/korge-ldtk::/korge-ldtk::ac5b6fd21debb85db74f48c2fc6960ff9690457b
+  #- git::korge-compose::korlibs/korge-compose::/korge-compose::c6a980492155bb2cc480e3beda0fef4d6312ac3b
+  #- git::korge-dragonbones::korlibs/korge-dragonbones::/korge-dragonbones::da64d67195a7703a589d58f93cadfa3e00232685
+  #- git::korge-swf::korlibs/korge-swf::/korge-swf::f7af9d42e39ce7914f7f1e03d7ca404c8f4a50d8
+  #- git::korge-spine::korlibs/korge-spine::/korge-spine::8b17996726fd373589084d8dcbcea4aa73a5c67a
+  #- git::korge-box2d::korlibs/korge-box2d::/korge-box2d::957b39c173d00a24a9d83b1a630f474b527b6bd5
