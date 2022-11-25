@@ -65,8 +65,6 @@ For easy dependency injection the `AsyncInjector` is used.
 ### Game Flow
 ![Sequence Diagram](doc/game_flow.png)
 
-### 
-
 ## 🛠 Setup
 
 You can open this project in IntelliJ IDEA by opening the folder or the `build.gradle.kts` file.
@@ -75,7 +73,15 @@ You should use Gradle 7.5 or greater and Java 8 or greater.
 
 To upgrade to a newer KorGE, change the plugin version in `gradle/libs.versions.toml`.
 
+## 🔊 Audio
+
+To mute sounds or music you can change `src/commonMain/kotlin/main.kt` and set
+
+* `playSounds = false`
+* `playBackgroundMusic = false`
+
 ## 📜 MIT Licence
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -83,13 +89,13 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so.
 
-Some game resources are not included in this MIT licence and provided by others. Please respect their royalty:   
- * 🎵 The optional game music is provided by [_Eric Matyas_](https://soundimage.org/sample-page/) 
-      and licensed under the [Soundimage International Public License](https://soundimage.org/sample-page/).
- * 🖼 Background image and candy graphics are from [stockunlimited](https://www.stockunlimited.com/) 
-      used with the [Stockunlimited Content License - Standard](https://www.stockunlimited.com/license.php).
- * The bitmap font is based on the [Candice Font](https://fonts2u.com/candice.font) _Copyright 1992 by URW Software_.
+Some game resources are not included in this MIT licence and provided by others. Please respect their royalty:
 
+* 🎵 The optional game music is provided by [_Eric Matyas_](https://soundimage.org/sample-page/)
+  and licensed under the [Soundimage International Public License](https://soundimage.org/sample-page/).
+* 🖼 Background image and candy graphics are from [stockunlimited](https://www.stockunlimited.com/)
+  used with the [Stockunlimited Content License - Standard](https://www.stockunlimited.com/license.php).
+* The bitmap font is based on the [Candice Font](https://fonts2u.com/candice.font) _Copyright 1992 by URW Software_.
 
 ## Compiling for the JVM (Desktop)
 

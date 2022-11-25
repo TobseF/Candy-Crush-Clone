@@ -1,17 +1,15 @@
 package j4k.candycrush.audio
 
-import com.soywiz.korau.sound.Sound
-import com.soywiz.korau.sound.readSound
-import com.soywiz.korge.view.Views
-import com.soywiz.korinject.AsyncDependency
-import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korio.async.launch
-import com.soywiz.korio.file.std.resourcesVfs
+import com.soywiz.korau.sound.*
+import com.soywiz.korge.view.*
+import com.soywiz.korinject.*
+import com.soywiz.korio.async.*
+import com.soywiz.korio.file.std.*
 
 /**
  * Plays game sounds.
  */
-class SoundMachine(val views: Views?) : AsyncDependency {
+class SoundMachine(private val views: Views?) : AsyncDependency {
 
     /**
      * Removing tiles from the field
@@ -37,18 +35,18 @@ class SoundMachine(val views: Views?) : AsyncDependency {
     private var multi5: Sound? = null
     private var multi6: Sound? = null
 
-    var playSounds = true
+    var enabled = true
 
     companion object {
-        operator fun invoke(injector: AsyncInjector) {
-            injector.mapSingleton { SoundMachine(get() as Views) }
+        operator fun invoke(injector: AsyncInjector, apply: SoundMachine.() -> Unit) {
+            injector.mapSingleton { SoundMachine(get() as Views).also(apply) }
         }
     }
 
     private suspend fun newSound(fileName: String) = resourcesVfs["sounds/$fileName"].readSound()
 
     override suspend fun init() {
-        if (playSounds) {
+        if (enabled) {
             clear = newSound("clear.mp3")
             multi2 = newSound("multi_2.mp3")
             multi3 = newSound("multi_3.mp3")
@@ -61,7 +59,7 @@ class SoundMachine(val views: Views?) : AsyncDependency {
     }
 
     fun playClear() {
-        if (playSounds) {
+        if (enabled) {
             clear.play()
         }
     }
@@ -72,22 +70,23 @@ class SoundMachine(val views: Views?) : AsyncDependency {
         }
 
     fun playWrongMove() {
-        if (playSounds) {
+        if (enabled) {
             wrongMove.play()
         }
     }
 
     fun playDropGround() {
-        if (playSounds) {
+        if (enabled) {
             dopGround.play()
         }
     }
 
     fun playMulti(multi: Int) {
-        if (playSounds) {
+        if (enabled) {
             when (multi) {
                 1 -> {
                 }
+
                 2 -> multi2.play()
                 3 -> multi3.play()
                 4 -> multi4.play()

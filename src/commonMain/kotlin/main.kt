@@ -1,25 +1,19 @@
-import com.soywiz.klogger.Logger
-import com.soywiz.korge.Korge
-import com.soywiz.korge.component.Component
-import com.soywiz.korge.input.onClick
-import com.soywiz.korgw.GameWindow
-import com.soywiz.korim.color.Colors
-import com.soywiz.korinject.AsyncInjector
+import com.soywiz.klogger.*
+import com.soywiz.korge.*
+import com.soywiz.korge.component.*
+import com.soywiz.korge.input.*
+import com.soywiz.korgw.*
+import com.soywiz.korim.color.*
+import com.soywiz.korinject.*
 import j4k.candycrush.*
-import j4k.candycrush.audio.JukeBox
-import j4k.candycrush.audio.SoundMachine
-import j4k.candycrush.compontens.Background
-import j4k.candycrush.config.donuts
-import j4k.candycrush.config.testTiles
-import j4k.candycrush.input.MoveTileObserver
-import j4k.candycrush.level.LevelFactory
-import j4k.candycrush.lib.EventBus
-import j4k.candycrush.lib.Resolution
-import j4k.candycrush.lib.Ressources
-import j4k.candycrush.renderer.GameFieldRenderer
-import j4k.candycrush.renderer.LevelCheckRenderer
-import j4k.candycrush.renderer.ScoringRenderer
-import j4k.candycrush.renderer.animation.TileAnimator
+import j4k.candycrush.audio.*
+import j4k.candycrush.compontens.*
+import j4k.candycrush.config.*
+import j4k.candycrush.input.*
+import j4k.candycrush.level.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.renderer.*
+import j4k.candycrush.renderer.animation.*
 
 
 /**
@@ -30,7 +24,8 @@ import j4k.candycrush.renderer.animation.TileAnimator
  */
 
 const val debug = false
-const val playBackgroundMusic = false
+const val playBackgroundMusic = true
+const val playSounds = true
 
 /**
  * Virtual size which gets projected onto the [windowResolution]
@@ -47,10 +42,11 @@ val backgroundColor = Colors.DIMGRAY
 val level = LevelFactory().createLevel()
 
 suspend fun main() = Korge(
-        title = "Candy Crush",
-        virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
-        width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug,
-        quality = GameWindow.Quality.QUALITY) {
+    title = "Candy Crush",
+    virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
+    width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug,
+    quality = GameWindow.Quality.QUALITY
+) {
 
     Logger.defaultLevel = Logger.Level.DEBUG
     val candies = donuts()
@@ -72,7 +68,9 @@ suspend fun main() = Korge(
     JukeBox(injector) { activated = playBackgroundMusic }.play()
 
     addChild(Background(injector))
-    SoundMachine(injector)
+    SoundMachine(injector) {
+        enabled = playSounds
+    }
 
     addChild(GameFieldRenderer(injector))
 
