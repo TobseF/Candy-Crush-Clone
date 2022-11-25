@@ -71,7 +71,7 @@ suspend fun main() = Korge(
 
     JukeBox(injector) { activated = playBackgroundMusic }.play()
 
-    addComponent(Background(injector))
+    addChild(Background(injector))
     SoundMachine(injector)
 
     addChild(GameFieldRenderer(injector))
