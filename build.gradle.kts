@@ -19,7 +19,7 @@ korge {
 
     targetJvm()
     targetJs()
-    //targetDesktop()
+    targetDesktop()
     //targetIos()
     //targetAndroidIndirect() // targetAndroidDirect()
 
@@ -30,5 +30,4 @@ korge {
 
 dependencies {
     add("commonMainApi", project(":deps"))
-    //add("commonMainApi", project(":korge-dragonbones"))
 }

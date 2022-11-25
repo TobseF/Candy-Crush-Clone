@@ -1,6 +1,6 @@
 # 🍭 Candy Crush Clone
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.7.20-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
-[![KorGE](https://img.shields.io/badge/KorGE-3.0.0-836DAC.svg)](https://korge.org)
+[![KorGE](https://img.shields.io/badge/KorGE-3.4.0-836DAC.svg)](https://korge.org)
 [![Gradle](https://img.shields.io/badge/Gradle-7.5-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
 
 ![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
@@ -70,12 +70,10 @@ For easy dependency injection the `AsyncInjector` is used.
 ## 🛠 Setup
 
 You can open this project in IntelliJ IDEA by opening the folder or the `build.gradle.kts` file.
-
-
 For Windows, change all the `./gradlew` for `gradlew.bat`.
+You should use Gradle 7.5 or greater and Java 8 or greater.
 
-You should use Gradle 7.0 or greater and Java 8 or greater.
-
+To upgrade to a newer KorGE, change the plugin version in `gradle/libs.versions.toml`.
 
 ## 📜 MIT Licence
 Permission is hereby granted, free of charge, to any person obtaining a copy
