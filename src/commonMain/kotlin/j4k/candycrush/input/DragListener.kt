@@ -2,11 +2,9 @@ package j4k.candycrush.input
 
 import com.soywiz.korev.MouseEvent
 import com.soywiz.korge.component.MouseComponent
-import com.soywiz.korge.view.View
-import com.soywiz.korge.view.Views
+import com.soywiz.korge.view.*
 import com.soywiz.korma.geom.IPoint
 import com.soywiz.korma.geom.Point
-import com.soywiz.korma.geom.distanceTo
 
 class DragListener(
     override val view: View,
@@ -14,16 +12,16 @@ class DragListener(
     private val dragEventListener: DragEventListener
 ) : MouseComponent {
 
-    private var start = Point.Zero
-    private var end = Point.Zero
+    private var start : Point = Point()
+    private var end : Point = Point()
 
     private fun dragDistance() = start.distanceTo(end)
 
     data class DragEvent(val start: IPoint, val end: IPoint)
 
     private fun reset() {
-        start = Point.Zero
-        end = Point.Zero
+        start.setToZero()
+        end.setToZero()
     }
 
     interface DragEventListener {
@@ -33,11 +31,11 @@ class DragListener(
     override fun onMouseEvent(views: Views, event: MouseEvent) {
         when (event.type) {
             MouseEvent.Type.DOWN -> {
-                start = event.point()
+                start.setToMouseXY(views)
             }
             MouseEvent.Type.DRAG, MouseEvent.Type.MOVE -> {
                 if (startedDrag()) {
-                    end = event.point()
+                    end.setToMouseXY(views)
                     if (dragDistance() > maximumDragDistance) {
                         notifyDragListener()
                         reset()
@@ -45,7 +43,7 @@ class DragListener(
                 }
             }
             MouseEvent.Type.UP -> {
-                end = event.point()
+                end.setToMouseXY(views)
                 if (startedDrag()) {
                     notifyDragListener()
                     reset()
@@ -57,10 +55,8 @@ class DragListener(
         }
     }
 
-    fun MouseEvent.point() = project(Point(this.x, y))
-
-    fun project(point: Point): Point {
-        return view.globalToLocalXY(point.x, point.y, point)
+    private fun Point.setToMouseXY(views: Views): Point {
+        return view.localMouseXY(views,this)
     }
 
     private fun startedDrag() = start != Point.Zero
