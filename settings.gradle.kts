@@ -3,5 +3,3 @@ pluginManagement { repositories {  mavenLocal(); mavenCentral(); google(); gradl
 plugins {
     id("com.soywiz.kproject.settings") version "0.0.4"
 }
-
-kproject("./deps")
