@@ -75,10 +75,8 @@ To upgrade to a newer KorGE, change the plugin version in `gradle/libs.versions.
 
 ## 🔊 Audio
 
-To mute sounds or music you can change `src/commonMain/kotlin/main.kt` and set
-
-* `playSounds = false`
-* `playBackgroundMusic = false`
+To mute sounds you can change `src/commonMain/kotlin/main.kt` and set `playSounds = false`.
+Sounds and music can be also enabled in the game settings (⚙ gear icon).
 
 ## 📜 MIT Licence
 
@@ -95,6 +93,8 @@ Some game resources are not included in this MIT licence and provided by others.
   and licensed under the [Soundimage International Public License](https://soundimage.org/sample-page/).
 * 🖼 Background image and candy graphics are from [stockunlimited](https://www.stockunlimited.com/)
   used with the [Stockunlimited Content License - Standard](https://www.stockunlimited.com/license.php).
+* 🖼 GUI buttons are [Chocolate Candy bundle](https://www.gameart2d.com/chocolate-candy-game-gui.html) from Game Art 2D
+  used with the [Paid Assets License](https://www.gameart2d.com/license.html).
 * The bitmap font is based on the [Candice Font](https://fonts2u.com/candice.font) _Copyright 1992 by URW Software_.
 
 ## Compiling for the JVM (Desktop)

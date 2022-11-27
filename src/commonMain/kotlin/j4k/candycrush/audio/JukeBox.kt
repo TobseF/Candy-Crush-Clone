@@ -1,60 +1,78 @@
 package j4k.candycrush.audio
 
-import com.soywiz.korau.sound.Sound
-import com.soywiz.korau.sound.readMusic
-import com.soywiz.korge.view.Stage
-import com.soywiz.korinject.AsyncDependency
-import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korio.async.launch
-import com.soywiz.korio.file.std.resourcesVfs
+import com.soywiz.korau.sound.*
+import com.soywiz.korge.view.*
+import com.soywiz.korinject.*
+import com.soywiz.korio.async.*
+import com.soywiz.korio.file.std.*
 
 /**
  * Jukebox which plays background music in a random order.
  */
-class JukeBox(val stage: Stage) : AsyncDependency {
+class JukeBox(private val views: Views) {
 
     private val playList = mutableListOf<Sound>()
-    private var started = false
-    var activated = true
+    private var playing = false
+    private var currentSong: SoundChannel? = null
+    private var index = -1
 
     companion object {
-        suspend operator fun invoke(injector: AsyncInjector, receiver: JukeBox.() -> Unit): JukeBox {
-            injector.mapSingleton {
-                JukeBox(get()).apply {
-                    receiver.invoke(this)
-                }
-            }
+        suspend operator fun invoke(injector: AsyncInjector): JukeBox {
+            injector.mapSingleton { JukeBox(get()) }
             return injector.get()
         }
     }
 
-    override suspend fun init() {
-        if (activated) {
-            playList += newMusic("monkey_drama.mp3")
-            playList += newMusic("monkey_island_puzzler.mp3")
+    private suspend fun loadPlaylist() {
+        playList += newMusic("monkey_drama.mp3")
+        playList += newMusic("monkey_island_puzzler.mp3")
+    }
+
+    suspend fun play() {
+        loadIfNeeded()
+        playing = true
+        if (currentSong == null) {
+            loopMusicPlaylist()
         }
     }
 
-    fun play() {
-        if (activated && !started) {
-            stage.launch {
+    private suspend fun loadIfNeeded() {
+        if (playList.isEmpty()) {
+            loadPlaylist()
+        }
+    }
+
+    private fun nextSong(): Sound {
+        index += 1
+        if (index >= playList.size) {
+            index = 0
+        }
+        return playList[index]
+    }
+
+    private fun startNextSong() {
+        if (playing) {
+            views.launch {
                 loopMusicPlaylist()
             }
         }
     }
 
     private suspend fun loopMusicPlaylist() {
-        started = true
-        while (started) {
-            val nextSong: Sound = playList.random()
-            nextSong.playAndWait()
+        while (currentSong == null) {
+            val nextSong: Sound = nextSong()
+            currentSong = nextSong.play(PlaybackParameters(onFinish = {
+                startNextSong()
+            }))
         }
     }
 
     fun stop() {
-        started = false
+        playing = false
+        val currentSong = currentSong
+        this.currentSong = null
+        currentSong?.stop()
     }
-
 
 }
 

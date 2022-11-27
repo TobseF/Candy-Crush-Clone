@@ -2,6 +2,7 @@ import com.soywiz.klogger.*
 import com.soywiz.korge.*
 import com.soywiz.korge.component.*
 import com.soywiz.korge.input.*
+import com.soywiz.korge.view.*
 import com.soywiz.korgw.*
 import com.soywiz.korim.color.*
 import com.soywiz.korinject.*
@@ -24,7 +25,6 @@ import j4k.candycrush.renderer.animation.*
  */
 
 const val debug = false
-const val playBackgroundMusic = true
 const val playSounds = true
 
 /**
@@ -53,6 +53,7 @@ suspend fun main() = Korge(
 
     val injector = AsyncInjector().also {
         it.mapInstance(this)
+        it.mapInstance(this as View)
         it.mapInstance(EventBus(this))
         it.mapInstance(candies)
         it.mapInstance(testTiles())
@@ -65,12 +66,13 @@ suspend fun main() = Korge(
     GameMechanics(injector)
     Ressources(injector)
 
-    JukeBox(injector) { activated = playBackgroundMusic }.play()
+    JukeBox(injector)
 
     addChild(Background(injector))
     SoundMachine(injector) {
         enabled = playSounds
     }
+    addChild(Settings(injector))
 
     addChild(GameFieldRenderer(injector))
 
