@@ -25,7 +25,7 @@ import j4k.candycrush.renderer.animation.*
  */
 
 const val debug = false
-const val useTestSprites = true
+const val useTestSprites = false
 
 const val playSounds = true
 
