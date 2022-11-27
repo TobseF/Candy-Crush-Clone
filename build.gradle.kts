@@ -7,7 +7,11 @@ plugins {
 korge {
     id = "j4k.candycrush"
     name = "Candy Crush"
+    description = "Match 3 Game"
     gameCategory = GameCategory.ARCADE
+
+    exeBaseName = "Candy Crush"
+    icon = File("icon/icon.png")
 
     // To enable all targets at once
     //targetAll()
