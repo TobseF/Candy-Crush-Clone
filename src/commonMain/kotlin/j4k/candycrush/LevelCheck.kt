@@ -1,10 +1,8 @@
 package j4k.candycrush
 
-import com.soywiz.korinject.AsyncInjector
-import j4k.candycrush.lib.EventBus
-import j4k.candycrush.model.Level
-import j4k.candycrush.model.Tile
-import j4k.candycrush.model.TileCell
+import com.soywiz.korinject.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.model.*
 
 class LevelCheck(val level: Level, private val bus: EventBus) {
 
@@ -18,7 +16,7 @@ class LevelCheck(val level: Level, private val bus: EventBus) {
     private var moves = 0
 
     private val tileCounters: MutableMap<Tile, Int> = mutableMapOf()
-    private val tileGoals: Map<Tile, Int> = level.tileObjectives.map { it.tile to it.goal }.toMap()
+    private val tileGoals: Map<Tile, Int> = level.tileObjectives.associate { it.tile to it.goal }
 
     init {
         bus.register<NewScoreEvent> { onScore(it) }
@@ -28,14 +26,14 @@ class LevelCheck(val level: Level, private val bus: EventBus) {
 
     val remaining: Int get() = ((level.maxMoves ?: 0) - moves).coerceAtLeast(0)
 
-    fun failed(): Boolean {
+    private fun failed(): Boolean {
         if (level.maxMoves != null && moves >= level.maxMoves) {
             return true
         }
         return false
     }
 
-    fun reachedGoals(): Boolean {
+    private fun reachedGoals(): Boolean {
         return level.tileObjectives.map { it.tile }.all { it.reachedGoal() }
     }
 
@@ -52,20 +50,21 @@ class LevelCheck(val level: Level, private val bus: EventBus) {
         tiles.map { it.tile }.forEach { tile ->
             tileCounters[tile] = getCount(tile) + 1
         }
+        bus.send(NewTileCountEvent(tileCounters))
     }
 
-    fun getCount(tile: Tile) = tileCounters.getOrElse(tile) { 0 }
+    private fun getCount(tile: Tile) = tileCounters.getOrElse(tile) { 0 }
 
     fun getRemainingCount(tile: Tile) = ((tileGoals[tile] ?: 0) - getCount(tile)).coerceAtLeast(0)
 
-    fun onScore(score: NewScoreEvent) {
+    private fun onScore(score: NewScoreEvent) {
         totalScore += score.score
         if (failed() || reachedGoals()) {
             bus.send(GameOverEvent())
         }
     }
 
-    fun onTileSwapTileEvent() {
+    private fun onTileSwapTileEvent() {
         moves++
     }
 

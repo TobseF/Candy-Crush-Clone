@@ -25,6 +25,8 @@ import j4k.candycrush.renderer.animation.*
  */
 
 const val debug = false
+const val useTestSprites = true
+
 const val playSounds = true
 
 /**
@@ -48,8 +50,8 @@ suspend fun main() = Korge(
     quality = GameWindow.Quality.QUALITY
 ) {
 
-    Logger.defaultLevel = Logger.Level.DEBUG
-    val candies = donuts()
+    Logger.defaultLevel = if (debug) Logger.Level.DEBUG else Logger.Level.INFO
+    val candies: CandySprites = donuts()
 
     val injector = AsyncInjector().also {
         it.mapInstance(this)
@@ -74,7 +76,9 @@ suspend fun main() = Korge(
     }
     addChild(Settings(injector))
 
-    addChild(GameFieldRenderer(injector))
+    addChild(GameFieldRenderer(injector).apply {
+        if (useTestSprites) toggleDebug()
+    })
 
     LevelCheck(injector)
     LevelCheckRenderer(injector)

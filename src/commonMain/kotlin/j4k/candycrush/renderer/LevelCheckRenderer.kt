@@ -1,15 +1,11 @@
 package j4k.candycrush.renderer
 
 import com.soywiz.korge.view.*
-import com.soywiz.korim.bitmap.Bitmap
-import com.soywiz.korinject.AsyncDependency
-import com.soywiz.korinject.AsyncInjector
-import j4k.candycrush.LevelCheck
-import j4k.candycrush.NewScoreEvent
-import j4k.candycrush.lib.EventBus
-import j4k.candycrush.lib.Ressources
-import j4k.candycrush.lib.loadImage
-import j4k.candycrush.model.Tile
+import com.soywiz.korim.bitmap.*
+import com.soywiz.korinject.*
+import j4k.candycrush.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.model.*
 
 class LevelCheckRenderer(private val stage: Stage,
         bus: EventBus,
@@ -35,7 +31,7 @@ class LevelCheckRenderer(private val stage: Stage,
     private class TileCounter(val tile: Tile, val count: Text)
 
     init {
-        bus.register<NewScoreEvent> { onScore() }
+        bus.register<NewTileCountEvent> { onScore() }
     }
 
     override suspend fun init() {

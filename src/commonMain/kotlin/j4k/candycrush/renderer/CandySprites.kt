@@ -1,14 +1,21 @@
 package j4k.candycrush.renderer
 
-import com.soywiz.korim.bitmap.Bitmap
-import com.soywiz.korim.bitmap.BmpSlice
-import j4k.candycrush.lib.SpriteBatch
-import j4k.candycrush.model.Tile
+import com.soywiz.korim.bitmap.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.model.*
 
 /**
  * A [SpriteBatch] with images for all [Tile]s.
  */
-open class CandySprites(x: Int = 0, y: Int = 0, spriteSize: Int = 16, columns: Int, rows: Int, bitmap: Bitmap) {
+open class CandySprites(
+    val name: String = "",
+    x: Int = 0,
+    y: Int = 0,
+    spriteSize: Int = 16,
+    columns: Int,
+    rows: Int,
+    bitmap: Bitmap
+) {
 
     private val sprites = SpriteBatch(x, y, spriteSize, columns, rows, bitmap)
 
@@ -17,6 +24,9 @@ open class CandySprites(x: Int = 0, y: Int = 0, spriteSize: Int = 16, columns: I
         return sprites[mappedIndex]
     }
 
-    var tilesMap: Map<Tile, Int>? = null
+    override fun toString(): String {
+        return "CandySprites(name='$name')"
+    }
 
+    var tilesMap: Map<Tile, Int>? = null
 }

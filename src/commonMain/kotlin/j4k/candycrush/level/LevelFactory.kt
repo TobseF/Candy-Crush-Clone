@@ -1,8 +1,7 @@
 package j4k.candycrush.level
 
-import j4k.candycrush.model.Level
+import j4k.candycrush.model.*
 import j4k.candycrush.model.Level.TileObjective
-import j4k.candycrush.model.Tile
 
 class LevelFactory {
 
@@ -26,7 +25,11 @@ class LevelFactory {
             """.trimMargin()
 
         return Level(
-                levelData, reserveData, maxMoves = 42,
-                tileObjectives = listOf(TileObjective(Tile.A, 18), TileObjective(Tile.C, 22)))
+            levelData, reserveData, maxMoves = 42,
+            tileObjectives = listOf(
+                TileObjective(Tile.A, 18),
+                TileObjective(Tile.C, 22)
+            )
+        )
     }
 }

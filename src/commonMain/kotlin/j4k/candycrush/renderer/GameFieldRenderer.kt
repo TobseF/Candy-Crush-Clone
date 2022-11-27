@@ -1,24 +1,25 @@
 package j4k.candycrush.renderer
 
-import com.soywiz.klogger.Logger
-import com.soywiz.korge.view.Container
-import com.soywiz.korinject.AsyncInjector
-import j4k.candycrush.GameMechanics
-import j4k.candycrush.lib.Resolution
-import j4k.candycrush.math.PositionGrid
+import com.soywiz.klogger.*
+import com.soywiz.korge.view.*
+import com.soywiz.korinject.*
+import j4k.candycrush.*
+import j4k.candycrush.config.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.math.*
 import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.GameField
-import j4k.candycrush.model.Row
-import j4k.candycrush.model.Tile
-import kotlin.math.min
+import j4k.candycrush.model.*
+import kotlin.math.*
 
 /**
  * Displays the tiles of a [GameField] with images out of [CandySprites].
  */
-class GameFieldRenderer(private val gameField: GameField,
-        private val max: Resolution,
-        private val candies: CandySprites,
-        private val debugLetters: CandySprites) : Container() {
+class GameFieldRenderer(
+    private val gameField: GameField,
+    private val max: Resolution,
+    private val candies: CandySprites,
+    private val debugLetters: TestSprites
+) : Container() {
 
     /**
      * Maps the [GameField] [Position]s to screen coordinates.

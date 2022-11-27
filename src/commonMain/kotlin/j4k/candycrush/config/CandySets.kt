@@ -1,29 +1,32 @@
 package j4k.candycrush.config
 
-import com.soywiz.korim.bitmap.Bitmap
-import j4k.candycrush.lib.SpriteBatch
-import j4k.candycrush.lib.loadImage
-import j4k.candycrush.model.Tile
-import j4k.candycrush.renderer.CandySprites
+import com.soywiz.korim.bitmap.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.model.*
+import j4k.candycrush.renderer.*
 
 /**
  * [SpriteBatch] with fruit candies
  */
 suspend fun fruits(): CandySprites {
-    val candies = CandySprites(
-            spriteSize = 212, columns = 5, rows = 4, bitmap = loadImage("candy_fruits.png"))
-    candies.tilesMap = mapOf(Tile.A to 0, Tile.B to 1, Tile.C to 2, Tile.D to 6, Tile.E to 10)
-    return candies
+    return CandySprites(
+        name = "fruits",
+        spriteSize = 212, columns = 5, rows = 4, bitmap = loadImage("candy_fruits.png")
+    ).apply {
+        tilesMap = mapOf(Tile.A to 0, Tile.B to 1, Tile.C to 2, Tile.D to 6, Tile.E to 10)
+    }
 }
 
 /**
  * [SpriteBatch] with fruit candies
  */
 suspend fun donuts(): CandySprites {
-    val candies = CandySprites(
-            spriteSize = 212, columns = 5, rows = 4, bitmap = loadImage("candy_donuts.png"))
-    candies.tilesMap = mapOf(Tile.A to 14, Tile.B to 8, Tile.C to 5, Tile.D to 10, Tile.E to 16)
-    return candies
+    return CandySprites(
+        name = "donuts",
+        spriteSize = 212, columns = 5, rows = 4, bitmap = loadImage("candy_donuts.png")
+    ).apply {
+        tilesMap = mapOf(Tile.A to 14, Tile.B to 8, Tile.C to 5, Tile.D to 10, Tile.E to 16)
+    }
 }
 
 /**
@@ -34,4 +37,6 @@ suspend fun testTiles(): TestSprites {
 }
 
 class TestSprites(x: Int = 0, y: Int = 0, spriteSize: Int, columns: Int, rows: Int, bitmap: Bitmap) : CandySprites(
-        x, y, spriteSize, columns, rows, bitmap)
+    "test-sprites (A-D)",
+    x, y, spriteSize, columns, rows, bitmap
+)
