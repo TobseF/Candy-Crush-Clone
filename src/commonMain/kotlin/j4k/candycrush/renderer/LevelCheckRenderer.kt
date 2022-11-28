@@ -35,7 +35,7 @@ class LevelCheckRenderer(private val stage: Stage,
     }
 
     override suspend fun init() {
-        moveArrow = loadImage("text_arrows_move.png")
+        moveArrow = res.imageGuiMoves
 
         stage.image(moveArrow) {
             position(paddingLeft, paddingTop)

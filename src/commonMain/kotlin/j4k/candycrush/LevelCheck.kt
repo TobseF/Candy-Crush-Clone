@@ -60,7 +60,7 @@ class LevelCheck(val level: Level, private val bus: EventBus) {
     private fun onScore(score: NewScoreEvent) {
         totalScore += score.score
         if (failed() || reachedGoals()) {
-            bus.send(GameOverEvent())
+            bus.send(GameOverEvent)
         }
     }
 

@@ -2,12 +2,14 @@ package j4k.candycrush.compontens
 
 import com.soywiz.korge.view.*
 import com.soywiz.korinject.*
+import j4k.candycrush.*
 import j4k.candycrush.audio.*
 import j4k.candycrush.lib.*
 
 class Settings(
     private val view: View,
     private val res: Ressources,
+    private val bus: EventBus,
     private val soundMachine: SoundMachine,
     private val jukeBox: JukeBox
 ) : Container() {
@@ -17,9 +19,11 @@ class Settings(
 
     companion object {
         suspend operator fun invoke(injector: AsyncInjector): Settings {
-            return Settings(injector.get(), injector.get(), injector.get(), injector.get()).also {
-                injector.mapInstance(it)
-                it.init()
+            injector.run {
+                return Settings(get(), get(), get(), get(), get()).also {
+                    injector.mapInstance(it)
+                    it.init()
+                }
             }
         }
     }
@@ -27,20 +31,21 @@ class Settings(
     suspend fun init() {
         val padding = 15.0
         val size = 80.0
-
+        var position = -1
+        fun yPos() = (size * ++position) + (padding * (position + 1))
         val settings = CheckBox(
             res.imageGuiSettingsOn, res.imageGuiSettings,
             initial = false
         ).apply {
             setSizeScaled(size, size)
-            y = padding
+            y = yPos()
         }.addTo(this)
 
         val sounds = CheckBox(res.imageGuiSoundOn, res.imageGuiSoundOff, initial = enabledSoundsOnStart) { activated ->
             soundMachine.enabled = activated
         }.apply {
             setSizeScaled(size, size)
-            y = padding * 2 + size
+            y = yPos()
             visible = false
         }.addTo(this)
 
@@ -52,13 +57,28 @@ class Settings(
             }
         }.apply {
             setSizeScaled(size, size)
-            y = padding * 3 + size * 2
+            y = yPos()
+            visible = false
+        }.addTo(this)
+
+        val shuffle = Button(res.imageGuiShuffle, res.imageGuiShuffleHover, res.imageGuiShuffleClick) {
+            bus.send(ShuffleGameEvent)
+        }.apply {
+            setSizeScaled(size, size)
+            y = yPos()
+            visible = false
+        }.addTo(this)
+
+        val restart = Button(res.imageGuiRestart, res.imageGuiRestartHover, res.imageGuiRestartClick) {
+            bus.send(ResetGameEvent)
+        }.apply {
+            setSizeScaled(size, size)
+            y = yPos()
             visible = false
         }.addTo(this)
 
         settings.action = { checked ->
-            music.visible = checked
-            sounds.visible = checked
+            listOf(music, sounds, shuffle, restart).forEach { it.visible = checked }
         }
         alignRightToRightOf(view, padding)
     }

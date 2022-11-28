@@ -28,8 +28,17 @@ data class SwapTileEvent(val posA: Position, val posB: Position)
  */
 data class DragTileEvent(val posA: Position, val posB: Position)
 
-class GameOverEvent
+/**
+ * Triggered on game over - when level was not completed
+ */
+object GameOverEvent
 
-class ResetGameEvent
+/**
+ * Reloads the current level.
+ */
+object ResetGameEvent
 
-class NextLevelEvent
+/**
+ * Loads a new random level.
+ */
+object ShuffleGameEvent

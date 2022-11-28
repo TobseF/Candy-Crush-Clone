@@ -43,14 +43,16 @@ val backgroundColor = Colors.DIMGRAY
 
 val level = LevelFactory().createLevel()
 
+val logLevel = Logger.Level.DEBUG
+
 suspend fun main() = Korge(
     title = "Candy Crush",
     virtualHeight = virtualResolution.height, virtualWidth = virtualResolution.width,
     width = windowResolution.width, height = windowResolution.height, bgcolor = backgroundColor, debug = debug,
     quality = GameWindow.Quality.QUALITY
 ) {
+    Logger.defaultLevel = logLevel
 
-    Logger.defaultLevel = if (debug) Logger.Level.DEBUG else Logger.Level.INFO
     val candies: CandySprites = donuts()
 
     val injector = AsyncInjector().also {
@@ -94,5 +96,6 @@ suspend fun main() = Korge(
 
     onClick { } // Needed to activate debugging with F7
 
+    GameActions(injector)
     KeyBindings(injector)
 }

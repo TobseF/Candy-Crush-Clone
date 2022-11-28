@@ -1,14 +1,12 @@
-import com.soywiz.korge.input.onClick
+import com.soywiz.korge.input.*
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.image
 import com.soywiz.korge.view.ninePatch
 import com.soywiz.korge.view.position
-import com.soywiz.korim.bitmap.NinePatchBitmap32
-import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korma.geom.Point
-import j4k.candycrush.GameOverEvent
-import j4k.candycrush.NextLevelEvent
-import j4k.candycrush.ResetGameEvent
+import com.soywiz.korim.bitmap.*
+import com.soywiz.korinject.*
+import com.soywiz.korma.geom.*
+import j4k.candycrush.*
 import j4k.candycrush.lib.*
 
 
@@ -25,8 +23,8 @@ class GameOverComponent(bus: EventBus, res: Ressources, resolution: Resolution) 
         val textPos = Point(center.x - shadowCorrection, messageBox.pos.y)
         textCentered(text = "Game Over", textSize = 64.0, font = res.fontCandy, center = textPos.top(80))
 
-        addChild(CandyButton("Restart", ResetGameEvent(), bus, res, textPos.top(200), this::hide))
-        addChild(CandyButton("Next", NextLevelEvent(), bus, res, textPos.top(310), this::hide))
+        addChild(CandyButton("Restart", ResetGameEvent, bus, res, textPos.top(200), this::hide))
+        addChild(CandyButton("Next", ShuffleGameEvent, bus, res, textPos.top(310), this::hide))
     }
 
     companion object {
@@ -57,7 +55,7 @@ class GameOverComponent(bus: EventBus, res: Ressources, resolution: Resolution) 
             val point1 = texture.centered(point)
             position(point1)
             image(texture = texture) {
-                val imageBounds = getLocalBounds()
+                val imageBounds = getLocalBounds(Rectangle())
                 val center = Point(imageBounds.width / 2, imageBounds.height / 2)
                 textCentered(text = text, textSize = 55.0, font = res.fontSmall, center = center)
                 onClick {

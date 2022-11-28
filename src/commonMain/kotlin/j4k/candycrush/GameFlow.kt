@@ -1,16 +1,14 @@
 package j4k.candycrush
 
-import com.soywiz.klogger.Logger
-import com.soywiz.korinject.AsyncInjector
+import com.soywiz.klogger.*
+import com.soywiz.korinject.*
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
-import j4k.candycrush.audio.SoundMachine
-import j4k.candycrush.lib.EventBus
+import j4k.candycrush.audio.*
+import j4k.candycrush.lib.*
 import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.Level
-import j4k.candycrush.model.Tile
-import j4k.candycrush.model.TileCell
-import j4k.candycrush.renderer.animation.TileAnimator
+import j4k.candycrush.model.*
+import j4k.candycrush.renderer.animation.*
 
 /**
  * Global game cycle which reacts on swapped tiles [onDragTileEvent].
@@ -113,7 +111,11 @@ class GameFlow(private val level: Level,
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
             animator.animateInsert(newTileMoves).invokeOnCompletion {
-                checkNewField()
+                try {
+                    checkNewField()
+                } catch (e: IllegalArgumentException) {
+                    log.debug { "Skipping checkNewField() because of level reset" }
+                }
             }
         } else {
             log.debug { "Field was clean on rush: $rush" }

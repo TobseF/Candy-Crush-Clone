@@ -6,11 +6,11 @@ import com.soywiz.korim.format.*
 import com.soywiz.korinject.*
 import com.soywiz.korio.file.std.*
 
-suspend fun loadImage(fileName: String): Bitmap = resourcesVfs["images/$fileName"].readBitmap()
+suspend fun loadImage(fileName: String): Bitmap = resourcesVfs[fileName].readBitmap()
 
-suspend fun loadFont(fileName: String): BitmapFont = resourcesVfs["fonts/$fileName"].readBitmapFont()
+suspend fun loadFont(fileName: String): BitmapFont = resourcesVfs[fileName].readBitmapFont()
 
-suspend fun loadNinePatch(fileName: String): NinePatchBitmap32 = resourcesVfs["images/$fileName"].readNinePatch()
+suspend fun loadNinePatch(fileName: String): NinePatchBitmap32 = resourcesVfs[fileName].readNinePatch()
 
 class Ressources : AsyncDependency {
 
@@ -24,6 +24,7 @@ class Ressources : AsyncDependency {
     lateinit var fontSmall: BitmapFont
     lateinit var imageButton: Bitmap
     lateinit var imageBackground: Bitmap
+    lateinit var imageGuiMoves: Bitmap
     lateinit var messageBox: NinePatchBitmap32
 
     lateinit var imageGuiMusicOn: Bitmap
@@ -32,21 +33,36 @@ class Ressources : AsyncDependency {
     lateinit var imageGuiSoundOff: Bitmap
     lateinit var imageGuiSettings: Bitmap
     lateinit var imageGuiSettingsOn: Bitmap
+    lateinit var imageGuiRestart: Bitmap
+    lateinit var imageGuiRestartClick: Bitmap
+    lateinit var imageGuiRestartHover: Bitmap
+    lateinit var imageGuiShuffle: Bitmap
+    lateinit var imageGuiShuffleClick: Bitmap
+    lateinit var imageGuiShuffleHover: Bitmap
 
     override suspend fun init() {
-        imageButton = loadImage("button.png")
-        imageBackground = loadImage("background.png")
-        imageGuiMusicOn = loadImage("gui_music_on.png")
-        imageGuiMusicOff = loadImage("gui_music_off.png")
-        imageGuiSoundOn = loadImage("gui_sound_on.png")
-        imageGuiSoundOff = loadImage("gui_sound_off.png")
-        imageGuiSettings = loadImage("gui_settings.png")
-        imageGuiSettingsOn = loadImage("gui_settings_on.png")
+        // Using full relative paths to get IDE support
 
-        fontCandy = loadFont("candy.fnt")
-        fontSmall = loadFont("candy-small.fnt")
+        imageButton = loadImage("images/button.png")
+        imageBackground = loadImage("images/background.png")
+        imageGuiMoves = loadImage("images/text_arrows_move.png")
+        imageGuiMusicOn = loadImage("images/gui_music_on.png")
+        imageGuiMusicOff = loadImage("images/gui_music_off.png")
+        imageGuiSoundOn = loadImage("images/gui_sound_on.png")
+        imageGuiSoundOff = loadImage("images/gui_sound_off.png")
+        imageGuiSettings = loadImage("images/gui_settings.png")
+        imageGuiSettingsOn = loadImage("images/gui_settings_on.png")
+        imageGuiRestart = loadImage("images/gui_restart.png")
+        imageGuiRestartClick = loadImage("images/gui_restart_click.png")
+        imageGuiRestartHover = loadImage("images/gui_restart_hover.png")
+        imageGuiShuffle = loadImage("images/gui_shuffle.png")
+        imageGuiShuffleClick = loadImage("images/gui_shuffle_click.png")
+        imageGuiShuffleHover = loadImage("images/gui_shuffle_hover.png")
 
-        messageBox = loadNinePatch("message_box.9.png")
+        fontCandy = loadFont("fonts/candy.fnt")
+        fontSmall = loadFont("fonts/candy-small.fnt")
+
+        messageBox = loadNinePatch("images/message_box.9.png")
     }
 
 }

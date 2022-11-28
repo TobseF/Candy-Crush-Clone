@@ -73,18 +73,19 @@ class GameFieldRenderer(
 
         suspend operator fun invoke(injector: AsyncInjector): GameFieldRenderer {
             injector.run {
-                val renderer = GameFieldRenderer(get(), get(), get(), get())
-                mapInstance(renderer)
-                mapInstance(renderer.positionGrid)
-                return renderer
+                return GameFieldRenderer(get(), get(), get(), get()).apply {
+                    mapInstance(this)
+                    mapInstance(this.positionGrid)
+                }
             }
         }
     }
 
     init {
         positionGrid = PositionGrid(
-                x = centerPadding + paddingFix, y = top, columns = gameField.columnsSize, rows = gameField.rowSize,
-                tileSize = tileSize)
+            x = centerPadding + paddingFix, y = top, columns = gameField.columnsSize, rows = gameField.rowSize,
+            tileSize = tileSize
+        )
     }
 
     private fun getMaxTileSize(): Int {
@@ -131,7 +132,8 @@ class GameFieldRenderer(
         }
         if (gameField.isNotOnField(columnIndex, rowIndex)) {
             throw IllegalArgumentException(
-                    "Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})")
+                "Image position is out of space: column:$columnIndex,row:$rowIndex (${gameField.columnsSize}-${gameField.rowSize})"
+            )
         }
         val candyImage = tiles[rowIndex][columnIndex]
         if (candyImage != null && candyImage.tile.isTile()) {
@@ -162,7 +164,8 @@ class GameFieldRenderer(
 
     private fun getTile(column: Int, row: Int): CandyImage {
         return tiles[row][column] ?: throw IllegalArgumentException(
-                "No tile image for: $column,$row\n${getLogDebugData()}")
+            "No tile image for: $column,$row\n${getLogDebugData()}"
+        )
     }
 
     private fun hasTile(column: Int, row: Int): Boolean = tiles[row][column] != null
