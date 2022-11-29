@@ -3,7 +3,7 @@
 [![KorGE](https://img.shields.io/badge/KorGE-3.4.0-836DAC.svg)](https://korge.org)
 [![Gradle](https://img.shields.io/badge/Gradle-7.5-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
 
-![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)
+[![Screenshot](https://tobsef.github.io/Candy-Crush-Clone/imgages-web/mobile_screenshot_landscape.png)](https://tobsef.github.io/Candy-Crush-Clone/)
 
 > 🚧 This is a *work in progress* match 3 game. It's ready to play but also a clean and simple example for Kotlin multiplatform game development with 
 > [KorGE](https://korge.org). In addition, it includes a test driven step-by-step guide for learning the game mechanics. Originally designed for a workshop on the 
