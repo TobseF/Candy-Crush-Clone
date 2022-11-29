@@ -20,11 +20,17 @@
 
 ## 💿 Downloads
 
-### 📦 [Candy-Crush-Clone-1.0.0-Win.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8178705/Candy-Crush-Clone-1.0.0-Win.zip) `4.14 MB` [Windows]
-> 💡 Native one-click exe - No Java required.
+### 📦 [Candy-Crush-Clone-1.1.0_win.zip](https://github.com/TobseF/Candy-Crush-Clone/releases/download/1.1.0/Candy-Crush-Clone-1.1.0_win.zip) `9.81 MB` [Windows]
+> 💡 Native x64 one-click exe - No Java required.
 
-### 📦 [Candy-Crush-Clone-1.0.0.zip](https://github.com/TobseF/Candy-Crush-Clone/files/8177832/Candy-Crush-Clone-1.0.0.zip) `17.2 MB` [Platform independent]
+### 📦 [Candy-Crush-Clone-1.1.0_jar.zip](https://github.com/TobseF/Candy-Crush-Clone/releases/download/1.1.0/Candy-Crush-Clone-1.1.0_jar.zip) `17,20 MB` `17.2 MB` [Platform independent]
 > 💡  Requires an installed [Java JRE](https://java.com/en/download/). Runs on Windows, Linux & Mac.
+
+### 📱 [Candy-Crush-Clone-1.1.0.apk](https://github.com/TobseF/Candy-Crush-Clone/releases/download/1.1.0/Candy-Crush-Clone-1.1.0.apk) `9,46 MB` [Android App]
+> 💡 Should run on every Android with at least 4.1 Jelly Bean. 
+
+### 🌎 [Candy-Crush-Clone-1.1.0_web.zip](https://github.com/TobseF/Candy-Crush-Clone/releases/download/1.1.0/Candy-Crush-Clone-1.1.0_web.zip) `7,70 MB` [Web App]
+> 💡 To run the downloaded webapp, start a webserver in the extracted folder.
 
 ## ⌨ Controls
 
