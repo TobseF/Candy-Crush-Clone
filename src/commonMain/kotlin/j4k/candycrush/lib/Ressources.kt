@@ -33,6 +33,7 @@ class Ressources : AsyncDependency {
     lateinit var imageGuiSoundOff: Bitmap
     lateinit var imageGuiSettings: Bitmap
     lateinit var imageGuiSettingsOn: Bitmap
+    lateinit var imageGuiSettingsHover: Bitmap
     lateinit var imageGuiRestart: Bitmap
     lateinit var imageGuiRestartClick: Bitmap
     lateinit var imageGuiRestartHover: Bitmap
@@ -52,6 +53,7 @@ class Ressources : AsyncDependency {
         imageGuiSoundOff = loadImage("images/gui_sound_off.png")
         imageGuiSettings = loadImage("images/gui_settings.png")
         imageGuiSettingsOn = loadImage("images/gui_settings_on.png")
+        imageGuiSettingsHover = loadImage("images/gui_settings_hover.png")
         imageGuiRestart = loadImage("images/gui_restart.png")
         imageGuiRestartClick = loadImage("images/gui_restart_click.png")
         imageGuiRestartHover = loadImage("images/gui_restart_hover.png")

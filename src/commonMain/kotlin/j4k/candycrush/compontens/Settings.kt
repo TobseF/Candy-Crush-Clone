@@ -34,7 +34,7 @@ class Settings(
         var position = -1
         fun yPos() = (size * ++position) + (padding * (position + 1))
         val settings = CheckBox(
-            res.imageGuiSettingsOn, res.imageGuiSettings,
+            res.imageGuiSettingsOn, res.imageGuiSettings, res.imageGuiSettingsHover,
             initial = false
         ).apply {
             setSizeScaled(size, size)
