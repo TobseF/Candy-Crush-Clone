@@ -1,17 +1,16 @@
-import j4k.candycrush.model.GameField
-import j4k.candycrush.model.Row
-import j4k.candycrush.model.Tile
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
+import j4k.candycrush.model.*
+import kotlin.test.*
 
 /**
  * Tests for the [GameField] which stores the field data.
  */
 class GameFieldTest {
 
+    /**
+     * Test get field by index ([GameField.get]).
+     */
     @Test
-    fun `test get field by index`() {
+    fun testGetFieldByIndex() {
         val field = GameField.fromString(
             """
                     |[E, A, H, H]
@@ -34,8 +33,11 @@ class GameFieldTest {
         assertEquals(Tile.OutOfSpace, field[0][-1])
     }
 
+    /**
+     * Test [GameField.getRow].
+     */
     @Test
-    fun `test getRow`() {
+    fun testGetRow() {
         val field = GameField.fromString(
             """
                     |[A, H]
@@ -49,8 +51,11 @@ class GameFieldTest {
         assertEquals(Row(Tile.C, Tile.Hole), field.getRow(2))
     }
 
+    /**
+     * Test set field by index ([GameField.set] && [Row.set]).
+     */
     @Test
-    fun `test set field by index`() {
+    fun setFieldByIndex() {
         val field = GameField(4, 3)
         assertEquals(
             field.toString(), """
@@ -65,15 +70,20 @@ class GameFieldTest {
         field[1][1] = "B"
         field[2][1] = "C"
 
-        assertEquals(field.toString(), """
+        assertEquals(
+            field.toString(), """
                         |[E, A, H, H]
                         |[H, B, H, H]
                         |[H, C, H, H]
-                        """.trimMargin())
+                        """.trimMargin()
+        )
     }
 
+    /**
+     * Test get field by index [Tile.OutOfSpace].
+     */
     @Test
-    fun `test get field by index OutOfSpace`() {
+    fun getFieldByIndexOutOfSpace() {
         val field = GameField(2, 2)
         assertEquals(Tile.OutOfSpace, field[-1][0])
         assertEquals(Tile.OutOfSpace, field[0][-1])
@@ -81,16 +91,22 @@ class GameFieldTest {
         assertEquals(Tile.OutOfSpace, field[2][0])
     }
 
+    /**
+     * Test get row by index [Tile.OutOfSpace].
+     */
     @Test
-    fun `test get row by index OutOfSpace`() {
+    fun getRowByIndexOutOfSpace() {
         val field = GameField(2, 2)
         assertEquals(Row.outOfSpace(), field[-1])
         assertEquals(Row.outOfSpace(), field[2])
     }
 
 
+    /**
+     * Test convert GameField to String ([GameField.toString]).
+     */
     @Test
-    fun `test convert GameField to String`() {
+    fun convertGameFieldToString() {
         val field = GameField(4, 3)
         assertEquals(
             field.toString(), """
@@ -105,15 +121,20 @@ class GameFieldTest {
         field[2][2] = "C"
         field[2][3] = Tile.Wall
 
-        assertEquals(field.toString(), """
+        assertEquals(
+            field.toString(), """
                         |[A, H, H, H]
                         |[H, B, H, H]
                         |[H, H, C, W]
-                        """.trimMargin())
+                        """.trimMargin()
+        )
     }
 
+    /**
+     * Test clone field by [GameField.clone].
+     */
     @Test
-    fun `test copy field`() {
+    fun cloneField() {
         val fieldA = GameField.fromString(
             """
                     |[A, H]
@@ -128,18 +149,25 @@ class GameFieldTest {
                     """.trimMargin(), fieldB.toString()
         )
         fieldB[0][1] = "A"
-        assertEquals("""
+        assertEquals(
+            """
                     |[A, A]
                     |[H, H]
-                    """.trimMargin(), fieldB.toString())
-        assertEquals("""
+                    """.trimMargin(), fieldB.toString()
+        )
+        assertEquals(
+            """
                     |[A, H]
                     |[H, H]
-                    """.trimMargin(), fieldA.toString())
+                    """.trimMargin(), fieldA.toString()
+        )
     }
 
+    /**
+     * Test read GameField from String ([GameField.fromString]).
+     */
     @Test
-    fun `test read GameField from String`() {
+    fun readGameFieldFromString() {
         val field = GameField.fromString(
             """
                         |[A, H, H, H]
@@ -153,12 +181,16 @@ class GameFieldTest {
                         |[A, H, H, H]
                         |[H, B, H, H]
                         |[H, H, C, W]
-                        """.trimMargin())
+                        """.trimMargin()
+        )
     }
 
 
+    /**
+     * Test getColumn of field ([GameField.getColumn]).
+     */
     @Test
-    fun `test getColumn of field`() {
+    fun getColumnOfField() {
         val field = GameField.fromString(
             """
                         |[H, A, H, H]
@@ -170,11 +202,14 @@ class GameFieldTest {
         assertEquals(listOf(Tile.Hole, Tile.Hole, Tile.Hole), field.getColumn(0))
     }
 
+    /**
+     * Test [GameField.getColumn] of field with value out of range.
+     * This should throw an [IllegalArgumentException].
+     */
     @Test
-    fun `test getColumn of field with value out of range`() {
+    fun getColumnOfFieldWithValueOutOfRange() {
         val field = GameField(1, 1)
         assertFailsWith(IllegalArgumentException::class) { field.getColumn(1) }
     }
-
 
 }

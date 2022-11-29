@@ -1,22 +1,20 @@
-import j4k.candycrush.GameMechanics
+import j4k.candycrush.*
 import j4k.candycrush.GameMechanics.InsertMove
 import j4k.candycrush.GameMechanics.Move
 import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.GameField
-import j4k.candycrush.model.Tile
-import j4k.candycrush.model.TileCell
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import j4k.candycrush.model.*
+import kotlin.test.*
 
 /**
  * Test for the [GameMechanics] which performs actions on the [GameField].
  */
 class GameMechanicsTest {
 
+    /**
+     * Test swapping of two tiles ([GameMechanics.swapTiles]).
+     */
     @Test
-    fun `test swapTiles(pos)`() {
+    fun swapTiles() {
         val field = GameField.fromString(
             """
                 |[H, H, H, H]
@@ -37,8 +35,11 @@ class GameMechanicsTest {
         )
     }
 
+    /**
+     * Test remove tile at given position ([GameMechanics.removeTile]).
+     */
     @Test
-    fun `test removeTiles(pos)`() {
+    fun removeTiles() {
         val field = GameField.fromString(
             """
                 |[A, A]
@@ -56,8 +57,11 @@ class GameMechanicsTest {
         )
     }
 
+    /**
+     * Test if a position points to a tile which is in row with three ([GameMechanics.isInRowWithThree]).
+     */
     @Test
-    fun `test isInRowWithThree(pos)`() {
+    fun isInRowWithThree() {
         val field = GameField.fromString(
             """
                 |[H, A, H, H]
@@ -80,8 +84,11 @@ class GameMechanicsTest {
         assertFalse(mechanics.isInRowWithThree(Position(0, 1)))
     }
 
+    /**
+     * Test if a position points to a tile which is NOT in row with three ([GameMechanics.isInRowWithThree]).
+     */
     @Test
-    fun `test not isInRowWithThree(pos)`() {
+    fun isNotInRowWithThree() {
         val field = GameField.fromString(
             """
                 |[H, A, A, H]
@@ -96,8 +103,11 @@ class GameMechanicsTest {
         assertFalse(mechanics.isInRowWithThree(Position(2, 2)))
     }
 
+    /**
+     * Test if [GameMechanics.getConnectedTiles] can find connected tiles (horizontal and vertical).
+     */
     @Test
-    fun `test getConnectedTiles(pos)`() {
+    fun getConnectedTiles() {
         val field = GameField.fromString(
             """
                 |[H, A, H, H]
@@ -129,8 +139,11 @@ class GameMechanicsTest {
         assertEquals(emptyList(), mechanics.getConnectedTiles(Position(0, 2)))
     }
 
+    /**
+     * Test [GameMechanics.getVerticalSurroundings] with three tiles in a vertical line.
+     */
     @Test
-    fun `test getVerticalSurroundings(pos) with three tiles in a vertical`() {
+    fun getVerticalSurroundingsWithThreeTilesVertical() {
         val field = GameField.fromString(
             """
                 |[H, A, H, H]
@@ -151,8 +164,11 @@ class GameMechanicsTest {
         assertEquals(vertical, mechanics.getVerticalSurroundings(Position(1, 2)))
     }
 
+    /**
+     * Test [GameMechanics.getVerticalSurroundings] with three tiles in a horizontal line.
+     */
     @Test
-    fun `test getHorizontalSurroundings(pos) with three tiles in a horizontal line`() {
+    fun getVerticalSurroundingsWithThreeTilesHorizontal() {
         val field = GameField.fromString(
             """
                 |[H, A, H, H]
@@ -171,8 +187,11 @@ class GameMechanicsTest {
         assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(3, 1)))
     }
 
+    /**
+     * Test [GameMechanics.getHorizontalSurroundings] don't match with holes ([Tile.Hole]).
+     */
     @Test
-    fun `test that getHorizontalSurroundings(pos) dont match holes`() {
+    fun getHorizontalSurroundingsWithHoles() {
         val field = GameField.fromString(
             """
                 |[H, H, H]
@@ -187,8 +206,11 @@ class GameMechanicsTest {
         assertEquals(listOf(field.getTileCell(1, 2)), mechanics.getHorizontalSurroundings(Position(1, 2)))
     }
 
+    /**
+     * Test [GameMechanics.getHorizontalSurroundings] with six tiles in a horizontal line.
+     */
     @Test
-    fun `test getHorizontalSurroundings(pos) with six tiles in a horizontal line`() {
+    fun getHorizontalSurroundingsWithSixTilesHorizontal() {
         val field = GameField.fromString(
             """
                 |[H, A, A, A, A, A, A, H]
@@ -206,8 +228,11 @@ class GameMechanicsTest {
         assertEquals(horizontal, mechanics.getHorizontalSurroundings(Position(column = 6)))
     }
 
+    /**
+     * Test [GameMechanics.getHorizontalSurroundings] with six tiles in a vertical line.
+     */
     @Test
-    fun `test getVerticalSurroundings(pos) with six tiles in a vertical line`() {
+    fun getHorizontalSurroundingsWithSixTilesVertical() {
         val field = GameField.fromString(
             """
                 |[H]
@@ -232,8 +257,11 @@ class GameMechanicsTest {
         assertEquals(vertical, mechanics.getVerticalSurroundings(Position(row = 6)))
     }
 
+    /**
+     * Test [GameMechanics.getVerticalSurroundings] don't match with holes ([Tile.Hole]).
+     */
     @Test
-    fun `test that getVerticalSurroundings(pos) dont match holes`() {
+    fun getVerticalSurroundingsWithHoles() {
         val field = GameField.fromString(
             """
                 |[H, H, H]
@@ -248,8 +276,12 @@ class GameMechanicsTest {
         assertEquals(listOf(field.getTileCell(1, 2)), mechanics.getVerticalSurroundings(Position(1, 2)))
     }
 
+    /**
+     * Test that a hole does not count as connected with other holes for
+     * [GameMechanics.getHorizontalSurroundings] and [GameMechanics.getVerticalSurroundings].
+     */
     @Test
-    fun `test disconnected surroundings`() {
+    fun surroundingsNotConnectedWithHoles() {
         val field = GameField.fromString(
             """
                 |[H, A, H, H]
@@ -275,8 +307,11 @@ class GameMechanicsTest {
     }
 
 
+    /**
+     * Test search for drop down moves with [GameMechanics.getNextDropMove].
+     */
     @Test
-    fun `test getNextDropMove(column)`() {
+    fun getNextDropMove() {
         val field = GameField.fromString(
             """
                 |[H, H, A, H]
@@ -293,8 +328,11 @@ class GameMechanicsTest {
         assertEquals(Move(Position(3, 3), Position(3, 1)), mechanics.getNextDropMove(3))
     }
 
+    /**
+     * Test dropping a tile to the ground with [GameMechanics.dropToGround].
+     */
     @Test
-    fun `test dropToGround(field)`() {
+    fun dropToGround() {
         val field = GameField.fromString(
             """
                 |[H, A, A, A]
@@ -348,8 +386,11 @@ class GameMechanicsTest {
 
     }
 
+    /**
+     * Test a move a Tile from position-A to position-B.
+     */
     @Test
-    fun `test a move from position-A to position-B`() {
+    fun moveTileToAnotherPosition() {
         val field = GameField.fromString(
             """
                 |[H, H, A, H]
@@ -375,9 +416,12 @@ class GameMechanicsTest {
         )
     }
 
-
+    /**
+     * Test the order of insert moves ([GameMechanics.getNewTileMoves]).
+     * Lower tiles have to be filled first.
+     */
     @Test
-    fun `test top down order of insert moves`() {
+    fun topDownOrderOfInsertMoves() {
         val field = GameField.fromString(
             """
                 |[H]
@@ -390,8 +434,11 @@ class GameMechanicsTest {
         assertEquals(listOf(2, 1, 0), rows)
     }
 
+    /**
+     * Test listing empty cells ([GameMechanics.listEmptyCells]).
+     */
     @Test
-    fun `test listEmptyCells()`() {
+    fun listEmptyCells() {
         val field = GameField.fromString(
             """
                 |[H, H, H]
@@ -407,8 +454,11 @@ class GameMechanicsTest {
         assertEquals(holes, listEmptyCells)
     }
 
+    /**
+     * Test executing a new tile move with ([GameMechanics.getNewTileMoves]) and ([GameMechanics.insert]).
+     */
     @Test
-    fun `test getNewTileMoves(tile) and inserting them`() {
+    fun insertNewTileMoves() {
         val field = GameField.fromString(
             """
                 |[A, H, H, H]
@@ -430,8 +480,11 @@ class GameMechanicsTest {
         )
     }
 
+    /**
+     * Test sort order of insert moves ([InsertMove]). This should be top down.
+     */
     @Test
-    fun `test top down sort of InsertMoves`() {
+    fun sortOrderOfInsertMoves() {
         val moves: List<InsertMove> = listOf(1, 2, 0).map { mockInsertMove(it) }
         val sorted: List<InsertMove> = moves.sorted()
         assertEquals(listOf(2, 1, 0).map { mockInsertMove(it) }, sorted)

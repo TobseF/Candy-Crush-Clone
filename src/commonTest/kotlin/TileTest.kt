@@ -1,14 +1,16 @@
-import j4k.candycrush.model.Tile
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import j4k.candycrush.model.*
+import kotlin.test.*
 
 /**
  * Test for the mapping of a [Tile].
  */
 class TileTest {
 
+    /**
+     * Test convert char to [Tile] with [Tile.getTile].
+     */
     @Test
-    fun `test convert char to Tile`() {
+    fun convertCharToTile() {
         assertEquals(Tile.A, Tile.getTile("A"))
         assertEquals(Tile.B, Tile.getTile("B"))
         assertEquals(Tile.C, Tile.getTile("C"))
@@ -19,8 +21,11 @@ class TileTest {
         assertEquals(Tile.Wall, Tile.getTile("W"))
     }
 
+    /**
+     * Test get short name of [Tile] with [Tile.shortName].
+     */
     @Test
-    fun `test shortName() of Tile`() {
+    fun shortNameOfTile() {
         assertEquals("A", Tile.A.shortName())
         assertEquals("B", Tile.B.shortName())
         assertEquals("C", Tile.C.shortName())

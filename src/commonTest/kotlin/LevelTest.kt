@@ -1,15 +1,16 @@
-import j4k.candycrush.model.Level
-import j4k.candycrush.model.Tile
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import j4k.candycrush.model.*
+import kotlin.test.*
 
 /**
  * Tests for the [Level]
  */
 class LevelTest {
 
+    /**
+     * Test get next tile for a given column ([Level.getNextTile]).
+     */
     @Test
-    fun `test getNextTile(column) for level`() {
+    fun getNextTile() {
         val reserve = """
                         |[B, D, E, A]
                         |[A, B, D, E]
