@@ -19,7 +19,8 @@ class GameActions(
     private val levelCheck: LevelCheck,
     private val checkRenderer: LevelCheckRenderer,
     private val level: Level,
-    private val fieldRenderer: GameFieldRenderer
+    private val fieldRenderer: GameFieldRenderer,
+    private val mechanics: GameMechanics,
 ) : AsyncDependency {
 
     companion object {
@@ -27,7 +28,7 @@ class GameActions(
 
         suspend operator fun invoke(injector: AsyncInjector): GameActions {
             injector.mapSingleton {
-                GameActions(get(), get(), get(), get(), get(), get(), get(), get())
+                GameActions(get(), get(), get(), get(), get(), get(), get(), get(), get())
             }
             return injector.get()
         }
@@ -50,14 +51,19 @@ class GameActions(
     private fun shuffle() {
         log.debug { "Shuffle & Reset" }
         resetState()
-        level.field.shuffle()
+        val field = level.field
+        field.listAllPositions().forEach { position ->
+            do {
+                field[position] = Tile.randomTile()
+            } while (mechanics.isInRowWithThree(position))
+        }
         fieldRenderer.updateImagesFromField()
     }
 
     private fun reloadLevel() {
         log.debug { "Reload level" }
-        resetState()
         level.reset()
+        resetState()
         fieldRenderer.updateImagesFromField()
     }
 }

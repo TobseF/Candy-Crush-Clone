@@ -13,11 +13,13 @@ import j4k.candycrush.renderer.animation.*
 /**
  * Global game cycle which reacts on swapped tiles [onDragTileEvent].
  */
-class GameFlow(private val level: Level,
-        private val bus: EventBus,
-        private val mechanics: GameMechanics,
-        private val animator: TileAnimator,
-        private val soundMachine: SoundMachine) {
+class GameFlow(
+    private val level: Level,
+    private val bus: EventBus,
+    private val mechanics: GameMechanics,
+    private val animator: TileAnimator,
+    private val soundMachine: SoundMachine
+) {
 
     private val field = level.field
 
@@ -111,11 +113,7 @@ class GameFlow(private val level: Level,
             animator.animateMoves(nextMoves)
             mechanics.insert(newTileMoves)
             animator.animateInsert(newTileMoves).invokeOnCompletion {
-                try {
-                    checkNewField()
-                } catch (e: IllegalArgumentException) {
-                    log.debug { "Skipping checkNewField() because of level reset" }
-                }
+                checkNewField()
             }
         } else {
             log.debug { "Field was clean on rush: $rush" }
