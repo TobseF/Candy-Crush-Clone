@@ -1,3 +1,5 @@
+package j4k.candycrush.compontens
+
 import com.soywiz.korge.input.*
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.image
@@ -8,7 +10,6 @@ import com.soywiz.korinject.*
 import com.soywiz.korma.geom.*
 import j4k.candycrush.*
 import j4k.candycrush.lib.*
-
 
 class GameOverComponent(bus: EventBus, res: Ressources, resolution: Resolution) : Container() {
 
@@ -35,7 +36,7 @@ class GameOverComponent(bus: EventBus, res: Ressources, resolution: Resolution) 
         }
     }
 
-    fun hide() {
+    private fun hide() {
         visible = false
     }
 
@@ -48,7 +49,7 @@ class GameOverComponent(bus: EventBus, res: Ressources, resolution: Resolution) 
     }
 
     class CandyButton(text: String, event: Any, val bus: EventBus, res: Ressources, point: Point, run: () -> Unit) :
-            Container() {
+        Container() {
 
         init {
             val texture = res.imageButton

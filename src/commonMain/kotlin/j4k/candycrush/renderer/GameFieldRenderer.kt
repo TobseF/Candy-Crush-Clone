@@ -154,25 +154,25 @@ class GameFieldRenderer(
         }
     }
 
-    fun debug() {
+    private fun debug() {
         gameField.listAllPositions().forEach { tiles[it.row][it.column]?.debug() }
     }
 
-    fun disableDebug() {
+    private fun disableDebug() {
         gameField.listAllPositions().forEach { tiles[it.row][it.column]?.disableDebug() }
     }
 
-    private fun getTile(column: Int, row: Int): CandyImage {
-        return tiles[row][column] ?: throw IllegalArgumentException(
-            "No tile image for: $column,$row\n${getLogDebugData()}"
-        )
+    /**
+     * Can be null in some multithreading edge cases, like during game exit.
+     * During default game loop, every column should have an image.
+     */
+    private fun getTile(column: Int, row: Int): CandyImage? {
+        return tiles[row][column]
     }
 
     private fun hasTile(column: Int, row: Int): Boolean = tiles[row][column] != null
 
-    private fun getLogDebugData(): String = "images:\n${toString()}\nfields:\n$gameField"
-
-    fun getTile(position: Position): CandyImage {
+    fun getTile(position: Position): CandyImage? {
         return getTile(position.column, position.row)
     }
 

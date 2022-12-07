@@ -1,17 +1,14 @@
 package j4k.candycrush.input
 
-import com.soywiz.korev.MouseButton
-import com.soywiz.korev.MouseEvent
-import com.soywiz.korge.component.MouseComponent
-import com.soywiz.korge.view.Stage
-import com.soywiz.korge.view.Views
-import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korma.geom.Point
-import com.soywiz.korma.geom.distanceTo
-import j4k.candycrush.DragTileEvent
+import com.soywiz.korev.*
+import com.soywiz.korge.component.*
+import com.soywiz.korge.view.*
+import com.soywiz.korinject.*
+import com.soywiz.korma.geom.*
+import j4k.candycrush.*
 import j4k.candycrush.input.DragListener.DragEvent
-import j4k.candycrush.lib.EventBus
-import j4k.candycrush.math.PositionGrid
+import j4k.candycrush.lib.*
+import j4k.candycrush.math.*
 import j4k.candycrush.math.PositionGrid.Position
 
 class MoveTileObserver(
@@ -40,7 +37,7 @@ class MoveTileObserver(
 
     fun MouseEvent.point() = project(Point(this.x, y))
 
-    fun project(point: Point): Point {
+    private fun project(point: Point): Point {
         return view.globalToLocalXY(point.x, point.y, point)
     }
 

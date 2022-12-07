@@ -1,9 +1,8 @@
 package j4k.candycrush.compontens
 
-import com.soywiz.korge.component.*
 import com.soywiz.korge.view.*
-import com.soywiz.korinject.AsyncInjector
-import j4k.candycrush.lib.Ressources
+import com.soywiz.korinject.*
+import j4k.candycrush.lib.*
 
 class Background(res: Ressources) : Container() {
 

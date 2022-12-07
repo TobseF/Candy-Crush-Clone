@@ -1,18 +1,15 @@
 package j4k.candycrush.renderer
 
-import com.soywiz.korge.view.BaseImage
-import com.soywiz.korge.view.anchor
-import com.soywiz.korge.view.position
-import com.soywiz.korge.view.size
-import com.soywiz.korim.bitmap.BmpSlice
-import com.soywiz.korma.geom.Point
-import j4k.candycrush.model.Tile
+import com.soywiz.korge.view.*
+import com.soywiz.korim.bitmap.*
+import com.soywiz.korma.geom.*
+import j4k.candycrush.model.*
 
 class CandyImage(
     tileSize: Double,
     position: Point,
-    val candy: BmpSlice,
-    val debugLetter: BmpSlice,
+    private val candy: BmpSlice,
+    private val debugLetter: BmpSlice,
     val tile: Tile
 ) : BaseImage(candy) {
     init {

@@ -1,38 +1,31 @@
 package j4k.candycrush.renderer
 
-import com.soywiz.klock.milliseconds
-import com.soywiz.klogger.Logger
-import com.soywiz.korge.view.Stage
-import com.soywiz.korge.view.Text
-import com.soywiz.korge.view.position
-import com.soywiz.korge.view.text
-import com.soywiz.korge.view.tween.hide
-import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korma.geom.Point
-import com.soywiz.korma.interpolation.Easing
-import j4k.candycrush.NewScoreEvent
-import j4k.candycrush.lib.EventBus
-import j4k.candycrush.lib.Resolution
-import j4k.candycrush.lib.Ressources
-import j4k.candycrush.math.PositionGrid
-import j4k.candycrush.renderer.animation.AnimationSettings
-import j4k.candycrush.renderer.animation.move
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import com.soywiz.klock.*
+import com.soywiz.klogger.*
+import com.soywiz.korge.animate.*
+import com.soywiz.korge.view.*
+import com.soywiz.korinject.*
+import com.soywiz.korma.interpolation.*
+import j4k.candycrush.*
+import j4k.candycrush.lib.*
+import j4k.candycrush.math.*
+import j4k.candycrush.renderer.animation.*
+import kotlinx.coroutines.*
 
 
 /**
  * Counts and displays the current high score.
  */
-class ScoringRenderer(val view: Stage,
-        bus: EventBus,
-        val resolution: Resolution,
-        val positionGrid: PositionGrid,
-        res: Ressources) {
+class ScoringRenderer(
+    private val view: Stage,
+    bus: EventBus,
+    private val resolution: Resolution,
+    private val positionGrid: PositionGrid,
+    res: Ressources
+) {
+    private val log = Logger<ScoringRenderer>()
 
     companion object {
-        val log = Logger<ScoringRenderer>()
-
         suspend operator fun invoke(injector: AsyncInjector) {
             injector.mapSingleton {
                 ScoringRenderer(get(), get(), get(), get(), get())
@@ -80,8 +73,11 @@ class ScoringRenderer(val view: Stage,
                 alpha = 1.0
             }
             hideMultiplicator?.cancel()
+
             hideMultiplicator = view.launch {
-                multiplicatorText.hide(hideMultiplcator.time, hideMultiplcator.easing)
+                view.animate {
+                    hide(multiplicatorText, hideMultiplcator.time, hideMultiplcator.easing)
+                }
             }
         }
     }
@@ -99,15 +95,14 @@ class ScoringRenderer(val view: Stage,
         val scoreText = view.text(scoreEvent.score.toString(), textSize = scoreSize.toDouble(), font = font) {
             position(coordinates)
         }
+
         view.launch {
-            launch {
-                scoreText.hide(hideScore.time, hideScore.easing)
+            view.animate(parallel = true, defaultTime = hideScore.time, defaultEasing = hideScore.easing) {
+                hide(scoreText)
+                moveBy(scoreText, y = -60)
+            }.onComplete {
+                view.removeChild(scoreText)
             }
-            launch {
-                scoreText.move(coordinates.add(Point(0, -60)), hideScore)
-            }
-        }.invokeOnCompletion {
-            view.removeChild(scoreText)
         }
     }
 

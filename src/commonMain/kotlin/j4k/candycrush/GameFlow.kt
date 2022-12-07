@@ -68,7 +68,7 @@ class GameFlow(
         mechanics.removeTileCells(tilesToRemove)
         val nextMoves: List<Move> = mechanics.dropAllToGround()
         val newTileMoves: List<InsertMove> = getNewTileMoves()
-        animator.animateSwap(posA, posB).invokeOnCompletion {
+        animator.animateSwap(posA, posB)?.invokeOnCompletion {
             soundMachine.playClear()
             animator.animateRemoveTiles(tilesToRemove)
             bus.send(TileDeletionEvent(rush, (tilesToRemove)))
