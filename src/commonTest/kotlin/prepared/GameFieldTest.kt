@@ -1,3 +1,5 @@
+package prepared
+
 import j4k.candycrush.model.*
 import kotlin.test.*
 
@@ -77,28 +79,6 @@ class GameFieldTest {
                         |[H, C, H, H]
                         """.trimMargin()
         )
-    }
-
-    /**
-     * Test get field by index [Tile.OutOfSpace].
-     */
-    @Test
-    fun getFieldByIndexOutOfSpace() {
-        val field = GameField(2, 2)
-        assertEquals(Tile.OutOfSpace, field[-1][0])
-        assertEquals(Tile.OutOfSpace, field[0][-1])
-        assertEquals(Tile.OutOfSpace, field[0][2])
-        assertEquals(Tile.OutOfSpace, field[2][0])
-    }
-
-    /**
-     * Test get row by index [Tile.OutOfSpace].
-     */
-    @Test
-    fun getRowByIndexOutOfSpace() {
-        val field = GameField(2, 2)
-        assertEquals(Row.outOfSpace(), field[-1])
-        assertEquals(Row.outOfSpace(), field[2])
     }
 
 

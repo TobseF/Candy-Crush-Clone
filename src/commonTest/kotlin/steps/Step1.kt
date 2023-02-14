@@ -1,14 +1,26 @@
+package steps
+
 import j4k.candycrush.model.*
 import kotlin.test.*
 
 /**
- * Test for the mapping of a [Tile].
+ * A [GameField] contains [Row]s which contain [Tile]s.
+ *
+ * A [Tile] can be one of five stone types (A-E): [Tile.isTile] -> `true` or
+ * it's a special field: [Tile.Hole], [Tile.OutOfSpace], [Tile.Wall]:  [Tile.isTile] -> `false`.
  */
-class TileTest {
-
+class Step1 {
 
     /**
-     * Test [Tile.isTile] which should be `true` for [Tile.A] - [Tile.B].
+     * ### Step 1.1
+     *
+     * **Test**: `is Tile`
+     *
+     * Only [Tile]s ([Tile.A]-[Tile.E]) should be visible on the [GameField]. Here [Tile.isTile] should return `true`.
+     * On other [Tile]s ([Tile.Hole], [Tile.OutOfSpace], [Tile.Wall]):  [Tile.isTile] should return `false`.
+     *
+     * Check the game after fixing this test.
+     * You should see a level which consists of one type of tile.
      */
     @Test
     fun isTile() {
@@ -24,8 +36,14 @@ class TileTest {
     }
 
     /**
-     * Test get short name of [Tile] with [Tile.shortName].
-     * This short-notation helps to build levels and to test the game.
+     * ### Step 1.2
+     *
+     * **Test**: `short name of Tile`
+     *
+     * To export or debug a level, we need to convert a
+     * [Tile] into a single letter shortname [String] by [Tile.shortName].
+     *
+     * For example: [Tile.A.shortName] should return `A`.
      */
     @Test
     fun shortNameOfTile() {
@@ -34,16 +52,24 @@ class TileTest {
         assertEquals("C", Tile.C.shortName())
         assertEquals("D", Tile.D.shortName())
         assertEquals("E", Tile.E.shortName())
+
         assertEquals("H", Tile.Hole.shortName())
         assertEquals("O", Tile.OutOfSpace.shortName())
         assertEquals("W", Tile.Wall.shortName())
     }
 
     /**
-     * Test convert short name to [Tile] with [Tile.getTile].
+     * ### Step 1.3
+     *
+     * **Test**: `convert short name to Tile`
+     *
+     * Ensures we can load [Tile]s from its [Tile.shortName].
+     * This allows loading of a stored level.
+     *
+     * Check the game after fixing this test. You should see tiles of level one.
      */
     @Test
-    fun convertCharToTile() {
+    fun convertShortNameToTile() {
         assertEquals(Tile.A, Tile.getTile("A"))
         assertEquals(Tile.B, Tile.getTile("B"))
         assertEquals(Tile.C, Tile.getTile("C"))
@@ -54,5 +80,4 @@ class TileTest {
         assertEquals(Tile.OutOfSpace, Tile.getTile("O"))
         assertEquals(Tile.Wall, Tile.getTile("W"))
     }
-
 }
