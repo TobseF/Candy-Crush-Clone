@@ -9,20 +9,11 @@ class Row(rowSize: Int) : Iterable<Tile> {
         tiles.copyInto(this.tiles)
     }
 
-    companion object {
-        fun outOfSpace(): Row {
-            return Row(Tile.OutOfSpace)
-        }
-    }
-
     private var tiles = Array(rowSize) { Tile.Hole }
 
     operator fun get(row: Int): Tile {
-        return if (isInRow(row)) {
-            tiles[row]
-        } else {
-            Tile.OutOfSpace
-        }
+        // TODO: Step 2.2 Handle OutOfSpace for tiles
+        return tiles[row]
     }
 
     fun isInRow(column: Int): Boolean {
@@ -68,5 +59,9 @@ class Row(rowSize: Int) : Iterable<Tile> {
         return clone
     }
 
-
+    companion object {
+        fun outOfSpace(): Row {
+            return Row(Tile.OutOfSpace)
+        }
+    }
 }

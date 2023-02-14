@@ -13,40 +13,9 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     private val rows = Array(rowSize) { Row(columnsSize) }
 
-    companion object {
-
-        /**
-         * Reads a GameField formatted as String.
-         *
-         * Sample row, with a Hole and the Tiles A,B,C: `H, A, B, C`.
-         * Mappings: Tiles: `A-E`, Hole: `H`
-         */
-        fun fromString(string: String): GameField {
-            val values = string.split("[").filter { it.isNotBlank() }
-            val rows = values.map { parseRow(it) }
-            val field = GameField(rows[0].size(), rows.size)
-            rows.forEachIndexed { rowIndex, row ->
-                row.forEachIndexed { columnIndex, tile ->
-                    field[rowIndex][columnIndex] = tile
-                }
-            }
-            return field
-        }
-
-        /**
-         * Parses a single text formatted row.
-         *
-         * Sample row, with a Hole and the Tiles A,B,C: `H, A, B, C`.
-         * Mappings: Tiles: `A-E`, Hole: `H`
-         */
-        private fun parseRow(line: String): Row {
-            val values = line.trim().removePrefix("[").removeSuffix("]").trim()
-                .split(",").filter { it.isNotBlank() }.map { it.trim() }
-            val tiles = values.map { Tile.getTile(it) }
-            val row = Row(tiles.size)
-            tiles.forEachIndexed { index, tile -> row[index] = tile }
-            return row
-        }
+    fun getRow(row: Int): Row {
+        // TODO: Step 2.1 Handle Out of space for rows
+        return rows[row]
     }
 
     fun clone(): GameField {
@@ -120,14 +89,6 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
 
     operator fun get(row: Int): Row = getRow(row)
 
-    fun getRow(row: Int): Row {
-        return if (isRowField(row)) {
-            rows[row]
-        } else {
-            Row.outOfSpace()
-        }
-    }
-
     override fun iterator(): Iterator<Row> = rows.iterator()
 
     fun listAllCells(): List<TileCell> = listAllPositions().map { getTileCell(it) }
@@ -140,16 +101,48 @@ data class GameField(val columnsSize: Int, val rowSize: Int) : Iterable<Row> {
         }
     }
 
-    fun shuffle() {
-        listAllPositions().forEach { position -> set(position, Tile.randomTile()) }
-    }
-
     fun reload(levelData: String) {
         fromString(levelData).listAllCells().forEach(this::set)
     }
 
     override fun toString(): String {
         return rows.joinToString("\n") { it.toString() }
+    }
+
+    companion object {
+
+        /**
+         * Reads a [GameField] formatted as String.
+         *
+         * Sample row, with a Hole and the Tiles A,B,C: `H, A, B, C`.
+         * Mappings: Tiles: `A-E`, Hole: `H`
+         */
+        fun fromString(string: String): GameField {
+            val values = string.split("[").filter { it.isNotBlank() }
+            val rows = values.map { parseRow(it) }
+            val field = GameField(rows[0].size(), rows.size)
+            rows.forEachIndexed { rowIndex, row ->
+                row.forEachIndexed { columnIndex, tile ->
+                    field[rowIndex][columnIndex] = tile
+                }
+            }
+            return field
+        }
+
+        /**
+         * Parses a single text formatted row.
+         *
+         * Sample row, with a Hole and the Tiles A,B,C: `H, A, B, C`.
+         * Mappings: Tiles: `A-E`, Hole: `H`
+         */
+        private fun parseRow(line: String): Row {
+            val values: List<String> = line.trim().removePrefix("[").removeSuffix("]").trim()
+                .split(",").filter { it.isNotBlank() }.map { it.trim() }
+            val tiles = values.map { Tile.getTile(it) }
+            val row = Row(tiles.size)
+            tiles.forEachIndexed { index, tile -> row[index] = tile }
+            return row
+        }
     }
 }
 

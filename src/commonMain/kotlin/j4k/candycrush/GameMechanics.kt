@@ -1,39 +1,50 @@
 package j4k.candycrush
 
-import com.soywiz.klogger.Logger
-import com.soywiz.korinject.AsyncInjector
-import com.soywiz.korma.geom.distanceTo
+import com.soywiz.klogger.*
+import com.soywiz.korinject.*
+import com.soywiz.korma.geom.*
 import j4k.candycrush.math.PositionGrid.Position
-import j4k.candycrush.model.GameField
-import j4k.candycrush.model.Tile
-import j4k.candycrush.model.TileCell
+import j4k.candycrush.model.*
 
 /**
  * Performs actions and checks on the provided [GameField].
  */
 class GameMechanics(val field: GameField) {
 
-    companion object {
-        val log = Logger<GameMechanics>()
-
-        suspend operator fun invoke(injector: AsyncInjector): GameMechanics {
-            injector.run {
-                return GameMechanics(get()).apply {
-                    injector.mapInstance(this)
-                }
-            }
-        }
-    }
-
     /**
      * Swaps the two tiles on the given positions.
      */
     fun swapTiles(a: Position, b: Position) {
-        val tileA = field[a]
-        val tileB = field[b]
-        field[a] = tileB
-        field[b] = tileA
+        // TODO: Step 3.1 Implement swapping of tiles
     }
+
+    /**
+     * Remove a field by setting a [Tile.Hole].
+     */
+    fun removeTile(position: Position) {
+        // TODO: Step 3.2 Implement remove tile
+    }
+
+    /**
+     * Returns a list of [Tile]s which are horizontally connected and have the same type as the provided [Tile].
+     * The list will always include the provided tile itself. Even if [Tile.isNotTile] is `true`.
+     * Only [Tile]s with [Tile.isTile] = `true` count as connected.
+     */
+    fun getHorizontalSurroundings(cell: TileCell): List<TileCell> {
+        // TODO: Step 4.1 Implement get horizontal surroundings
+        return emptyList()
+    }
+
+    /**
+     * Returns a list of [Tile]s which are vertically connected and have the same type as the provided [Tile].
+     * The list will always include the provided tile itself. Even if [Tile.isNotTile] is `true`.
+     * Only [Tile]s with [Tile.isTile] = `true` count as connected.
+     */
+    fun getVerticalSurroundings(cell: TileCell): List<TileCell> {
+        // TODO: Step 4.2 Implement get vertical surroundings
+        return emptyList()
+    }
+
 
     /**
      * Returns `true` if swapping of two tiles is allowed.
@@ -81,12 +92,6 @@ class GameMechanics(val field: GameField) {
         return (getConnectedLines(a) + getConnectedLines(b)).filter { it.isNotEmpty() }
     }
 
-    /**
-     * Remove a field by setting a [Tile.Hole].
-     */
-    fun removeTile(position: Position) {
-        field[position] = Tile.Hole
-    }
 
     /**
      * Remove a list of fields by setting a [Tile.Hole] for all of them.
@@ -145,56 +150,8 @@ class GameMechanics(val field: GameField) {
         return if (verticalConnected.size < 3) emptyList() else verticalConnected
     }
 
-    /**
-     * Returns a list of [Tile]s which are horizontally connected and have the same type as the provided [Tile].
-     * The list will always include the provided tile itself. Even if [Tile.isNotTile] is `true`.
-     * Only [Tile]s with [Tile.isTile] = `true` count as connected.
-     */
-    fun getHorizontalSurroundings(cell: TileCell): List<TileCell> {
-        if (cell.tile.isNotTile()) {
-            return listOf(cell)
-        }
-        var pos = cell.position.right()
-        val cellsRight = mutableListOf<TileCell>()
-        while (field.getTile(pos) == cell.tile) {
-            cellsRight += field.getTileCell(pos)
-            pos = pos.right()
-        }
-        pos = cell.position.left()
-        val cellsLeft = mutableListOf<TileCell>()
-        while (field.getTile(pos) == cell.tile) {
-            cellsLeft += field.getTileCell(pos)
-            pos = pos.left()
-        }
-        return cellsLeft.reversed() + cell + cellsRight
-    }
-
     fun getHorizontalSurroundings(pos: Position): List<TileCell> {
         return getHorizontalSurroundings(field.getTileCell(pos))
-    }
-
-    /**
-     * Returns a list of [Tile]s which are vertically connected and have the same type as the provided [Tile].
-     * The list will always include the provided tile itself. Even if [Tile.isNotTile] is `true`.
-     * Only [Tile]s with [Tile.isTile] = `true` count as connected.
-     */
-    fun getVerticalSurroundings(cell: TileCell): List<TileCell> {
-        if (cell.tile.isNotTile()) {
-            return listOf(cell)
-        }
-        var pos = cell.position.bottom()
-        val cellsBottom = mutableListOf<TileCell>()
-        while (field.getTile(pos) == cell.tile) {
-            cellsBottom += field.getTileCell(pos)
-            pos = pos.bottom()
-        }
-        pos = cell.position.top()
-        val cellsTop = mutableListOf<TileCell>()
-        while (field.getTile(pos) == cell.tile) {
-            cellsTop += field.getTileCell(pos)
-            pos = pos.top()
-        }
-        return cellsTop.reversed() + cell + cellsBottom
     }
 
     fun getVerticalSurroundings(pos: Position): List<TileCell> {
@@ -304,6 +261,21 @@ class GameMechanics(val field: GameField) {
 
     override fun toString(): String {
         return field.toString()
+    }
+
+    companion object {
+        val log = Logger<GameMechanics>()
+
+        /**
+         * Magic operator `{}` overloaded constructor for automatic dependency injection.
+         */
+        suspend operator fun invoke(injector: AsyncInjector): GameMechanics {
+            injector.run {
+                return GameMechanics(get()).apply {
+                    injector.mapInstance(this)
+                }
+            }
+        }
     }
 
 }
