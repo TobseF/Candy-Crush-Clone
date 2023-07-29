@@ -1,4 +1,4 @@
-# 🍭 Candy Crush Clone
+# <img src=".idea/icon.png" width="38"/> Candy Crush Clone
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.7.20-blue.svg?style=flat&logo=kotlin&logoColor=white)](http://kotlinlang.org)
 [![KorGE](https://img.shields.io/badge/KorGE-3.4.0-836DAC.svg)](https://korge.org)
 [![Gradle](https://img.shields.io/badge/Gradle-7.5-08313A.svg?style=flat&logo=Java&logoColor=white)](https://gradle.org)
