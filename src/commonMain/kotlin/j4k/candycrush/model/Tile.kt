@@ -26,7 +26,7 @@ enum class Tile {
     val index = ordinal
 
     /**
-     * @return `true` if [Tile] is ([Tile.A] - [Tile.A]).
+     * @return `true` if [Tile] is ([Tile.A] - [Tile.E]).
      * Otherwise `false` ([Tile.Hole], [Tile.OutOfSpace], [Tile.Wall]).
      */
     fun isTile(): Boolean {

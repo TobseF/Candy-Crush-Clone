@@ -11,9 +11,9 @@ class Row(rowSize: Int) : Iterable<Tile> {
 
     private var tiles = Array(rowSize) { Tile.Hole }
 
-    operator fun get(row: Int): Tile {
+    operator fun get(column: Int): Tile {
         // TODO: Step 2.2 Handle OutOfSpace for tiles
-        return tiles[row]
+        return tiles[column]
     }
 
     fun isInRow(column: Int): Boolean {
